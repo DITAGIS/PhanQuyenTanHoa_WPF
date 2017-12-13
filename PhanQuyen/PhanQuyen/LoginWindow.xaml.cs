@@ -35,13 +35,15 @@ namespace PhanQuyen
             cbbDate.Items.Add("06");
             cbbDate.Items.Add("07");
             cbbDate.Items.Add("08");
-            
+
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
-
         {
-
+            login();
+        }
+        private void login()
+        {
             if (txtbUsername.Text.Equals("tanhoa") && txtbPassword.Password.Equals("123"))
             {
                 //MessageBox.Show("Đăng nhập thành công");
@@ -49,7 +51,12 @@ namespace PhanQuyen
                 new MainWindow().Show();
             }
         }
-
-     
+        private void txtbPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                login();
+            }
+        }
     }
 }

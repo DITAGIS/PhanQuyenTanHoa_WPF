@@ -7,6 +7,7 @@
         xmlns:Properties="clr-namespace:PhanQuyen.Properties" x:Class="PhanQuyen.LogInWindow"
         ResizeMode="NoResize"
         mc:Ignorable="d"
+    FocusManager.FocusedElement="{Binding ElementName=txtbUsername}"
     WindowStartupLocation="CenterScreen"
     Icon="/PhanQuyen;component/Images/logo_tanhoa.png"
         Title="Đăng nhập" Height="350" Width="700" >
@@ -33,9 +34,9 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="1" FontSize="15" VerticalAlignment="Center"><Run Text="Tên đăng nhập:"/></TextBlock>
-            <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" FontSize="15" Height="30" Width="250" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbUsername"/>
+            <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" FontSize="15" Height="30" Width="250" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbUsername" />
             <TextBlock Grid.Column="0" Grid.Row="2" FontSize="15" VerticalAlignment="Center"><Run Text="Mật khẩu:"/></TextBlock>
-            <PasswordBox  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" FontSize="15" Height="30" Width="250" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbPassword"/>
+            <PasswordBox  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" FontSize="15" Height="30" Width="250" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbPassword" KeyDown="txtbPassword_KeyDown"/>
             <StackPanel Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
                 <TextBlock FontSize="15" ><Run Text="Năm:"/></TextBlock>
                 <ComboBox x:Name="cbbYear" SelectedIndex="0"/>

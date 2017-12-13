@@ -13,11 +13,11 @@
         Title="Quản lý đọc số đồng hồ nước" Height="700" Width="1366
         " Closed="Window_Closed">
     <DockPanel LastChildFill="True">
-        <Ribbon DockPanel.Dock="Top" IsMinimized="True" Name="RibbonMain">
+        <Ribbon DockPanel.Dock="Top"  Name="RibbonMain" >
             <Ribbon.HelpPaneContent>
-                <RibbonButton SmallImageSource="/PhanQuyen;component/Images/down.png" Margin="0,0,20,00" Name="btnExpandRibbon" Click="btnExpandRibbon_Click"/>
+                <RibbonButton SmallImageSource="/PhanQuyen;component/Images/up.png" Margin="0,0,20,00" Name="btnExpandRibbon" Click="btnExpandRibbon_Click"/>
             </Ribbon.HelpPaneContent>
-            
+
             <!--<Ribbon.QuickAccessToolBar>
                 <RibbonQuickAccessToolBar >
                     <RibbonButton x:Name="QATButton1" 
@@ -30,9 +30,9 @@
                 <RibbonApplicationMenu>
                     <RibbonApplicationMenuItem ImageSource="/PhanQuyen;component/Images/report.png"
                                        Header="Thoát" />
-                   
+
                 </RibbonApplicationMenu>
-                
+
             </Ribbon.ApplicationMenu>
             <RibbonTab Header="Hệ thống" IsSelected="True">
 
@@ -65,8 +65,8 @@
             </RibbonTab>
             <RibbonTab Header="Xử lý" >
                 <RibbonGroup Header="Điều chỉnh">
-                    <RibbonButton Label="Điều chỉnh thông tin đọc số"  LargeImageSource="/PhanQuyen;component/Images/update_number.png"></RibbonButton>
-                    <RibbonButton Label="In phiếu tiêu thụ khách hàng"  LargeImageSource="/PhanQuyen;component/Images/printer.png"></RibbonButton>
+                    <RibbonButton Label="Điều chỉnh thông tin đọc số"  LargeImageSource="/PhanQuyen;component/Images/update_number.png" Name="ribBtnDieuChinhThongTinDocSo" Click="ribBtnDieuChinhThongTinDocSo_Click"></RibbonButton>
+                    <RibbonButton Label="In phiếu tiêu thụ khách hàng"  LargeImageSource="/PhanQuyen;component/Images/printer.png" Name="ribBtnInPhieuTieuThuKH" Click="ribBtnInPhieuTieuThuKH_Click"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Hoàn tất">
                     <RibbonButton Label="Hoàn tất đọc số"  LargeImageSource="/PhanQuyen;component/Images/check.png"></RibbonButton>
@@ -104,12 +104,8 @@
 
         <TextBlock DockPanel.Dock="Bottom">Status:</TextBlock>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="31*"/>
-                <ColumnDefinition Width="649*"/>
-            </Grid.ColumnDefinitions>
+        <StackPanel Name="stkMain" Orientation="Vertical">
 
-        </Grid>
+        </StackPanel>
     </DockPanel>
 </Window>

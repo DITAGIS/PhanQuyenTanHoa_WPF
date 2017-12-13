@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="PhanQuyen.UC_DieuChinhThongTinDocSo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PhanQuyen"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="400"></RowDefinition>
+            <!--<RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>-->
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 10,0,0">
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Năm:"/></TextBlock>
+            <ComboBox x:Name="cbbYear" SelectedIndex="0" IsEditable="True"/>
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Kỳ:"/></TextBlock>
+            <ComboBox x:Name="cbbMonth" SelectedIndex="0" IsEditable="True"/>
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Đợt:"/></TextBlock>
+            <ComboBox x:Name="cbbDate" SelectedIndex="0" IsEditable="True"/>
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ:"/></TextBlock>
+            <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True"/>
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Máy:"/></TextBlock>
+            <ComboBox x:Name="cbbMachine" SelectedIndex="0" IsEditable="True"/>
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
+            <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbUsername"/>
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Code:"/></TextBlock>
+            <ComboBox x:Name="cbbCode" SelectedIndex="0" IsEditable="True"/>
+            <Button Margin="10,0,0,0" Background="White" Name="btnUpdate" Click="btnUpdate_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/download(2).png" Width="20" Height="20"></Image>
+                    <TextBlock VerticalAlignment="Center" Margin="2,0,0,0" >Cập nhật</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Margin="10,0,0,0" Background="White" Name="btnPrint">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/printer.png" Width="20" Height="20"></Image>
+                    <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">In phiếu kiểm tra</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Margin="10,0,0,0" Background="White" Name="btnViewNote">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/note.png" Width="20" Height="20"></Image>
+                    <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">Xem ghi chú</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Margin="10,0,0,0" Background="White" Name="btnViewNoteOld">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/note_old.png" Width="20" Height="20"></Image>
+                    <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">Xem ghi chú cũ</TextBlock>
+                </StackPanel>
+            </Button>
+            <CheckBox Name="chkFilterNote" VerticalAlignment="Center">Lọc ghi chú</CheckBox>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,0">
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="KHĐS:"/></TextBlock>
+            <ComboBox x:Name="cbbKHDS" SelectedIndex="0" IsEditable="True"/>
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Code:"/></TextBlock>
+            <TextBox  FontSize="15" Height="30" Width="40" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCode" IsEnabled="False"/>
+
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="CS cũ:"/></TextBlock>
+            <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCSC" IsEnabled="False"/>
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="CS mới:"/></TextBlock>
+            <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCSM" IsEnabled="False"/>
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tiêu thụ:"/></TextBlock>
+            <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbTieuThu"/>
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Ghi chú ĐS:"/></TextBlock>
+            <TextBox  FontSize="15" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbGCDS"/>
+
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+
+        </StackPanel>
+        <StackPanel Grid.Row="3">
+            <DataGrid Name="dtgridMain" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1200" Margin="10,10,10,10" Height="400">
+                <!--Font Color / Style of Column Heading-->
+                <DataGrid.Resources>
+                    <Style  TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="Bisque"></Setter>
+                        <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                        <Setter Property="BorderThickness" Value="0,0,1,2"></Setter>
+                        <Setter Property="BorderBrush" Value="Black"></Setter>
+                    </Style>
+                </DataGrid.Resources>
+                <!--Header column-->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Danh bạ" Width="100" Binding="{Binding DanhBa}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="TTDHN Cũ" Width="100" Binding="{Binding TTHDNCu}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="TTDHN Mới" Width="100" Binding="{Binding TTHDNMoi}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Code Cũ" Width="100" Binding="{Binding CodeCu}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Code Mới" Width="100" Binding="{Binding CodeMoi}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Chỉ Số Cũ" Width="100" Binding="{Binding CSC}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Chỉ Số Mới" Width="100" Binding="{Binding CSM}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tiêu Thụ Mới" Width="100" Binding="{Binding TieuThuMoi}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="TBTT" Width="100" Binding="{Binding TBTT}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Địa chỉ" Width="*" Binding="{Binding DiaChi}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Ghi chú đọc số" Width="*" Binding="{Binding GhiChuDS}"></DataGridTextColumn>
+                </DataGrid.Columns>
+                <!--handle item click event-->
+
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>
