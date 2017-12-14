@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhanQuyen
+namespace ViewModel
 {
-    class HoaDonDB
+    public class HoaDonDBViewModel
     {
         private const String TABLE_NAME = "Docso";
         private const String SQL_SELECT = "select top 100 * from " + TABLE_NAME;
@@ -17,8 +18,8 @@ namespace PhanQuyen
             List<HoaDon> hoaDons = new List<HoaDon>();
             try
             {
-                SqlCommand command = new SqlCommand(SQL_SELECT, Connection.getInstance.getConnection);
-                Connection.getInstance.Connect() ;
+                SqlCommand command = new SqlCommand(SQL_SELECT, ConnectionViewModel.getInstance.getConnection);
+                ConnectionViewModel.getInstance.Connect();
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
@@ -36,7 +37,8 @@ namespace PhanQuyen
                     hoaDons.Add(hoaDon);
                 }
             }
-            catch (Exception e){
+            catch
+            {
 
             }
             return hoaDons;

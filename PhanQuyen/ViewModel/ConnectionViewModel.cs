@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhanQuyen
+namespace ViewModel
 {
-    class Connection
+    class ConnectionViewModel
     {
         private SqlConnection conn;
         public SqlConnection getConnection
@@ -24,19 +24,19 @@ namespace PhanQuyen
                 return "Data Source=THANLE;Initial Catalog=CapNuocTanHoa;Integrated Security=False;User ID=sa;Password=123456;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             }
         }
-        private Connection()
+        private ConnectionViewModel()
         {
             conn = new SqlConnection(ConnectionString);
-        
+
 
         }
-        private static Connection _instance;
-        public static Connection getInstance
+        private static ConnectionViewModel _instance;
+        public static ConnectionViewModel getInstance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new Connection();
+                    _instance = new ConnectionViewModel();
                 return _instance;
             }
         }

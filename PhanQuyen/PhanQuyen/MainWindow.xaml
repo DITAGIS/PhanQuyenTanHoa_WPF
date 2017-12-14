@@ -3,15 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PhanQuyen"
-        xmlns:ribbon="clr-namespace:System.Windows.Controls.Ribbon.Primitives;assembly=System.Windows.Controls.Ribbon"
+   
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
+        
         ResizeMode="CanMinimize"
-    Icon="/PhanQuyen;component/Images/logo_tanhoa.png"
-        Title="Quản lý đọc số đồng hồ nước" Height="700" Width="1366
-        " Closed="Window_Closed">
+                Icon="/PhanQuyen;component/Images/logo_tanhoa.png"
+        Title="Quản lý đọc số đồng hồ nước" Height="700" Width="1366" Closed="Window_Closed">
+
     <DockPanel LastChildFill="True">
         <Ribbon DockPanel.Dock="Top"  Name="RibbonMain" >
             <Ribbon.HelpPaneContent>
@@ -28,8 +28,7 @@
             </Ribbon.QuickAccessToolBar>-->
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu>
-                    <RibbonApplicationMenuItem ImageSource="/PhanQuyen;component/Images/report.png"
-                                       Header="Thoát" />
+                    <RibbonApplicationMenuItem ImageSource="/PhanQuyen;component/Images/report.png" Header="Thoát" />
 
                 </RibbonApplicationMenu>
 

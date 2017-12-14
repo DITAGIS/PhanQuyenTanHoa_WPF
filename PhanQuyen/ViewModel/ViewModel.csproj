@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{015B579A-7A1B-4259-8F86-BC5C611493F7}</ProjectGuid>
+    <ProjectGuid>{599F2F67-71C9-429C-9F24-74397F19FC59}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>PhanQuyen</RootNamespace>
-    <AssemblyName>PhanQuyen</AssemblyName>
+    <RootNamespace>ViewModel</RootNamespace>
+    <AssemblyName>ViewModel</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,7 +36,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,16 +54,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Connection.cs" />
-    <Compile Include="HoaDon.cs" />
-    <Compile Include="HoaDonDB.cs" />
-    <Compile Include="UC_DieuChinhThongTinDocSo.xaml.cs">
-      <DependentUpon>UC_DieuChinhThongTinDocSo.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UC_InPhieuTieuThuKH.xaml.cs">
-      <DependentUpon>UC_InPhieuTieuThuKH.xaml</DependentUpon>
-    </Compile>
-    <Page Include="LogInWindow.xaml">
+    <Compile Include="RelayCommand.cs" />
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -72,27 +63,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LogInWindow.xaml.cs">
-      <DependentUpon>LogInWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="MainWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UC_DieuChinhThongTinDocSo.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UC_InPhieuTieuThuKH.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="ConnectionViewModel.cs" />
+    <Compile Include="HoaDonDBViewModel.cs" />
+    <Compile Include="HoaDonViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -119,49 +98,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\logo_tanhoa.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\logo_ditagis.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\nhanviendocso.png" />
-    <Resource Include="Images\quanlynhanvien.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\password.png" />
-    <Resource Include="Images\settings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\bill.png" />
-    <Resource Include="Images\check_data.png" />
-    <Resource Include="Images\file_transfer.png" />
-    <Resource Include="Images\update_number.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\download.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\printer.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\check.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\report.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\down.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\up.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\download%282%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\note.png" />
-    <Resource Include="Images\note_old.png" />
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{4759cab0-8025-4265-8be1-b593ca32c992}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

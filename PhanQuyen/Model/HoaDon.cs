@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhanQuyen
+namespace Model
 {
-    class HoaDon
+    public class HoaDon
     {
         public String DanhBa { get; set; }
         public String TTHDNCu { get; set; }

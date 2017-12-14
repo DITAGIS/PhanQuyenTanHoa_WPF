@@ -13,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PhanQuyen
+namespace ViewModel
 {
     /// <summary>
-    /// Interaction logic for UC_DieuChinhThongTinDocSo.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class UC_DieuChinhThongTinDocSo : UserControl
+    public partial class MainWindow : Window
     {
-
-
-        public UC_DieuChinhThongTinDocSo()
+        public MainWindow()
         {
             InitializeComponent();
         }
-        
     }
 }
