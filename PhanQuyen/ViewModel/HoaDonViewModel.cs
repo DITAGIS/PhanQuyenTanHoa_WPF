@@ -15,6 +15,8 @@ namespace ViewModel
     public class HoaDonViewModel : INotifyPropertyChanged
     {
         #region Initialize
+        private HoaDon selectedHoaDon;
+
         private String year;
         private List<String> listYear;
         public List<String> ListYear
@@ -65,6 +67,60 @@ namespace ViewModel
             get { return listCode; }
             set { listCode = value; OnPropertyChanged("ListCode"); }
         }
+        private void innitialize()
+        {
+            listHoaDon = new ObservableCollection<HoaDon>();
+            listYear = new List<String>(HoaDonDBViewModel.getInstance.getDistinctYear());
+            listMonth = new List<string>() { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
+            listDate = new List<string>() { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
+            "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
+            listMachine = new List<string>();
+            for (int i = 1; i <= 61; i++)
+            {
+                if (i < 10)
+                    listMachine.Add("0" + i);
+                else
+                    listMachine.Add(i.ToString());
+            }
+            listCode = new List<string>() { "Tất cả", "Chưa ghi",
+                "40",
+                "41",
+                "42",
+                "54",
+                "55",
+                "56",
+                "58",
+                "5F",
+                "5M",
+                "5Q",
+                "5K",
+                "5N",
+                "60",
+                "61",
+                "62",
+                "63",
+                "64",
+                "66",
+                "80",
+                "81",
+                "82",
+                "83",
+                "F1",
+                "F2",
+                "F3",
+                "F4",
+                "K",
+                "M0",
+                "M1",
+                "M2",
+                "M3",
+                "N1",
+                "N2",
+                "N3",
+                "X ",
+                "68",
+                "Q "};
+        }
         private ObservableCollection<HoaDon> listHoaDon;
 
 
@@ -78,58 +134,8 @@ namespace ViewModel
         #endregion
         public HoaDonViewModel()
         {
-            listHoaDon = new ObservableCollection<HoaDon>();
-            listYear = new List<String>(HoaDonDBViewModel.getInstance.getDistinctYear());
-            listMonth = new List<string>() { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
-            listDate = new List<string>() { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
-            "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
-            listMachine = new List<string>();
-            for(int i = 1; i <= 61; i++)
-            {
-                if (i < 10)
-                    listMachine.Add("0" + i);
-                else
-                    listMachine.Add(i.ToString());
-            }
-            listCode = new List<string>() { "Tất cả", "Chưa ghi",
-                "40",
-                "41", 
-                "42", 
-                "54", 
-                "55", 
-                "56", 
-                "58",
-                "5F",
-                "5M",
-                "5Q", 
-                "5K", 
-                "5N",
-                "60", 
-                "61", 
-                "62",
-                "63", 
-                "64", 
-                "66", 
-                "80", 
-                "81", 
-                "82",
-                "83", 
-                "F1",
-                "F2", 
-                "F3", 
-                "F4", 
-                "K", 
-                "M0", 
-                "M1",
-                "M2",
-                "M3", 
-                "N1", 
-                "N2",
-                "N3", 
-                "X ",
-                "68", 
-                "Q "};
 
+            innitialize();
             UpdateCommand = new RelayCommand<UIElementCollection>((p) => true, update);
         }
 
@@ -192,5 +198,6 @@ namespace ViewModel
         public string Group { get => group; set => group = value; }
         public string Machine { get => machine; set => machine = value; }
         public string Code { get => code; set => code = value; }
+        public HoaDon SelectedHoaDon { get { return selectedHoaDon; } set { selectedHoaDon = value; OnPropertyChanged("SelectedHoaDon"); } }
     }
 }

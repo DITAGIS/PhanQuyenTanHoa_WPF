@@ -10,14 +10,16 @@ namespace ViewModel
 {
     public class HoaDonDBViewModel
     {
-        private const String TABLE_NAME = "Docso";
-        private const String SQL_SELECT = "select top 100 * from " + TABLE_NAME;
-        private const String SQL_SELECT_CONDITION = "select * from " + TABLE_NAME + " where nam = @year and ky = @month and dot = @date and may = @machine";
-        private const String SQL_SELECT_DISTINCT_YEAR = "select distinct nam from " + TABLE_NAME;
-        private const String SQL_SELECT_DISTINCT_MONTH = "select distinct ky from " + TABLE_NAME + " where nam = @year";
-        private const String SQL_SELECT_DISTINCT_DATE = "select distinct dot from " + TABLE_NAME + " wherer nam = @year and ky = @month";
+        private const String TABLE_NAME_DOCSO = "Docso";
+        private const String TABLE_NAME_KHACHHANG = "KhachHang";
+        private const String SQL_SELECT = "select top 100 * from " + TABLE_NAME_DOCSO;
+        private const String SQL_SELECT_CONDITION = "select docso.danhba, TTDHNCu, TTDHNMoi, CodeMoi, CodeCu, CSCu, CSMOI, Tieuthumoi, TBTT, ghichuds, KhachHang.So, KhachHang.Duong  from " +
+            TABLE_NAME_DOCSO + ", " + TABLE_NAME_KHACHHANG + " where nam = @year and ky = @month and docso.Dot = @date and docso.may = @machine and KhachHang.DanhBa = DocSo.DanhBa";
+        private const String SQL_SELECT_DISTINCT_YEAR = "select distinct nam from " + TABLE_NAME_DOCSO;
+        private const String SQL_SELECT_DISTINCT_MONTH = "select distinct ky from " + TABLE_NAME_DOCSO + " where nam = @year";
+        private const String SQL_SELECT_DISTINCT_DATE = "select distinct dot from " + TABLE_NAME_DOCSO + " wherer nam = @year and ky = @month";
         //private const String SQL_SELECT_DISTINCT_GROUP = "select distinct nam from " + TABLE_NAME;
-        private const String SQL_SELECT_DISTINCT_MACHINE = "select distinct may from " + TABLE_NAME + " where nam = @year and ky = @month and dot = @date";
+        private const String SQL_SELECT_DISTINCT_MACHINE = "select distinct may from " + TABLE_NAME_DOCSO + " where nam = @year and ky = @month and dot = @date";
 
         private static HoaDonDBViewModel _instance;
         public static HoaDonDBViewModel getInstance
@@ -86,6 +88,7 @@ namespace ViewModel
                     hoaDon.CSM = dataReader["CSMOI"].ToString();
                     hoaDon.TieuThuMoi = dataReader["TieuThuMoi"].ToString();
                     hoaDon.TBTT = dataReader["TBTT"].ToString();
+                    hoaDon.DiaChi = dataReader["so"].ToString() + " " + dataReader["duong"].ToString(); ;
                     hoaDon.GhiChuDS = dataReader["GhiChuDS"].ToString();
                     hoaDons.Add(hoaDon);
                 }
