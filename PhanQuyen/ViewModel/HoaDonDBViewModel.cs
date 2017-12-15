@@ -13,14 +13,16 @@ namespace ViewModel
         private const String TABLE_NAME_DOCSO = "Docso";
         private const String TABLE_NAME_KHACHHANG = "KhachHang";
         private const String SQL_SELECT = "select top 100 * from " + TABLE_NAME_DOCSO;
-        private const String SQL_SELECT_CONDITION = "select docso.danhba, TTDHNCu, TTDHNMoi, CodeMoi, CodeCu, CSCu, CSMOI, Tieuthumoi, TBTT, ghichuds, KhachHang.So, KhachHang.Duong  from " +
+        private const String SQL_SELECT_CONDITION = "select docso.danhba, TTDHNCu, TTDHNMoi, CodeMoi, CodeCu, CSCu, CSMOI, Tieuthumoi, TBTT, ghichuds," +
+            " KhachHang.So, KhachHang.Duong, KhachHang.TenKH, KhachHang.GB, KhachHang.DM, KhachHang.HopDong, KhachHang.Hieu, KhachHang.Co, KhachHang.SoThan, KhachHang.MLT1  from " +
             TABLE_NAME_DOCSO + ", " + TABLE_NAME_KHACHHANG + " where nam = @year and ky = @month and docso.Dot = @date and docso.may = @machine and KhachHang.DanhBa = DocSo.DanhBa";
         private const String SQL_SELECT_DISTINCT_YEAR = "select distinct nam from " + TABLE_NAME_DOCSO;
         private const String SQL_SELECT_DISTINCT_MONTH = "select distinct ky from " + TABLE_NAME_DOCSO + " where nam = @year";
         private const String SQL_SELECT_DISTINCT_DATE = "select distinct dot from " + TABLE_NAME_DOCSO + " wherer nam = @year and ky = @month";
         //private const String SQL_SELECT_DISTINCT_GROUP = "select distinct nam from " + TABLE_NAME;
         private const String SQL_SELECT_DISTINCT_MACHINE = "select distinct may from " + TABLE_NAME_DOCSO + " where nam = @year and ky = @month and dot = @date";
-
+        public static int MAX = 1;
+        public static int VALUE = 0;
         private static HoaDonDBViewModel _instance;
         public static HoaDonDBViewModel getInstance
         {
@@ -41,6 +43,7 @@ namespace ViewModel
                 ConnectionViewModel.getInstance.Connect();
 
                 SqlDataReader dataReader = command.ExecuteReader();
+              
                 while (dataReader.Read())
                 {
                     HoaDon hoaDon = new HoaDon();
@@ -54,6 +57,14 @@ namespace ViewModel
                     hoaDon.TieuThuMoi = dataReader["TieuThuMoi"].ToString();
                     hoaDon.TBTT = dataReader["TBTT"].ToString();
                     hoaDon.GhiChuDS = dataReader["GhiChuDS"].ToString();
+                    hoaDon.TenKH = dataReader["TenKH"].ToString();
+                    hoaDon.HopDong = dataReader["HopDong"].ToString();
+                    hoaDon.Hieu = dataReader["Hieu"].ToString();
+                    hoaDon.Co = dataReader["Co"].ToString();
+                    hoaDon.GB = dataReader["GB"].ToString();
+                    hoaDon.DM = dataReader["DM"].ToString();
+                    hoaDon.SoThan = dataReader["SoThan"].ToString();
+                    hoaDon.MLT = dataReader["MLT1"].ToString();
                     hoaDons.Add(hoaDon);
                 }
             }
@@ -90,6 +101,14 @@ namespace ViewModel
                     hoaDon.TBTT = dataReader["TBTT"].ToString();
                     hoaDon.DiaChi = dataReader["so"].ToString() + " " + dataReader["duong"].ToString(); ;
                     hoaDon.GhiChuDS = dataReader["GhiChuDS"].ToString();
+                    hoaDon.TenKH = dataReader["TenKH"].ToString();
+                    hoaDon.HopDong = dataReader["HopDong"].ToString();
+                    hoaDon.Hieu = dataReader["Hieu"].ToString();
+                    hoaDon.Co = dataReader["Co"].ToString();
+                    hoaDon.GB = dataReader["GB"].ToString();
+                    hoaDon.DM = dataReader["DM"].ToString();
+                    hoaDon.SoThan = dataReader["SoThan"].ToString();
+                    hoaDon.MLT = dataReader["MLT1"].ToString();
                     hoaDons.Add(hoaDon);
                 }
             }

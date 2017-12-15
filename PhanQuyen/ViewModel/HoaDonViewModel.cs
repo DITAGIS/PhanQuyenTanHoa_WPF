@@ -16,7 +16,7 @@ namespace ViewModel
     {
         #region Initialize
         private HoaDon selectedHoaDon;
-
+        private int value;
         private String year;
         private List<String> listYear;
         public List<String> ListYear
@@ -134,7 +134,7 @@ namespace ViewModel
         #endregion
         public HoaDonViewModel()
         {
-
+    
             innitialize();
             UpdateCommand = new RelayCommand<UIElementCollection>((p) => true, update);
         }
@@ -184,6 +184,8 @@ namespace ViewModel
 
             return true;
         }
+      
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(String name)
         {
@@ -199,5 +201,7 @@ namespace ViewModel
         public string Machine { get => machine; set => machine = value; }
         public string Code { get => code; set => code = value; }
         public HoaDon SelectedHoaDon { get { return selectedHoaDon; } set { selectedHoaDon = value; OnPropertyChanged("SelectedHoaDon"); } }
+
+        public int Value { get => value; set => this.value = value; }
     }
 }

@@ -40,7 +40,7 @@
                 </RibbonApplicationMenu>
 
             </Ribbon.ApplicationMenu>
-            <RibbonTab Header="Hệ thống" IsSelected="True">
+            <RibbonTab KeyTip="H" Header="Hệ thống" IsSelected="True" >
 
                 <RibbonGroup Header="Quản lý">
                     <RibbonButton Label="Quản lý nhân viên đọc số" LargeImageSource="/PhanQuyen;component/Images/nhanviendocso.png"></RibbonButton>
@@ -108,7 +108,7 @@
 
         </Ribbon>
 
-        <TextBlock DockPanel.Dock="Bottom" Margin="10,0,0,10">Status:</TextBlock>
+      
 
         <StackPanel Name="stkMain" Orientation="Vertical" >
 

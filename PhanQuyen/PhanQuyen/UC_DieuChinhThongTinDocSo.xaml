@@ -6,149 +6,208 @@
                  xmlns:viewModel="clr-namespace:ViewModel;assembly=ViewModel"
             
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="1200">
+             d:DesignHeight="700" d:DesignWidth="1200">
     <UserControl.DataContext>
         <viewModel:HoaDonViewModel>
 
         </viewModel:HoaDonViewModel>
     </UserControl.DataContext>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="400"></RowDefinition>
-            <!--<RowDefinition></RowDefinition>
+    <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+          
+        </StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="400"></RowDefinition>
+                <!--<RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>-->
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 10,0,0" Name="stpCondition">
-            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Năm:"/></TextBlock>
-            <ComboBox x:Name="cbbYear" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 10,0,0" Name="stpCondition">
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Năm:"/></TextBlock>
+                <ComboBox x:Name="cbbYear" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
                       SelectedValue="{Binding Year, Mode=TwoWay}" 
                       ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
 
-            </ComboBox>
+                </ComboBox>
 
-            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Kỳ:"/></TextBlock>
-            <ComboBox x:Name="cbbMonth" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45"
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Kỳ:"/></TextBlock>
+                <ComboBox x:Name="cbbMonth" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45"
                       SelectedValue="{Binding Month, Mode=TwoWay}" 
                       ItemsSource="{Binding ListMonth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Đợt:"/></TextBlock>
-            <ComboBox x:Name="cbbDate" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Đợt:"/></TextBlock>
+                <ComboBox x:Name="cbbDate" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
                       SelectedValue="{Binding Date, Mode=TwoWay}" 
                       ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ:"/></TextBlock>
-            <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True" ItemsSource="{Binding ListGroup, Mode=OneWay}" VerticalAlignment="Center" Width="45"/>
-            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Máy:"/></TextBlock>
-            <ComboBox x:Name="cbbMachine" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45" 
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ:"/></TextBlock>
+                <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True" ItemsSource="{Binding ListGroup, Mode=OneWay}" VerticalAlignment="Center" Width="45"/>
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Máy:"/></TextBlock>
+                <ComboBox x:Name="cbbMachine" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45" 
                       SelectedValue="{Binding Machine, Mode=TwoWay}" 
                       ItemsSource="{Binding ListMachine, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
-           
-            <!--Danh bạ-->
-            <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbUsername" 
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
+
+                <!--Danh bạ-->
+                <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbUsername" 
                       Text="{Binding SelectedHoaDon.DanhBa}"/>
-            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Code:"/></TextBlock>
-            
-            <!--Chọn code-->
-            <ComboBox x:Name="cbbCode" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="70" 
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Code:"/></TextBlock>
+
+                <!--Chọn code-->
+                <ComboBox x:Name="cbbCode" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="70" 
                       SelectedValue="{Binding Code, Mode=TwoWay}" 
                       ItemsSource="{Binding ListCode, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Margin="10,0,0,0" Background="White" Name="btnUpdate" Command="{Binding UpdateCommand}" CommandParameter="{Binding Children, ElementName=stpCondition}">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="/PhanQuyen;component/Images/download(2).png" Width="20" Height="20"></Image>
-                    <TextBlock VerticalAlignment="Center" Margin="2,0,0,0" >Cập nhật</TextBlock>
-                </StackPanel>
-            </Button>
-            <Button Margin="10,0,0,0" Background="White" Name="btnPrint">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="/PhanQuyen;component/Images/printer.png" Width="20" Height="20"></Image>
-                    <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">In phiếu kiểm tra</TextBlock>
-                </StackPanel>
-            </Button>
-            <Button Margin="10,0,0,0" Background="White" Name="btnViewNote">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="/PhanQuyen;component/Images/note.png" Width="20" Height="20"></Image>
-                    <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">Xem ghi chú</TextBlock>
-                </StackPanel>
-            </Button>
-            <Button Margin="10,0,0,0" Background="White" Name="btnViewNoteOld">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="/PhanQuyen;component/Images/note_old.png" Width="20" Height="20"></Image>
-                    <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">Xem ghi chú cũ</TextBlock>
-                </StackPanel>
-            </Button>
-            <CheckBox Name="chkFilterNote" VerticalAlignment="Center">Lọc ghi chú</CheckBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,0">
-            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="KHĐS:"/></TextBlock>
-            <ComboBox x:Name="cbbKHDS" SelectedIndex="0" IsEditable="True"/>
-            
-            <!--Code mới-->
-            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Code:"/></TextBlock>
-            <TextBox  FontSize="15" Height="30" Width="40" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCode" IsEnabled="False"
+                <Button Margin="10,0,0,0" Background="White" Name="btnUpdate" Command="{Binding UpdateCommand}" CommandParameter="{Binding Children, ElementName=stpCondition}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/PhanQuyen;component/Images/download(2).png" Width="20" Height="20"></Image>
+                        <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Cập nhật</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Margin="10,0,0,0" Background="White" Name="btnPrint">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/PhanQuyen;component/Images/printer.png" Width="20" Height="20"></Image>
+                        <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">In phiếu kiểm tra</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Margin="10,0,0,0" Background="White" Name="btnViewNote">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/PhanQuyen;component/Images/note.png" Width="20" Height="20"></Image>
+                        <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">Xem ghi chú</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Margin="10,0,0,0" Background="White" Name="btnViewNoteOld">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/PhanQuyen;component/Images/note_old.png" Width="20" Height="20"></Image>
+                        <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">Xem ghi chú cũ</TextBlock>
+                    </StackPanel>
+                </Button>
+                <CheckBox Name="chkFilterNote" VerticalAlignment="Center">Lọc ghi chú</CheckBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="KHĐS:"/></TextBlock>
+                <ComboBox x:Name="cbbKHDS" SelectedIndex="0" IsEditable="True"/>
+
+                <!--Code mới-->
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Code:"/></TextBlock>
+                <TextBox  FontSize="15" Height="30" Width="40" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCode" IsEnabled="False"
                       Text="{Binding SelectedHoaDon.CodeMoi}"/>
 
-            <!--Chỉ số cũ-->
-            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="CS cũ:"/></TextBlock>
-            <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCSC" IsEnabled="False"
+                <!--Chỉ số cũ-->
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="CS cũ:"/></TextBlock>
+                <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCSC" IsEnabled="False"
                       Text="{Binding SelectedHoaDon.CSC}"/>
-            
-            <!--Chỉ số mới-->
-            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="CS mới:"/></TextBlock>
-            <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCSM" IsEnabled="False"
+
+                <!--Chỉ số mới-->
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="CS mới:"/></TextBlock>
+                <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCSM" IsEnabled="False"
                       Text="{Binding SelectedHoaDon.CSM}"/>
-            
-            <!--Tiêu thụ-->
-            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tiêu thụ:"/></TextBlock>
-            <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbTieuThu"
+
+                <!--Tiêu thụ-->
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tiêu thụ:"/></TextBlock>
+                <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbTieuThu"
                       Text="{Binding SelectedHoaDon.TieuThuMoi}"/>
-            
-            <!--Ghi chú đọc số-->
-            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Ghi chú ĐS:"/></TextBlock>
-            <TextBox  FontSize="15" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbGCDS"
-                      Text="{Binding TieuThuMoi.GhiChuDS}"/>
 
-        </StackPanel>
-        <StackPanel Grid.Row="2">
+                <!--Ghi chú đọc số-->
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Ghi chú ĐS:"/></TextBlock>
+                <TextBox  FontSize="15" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbGCDS"
+                      Text="{Binding SelectedHoaDon.GhiChuDS}"/>
 
-        </StackPanel>
-        <StackPanel Grid.Row="3" >
-            <DataGrid SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="dtgridMain" HorizontalAlignment="Center" VerticalAlignment="Top" Width="Auto" Margin="10,10,10,10" Height="400" ItemsSource="{Binding ListHoaDon}">
-                <!--Font Color / Style of Column Heading-->
-                <DataGrid.Resources>
-                    <Style  TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                        <Setter Property="VerticalContentAlignment" Value="Center" />
-                        <Setter Property="Background" Value="Bisque"></Setter>
-                        <Setter Property="FontWeight" Value="SemiBold"></Setter>
-                        <Setter Property="BorderThickness" Value="0,0,1,2"></Setter>
-                        <Setter Property="BorderBrush" Value="Black"></Setter>
-                    
-                    </Style>
-                </DataGrid.Resources>
+            </StackPanel>
+            <StackPanel Grid.Row="2">
 
-                <!--Header column-->
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Danh bạ" Width="100" Binding="{Binding DanhBa, Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="TTDHN Cũ" Width="100" Binding="{Binding TTHDNCu,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="TTDHN Mới" Width="100" Binding="{Binding TTHDNMoi,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Code Cũ" Width="100" Binding="{Binding CodeCu,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Code Mới" Width="100" Binding="{Binding CodeMoi,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Chỉ Số Cũ" Width="100" Binding="{Binding CSC,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Chỉ Số Mới" Width="100" Binding="{Binding CSM,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tiêu Thụ Mới" Width="100" Binding="{Binding TieuThuMoi,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="TBTT" Width="100" Binding="{Binding TBTT,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Địa chỉ" Width="*" Binding="{Binding DiaChi,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Ghi chú đọc số" Width="*" Binding="{Binding GhiChuDS,Mode=OneWay}"></DataGridTextColumn>
-                </DataGrid.Columns>
-                <!--handle item click event-->
+            </StackPanel>
+            <StackPanel Grid.Row="3" >
+                <DataGrid SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="dtgridMain" HorizontalAlignment="Center" VerticalAlignment="Top" Width="Auto" Margin="10,10,10,10" Height="400" 
+                          ItemsSource="{Binding ListHoaDon}"
+                          AlternatingRowBackground="WhiteSmoke"
+                          RowBackground="White"
+                          GridLinesVisibility="All"
+                          HorizontalScrollBarVisibility="Auto"
+                          BorderThickness="2"
+                          BorderBrush="Black"
+                          Background="White" SelectionMode="Single"
+                          FontSize="13">
+                    <!--Font Color / Style of Column Heading-->
+                    <DataGrid.Resources>
+                        <Style  TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="Bisque"></Setter>
+                            <Setter Property="FontSize" Value="15"></Setter>
+                            <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                            <!--<Setter Property="BorderThickness" Value="2,2,2,2"></Setter>-->
+                            <Setter Property="BorderBrush" Value="Black"></Setter>
+                        </Style>
+                      
+                    </DataGrid.Resources>
+                            <!--Header column-->
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Danh bạ" Width="100" Binding="{Binding DanhBa, Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="TTDHN Cũ" Width="100" Binding="{Binding TTHDNCu,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="TTDHN Mới" Width="100" Binding="{Binding TTHDNMoi,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Code Cũ" Width="100" Binding="{Binding CodeCu,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Code Mới" Width="100" Binding="{Binding CodeMoi,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Chỉ Số Cũ" Width="100" Binding="{Binding CSC,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Chỉ Số Mới" Width="100" Binding="{Binding CSM,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Tiêu Thụ Mới" Width="100" Binding="{Binding TieuThuMoi,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="TBTT" Width="100" Binding="{Binding TBTT,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Địa chỉ" Width="*" Binding="{Binding DiaChi,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Ghi chú đọc số" Width="*" Binding="{Binding GhiChuDS,Mode=OneWay}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                    <!--handle item click event-->
 
-            </DataGrid>
-        </StackPanel>
-    </Grid>
+                </DataGrid>
+            </StackPanel>
+            <Grid Grid.Row="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <!--Tên khách hàng-->
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tên khách hàng:"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectdHoaDon.TenKH}"/></TextBlock>
+                    <!--Danh bạ-->
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.DanhBa}"/></TextBlock>
+                    <!--Hợp đồng-->
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Hợp đồng:"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.HopDong}"/></TextBlock>
+                    <!--Hiệu-->
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Hiệu:"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.Hieu}"/></TextBlock>
+                    <!--Cỡ-->
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Cỡ: "/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.Co}"/></TextBlock>
+                    <!--Giá biểu-->
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Giá biểu:"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.GB}"/></TextBlock>
+                    <!--Định mức-->
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Định mức:"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.DM}"/></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <!--Địa chỉ-->
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Địa chỉ:"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.DiaChi}"/></TextBlock>
+                    <!--Số thân-->
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Số thân:"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.SoThan}"/></TextBlock>
+                    <!--Mã lộ trình-->
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Mã lộ trình:"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.MLT}"/></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="2">
+
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </DockPanel>
 </UserControl>
