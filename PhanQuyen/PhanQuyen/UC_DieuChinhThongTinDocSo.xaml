@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                  xmlns:viewModel="clr-namespace:ViewModel;assembly=ViewModel"
-             xmlns:local="clr-namespace:PhanQuyen"
+
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1200">
     <UserControl.DataContext>
@@ -24,19 +24,32 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 10,0,0" Name="stpCondition">
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Năm:"/></TextBlock>
-            <ComboBox x:Name="cbbYear" SelectedIndex="0" IsEditable="True"/>
+            <ComboBox x:Name="cbbYear" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
+                      SelectedValue="{Binding Year, Mode=TwoWay}" 
+                      ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+          
+            </ComboBox>
+
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Kỳ:"/></TextBlock>
-            <ComboBox x:Name="cbbMonth" SelectedIndex="0" IsEditable="True"/>
+            <ComboBox x:Name="cbbMonth" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45"
+                      SelectedValue="{Binding Month, Mode=TwoWay}" 
+                      ItemsSource="{Binding ListMonth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Đợt:"/></TextBlock>
-            <ComboBox x:Name="cbbDate" SelectedIndex="0" IsEditable="True"/>
+            <ComboBox x:Name="cbbDate" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
+                      SelectedValue="{Binding Date, Mode=TwoWay}" 
+                      ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ:"/></TextBlock>
-            <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True"/>
+            <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True" ItemsSource="{Binding ListGroup, Mode=OneWay}" VerticalAlignment="Center" Width="45"/>
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Máy:"/></TextBlock>
-            <ComboBox x:Name="cbbMachine" SelectedIndex="0" IsEditable="True"/>
+            <ComboBox x:Name="cbbMachine" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45" 
+                      SelectedValue="{Binding Machine, Mode=TwoWay}" 
+                      ItemsSource="{Binding ListMachine, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
             <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbUsername"/>
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Code:"/></TextBlock>
-            <ComboBox x:Name="cbbCode" SelectedIndex="0" IsEditable="True"/>
+            <ComboBox x:Name="cbbCode" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="70" 
+                      SelectedValue="{Binding Code, Mode=TwoWay}" 
+                      ItemsSource="{Binding ListCode, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Margin="10,0,0,0" Background="White" Name="btnUpdate" Command="{Binding UpdateCommand}" CommandParameter="{Binding Children, ElementName=stpCondition}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/PhanQuyen;component/Images/download(2).png" Width="20" Height="20"></Image>
@@ -83,7 +96,7 @@
 
         </StackPanel>
         <StackPanel Grid.Row="3">
-            <DataGrid Name="dtgridMain" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1200" Margin="10,10,10,10" Height="400" ItemsSource="{Binding ListHoaDon}">
+            <DataGrid AutoGenerateColumns="False" Name="dtgridMain" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1200" Margin="10,10,10,10" Height="400" ItemsSource="{Binding ListHoaDon}">
                 <!--Font Color / Style of Column Heading-->
                 <DataGrid.Resources>
                     <Style  TargetType="{x:Type DataGridColumnHeader}">
@@ -93,7 +106,8 @@
                         <Setter Property="BorderBrush" Value="Black"></Setter>
                     </Style>
                 </DataGrid.Resources>
-                <!--Header column--><!--
+
+                <!--Header column-->
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Danh bạ" Width="100" Binding="{Binding DanhBa, Mode=OneWay}"></DataGridTextColumn>
                     <DataGridTextColumn Header="TTDHN Cũ" Width="100" Binding="{Binding TTHDNCu,Mode=OneWay}"></DataGridTextColumn>
@@ -106,7 +120,7 @@
                     <DataGridTextColumn Header="TBTT" Width="100" Binding="{Binding TBTT,Mode=OneWay}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Địa chỉ" Width="*" Binding="{Binding DiaChi,Mode=OneWay}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Ghi chú đọc số" Width="*" Binding="{Binding GhiChuDS,Mode=OneWay}"></DataGridTextColumn>
-                </DataGrid.Columns>-->
+                </DataGrid.Columns>
                 <!--handle item click event-->
 
             </DataGrid>

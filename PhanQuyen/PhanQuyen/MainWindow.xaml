@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-   
+   xmlns:local="clr-namespace:PhanQuyen"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
@@ -12,6 +12,14 @@
                 Icon="/PhanQuyen;component/Images/logo_tanhoa.png"
         Title="Quản lý đọc số đồng hồ nước" Height="700" Width="1366" Closed="Window_Closed">
 
+    <Window.CommandBindings>
+        <CommandBinding Command="local:CustomCommands.Exit"
+                        CanExecute="ExitCommand_CanExecute"
+                        Executed="ExitCommand_Execute">
+            
+        </CommandBinding>
+        
+    </Window.CommandBindings>
     <DockPanel LastChildFill="True">
         <Ribbon DockPanel.Dock="Top"  Name="RibbonMain" >
             <Ribbon.HelpPaneContent>
@@ -28,8 +36,7 @@
             </Ribbon.QuickAccessToolBar>-->
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu>
-                    <RibbonApplicationMenuItem ImageSource="/PhanQuyen;component/Images/report.png" Header="Thoát" />
-
+                    <RibbonApplicationMenuItem  Command="local:CustomCommands.Exit" ImageSource="/PhanQuyen;component/Images/exit.png" Header="Thoát" />
                 </RibbonApplicationMenu>
 
             </Ribbon.ApplicationMenu>
@@ -80,21 +87,21 @@
             </RibbonTab>
             <RibbonTab Header="Báo cáo">
                 <RibbonGroup Header="Thống kê">
-                    <RibbonButton Label="Thống kê sau đọc số"  LargeImageSource="/PhanQuyen;component/Images/report.png"></RibbonButton>
-                    <RibbonButton Label="Thống kê đồng hồ nước theo đợt số"  LargeImageSource="/PhanQuyen;component/Images/report.png"></RibbonButton>
-                    <RibbonButton Label="Thống kê đồng hồ nước trên mạng"  LargeImageSource="/PhanQuyen;component/Images/report.png"></RibbonButton>
+                    <RibbonButton Label="Thống kê sau đọc số"  LargeImageSource="/PhanQuyen;component/Images/statistic.png"></RibbonButton>
+                    <RibbonButton Label="Thống kê đồng hồ nước theo đợt số"  LargeImageSource="/PhanQuyen;component/Images/date.png"></RibbonButton>
+                    <RibbonButton Label="Thống kê đồng hồ nước trên mạng"  LargeImageSource="/PhanQuyen;component/Images/browser.png"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="In">
-                    <RibbonButton Label="In danh sách đóng cửa"  LargeImageSource="/PhanQuyen;component/Images/report.png"></RibbonButton>
-                    <RibbonButton Label="In danh sách tiêu thụ bất thường"  LargeImageSource="/PhanQuyen;component/Images/report.png"></RibbonButton>
+                    <RibbonButton Label="In danh sách đóng cửa"  LargeImageSource="/PhanQuyen;component/Images/door.png"></RibbonButton>
+                    <RibbonButton Label="In danh sách tiêu thụ bất thường"  LargeImageSource="/PhanQuyen;component/Images/alert.png"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Báo cáo">
-                    <RibbonButton Label="Báo cáo tổng hợp"  LargeImageSource="/PhanQuyen;component/Images/report.png"></RibbonButton>
+                    <RibbonButton Label="Báo cáo tổng hợp"  LargeImageSource="/PhanQuyen;component/Images/chart.png"></RibbonButton>
                 </RibbonGroup>
             </RibbonTab>
             <RibbonTab Header="Hoàn tất" >
                 <RibbonGroup Header="Chuyển billing">
-                    <RibbonButton Label="Chuyển Billing"  LargeImageSource="/PhanQuyen;component/Images/report.png"></RibbonButton>
+                    <RibbonButton Label="Chuyển Billing"  LargeImageSource="/PhanQuyen;component/Images/file.png"></RibbonButton>
                 </RibbonGroup>
 
             </RibbonTab>

@@ -27,7 +27,7 @@ namespace ViewModel
         private ConnectionViewModel()
         {
             conn = new SqlConnection(ConnectionString);
-
+            Connect();
 
         }
         private static ConnectionViewModel _instance;

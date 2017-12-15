@@ -132,7 +132,6 @@
   <ItemGroup>
     <Resource Include="Images\bill.png" />
     <Resource Include="Images\check_data.png" />
-    <Resource Include="Images\file_transfer.png" />
     <Resource Include="Images\update_number.png" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +164,33 @@
       <Project>{599f2f67-71c9-429c-9f24-74397f19fc59}</Project>
       <Name>ViewModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\door.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\statistic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\alert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\date.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\browser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\file_transfer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -28,7 +28,7 @@ namespace PhanQuyen
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            System.Windows.Application.Current.Shutdown();
+            Application.Current.Shutdown();
         }
 
         private void btnExpandRibbon_Click(object sender, RoutedEventArgs e)
@@ -61,6 +61,25 @@ namespace PhanQuyen
             stkMain.Children.Add(uc_InPhieuTieuThuKH);
         }
 
-
+        private void ExitCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+        private void ExitCommand_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
+
+    public static class CustomCommands
+    {
+        public static readonly RoutedUICommand Exit = new RoutedUICommand(
+            "Exit", "Exit", typeof(CustomCommands), new InputGestureCollection()
+            {
+                    new KeyGesture(Key.F4, ModifierKeys.Alt)
+            });
+
+        //defind more command hear, just like the one above
+    }
+
 }
