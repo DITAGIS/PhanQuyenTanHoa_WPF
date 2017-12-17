@@ -16,8 +16,8 @@
         <convert:ByteArrayImageConverter x:Key="ImageConvert"></convert:ByteArrayImageConverter>
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
-
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <TextBlock Text="{Binding Status, Mode=OneWay}"/>
         </StackPanel>
         <Grid>
             <Grid.RowDefinitions>
@@ -174,7 +174,7 @@
                 </DataGrid>
                 <Border BorderThickness="1" Grid.Column="1" Background="White">
                     <Image  Source="{Binding Path=SelectedHoaDon.Image, 
-                        Converter={StaticResource ResourceKey=ImageConvert}}" ></Image>
+                        Converter={StaticResource ResourceKey=ImageConvert}}" Stretch="UniformToFill" ></Image>
                 </Border>
             </Grid>
             <Grid Grid.Row="4">

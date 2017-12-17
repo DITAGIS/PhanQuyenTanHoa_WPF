@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace ViewModel
 {
     public class HoaDonViewModel : INotifyPropertyChanged
     {
         #region Initialize
+        private String status;
         private HoaDon selectedHoaDon;
         private int value;
         private String year;
@@ -134,13 +136,14 @@ namespace ViewModel
         #endregion
         public HoaDonViewModel()
         {
-    
+
             innitialize();
             UpdateCommand = new RelayCommand<UIElementCollection>((p) => true, update);
         }
 
         private void update(UIElementCollection p)
         {
+            int max, value;
             if (checkInfo())
             {
                 //String year = "", month = "", date = "", group = "", machine = "";
@@ -171,10 +174,35 @@ namespace ViewModel
                 //}
                 //ConnectionViewModel.getInstance.disConnect();
 
-                List<HoaDon> hoaDons = HoaDonDBViewModel.getInstance.getHoaDonsIncludeImageByCondition(Year, Month, Date, Group, Machine);
-                foreach (HoaDon hoaDon in hoaDons)
+                Status = "Đang tính toán dữ liệu...";
+
+                List<String> danhBas = HoaDonDBViewModel.getInstance.getDanhBasByCondition(Year, Month, Date, Group, Machine);
+                max = danhBas.Count;
+                value = 0;
+
+                List<HoaDon> hoaDons = new List<HoaDon>();
+                foreach (String danhBa in danhBas)
                 {
-                    listHoaDon.Add(hoaDon);
+                    value++;
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        ListHoaDon.Add(HoaDonDBViewModel.getInstance.getHoaDonsIncludeImageByCondition(Year, Month, Date, Group, Machine, danhBa));
+                        Status = String.Format("Đang tải {0}/{1}", value, max);
+                    }), DispatcherPriority.Loaded);
+                    //ListHoaDon.Add(HoaDonDBViewModel.getInstance.getHoaDonsIncludeImageByCondition(Year, Month, Date, Group, Machine, danhBa));
+
+
+                    //foreach(var item in p)
+                    //{
+                    //    DataGrid dataGrid = item as DataGrid;
+                    //    if (dataGrid == null)
+                    //        continue;
+                    //    if (dataGrid.Name.Equals("dtgridMain"))
+                    //    {
+                    //        //Refresh(dataGrid);
+                    //        dataGrid.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
+                    //    }
+                    //}
                 }
                 MessageBox.Show("Cập nhật hoàn tất!");
             }
@@ -184,8 +212,13 @@ namespace ViewModel
 
             return true;
         }
-      
 
+        public UIElement Refresh(UIElement uiElement)
+        {
+            uiElement.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
+            return uiElement;
+        }
+        private Action EmptyDelegate = delegate () { };
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(String name)
         {
@@ -203,5 +236,6 @@ namespace ViewModel
         public HoaDon SelectedHoaDon { get { return selectedHoaDon; } set { selectedHoaDon = value; OnPropertyChanged("SelectedHoaDon"); } }
 
         public int Value { get => value; set => this.value = value; }
+        public string Status { get { return status; } set { status = value; } }
     }
 }
