@@ -171,7 +171,7 @@ namespace ViewModel
                 //}
                 //ConnectionViewModel.getInstance.disConnect();
 
-                List<HoaDon> hoaDons = HoaDonDBViewModel.getInstance.getHoaDonsByCondition(Year, Month, Date, Group, Machine);
+                List<HoaDon> hoaDons = HoaDonDBViewModel.getInstance.getHoaDonsIncludeImageByCondition(Year, Month, Date, Group, Machine);
                 foreach (HoaDon hoaDon in hoaDons)
                 {
                     listHoaDon.Add(hoaDon);

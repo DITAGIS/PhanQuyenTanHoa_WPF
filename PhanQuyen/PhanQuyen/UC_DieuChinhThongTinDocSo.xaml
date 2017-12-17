@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                  xmlns:viewModel="clr-namespace:ViewModel;assembly=ViewModel"
-            
+            xmlns:convert="clr-namespace:PhanQuyen"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="1200">
     <UserControl.DataContext>
@@ -12,9 +12,12 @@
 
         </viewModel:HoaDonViewModel>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <convert:ByteArrayImageConverter x:Key="ImageConvert"></convert:ByteArrayImageConverter>
+    </UserControl.Resources>
     <DockPanel LastChildFill="True">
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
-          
+
         </StackPanel>
         <Grid>
             <Grid.RowDefinitions>
@@ -121,7 +124,16 @@
             <StackPanel Grid.Row="2">
 
             </StackPanel>
-            <StackPanel Grid.Row="3" >
+            <Grid Grid.Row="3" Height="400" ShowGridLines="True" Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" MinWidth="1000"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <GridSplitter Background="White" Grid.Column="0" Grid.RowSpan="5" Width="10"  HorizontalAlignment="Right" VerticalAlignment="Stretch" ></GridSplitter>
+
                 <DataGrid SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="dtgridMain" HorizontalAlignment="Center" VerticalAlignment="Top" Width="Auto" Margin="10,10,10,10" Height="400" 
                           ItemsSource="{Binding ListHoaDon}"
                           AlternatingRowBackground="WhiteSmoke"
@@ -131,36 +143,40 @@
                           BorderThickness="2"
                           BorderBrush="Black"
                           Background="White" SelectionMode="Single"
-                          FontSize="13">
+                          FontSize="12">
                     <!--Font Color / Style of Column Heading-->
                     <DataGrid.Resources>
                         <Style  TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="Background" Value="Bisque"></Setter>
-                            <Setter Property="FontSize" Value="15"></Setter>
+                            <Setter Property="FontSize" Value="13"></Setter>
                             <Setter Property="FontWeight" Value="SemiBold"></Setter>
-                            <!--<Setter Property="BorderThickness" Value="2,2,2,2"></Setter>-->
+                            <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
                             <Setter Property="BorderBrush" Value="Black"></Setter>
                         </Style>
-                      
+
                     </DataGrid.Resources>
-                            <!--Header column-->
+                    <!--Header column-->
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Danh bạ" Width="100" Binding="{Binding DanhBa, Mode=OneWay}"></DataGridTextColumn>
                         <DataGridTextColumn Header="TTDHN Cũ" Width="100" Binding="{Binding TTHDNCu,Mode=OneWay}"></DataGridTextColumn>
                         <DataGridTextColumn Header="TTDHN Mới" Width="100" Binding="{Binding TTHDNMoi,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Code Cũ" Width="100" Binding="{Binding CodeCu,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Code Mới" Width="100" Binding="{Binding CodeMoi,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Chỉ Số Cũ" Width="100" Binding="{Binding CSC,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Chỉ Số Mới" Width="100" Binding="{Binding CSM,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Code Cũ" Width="70" Binding="{Binding CodeCu,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Code Mới" Width="70" Binding="{Binding CodeMoi,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Chỉ Số Cũ" Width="70" Binding="{Binding CSC,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Chỉ Số Mới" Width="70" Binding="{Binding CSM,Mode=OneWay}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Tiêu Thụ Mới" Width="100" Binding="{Binding TieuThuMoi,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="TBTT" Width="100" Binding="{Binding TBTT,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="TBTT" Width="70" Binding="{Binding TBTT,Mode=OneWay}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Địa chỉ" Width="*" Binding="{Binding DiaChi,Mode=OneWay}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Ghi chú đọc số" Width="*" Binding="{Binding GhiChuDS,Mode=OneWay}"></DataGridTextColumn>
                     </DataGrid.Columns>
                     <!--handle item click event-->
 
                 </DataGrid>
-            </StackPanel>
+                <Border BorderThickness="1" Grid.Column="1" Background="White">
+                    <Image  Source="{Binding Path=SelectedHoaDon.Image, 
+                        Converter={StaticResource ResourceKey=ImageConvert}}" ></Image>
+                </Border>
+            </Grid>
             <Grid Grid.Row="4">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
@@ -193,7 +209,15 @@
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Định mức:"/></TextBlock>
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.DM}"/></TextBlock>
                 </StackPanel>
-                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Width="Auto" RenderTransformOrigin="1,1">
+                    <StackPanel.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="1" ScaleX="1"/>
+                            <SkewTransform AngleY="0" AngleX="0"/>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </StackPanel.RenderTransform>
                     <!--Địa chỉ-->
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Địa chỉ:"/></TextBlock>
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.DiaChi}"/></TextBlock>

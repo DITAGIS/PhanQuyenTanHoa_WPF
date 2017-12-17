@@ -21,7 +21,7 @@ namespace ViewModel
         {
             get
             {
-                return "Data Source=THANLE;Initial Catalog=CapNuocTanHoa;Integrated Security=False;User ID=sa;Password=123456;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                return "Data Source=103.74.117.51;Initial Catalog=DocSoTH;Integrated Security=False;User ID=docsotanhoa;Password=Docso111;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             }
         }
         private ConnectionViewModel()

@@ -27,6 +27,7 @@ namespace Model
         public String DM { get; set; }
         public String SoThan { get; set; }
         public String MLT { get; set; }
+        public Byte[] Image { get; set; }
         public HoaDon(string danhBa, string tTHDNCu, string tTHDNMoi, string codeCu, string codeMoi, string cSC, string cSM, string tieuThuMoi, string tBTT, string diaChi, string ghiChuDS)
         {
             this.DanhBa = danhBa;
