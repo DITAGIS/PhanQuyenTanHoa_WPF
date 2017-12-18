@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
         
-        ResizeMode="CanMinimize"
+        ResizeMode="CanResize"
                 Icon="/PhanQuyen;component/Images/logo_tanhoa.png"
         Title="Quản lý đọc số đồng hồ nước" Height="700" Width="1366" Closed="Window_Closed">
 
@@ -16,9 +16,9 @@
         <CommandBinding Command="local:CustomCommands.Exit"
                         CanExecute="ExitCommand_CanExecute"
                         Executed="ExitCommand_Execute">
-            
+
         </CommandBinding>
-        
+
     </Window.CommandBindings>
     <DockPanel LastChildFill="True">
         <Ribbon DockPanel.Dock="Top"  Name="RibbonMain" >
@@ -36,6 +36,7 @@
             </Ribbon.QuickAccessToolBar>-->
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu>
+                    <RibbonApplicationMenuItem  Command="local:CustomCommands.Logout" ImageSource="/PhanQuyen;component/Images/logout.png" Header="Đăng xuất" />
                     <RibbonApplicationMenuItem  Command="local:CustomCommands.Exit" ImageSource="/PhanQuyen;component/Images/exit.png" Header="Thoát" />
                 </RibbonApplicationMenu>
 
@@ -108,10 +109,11 @@
 
         </Ribbon>
 
-      
+        <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">-->
 
-        <StackPanel Name="stkMain" Orientation="Vertical" >
+            <StackPanel Name="stkMain" Orientation="Vertical" >
 
-        </StackPanel>
+            </StackPanel>
+        <!--</ScrollViewer>-->
     </DockPanel>
 </Window>

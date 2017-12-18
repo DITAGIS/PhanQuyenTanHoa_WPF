@@ -14,7 +14,7 @@ namespace ViewModel
         private const String TABLE_NAME_KHACHHANG = "KhachHang";
         private const String TABLE_NAME_HINHDHN = "HinhDHN";
         private const String SQL_SELECT = "select top 100 * from " + TABLE_NAME_DOCSO;
-        private const String SQL_SELECT_DANH_BA_CONDITION = "select docso.danhba  from " +
+        private const String SQL_SELECT_DANH_BA_CONDITION = "select top 2 docso.danhba  from " +
         TABLE_NAME_DOCSO + ", " + TABLE_NAME_KHACHHANG + ", " + TABLE_NAME_HINHDHN + " where nam = @year and ky = @month and docso.Dot = @date and docso.may = @machine and KhachHang.DanhBa = DocSo.DanhBa " +
         "and docso.DanhBa = HinhDHN.DanhBo and docso.GIOGHI = HinhDHN.CreateDate";
         private const String SQL_SELECT_INCLUDE_IMAGE_CONDITION = "select top 2 TTDHNCu, TTDHNMoi, CodeMoi, CodeCu, CSCu, CSMOI, Tieuthumoi, TBTT, ghichuds," +
@@ -42,7 +42,7 @@ namespace ViewModel
             }
         }
         private HoaDonDBViewModel() { }
-     
+
         public List<HoaDon> getHoaDonsByCondition(String year, String month, String date, String group, String machine)
         {
             List<HoaDon> hoaDons = new List<HoaDon>();
@@ -101,7 +101,7 @@ namespace ViewModel
                 command.Parameters.AddWithValue("@date", date);
                 //command.Parameters.AddWithValue("@group", group);
                 command.Parameters.AddWithValue("@machine", machine);
-                 dataReader = command.ExecuteReader();
+                dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
                     hoaDon.DanhBa = danhba;
@@ -141,14 +141,14 @@ namespace ViewModel
             SqlDataReader dataReader = null;
             try
             {
-                
+
                 //ConnectionViewModel.getInstance.Connect();
                 command.Parameters.AddWithValue("@year", year);
                 command.Parameters.AddWithValue("@month", month);
                 command.Parameters.AddWithValue("@date", date);
                 //command.Parameters.AddWithValue("@group", group);
                 command.Parameters.AddWithValue("@machine", machine);
-                 dataReader = command.ExecuteReader();
+                dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
                     danhBas.Add(dataReader["danhba"].ToString());

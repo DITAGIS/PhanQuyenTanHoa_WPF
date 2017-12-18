@@ -32,11 +32,9 @@ namespace PhanQuyen
             //cbbMonth.Items.Add("12");
             //cbbDate.Items.Add("08");
             cbbGroup.Items.Add("' or '1'= '1");
+
             //cbbMachine.Items.Add("01");
         }
-
-
-
     }
     public class ByteArrayImageConverter : IValueConverter
     {

@@ -69,6 +69,14 @@ namespace PhanQuyen
         {
             Application.Current.Shutdown();
         }
+        private void LogoutCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+        private void LogoutCommand_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 
     public static class CustomCommands
@@ -78,6 +86,11 @@ namespace PhanQuyen
             {
                     new KeyGesture(Key.F4, ModifierKeys.Alt)
             });
+        public static readonly RoutedUICommand Logout = new RoutedUICommand(
+           "Logout", "Logout", typeof(CustomCommands), new InputGestureCollection()
+           {
+                    new KeyGesture(Key.F3, ModifierKeys.Alt)
+           });
 
         //defind more command hear, just like the one above
     }

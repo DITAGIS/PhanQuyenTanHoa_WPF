@@ -5,19 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhanQuyen"
         xmlns:Properties="clr-namespace:PhanQuyen.Properties" x:Class="PhanQuyen.LogInWindow"
+     xmlns:viewModel="clr-namespace:ViewModel;assembly=ViewModel"
         ResizeMode="NoResize"
         mc:Ignorable="d"
     FocusManager.FocusedElement="{Binding ElementName=txtbUsername}"
     WindowStartupLocation="CenterScreen"
     Icon="/PhanQuyen;component/Images/logo_tanhoa.png"
-        Title="Đăng nhập" Height="350" Width="700" >
+        Title="Đăng nhập" Height="350" Width="800" >
+    <Window.DataContext>
+        <viewModel:HoaDonViewModel>
+
+        </viewModel:HoaDonViewModel>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Image Width="200" Height="200" Grid.Column="0" Source="/PhanQuyen;component/Images/logo_tanhoa.png">
-        
+
         </Image>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -32,25 +38,45 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="1" FontSize="15" VerticalAlignment="Center"><Run Text="Tên đăng nhập:"/></TextBlock>
-            <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" FontSize="15" Height="30" Width="250" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbUsername" />
-            <TextBlock Grid.Column="0" Grid.Row="2" FontSize="15" VerticalAlignment="Center"><Run Text="Mật khẩu:"/></TextBlock>
-            <PasswordBox  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" FontSize="15" Height="30" Width="250" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbPassword" KeyDown="txtbPassword_KeyDown"/>
+            <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" FontSize="15" VerticalAlignment="Center"><Run Text="Tên đăng nhập:"/></TextBlock>
+            <TextBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="1" FontSize="15" Height="30" Width="300" VerticalAlignment="Center" 
+                     VerticalContentAlignment="Center" x:Name="txtbUsername" 
+                     HorizontalAlignment="Right" Margin="0,0,10,0"/>
+            <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" FontSize="15" VerticalAlignment="Center"><Run Text="Mật khẩu:"/></TextBlock>
+            <PasswordBox  Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="2" FontSize="15" Height="30" Width="300" VerticalAlignment="Center" 
+                          VerticalContentAlignment="Center" x:Name="txtbPassword" 
+                           HorizontalAlignment="Right" Margin="0,0,10,0"/>
             <StackPanel Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-                <TextBlock FontSize="15" ><Run Text="Năm:"/></TextBlock>
-                <ComboBox x:Name="cbbYear" SelectedIndex="0"/>
+                <TextBlock FontSize="15" Text="Năm:" Margin="0,0,10,0"></TextBlock>
+                <ComboBox x:Name="cbbYear" SelectedIndex="0" Width="55" IsEditable="True"
+                           SelectedValue="{Binding Year, Mode=TwoWay}" 
+                      ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-                <TextBlock FontSize="15" ><Run Text="Kỳ:"/></TextBlock>
-                <ComboBox x:Name="cbbMonth" SelectedIndex="0" />
+                <TextBlock FontSize="15" Text="Kỳ:" Margin="0,0,10,0"></TextBlock>
+                <ComboBox x:Name="cbbMonth" SelectedIndex="0" Width="45" IsEditable="True"
+                           SelectedValue="{Binding Month, Mode=TwoWay}" 
+                      ItemsSource="{Binding ListMonth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-                <TextBlock FontSize="15" ><Run Text="Đợt:"/></TextBlock>
-                <ComboBox x:Name="cbbDate" SelectedIndex="0"/>
+                <TextBlock FontSize="15" Text="Đợt:" Margin="0,0,10,0"></TextBlock>
+                <ComboBox x:Name="cbbDate" SelectedIndex="0" Width="45" IsEditable="True"/>
             </StackPanel>
-            <Button Grid.Column="2" Grid.Row="4" FontSize="15" Height="30" Width="100" Background="White" x:Name="btnLogin" Content="Đăng nhập" Click="btnLogin_Click"/>
-            
+            <StackPanel Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock FontSize="15" Text="Tổ:" Margin="0,0,10,0"></TextBlock>
+                <ComboBox x:Name="cbbGroup" SelectedIndex="0" Width="45" IsEditable="True"/>
+            </StackPanel>
+            <StackPanel Grid.Column="4" Grid.Row="3" VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="0,0,10,0" Orientation="Horizontal">
+                <TextBlock FontSize="15" Text="Máy:" Margin="0,0,10,0"></TextBlock>
+                <ComboBox x:Name="cbbMachine" SelectedIndex="0" Width="45" IsEditable="True"/>
+            </StackPanel>
+            <Button Grid.Column="3" Grid.ColumnSpan="2"  Grid.Row="4" FontSize="15" Height="30" Width="100" 
+                    HorizontalAlignment="Right" Margin="0,0,10,0"
+                    Background="White" x:Name="btnLogin" Content="Đăng nhập" Click="btnLogin_Click"/>
+
         </Grid>
     </Grid>
 </Window>

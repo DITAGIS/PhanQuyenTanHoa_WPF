@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace ViewModel
@@ -139,6 +140,7 @@ namespace ViewModel
 
             innitialize();
             UpdateCommand = new RelayCommand<UIElementCollection>((p) => true, update);
+            RotateCommand = new RelayCommand<UIElementCollection>((p) => true, rotate);
         }
 
         private void update(UIElementCollection p)
@@ -189,23 +191,29 @@ namespace ViewModel
                         ListHoaDon.Add(HoaDonDBViewModel.getInstance.getHoaDonsIncludeImageByCondition(Year, Month, Date, Group, Machine, danhBa));
                         Status = String.Format("Đang tải {0}/{1}", value, max);
                     }), DispatcherPriority.Loaded);
-                    //ListHoaDon.Add(HoaDonDBViewModel.getInstance.getHoaDonsIncludeImageByCondition(Year, Month, Date, Group, Machine, danhBa));
 
-
-                    //foreach(var item in p)
-                    //{
-                    //    DataGrid dataGrid = item as DataGrid;
-                    //    if (dataGrid == null)
-                    //        continue;
-                    //    if (dataGrid.Name.Equals("dtgridMain"))
-                    //    {
-                    //        //Refresh(dataGrid);
-                    //        dataGrid.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
-                    //    }
-                    //}
                 }
                 MessageBox.Show("Cập nhật hoàn tất!");
             }
+        }
+        private void rotate(UIElementCollection p)
+        {
+            if (p != null)
+                foreach (var item in p)
+                {
+                    Image img = item as Image;
+                    if (img == null)
+                        continue;
+                    switch (img.Name)
+                    {
+
+                        case "imgView":
+                            RotateTransform rotateTransform = new RotateTransform(45);
+                            if (img != null)
+                                img.RenderTransform = rotateTransform;
+                            break;
+                    }
+                }
         }
         private bool checkInfo()
         {
@@ -227,6 +235,7 @@ namespace ViewModel
 
         }
         public ICommand UpdateCommand { get; set; }
+        public ICommand RotateCommand { get; set; }
         public string Year { get => year; set => year = value; }
         public string Month { get => month; set => month = value; }
         public string Date { get => date; set => date = value; }
