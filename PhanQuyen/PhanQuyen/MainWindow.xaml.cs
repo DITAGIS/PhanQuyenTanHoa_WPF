@@ -75,6 +75,7 @@ namespace PhanQuyen
         }
         private void LogoutCommand_Execute(object sender, ExecutedRoutedEventArgs e)
         {
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
         }
     }

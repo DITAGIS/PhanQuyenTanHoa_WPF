@@ -13,8 +13,9 @@ namespace ViewModel
         private const String TABLE_NAME_DOCSO = "Docso";
         private const String TABLE_NAME_KHACHHANG = "KhachHang";
         private const String TABLE_NAME_HINHDHN = "HinhDHN";
+        private const String TABLE_NAME_TO = "[DocSoTH].[dbo].[To]";
         private const String SQL_SELECT = "select top 100 * from " + TABLE_NAME_DOCSO;
-        private const String SQL_SELECT_DANH_BA_CONDITION = "select top 2 docso.danhba  from " +
+        private const String SQL_SELECT_DANH_BA_CONDITION = "select docso.danhba  from " +
         TABLE_NAME_DOCSO + ", " + TABLE_NAME_KHACHHANG + ", " + TABLE_NAME_HINHDHN + " where nam = @year and ky = @month and docso.Dot = @date and docso.may = @machine and KhachHang.DanhBa = DocSo.DanhBa " +
         "and docso.DanhBa = HinhDHN.DanhBo and docso.GIOGHI = HinhDHN.CreateDate";
         private const String SQL_SELECT_INCLUDE_IMAGE_CONDITION = "select top 2 TTDHNCu, TTDHNMoi, CodeMoi, CodeCu, CSCu, CSMOI, Tieuthumoi, TBTT, ghichuds," +
@@ -26,9 +27,9 @@ namespace ViewModel
          TABLE_NAME_DOCSO + ", " + TABLE_NAME_KHACHHANG + " where nam = @year and ky = @month and docso.Dot = @date and docso.may = @machine and KhachHang.DanhBa = DocSo.DanhBa";
         private const String SQL_SELECT_DISTINCT_YEAR = "select distinct nam from " + TABLE_NAME_DOCSO;
         private const String SQL_SELECT_DISTINCT_MONTH = "select distinct ky from " + TABLE_NAME_DOCSO + " where nam = @year";
-        private const String SQL_SELECT_DISTINCT_DATE = "select distinct dot from " + TABLE_NAME_DOCSO + " wherer nam = @year and ky = @month";
-        //private const String SQL_SELECT_DISTINCT_GROUP = "select distinct nam from " + TABLE_NAME;
-        private const String SQL_SELECT_DISTINCT_MACHINE = "select distinct may from " + TABLE_NAME_DOCSO + " where nam = @year and ky = @month and dot = @date";
+        private const String SQL_SELECT_DISTINCT_DATE = "select distinct dot from " + TABLE_NAME_DOCSO + " where nam = @year and ky = @month";
+        private const String SQL_SELECT_DISTINCT_GROUP = "select distinct mato from " + TABLE_NAME_TO;
+        private const String SQL_SELECT_DISTINCT_MACHINE = "select [TuMay], [DenMay] from " + TABLE_NAME_TO + " where mato = @group";
         public static int MAX = 1;
         public static int VALUE = 0;
         private static HoaDonDBViewModel _instance;
@@ -216,19 +217,45 @@ namespace ViewModel
             }
             return listDate;
         }
-        public List<String> getDistinctMachine(String year, String month, String date)
+        public List<String> getDistinctGroup()
+        {
+            List<String> listGroup = new List<String>();
+            try
+            {
+                SqlCommand command = new SqlCommand(SQL_SELECT_DISTINCT_GROUP, ConnectionViewModel.getInstance.getConnection);
+
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                    listGroup.Add(dataReader["mato"].ToString());
+                dataReader.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
+            return listGroup;
+        }
+        public List<String> getDistinctMachine(String group)
         {
             List<String> listMachine = new List<String>();
             try
             {
                 SqlCommand command = new SqlCommand(SQL_SELECT_DISTINCT_MACHINE, ConnectionViewModel.getInstance.getConnection);
-                command.Parameters.AddWithValue("@year", year);
-                command.Parameters.AddWithValue("@month", month);
-                command.Parameters.AddWithValue("@date", date);
+
+                command.Parameters.AddWithValue("@group", group);
                 SqlDataReader dataReader = command.ExecuteReader();
+                int start = 0, end = 0;
                 while (dataReader.Read())
-                    listMachine.Add(dataReader["may"].ToString());
+                {
+                    start = Int16.Parse(dataReader["tumay"].ToString());
+                    end = Int16.Parse(dataReader["denmay"].ToString());
+                }
                 dataReader.Close();
+                for (int i = start; i <= end; i++)
+                    if (i < 10)
+                        listMachine.Add("0" + i);
+                    else
+                        listMachine.Add(i.ToString());
             }
             catch (Exception e)
             {

@@ -63,15 +63,21 @@
             </StackPanel>
             <StackPanel Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
                 <TextBlock FontSize="15" Text="Đợt:" Margin="0,0,10,0"></TextBlock>
-                <ComboBox x:Name="cbbDate" SelectedIndex="0" Width="45" IsEditable="True"/>
+                <ComboBox x:Name="cbbDate" SelectedIndex="0" Width="45" IsEditable="True"
+                              SelectedValue="{Binding Date, Mode=TwoWay}" 
+                      ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
                 <TextBlock FontSize="15" Text="Tổ:" Margin="0,0,10,0"></TextBlock>
-                <ComboBox x:Name="cbbGroup" SelectedIndex="0" Width="45" IsEditable="True"/>
+                <ComboBox x:Name="cbbGroup" SelectedIndex="0" Width="45" IsEditable="True"     
+                          SelectedValue="{Binding Group, Mode=TwoWay}" 
+                      ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Grid.Column="4" Grid.Row="3" VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="0,0,10,0" Orientation="Horizontal">
                 <TextBlock FontSize="15" Text="Máy:" Margin="0,0,10,0"></TextBlock>
-                <ComboBox x:Name="cbbMachine" SelectedIndex="0" Width="45" IsEditable="True"/>
+                <ComboBox x:Name="cbbMachine" SelectedIndex="0" Width="45" IsEditable="True"
+                              SelectedValue="{Binding Machine, Mode=TwoWay}" 
+                      ItemsSource="{Binding ListMachine, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <Button Grid.Column="3" Grid.ColumnSpan="2"  Grid.Row="4" FontSize="15" Height="30" Width="100" 
                     HorizontalAlignment="Right" Margin="0,0,10,0"

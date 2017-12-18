@@ -31,7 +31,7 @@ namespace PhanQuyen
             //cbbYear.Items.Add("2017");
             //cbbMonth.Items.Add("12");
             //cbbDate.Items.Add("08");
-            cbbGroup.Items.Add("' or '1'= '1");
+            //cbbGroup.Items.Add("' or '1'= '1");
 
             //cbbMachine.Items.Add("01");
         }

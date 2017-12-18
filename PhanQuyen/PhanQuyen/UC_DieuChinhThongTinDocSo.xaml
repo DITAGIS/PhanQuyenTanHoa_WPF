@@ -6,7 +6,7 @@
                  xmlns:viewModel="clr-namespace:ViewModel;assembly=ViewModel"
             xmlns:convert="clr-namespace:PhanQuyen"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="1200">
+             d:DesignWidth="1200">
     <UserControl.DataContext>
         <viewModel:HoaDonViewModel>
 
@@ -16,10 +16,10 @@
         <convert:ByteArrayImageConverter x:Key="ImageConvert"></convert:ByteArrayImageConverter>
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <TextBlock Text="{Binding Status, Mode=OneWay}"/>
-        </StackPanel>
-        <Grid>
+        <!--<StackPanel DockPanel.Dock="Top" Orientation="Horizontal"  Background="WhiteSmoke" >-->
+            <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Right" FontSize="15" Margin="0,0,10,0" Text="{Binding Status, Mode=OneWay}" VerticalAlignment="Center"/>
+        <!--</StackPanel>-->
+        <Grid DockPanel.Dock="Bottom">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -49,7 +49,9 @@
                       SelectedValue="{Binding Date, Mode=TwoWay}" 
                       ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ:"/></TextBlock>
-                <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True" ItemsSource="{Binding ListGroup, Mode=OneWay}" VerticalAlignment="Center" Width="45"/>
+                <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
+                          SelectedValue="{Binding Group, Mode=TwoWay}" 
+                      ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Máy:"/></TextBlock>
                 <ComboBox x:Name="cbbMachine" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45" 
                       SelectedValue="{Binding Machine, Mode=TwoWay}" 
@@ -181,8 +183,12 @@
                 </DataGrid>
                 <Border BorderThickness="1" Grid.Column="1" Background="White">
                     <Image  Source="{Binding Path=SelectedHoaDon.Image, 
-                        Converter={StaticResource ResourceKey=ImageConvert}}" Stretch="UniformToFill" ></Image>
+                        Converter={StaticResource ResourceKey=ImageConvert}}" Stretch="UniformToFill" 
+                            ></Image>
                 </Border>
+                <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15">
+                    Chưa có hình ảnh
+                </TextBlock>
             </Grid>
             <Grid Grid.Row="4" Margin="0,10,0,0">
                 <Grid.RowDefinitions>

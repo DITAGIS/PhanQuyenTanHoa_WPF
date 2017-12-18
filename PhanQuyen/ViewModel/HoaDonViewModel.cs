@@ -70,21 +70,14 @@ namespace ViewModel
             get { return listCode; }
             set { listCode = value; OnPropertyChanged("ListCode"); }
         }
-        private void innitialize()
+        private void Innitialize()
         {
             listHoaDon = new ObservableCollection<HoaDon>();
             listYear = new List<String>(HoaDonDBViewModel.getInstance.getDistinctYear());
-            listMonth = new List<string>() { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
-            listDate = new List<string>() { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
-            "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
+            listMonth = new List<string>();
+            listDate = new List<string>();
+            listGroup = new List<string>(HoaDonDBViewModel.getInstance.getDistinctGroup());
             listMachine = new List<string>();
-            for (int i = 1; i <= 61; i++)
-            {
-                if (i < 10)
-                    listMachine.Add("0" + i);
-                else
-                    listMachine.Add(i.ToString());
-            }
             listCode = new List<string>() { "Tất cả", "Chưa ghi",
                 "40",
                 "41",
@@ -138,7 +131,7 @@ namespace ViewModel
         public HoaDonViewModel()
         {
 
-            innitialize();
+            Innitialize();
             UpdateCommand = new RelayCommand<UIElementCollection>((p) => true, update);
             RotateCommand = new RelayCommand<UIElementCollection>((p) => true, rotate);
         }
@@ -185,14 +178,19 @@ namespace ViewModel
                 List<HoaDon> hoaDons = new List<HoaDon>();
                 foreach (String danhBa in danhBas)
                 {
-                    value++;
+
                     Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
+                        value++;
                         ListHoaDon.Add(HoaDonDBViewModel.getInstance.getHoaDonsIncludeImageByCondition(Year, Month, Date, Group, Machine, danhBa));
-                        Status = String.Format("Đang tải {0}/{1}", value, max);
+                        if (value < max)
+                            Status = String.Format("Đang tải {0}/{1}", value, max);
+                        else
+                            Status = "Cập nhật hoàn tất";
                     }), DispatcherPriority.Loaded);
 
                 }
+
                 MessageBox.Show("Cập nhật hoàn tất!");
             }
         }
@@ -236,15 +234,68 @@ namespace ViewModel
         }
         public ICommand UpdateCommand { get; set; }
         public ICommand RotateCommand { get; set; }
-        public string Year { get => year; set => year = value; }
-        public string Month { get => month; set => month = value; }
+        public string Year
+        {
+            get
+            {
+                return year;
+            }
+            set
+            {
+                year = value;
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    listMonth.Clear();
+                    listMonth.AddRange(HoaDonDBViewModel.getInstance.getDistinctMonth(year));
+                    month = listMonth[0];
+
+                }), DispatcherPriority.Loaded);
+
+            }
+        }
+        public string Month
+        {
+            get
+            {
+                return month;
+            }
+            set
+            {
+                month = value;
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    listDate.Clear();
+                    listDate.AddRange(HoaDonDBViewModel.getInstance.getDistinctDate(year, month));
+                    date = listDate[0];
+                }), DispatcherPriority.Loaded);
+
+            }
+        }
         public string Date { get => date; set => date = value; }
-        public string Group { get => group; set => group = value; }
+        public string Group
+        {
+            get
+            {
+                return group;
+            }
+            set
+            {
+                group = value;
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    listMachine.Clear();
+                    listMachine.AddRange(HoaDonDBViewModel.getInstance.getDistinctMachine(group));
+                    machine = listMachine[0];
+
+                }), DispatcherPriority.Loaded);
+
+            }
+        }
         public string Machine { get => machine; set => machine = value; }
         public string Code { get => code; set => code = value; }
         public HoaDon SelectedHoaDon { get { return selectedHoaDon; } set { selectedHoaDon = value; OnPropertyChanged("SelectedHoaDon"); } }
 
         public int Value { get => value; set => this.value = value; }
-        public string Status { get { return status; } set { status = value; } }
+        public string Status { get { return status; } set { status = value; OnPropertyChanged("Status"); } }
     }
 }
