@@ -48,6 +48,8 @@ namespace PhanQuyen
         private void ribBtnDieuChinhThongTinDocSo_Click(object sender, RoutedEventArgs e)
         {
             uc_DieuChinhThonTinDocSo = new UC_DieuChinhThongTinDocSo();
+            uc_DieuChinhThonTinDocSo.Height = stkMain.ActualHeight;
+            uc_DieuChinhThonTinDocSo.Width = stkMain.ActualWidth;
             if (stkMain.Children.Count == 1)
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_DieuChinhThonTinDocSo);
@@ -56,6 +58,8 @@ namespace PhanQuyen
         private void ribBtnInPhieuTieuThuKH_Click(object sender, RoutedEventArgs e)
         {
             uc_InPhieuTieuThuKH = new UC_InPhieuTieuThuKH();
+            uc_InPhieuTieuThuKH.Height = stkMain.ActualHeight;
+            uc_InPhieuTieuThuKH.Width = stkMain.ActualWidth;
             if (stkMain.Children.Count == 1)
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_InPhieuTieuThuKH);

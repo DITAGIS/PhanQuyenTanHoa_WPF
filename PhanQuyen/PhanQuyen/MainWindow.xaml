@@ -11,7 +11,7 @@
         
         ResizeMode="CanResize"
                 Icon="/PhanQuyen;component/Images/logo_tanhoa.png"
-        Title="Quản lý đọc số đồng hồ nước" Height="700" Width="1366" Closed="Window_Closed">
+        Title="Quản lý đọc số đồng hồ nước" Closed="Window_Closed">
     <Window.DataContext>
         <viewModel:HoaDonViewModel>
         </viewModel:HoaDonViewModel>
@@ -118,7 +118,7 @@
         </Ribbon>
 
         <!--<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">-->
-        <TextBlock DockPanel.Dock="Bottom" HorizontalAlignment="Left" FontSize="15" Margin="0,0,10,0" Text="{Binding Status, Mode=OneWay}"/>
+        <!--<TextBlock DockPanel.Dock="Bottom" HorizontalAlignment="Left" FontSize="15" Margin="0,0,10,0" Text="{Binding Status, Mode=OneWay}"/>-->
         <StackPanel Name="stkMain" Orientation="Vertical" >
 
         </StackPanel>

@@ -6,7 +6,9 @@
             xmlns:viewModel="clr-namespace:ViewModel;assembly=ViewModel"
             xmlns:convert="clr-namespace:PhanQuyen"
              mc:Ignorable="d" 
-             d:DesignWidth="1200">
+         
+             Width="1200" Height="500"
+        >
     <UserControl.DataContext>
         <viewModel:HoaDonViewModel>
 
@@ -29,9 +31,11 @@
     </UserControl.Resources>
     <DockPanel LastChildFill="True">
         <!--<StackPanel DockPanel.Dock="Top" Orientation="Horizontal"  Background="WhiteSmoke" >-->
-        <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Right" FontSize="15" Margin="0,0,10,0" Text="{Binding Status, Mode=OneWay}" VerticalAlignment="Center"/>
+        <!--<TextBlock DockPanel.Dock="Top" HorizontalAlignment="Right" FontSize="15" Margin="0,0,10,0" Text="{Binding Status, Mode=OneWay}" VerticalAlignment="Center"/>-->
         <!--</StackPanel>-->
-        <Grid DockPanel.Dock="Bottom">
+
+        <TextBlock DockPanel.Dock="Bottom" HorizontalAlignment="Left" FontSize="15" Margin="10,0,0,10" Text="{Binding Status, Mode=OneWay}" VerticalAlignment="Center"/>
+        <Grid>
             <Grid.Resources>
                 <Style TargetType="{x:Type TextBlock}" x:Key="styleTxbl">
                     <Style.Triggers>
@@ -52,16 +56,16 @@
                         </EventTrigger>
                     </Style.Triggers>
                 </Style>
-               
+
             </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="400"></RowDefinition>
-                <!--<RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>-->
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -178,7 +182,10 @@
                 </Grid.ColumnDefinitions>
                 <GridSplitter Background="White" Grid.Column="0" Grid.RowSpan="5" Width="10"  HorizontalAlignment="Right" VerticalAlignment="Stretch" ></GridSplitter>
 
-                <DataGrid SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="dtgridMain" HorizontalAlignment="Center" VerticalAlignment="Top" Width="Auto" Margin="10,10,10,10" Height="400" 
+                <DataGrid SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged}" 
+                          AutoGenerateColumns="False" Name="dtgridMain" 
+                          HorizontalAlignment="Center" VerticalAlignment="Top" 
+                          Width="Auto" Margin="10,0,10,0" Height="400" 
                           ItemsSource="{Binding ListHoaDon}"
                           AlternatingRowBackground="WhiteSmoke"
                           RowBackground="White"
@@ -244,81 +251,73 @@
                     </TextBlock.Style>
                 </TextBlock>
             </Grid>
-            <Grid Grid.Row="4" Margin="0,10,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <!--Tên khách hàng-->
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tên khách hàng:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
-                        <Run Text="{Binding SelectedHoaDon.TenKH}"/>
-                    </TextBlock>
-                    <!--Danh bạ-->
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
-                        <Run Text="{Binding SelectedHoaDon.DanhBa}"/>
-                    </TextBlock>
-                    <!--Hợp đồng-->
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Hợp đồng:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
-                        <Run Text="{Binding SelectedHoaDon.HopDong}"/>
-                    </TextBlock>
-                    <!--Hiệu-->
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Hiệu:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
-                        <Run Text="{Binding SelectedHoaDon.Hieu}"/>
-                    </TextBlock>
-                    <!--Cỡ-->
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Cỡ: "/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
-                        <Run Text="{Binding SelectedHoaDon.Co}"/>
-                    </TextBlock>
-                    <!--Giá biểu-->
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Giá biểu:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
-                        <Run Text="{Binding SelectedHoaDon.GB}"/>
-                    </TextBlock>
-                    <!--Định mức-->
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Định mức:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
-                        <Run Text="{Binding SelectedHoaDon.DM}"/>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Grid.Row="1" Orientation="Horizontal" Width="Auto" RenderTransformOrigin="1,1">
-                    <StackPanel.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleY="1" ScaleX="1"/>
-                            <SkewTransform AngleY="0" AngleX="0"/>
-                            <RotateTransform Angle="0"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </StackPanel.RenderTransform>
-                    <!--Địa chỉ-->
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Địa chỉ:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
-                        <Run Text="{Binding SelectedHoaDon.DiaChi}"/>
-                    </TextBlock>
-                    <!--Số thân-->
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Số thân:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
-                        <Run Text="{Binding SelectedHoaDon.SoThan}"/>
-                    </TextBlock>
-                    <!--Mã lộ trình-->
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Mã lộ trình:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
-                        <Run Text="{Binding SelectedHoaDon.MLT}"/>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Grid.Row="2">
 
-                </StackPanel>
-            </Grid>
+            <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10,10,0,0">
+                <!--Tên khách hàng-->
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Tên khách hàng:"/></TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.TenKH}"/>
+                </TextBlock>
+                <!--Danh bạ-->
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.DanhBa}"/>
+                </TextBlock>
+                <!--Hợp đồng-->
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Hợp đồng:"/></TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.HopDong}"/>
+                </TextBlock>
+                <!--Hiệu-->
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Hiệu:"/></TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.Hieu}"/>
+                </TextBlock>
+                <!--Cỡ-->
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Cỡ: "/></TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.Co}"/>
+                </TextBlock>
+                <!--Giá biểu-->
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Giá biểu:"/></TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.GB}"/>
+                </TextBlock>
+                <!--Định mức-->
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Định mức:"/></TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.DM}"/>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="5" Orientation="Horizontal" Width="Auto" RenderTransformOrigin="1,1" Margin="10,10,0,0">
+                <StackPanel.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleY="1" ScaleX="1"/>
+                        <SkewTransform AngleY="0" AngleX="0"/>
+                        <RotateTransform Angle="0"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </StackPanel.RenderTransform>
+                <!--Địa chỉ-->
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Địa chỉ:"/></TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.DiaChi}"/>
+                </TextBlock>
+                <!--Số thân-->
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Số thân:"/></TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.SoThan}"/>
+                </TextBlock>
+                <!--Mã lộ trình-->
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Mã lộ trình:"/></TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.MLT}"/>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="6">
+
+            </StackPanel>
+
         </Grid>
     </DockPanel>
 </UserControl>
