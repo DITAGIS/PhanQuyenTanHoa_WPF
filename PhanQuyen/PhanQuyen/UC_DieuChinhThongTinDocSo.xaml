@@ -39,7 +39,7 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="20"></DoubleAnimation>
-                                    
+
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -52,6 +52,7 @@
                         </EventTrigger>
                     </Style.Triggers>
                 </Style>
+               
             </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -198,6 +199,16 @@
                         </Style>
 
                     </DataGrid.Resources>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Setter Property="FontSize"  Value="13" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="FontSize"  Value="20" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
                     <!--Header column-->
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Danh bạ" Width="100" Binding="{Binding DanhBa, Mode=OneWay}"></DataGridTextColumn>
