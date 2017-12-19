@@ -35,6 +35,8 @@ namespace PhanQuyen
 
             //cbbMachine.Items.Add("01");
         }
+
+     
     }
     public class ByteArrayImageConverter : IValueConverter
     {

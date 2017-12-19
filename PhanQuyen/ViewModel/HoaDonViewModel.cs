@@ -17,6 +17,7 @@ namespace ViewModel
     public class HoaDonViewModel : INotifyPropertyChanged
     {
         #region Initialize
+        private bool hasImage;
         private String status;
         private HoaDon selectedHoaDon;
         private int value;
@@ -247,7 +248,8 @@ namespace ViewModel
                 {
                     listMonth.Clear();
                     listMonth.AddRange(HoaDonDBViewModel.getInstance.getDistinctMonth(year));
-                    month = listMonth[0];
+                    if (ListMonth.Count > 0)
+                        month = listMonth[0];
 
                 }), DispatcherPriority.Loaded);
 
@@ -266,7 +268,8 @@ namespace ViewModel
                 {
                     listDate.Clear();
                     listDate.AddRange(HoaDonDBViewModel.getInstance.getDistinctDate(year, month));
-                    date = listDate[0];
+                    if (listDate.Count > 0)
+                        date = listDate[0];
                 }), DispatcherPriority.Loaded);
 
             }
@@ -285,7 +288,8 @@ namespace ViewModel
                 {
                     listMachine.Clear();
                     listMachine.AddRange(HoaDonDBViewModel.getInstance.getDistinctMachine(group));
-                    machine = listMachine[0];
+                    if (listMachine.Count > 0)
+                        machine = listMachine[0];
 
                 }), DispatcherPriority.Loaded);
 
@@ -293,9 +297,37 @@ namespace ViewModel
         }
         public string Machine { get => machine; set => machine = value; }
         public string Code { get => code; set => code = value; }
-        public HoaDon SelectedHoaDon { get { return selectedHoaDon; } set { selectedHoaDon = value; OnPropertyChanged("SelectedHoaDon"); } }
+        public HoaDon SelectedHoaDon
+        {
+            get
+            {
+                if (selectedHoaDon == null)
+                    HasImage = false;
+                else if (selectedHoaDon.Image != null)
+                    HasImage = true;
+                return selectedHoaDon;
+            }
+            set
+            {
+                selectedHoaDon = value;
+                OnPropertyChanged("SelectedHoaDon");
+            }
+        }
 
         public int Value { get => value; set => this.value = value; }
         public string Status { get { return status; } set { status = value; OnPropertyChanged("Status"); } }
+
+        public bool HasImage
+        {
+            get
+            {
+                return hasImage;
+            }
+            set
+            {
+                hasImage = value;
+                OnPropertyChanged("HasImage");
+            }
+        }
     }
 }
