@@ -15,10 +15,10 @@ namespace ViewModel
         private const String TABLE_NAME_HINHDHN = "HinhDHN";
         private const String TABLE_NAME_TO = "[DocSoTH].[dbo].[To]";
         private const String SQL_SELECT = "select top 100 * from " + TABLE_NAME_DOCSO;
-        private const String SQL_SELECT_DANH_BA_CONDITION = "select docso.danhba  from " +
+        private const String SQL_SELECT_DANH_BA_CONDITION = "select top 2 docso.danhba  from " +
         TABLE_NAME_DOCSO + ", " + TABLE_NAME_KHACHHANG + ", " + TABLE_NAME_HINHDHN + " where nam = @year and ky = @month and docso.Dot = @date and docso.may = @machine and KhachHang.DanhBa = DocSo.DanhBa " +
         "and docso.DanhBa = HinhDHN.DanhBo and docso.GIOGHI = HinhDHN.CreateDate";
-        private const String SQL_SELECT_INCLUDE_IMAGE_CONDITION = "select top 2 TTDHNCu, TTDHNMoi, CodeMoi, CodeCu, CSCu, CSMOI, Tieuthumoi, TBTT, ghichuds," +
+        private const String SQL_SELECT_INCLUDE_IMAGE_CONDITION = "select TTDHNCu, TTDHNMoi, CodeMoi, CodeCu, CSCu, CSMOI, Tieuthumoi, TBTT, ghichuds," +
             " KhachHang.So, KhachHang.Duong, KhachHang.TenKH, KhachHang.GB, KhachHang.DM, KhachHang.HopDong, KhachHang.Hieu, KhachHang.Co, KhachHang.SoThan, KhachHang.MLT1, [Image]  from " +
             TABLE_NAME_DOCSO + ", " + TABLE_NAME_KHACHHANG + ", " + TABLE_NAME_HINHDHN + " where docso.danhba = @danhba and nam = @year and ky = @month and docso.Dot = @date and docso.may = @machine and KhachHang.DanhBa = DocSo.DanhBa " +
             "and docso.DanhBa = HinhDHN.DanhBo and docso.GIOGHI = HinhDHN.CreateDate";

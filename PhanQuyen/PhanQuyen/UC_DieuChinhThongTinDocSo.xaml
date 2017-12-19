@@ -32,6 +32,27 @@
         <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Right" FontSize="15" Margin="0,0,10,0" Text="{Binding Status, Mode=OneWay}" VerticalAlignment="Center"/>
         <!--</StackPanel>-->
         <Grid DockPanel.Dock="Bottom">
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBlock}" x:Key="styleTxbl">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="UIElement.MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="20"></DoubleAnimation>
+                                    
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="UIElement.MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="13"></DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -224,25 +245,39 @@
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
                     <!--Tên khách hàng-->
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tên khách hàng:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectdHoaDon.TenKH}"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.TenKH}"/>
+                    </TextBlock>
                     <!--Danh bạ-->
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.DanhBa}"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.DanhBa}"/>
+                    </TextBlock>
                     <!--Hợp đồng-->
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Hợp đồng:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.HopDong}"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.HopDong}"/>
+                    </TextBlock>
                     <!--Hiệu-->
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Hiệu:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.Hieu}"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.Hieu}"/>
+                    </TextBlock>
                     <!--Cỡ-->
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Cỡ: "/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.Co}"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.Co}"/>
+                    </TextBlock>
                     <!--Giá biểu-->
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Giá biểu:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.GB}"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.GB}"/>
+                    </TextBlock>
                     <!--Định mức-->
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Định mức:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.DM}"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.DM}"/>
+                    </TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" Width="Auto" RenderTransformOrigin="1,1">
                     <StackPanel.RenderTransform>
@@ -255,13 +290,19 @@
                     </StackPanel.RenderTransform>
                     <!--Địa chỉ-->
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Địa chỉ:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.DiaChi}"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.DiaChi}"/>
+                    </TextBlock>
                     <!--Số thân-->
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Số thân:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.SoThan}"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.SoThan}"/>
+                    </TextBlock>
                     <!--Mã lộ trình-->
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Mã lộ trình:"/></TextBlock>
-                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="{Binding SelectedHoaDon.MLT}"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Style="{StaticResource styleTxbl}">
+                        <Run Text="{Binding SelectedHoaDon.MLT}"/>
+                    </TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="2">
 
