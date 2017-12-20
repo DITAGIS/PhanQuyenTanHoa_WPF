@@ -21,6 +21,7 @@ namespace PhanQuyen
     {
         UC_DieuChinhThongTinDocSo uc_DieuChinhThonTinDocSo;
         UC_InPhieuTieuThuKH uc_InPhieuTieuThuKH;
+        UC_NhanDuLieu uc_NhanDuLieu;
         public MainWindow()
         {
             InitializeComponent();
@@ -47,7 +48,8 @@ namespace PhanQuyen
 
         private void ribBtnDieuChinhThongTinDocSo_Click(object sender, RoutedEventArgs e)
         {
-            uc_DieuChinhThonTinDocSo = new UC_DieuChinhThongTinDocSo();
+           if(uc_DieuChinhThonTinDocSo == null)
+                uc_DieuChinhThonTinDocSo = new UC_DieuChinhThongTinDocSo();
             uc_DieuChinhThonTinDocSo.Height = stkMain.ActualHeight;
             uc_DieuChinhThonTinDocSo.Width = stkMain.ActualWidth;
             if (stkMain.Children.Count == 1)
@@ -57,7 +59,8 @@ namespace PhanQuyen
 
         private void ribBtnInPhieuTieuThuKH_Click(object sender, RoutedEventArgs e)
         {
-            uc_InPhieuTieuThuKH = new UC_InPhieuTieuThuKH();
+           if(uc_InPhieuTieuThuKH == null)
+                uc_InPhieuTieuThuKH = new UC_InPhieuTieuThuKH();
             uc_InPhieuTieuThuKH.Height = stkMain.ActualHeight;
             uc_InPhieuTieuThuKH.Width = stkMain.ActualWidth;
             if (stkMain.Children.Count == 1)
@@ -65,6 +68,17 @@ namespace PhanQuyen
             stkMain.Children.Add(uc_InPhieuTieuThuKH);
         }
 
+
+        private void RibbonButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_NhanDuLieu == null)
+                uc_NhanDuLieu = new UC_NhanDuLieu();
+            uc_NhanDuLieu.Height = stkMain.ActualHeight;
+            uc_NhanDuLieu.Width = stkMain.ActualWidth;
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_NhanDuLieu);
+        }
         private void ExitCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
@@ -82,6 +96,7 @@ namespace PhanQuyen
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
         }
+
     }
 
     public static class CustomCommands

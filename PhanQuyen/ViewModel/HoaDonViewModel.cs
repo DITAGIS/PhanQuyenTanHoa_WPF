@@ -131,12 +131,10 @@ namespace ViewModel
         #endregion
         public HoaDonViewModel()
         {
-
             Innitialize();
             UpdateCommand = new RelayCommand<UIElementCollection>((p) => true, update);
             RotateCommand = new RelayCommand<UIElementCollection>((p) => true, rotate);
         }
-
         private void update(UIElementCollection p)
         {
             int max, value;
@@ -187,7 +185,7 @@ namespace ViewModel
                         if (value < max)
                             Status = String.Format("Đang tải {0}/{1}", value, max);
                         else
-                            Status = "Cập nhật hoàn tất";
+                            Status = "Tải dữ liệu hoàn tất";
                     }), DispatcherPriority.Loaded);
 
                 }
@@ -252,7 +250,7 @@ namespace ViewModel
                         month = listMonth[0];
 
                 }), DispatcherPriority.Loaded);
-
+               
             }
         }
         public string Month

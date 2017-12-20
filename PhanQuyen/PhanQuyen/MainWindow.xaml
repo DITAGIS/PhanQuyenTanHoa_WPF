@@ -74,7 +74,7 @@
             </RibbonTab>
             <RibbonTab Header="Giao tiếp" >
                 <RibbonGroup Header="Nhận dữ liệu">
-                    <RibbonButton Label="Nhận dữ liệu"  LargeImageSource="/PhanQuyen;component/Images/download.png"></RibbonButton>
+                    <RibbonButton Label="Nhận dữ liệu"  LargeImageSource="/PhanQuyen;component/Images/download.png" Click="RibbonButton_Click"></RibbonButton>
                 </RibbonGroup>
 
             </RibbonTab>
