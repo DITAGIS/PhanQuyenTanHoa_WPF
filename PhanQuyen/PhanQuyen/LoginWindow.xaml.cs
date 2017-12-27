@@ -44,12 +44,12 @@ namespace PhanQuyen
         }
         private void login()
         {
-            if (txtbUsername.Text.Equals("tanhoa") && txtbPassword.Password.Equals("123"))
-            {
-                //MessageBox.Show("Đăng nhập thành công");
-                this.Hide();
-                new MainWindow().Show();
-            }
+            //if (txtbUsername.Text.Equals("tanhoa") && txtbPassword.Password.Equals("123"))
+            //{
+            //    //MessageBox.Show("Đăng nhập thành công");
+            //    this.Hide();
+            //    new MainWindow().Show();
+            //}
         }
         //private void txtbPassword_KeyDown(object sender, KeyEventArgs e)
         //{

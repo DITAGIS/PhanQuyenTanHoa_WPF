@@ -59,6 +59,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="HoaDon.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

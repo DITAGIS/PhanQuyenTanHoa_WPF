@@ -11,13 +11,13 @@
     FocusManager.FocusedElement="{Binding ElementName=txtbUsername}"
     WindowStartupLocation="CenterScreen"
     Icon="/PhanQuyen;component/Images/logo_tanhoa.png"
-        Title="Đăng nhập" Height="350" Width="800" >
+        Title="Đăng nhập" Height="350" Width="600" >
     <Window.DataContext>
-        <viewModel:HoaDonViewModel>
+        <viewModel:UserViewModel>
 
-        </viewModel:HoaDonViewModel>
+        </viewModel:UserViewModel>
     </Window.DataContext>
-    <Grid>
+    <Grid x:Name="gridMain">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition/>
@@ -38,17 +38,19 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" FontSize="15" VerticalAlignment="Center"><Run Text="Tên đăng nhập:"/></TextBlock>
-            <TextBox Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="1" FontSize="15" Height="30" Width="300" VerticalAlignment="Center" 
+            <TextBlock Grid.Column="0"  Grid.Row="1" FontSize="15" VerticalAlignment="Center"><Run Text="Tên đăng nhập:"/></TextBlock>
+            <TextBox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" FontSize="15" Height="30" Width="200" VerticalAlignment="Center" 
                      VerticalContentAlignment="Center" x:Name="txtbUsername" 
-                     HorizontalAlignment="Right" Margin="0,0,10,0"/>
-            <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" FontSize="15" VerticalAlignment="Center"><Run Text="Mật khẩu:"/></TextBlock>
-            <PasswordBox  Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="2" FontSize="15" Height="30" Width="300" VerticalAlignment="Center" 
+                     HorizontalAlignment="Right" Margin="0,0,10,0"
+                     Text="{Binding UserID, Mode=TwoWay}"/>
+            <TextBlock Grid.Column="0"  Grid.Row="2" FontSize="15" VerticalAlignment="Center"><Run Text="Mật khẩu:"/></TextBlock>
+            <PasswordBox  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" FontSize="15" Height="30" Width="200" VerticalAlignment="Center" 
                           VerticalContentAlignment="Center" x:Name="txtbPassword" 
-                           HorizontalAlignment="Right" Margin="0,0,10,0"/>
+                           HorizontalAlignment="Right" Margin="0,0,10,0"
+                     viewModel:PasswordHelper.Attach="True"  
+                          viewModel:PasswordHelper.Password="{Binding Password, Mode=TwoWay}"   />
             <StackPanel Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
                 <TextBlock FontSize="15" Text="Năm:" Margin="0,0,10,0"></TextBlock>
                 <ComboBox x:Name="cbbYear" SelectedIndex="0" Width="55" IsEditable="True"
@@ -67,21 +69,15 @@
                               SelectedValue="{Binding Date, Mode=TwoWay}" 
                       ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
-            <StackPanel Grid.Column="3" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
-                <TextBlock FontSize="15" Text="Tổ:" Margin="0,0,10,0"></TextBlock>
-                <ComboBox x:Name="cbbGroup" SelectedIndex="0" Width="45" IsEditable="True"     
-                          SelectedValue="{Binding Group, Mode=TwoWay}" 
-                      ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </StackPanel>
-            <StackPanel Grid.Column="4" Grid.Row="3" VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="0,0,10,0" Orientation="Horizontal">
-                <TextBlock FontSize="15" Text="Máy:" Margin="0,0,10,0"></TextBlock>
-                <ComboBox x:Name="cbbMachine" SelectedIndex="0" Width="45" IsEditable="True"
-                              SelectedValue="{Binding Machine, Mode=TwoWay}" 
-                      ItemsSource="{Binding ListMachine, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </StackPanel>
-            <Button Grid.Column="3" Grid.ColumnSpan="2"  Grid.Row="4" FontSize="15" Height="30" Width="100" 
+
+            <Button Grid.Column="1"  Grid.Row="4" FontSize="15" Height="30" Width="100" 
                     HorizontalAlignment="Right" Margin="0,0,10,0"
-                    Background="White" x:Name="btnLogin" Content="Đăng nhập" Click="btnLogin_Click"/>
+                    Background="White" Content="Cấu hình" Click="btnLogin_Click"/>
+
+            <Button Grid.Column="2"  Grid.Row="4" FontSize="15" Height="30" Width="100" 
+                    HorizontalAlignment="Right" Margin="0,0,10,0"
+                    Background="White" x:Name="btnLogin" Content="Đăng nhập" Click="btnLogin_Click"
+                    Command="{Binding LoginCommand}" CommandParameter="{Binding Children, ElementName=gridMain}"/>
 
         </Grid>
     </Grid>

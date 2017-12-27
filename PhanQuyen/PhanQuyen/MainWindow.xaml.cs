@@ -24,7 +24,10 @@ namespace PhanQuyen
         UC_NhanDuLieu uc_NhanDuLieu;
         public MainWindow()
         {
+
             InitializeComponent();
+            LogInWindow logInWindow = new LogInWindow();
+            logInWindow.ShowDialog();
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -48,7 +51,7 @@ namespace PhanQuyen
 
         private void ribBtnDieuChinhThongTinDocSo_Click(object sender, RoutedEventArgs e)
         {
-           if(uc_DieuChinhThonTinDocSo == null)
+            if (uc_DieuChinhThonTinDocSo == null)
                 uc_DieuChinhThonTinDocSo = new UC_DieuChinhThongTinDocSo();
             uc_DieuChinhThonTinDocSo.Height = stkMain.ActualHeight;
             uc_DieuChinhThonTinDocSo.Width = stkMain.ActualWidth;
@@ -59,7 +62,7 @@ namespace PhanQuyen
 
         private void ribBtnInPhieuTieuThuKH_Click(object sender, RoutedEventArgs e)
         {
-           if(uc_InPhieuTieuThuKH == null)
+            if (uc_InPhieuTieuThuKH == null)
                 uc_InPhieuTieuThuKH = new UC_InPhieuTieuThuKH();
             uc_InPhieuTieuThuKH.Height = stkMain.ActualHeight;
             uc_InPhieuTieuThuKH.Width = stkMain.ActualWidth;
