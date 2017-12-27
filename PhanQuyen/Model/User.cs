@@ -26,9 +26,17 @@ namespace Model
             this.ToID = ToID;
             this.MayID = MayID;
         }
-        public User()
+        private static User _instance;
+        public static User getInstance
         {
-
+            get
+            {
+                if (_instance == null)
+                    _instance = new User();
+                return _instance;
+            }
         }
+        private User() { }
+
     }
 }

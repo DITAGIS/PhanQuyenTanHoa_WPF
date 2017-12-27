@@ -29,7 +29,7 @@ namespace ViewModel
 
         public User getUser(String userID, String password)
         {
-            User user = new User();
+            
             try
             {
                 SqlCommand command = new SqlCommand(SQL_SELECT_LOGIN, ConnectionViewModel.getInstance.getConnection);
@@ -40,19 +40,19 @@ namespace ViewModel
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    user.UserID = userID;
-                    user.Password = password;
-                    user.UserName = dataReader["username"].ToString();
-                    user.UserGroup = dataReader["usergroup"].ToString();
-                    user.ToID = dataReader["toid"].ToString();
-                    user.MayID = dataReader["mayid"].ToString();
+                    User.getInstance.UserID = userID;
+                    User.getInstance.Password = password;
+                    User.getInstance.UserName = dataReader["username"].ToString();
+                    User.getInstance.UserGroup = dataReader["usergroup"].ToString();
+                    User.getInstance.ToID = dataReader["toid"].ToString();
+                    User.getInstance.MayID = dataReader["mayid"].ToString();
                 }
             }
             catch (Exception e)
             {
 
             }
-            return user;
+            return User.getInstance;
         }
     }
 }

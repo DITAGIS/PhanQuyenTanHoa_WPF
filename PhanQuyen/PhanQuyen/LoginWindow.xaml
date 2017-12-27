@@ -12,6 +12,7 @@
     WindowStartupLocation="CenterScreen"
     Icon="/PhanQuyen;component/Images/logo_tanhoa.png"
         Title="Đăng nhập" Height="350" Width="600" >
+ 
     <Window.DataContext>
         <viewModel:UserViewModel>
 

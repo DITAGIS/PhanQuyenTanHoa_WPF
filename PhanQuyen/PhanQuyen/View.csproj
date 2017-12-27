@@ -167,6 +167,10 @@
     <Resource Include="Images\note_old.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{4759cab0-8025-4265-8be1-b593ca32c992}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ViewModel\ViewModel.csproj">
       <Project>{599f2f67-71c9-429c-9f24-74397f19fc59}</Project>
       <Name>ViewModel</Name>

@@ -17,6 +17,16 @@ namespace ViewModel
         private User user;
         private String userID;
         private String password;
+        private bool success;
+        public Boolean Success
+        {
+            get { return success; }
+            set
+            {
+                success = value;
+                OnPropertyChanged("Success");
+            }
+        }
         public User User
         {
             get { return user; }
@@ -55,11 +65,11 @@ namespace ViewModel
         }
         private void Login(UIElementCollection p)
         {
-            User = UserDBViewModel.getInstance.getUser(UserID, Password);
-            if (User.UserName != null)
-                HandleLoginSuccess();
-            else
-                HandleLoginFail();
+            //User = UserDBViewModel.getInstance.getUser(UserID, Password);
+            //if (User.UserName != null)
+            //    HandleLoginSuccess();
+            //else
+            //    HandleLoginFail();
         }
         private void HandleLoginSuccess()
         {

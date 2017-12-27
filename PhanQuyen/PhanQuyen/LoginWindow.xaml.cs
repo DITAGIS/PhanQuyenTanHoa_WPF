@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ViewModel;
 
 namespace PhanQuyen
 {
@@ -44,13 +46,23 @@ namespace PhanQuyen
         }
         private void login()
         {
-            //if (txtbUsername.Text.Equals("tanhoa") && txtbPassword.Password.Equals("123"))
-            //{
-            //    //MessageBox.Show("Đăng nhập thành công");
-            //    this.Hide();
-            //    new MainWindow().Show();
-            //}
+            User User = UserDBViewModel.getInstance.getUser(txtbUsername.Text, txtbPassword.Password);
+            if (User.UserName != null)
+                HandleLoginSuccess();
+            else
+                HandleLoginFail();
         }
+        private void HandleLoginSuccess()
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+        private void HandleLoginFail()
+        {
+            MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu");
+        }
+
         //private void txtbPassword_KeyDown(object sender, KeyEventArgs e)
         //{
         //    if (e.Key == Key.Enter)

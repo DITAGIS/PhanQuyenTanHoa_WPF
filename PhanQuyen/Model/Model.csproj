@@ -58,7 +58,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CodeModel.cs" />
     <Compile Include="HoaDon.cs" />
+    <Compile Include="ToID.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>

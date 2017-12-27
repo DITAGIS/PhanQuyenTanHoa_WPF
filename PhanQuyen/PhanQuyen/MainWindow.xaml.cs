@@ -26,8 +26,7 @@ namespace PhanQuyen
         {
 
             InitializeComponent();
-            LogInWindow logInWindow = new LogInWindow();
-            logInWindow.ShowDialog();
+        
         }
 
         private void Window_Closed(object sender, EventArgs e)

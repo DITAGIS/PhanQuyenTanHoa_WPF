@@ -73,50 +73,28 @@ namespace ViewModel
         }
         private void Innitialize()
         {
+            
             listHoaDon = new ObservableCollection<HoaDon>();
             listYear = new List<String>(HoaDonDBViewModel.getInstance.getDistinctYear());
+            Year = User.getInstance.Year;
             listMonth = new List<string>();
+            for (int i = 1; i <= 12; i++)
+                if (i < 10)
+                    listMonth.Add("0" + i);
+                else listMonth.Add(i.ToString());
+            Month = User.getInstance.Month;
             listDate = new List<string>();
+            for (int i = 1; i <= 20; i++)
+                if (i < 10)
+                    listDate.Add("0" + i);
+                else listDate.Add(i.ToString());
+            Date = User.getInstance.Date;
             listGroup = new List<string>(HoaDonDBViewModel.getInstance.getDistinctGroup());
+            foreach (String toID in ToID.GetToID())
+                if (toID.Equals(User.getInstance.ToID))
+                    ListGroup.Add(toID);
             listMachine = new List<string>();
-            listCode = new List<string>() { "Tất cả", "Chưa ghi",
-                "40",
-                "41",
-                "42",
-                "54",
-                "55",
-                "56",
-                "58",
-                "5F",
-                "5M",
-                "5Q",
-                "5K",
-                "5N",
-                "60",
-                "61",
-                "62",
-                "63",
-                "64",
-                "66",
-                "80",
-                "81",
-                "82",
-                "83",
-                "F1",
-                "F2",
-                "F3",
-                "F4",
-                "K",
-                "M0",
-                "M1",
-                "M2",
-                "M3",
-                "N1",
-                "N2",
-                "N3",
-                "X ",
-                "68",
-                "Q "};
+            listCode = CodeModel.GetCodes();
         }
         private ObservableCollection<HoaDon> listHoaDon;
 
@@ -135,6 +113,17 @@ namespace ViewModel
             UpdateCommand = new RelayCommand<UIElementCollection>((p) => true, update);
             RotateCommand = new RelayCommand<UIElementCollection>((p) => true, rotate);
         }
+        private bool checkInfo()
+        {
+
+            return true;
+        }
+        public UIElement Refresh(UIElement uiElement)
+        {
+            uiElement.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
+            return uiElement;
+        }
+        #region command
         private void update(UIElementCollection p)
         {
             int max, value;
@@ -212,18 +201,14 @@ namespace ViewModel
                     }
                 }
         }
-        private bool checkInfo()
-        {
 
-            return true;
-        }
 
-        public UIElement Refresh(UIElement uiElement)
-        {
-            uiElement.Dispatcher.Invoke(DispatcherPriority.Render, EmptyDelegate);
-            return uiElement;
-        }
+
         private Action EmptyDelegate = delegate () { };
+
+        public ICommand UpdateCommand { get; set; }
+        public ICommand RotateCommand { get; set; }
+        #endregion
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(String name)
         {
@@ -231,8 +216,6 @@ namespace ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
 
         }
-        public ICommand UpdateCommand { get; set; }
-        public ICommand RotateCommand { get; set; }
         public string Year
         {
             get
@@ -242,15 +225,15 @@ namespace ViewModel
             set
             {
                 year = value;
-                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    listMonth.Clear();
-                    listMonth.AddRange(HoaDonDBViewModel.getInstance.getDistinctMonth(year));
-                    if (ListMonth.Count > 0)
-                        month = listMonth[0];
+                //Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                //{
+                //    listMonth.Clear();
+                //    listMonth.AddRange(HoaDonDBViewModel.getInstance.getDistinctMonth(year));
+                //    if (ListMonth.Count > 0)
+                //        month = listMonth[0];
 
-                }), DispatcherPriority.Loaded);
-               
+                //}), DispatcherPriority.Loaded);
+
             }
         }
         public string Month
@@ -262,13 +245,13 @@ namespace ViewModel
             set
             {
                 month = value;
-                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    listDate.Clear();
-                    listDate.AddRange(HoaDonDBViewModel.getInstance.getDistinctDate(year, month));
-                    if (listDate.Count > 0)
-                        date = listDate[0];
-                }), DispatcherPriority.Loaded);
+                //Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                //{
+                //    listDate.Clear();
+                //    listDate.AddRange(HoaDonDBViewModel.getInstance.getDistinctDate(year, month));
+                //    if (listDate.Count > 0)
+                //        date = listDate[0];
+                //}), DispatcherPriority.Loaded);
 
             }
         }
