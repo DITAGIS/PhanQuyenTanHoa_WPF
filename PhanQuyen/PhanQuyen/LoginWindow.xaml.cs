@@ -25,19 +25,7 @@ namespace PhanQuyen
         public LogInWindow()
         {
             InitializeComponent();
-            //cbbYear.Items.Add("2017");
-            //cbbMonth.Items.Add("10");
-            //cbbMonth.Items.Add("11");
-            //cbbMonth.Items.Add("12");
-            //cbbDate.Items.Add("01");
-            //cbbDate.Items.Add("02");
-            //cbbDate.Items.Add("03");
-            //cbbDate.Items.Add("04");
-            //cbbDate.Items.Add("05");
-            //cbbDate.Items.Add("06");
-            //cbbDate.Items.Add("07");
-            //cbbDate.Items.Add("08");
-
+          
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)

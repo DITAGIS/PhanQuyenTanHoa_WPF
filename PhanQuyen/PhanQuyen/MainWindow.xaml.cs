@@ -26,7 +26,7 @@ namespace PhanQuyen
         {
 
             InitializeComponent();
-        
+
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -46,8 +46,16 @@ namespace PhanQuyen
                 this.btnExpandRibbon.SmallImageSource = new BitmapImage(new Uri("/PhanQuyen;component/Images/down.png", UriKind.Relative));
                 this.RibbonMain.IsMinimized = true;
             }
+            resizeUC();
         }
-
+        private void resizeUC()
+        {
+            if (uc_DieuChinhThonTinDocSo != null)
+            {
+                uc_DieuChinhThonTinDocSo.Height = stkMain.ActualHeight;
+                uc_DieuChinhThonTinDocSo.Width = stkMain.ActualWidth;
+            }
+        }
         private void ribBtnDieuChinhThongTinDocSo_Click(object sender, RoutedEventArgs e)
         {
             if (uc_DieuChinhThonTinDocSo == null)

@@ -61,26 +61,8 @@ namespace ViewModel
         public UserViewModel()
         {
             //Innitialize();
-            LoginCommand = new RelayCommand<UIElementCollection>((p) => true, Login);
+           
         }
-        private void Login(UIElementCollection p)
-        {
-            //User = UserDBViewModel.getInstance.getUser(UserID, Password);
-            //if (User.UserName != null)
-            //    HandleLoginSuccess();
-            //else
-            //    HandleLoginFail();
-        }
-        private void HandleLoginSuccess()
-        {
-            var w = Application.Current.Windows[1];
-            w.Close();
-        }
-        private void HandleLoginFail()
-        {
-            MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu");
-        }
-        public ICommand LoginCommand { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(String name)

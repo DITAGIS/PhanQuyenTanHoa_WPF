@@ -6,7 +6,25 @@
              xmlns:local="clr-namespace:PhanQuyen"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1000">
-    <Grid Background="AntiqueWhite">
-        <TextBlock>In Phiếu tiêu thụ khách hàng</TextBlock>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Column="1" Grid.RowSpan="4" BorderBrush="Black" 
+        BorderThickness="1,0,0,0" Background="{x:Null}" />
+
+        <TextBlock Grid.Row="0" Grid.Column="0">Row 0, Column 1</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0">Row 1, Column 1</TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0">Row 2, Column 1</TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0">Row 3, Column 1</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.RowSpan="4">Column 1</TextBlock>
     </Grid>
 </UserControl>

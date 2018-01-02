@@ -7,7 +7,7 @@
             xmlns:convert="clr-namespace:PhanQuyen"
              mc:Ignorable="d" 
          
-             Width="1200" Height="500"
+             Width="1200" Height="700"
         >
     <UserControl.DataContext>
         <viewModel:HoaDonViewModel>
@@ -39,155 +39,157 @@
                            VerticalAlignment="Center"  HorizontalAlignment="Left" />
             </StatusBarItem>
         </StatusBar>
-        
-        <Grid>
-            <Grid.Resources>
-                <Style TargetType="{x:Type TextBlock}" x:Key="styleTxbl">
-                    <Style.Triggers>
-                        <EventTrigger RoutedEvent="UIElement.MouseEnter">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="20"></DoubleAnimation>
+        <ScrollViewer>
+            <Grid Margin="10">
+                <Grid.Resources>
+                    <Style TargetType="{x:Type TextBlock}" x:Key="styleTxbl">
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="UIElement.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="20"></DoubleAnimation>
 
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                        <EventTrigger RoutedEvent="UIElement.MouseLeave">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="13"></DoubleAnimation>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </Style.Triggers>
-                </Style>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="UIElement.MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="13"></DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Style.Triggers>
+                    </Style>
 
-            </Grid.Resources>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="400"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 10,0,0" Name="stpCondition">
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Năm:"/></TextBlock>
-                <ComboBox x:Name="cbbYear" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition ></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="350"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition ></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal"  Name="stpCondition"  >
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Năm:"/></TextBlock>
+                    <ComboBox x:Name="cbbYear" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
                       SelectedValue="{Binding Year, Mode=TwoWay}" 
                       ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
 
-                </ComboBox>
+                    </ComboBox>
 
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Kỳ:"/></TextBlock>
-                <ComboBox x:Name="cbbMonth" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45"
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Kỳ:"/></TextBlock>
+                    <ComboBox x:Name="cbbMonth" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45"
                       SelectedValue="{Binding Month, Mode=TwoWay}" 
                       ItemsSource="{Binding ListMonth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Đợt:"/></TextBlock>
-                <ComboBox x:Name="cbbDate" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Đợt:"/></TextBlock>
+                    <ComboBox x:Name="cbbDate" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
                       SelectedValue="{Binding Date, Mode=TwoWay}" 
                       ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ:"/></TextBlock>
-                <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ:"/></TextBlock>
+                    <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
                           SelectedValue="{Binding Group, Mode=TwoWay}" 
                       ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Máy:"/></TextBlock>
-                <ComboBox x:Name="cbbMachine" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45" 
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Máy:"/></TextBlock>
+                    <ComboBox x:Name="cbbMachine" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45" 
                       SelectedValue="{Binding Machine, Mode=TwoWay}" 
                       ItemsSource="{Binding ListMachine, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Margin="10,0,0,0" Background="White"  Command="{Binding UpdateCommand}" CommandParameter="{Binding Children, ElementName=stpCondition}">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/PhanQuyen;component/Images/download(2).png" Width="20" Height="20"></Image>
-                        <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Tải dữ liệu</TextBlock>
-                    </StackPanel>
-                </Button>
+                    <Button Margin="10,0,0,0" Background="White"  Command="{Binding UpdateCommand}" CommandParameter="{Binding Children, ElementName=stpCondition}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PhanQuyen;component/Images/download(2).png" Width="20" Height="20"></Image>
+                            <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Tải dữ liệu</TextBlock>
+                        </StackPanel>
+                    </Button>
 
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
 
-                <!--Danh bạ-->
-                <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbUsername" 
+                    <!--Danh bạ-->
+                    <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbUsername" 
                       Text="{Binding SelectedHoaDon.DanhBa}"
                           Style="{StaticResource styleTxtb}"/>
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Code:"/></TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Code:"/></TextBlock>
 
-                <!--Chọn code-->
-                <ComboBox x:Name="cbbCode" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="70" 
+                    <!--Chọn code-->
+                    <ComboBox x:Name="cbbCode" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="70" 
                       SelectedValue="{Binding Code, Mode=TwoWay}" 
                       ItemsSource="{Binding ListCode, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Margin="10,0,0,0" Background="White" Name="btnUpdate" Command="{Binding UpdateCommand}" CommandParameter="{Binding Children, ElementName=stpCondition}">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/PhanQuyen;component/Images/download(2).png" Width="20" Height="20"></Image>
-                        <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Cập nhật</TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button Margin="10,0,0,0" Background="White" Name="btnPrint">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/PhanQuyen;component/Images/printer.png" Width="20" Height="20"></Image>
-                        <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">In phiếu kiểm tra</TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button Margin="10,0,0,0" Background="White" Name="btnViewNote">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/PhanQuyen;component/Images/note.png" Width="20" Height="20"></Image>
-                        <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">Xem ghi chú</TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button Margin="10,0,0,0" Background="White" Name="btnViewNoteOld">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/PhanQuyen;component/Images/note_old.png" Width="20" Height="20"></Image>
-                        <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">Xem ghi chú cũ</TextBlock>
-                    </StackPanel>
-                </Button>
-                <CheckBox Name="chkFilterNote" VerticalAlignment="Center">Lọc ghi chú</CheckBox>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,0">
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="KHĐS:"/></TextBlock>
-                <ComboBox x:Name="cbbKHDS" SelectedIndex="0" IsEditable="True"/>
+                    <Button Margin="10,0,0,0" Background="White" Name="btnUpdate" Command="{Binding UpdateCommand}" CommandParameter="{Binding Children, ElementName=stpCondition}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PhanQuyen;component/Images/download(2).png" Width="20" Height="20"></Image>
+                            <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Cập nhật</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="10,0,0,0" Background="White" Name="btnPrint">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PhanQuyen;component/Images/printer.png" Width="20" Height="20"></Image>
+                            <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">In phiếu kiểm tra</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="10,0,0,0" Background="White" Name="btnViewNote">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PhanQuyen;component/Images/note.png" Width="20" Height="20"></Image>
+                            <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">Xem ghi chú</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="10,0,0,0" Background="White" Name="btnViewNoteOld">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PhanQuyen;component/Images/note_old.png" Width="20" Height="20"></Image>
+                            <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">Xem ghi chú cũ</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <CheckBox Name="chkFilterNote" VerticalAlignment="Center">Lọc ghi chú</CheckBox>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" 
+                        Margin="0,10,0,0">
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="KHĐS:"/></TextBlock>
+                    <ComboBox x:Name="cbbKHDS" SelectedIndex="0" IsEditable="True"/>
 
-                <!--Code mới-->
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Code:"/></TextBlock>
-                <TextBox  FontSize="15" Height="30" Width="40" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCode" IsEnabled="False"
+                    <!--Code mới-->
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Code:"/></TextBlock>
+                    <TextBox  FontSize="15" Height="30" Width="40" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCode" IsEnabled="False"
                       Text="{Binding SelectedHoaDon.CodeMoi}"/>
 
-                <!--Chỉ số cũ-->
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="CS cũ:"/></TextBlock>
-                <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCSC" IsEnabled="False"
+                    <!--Chỉ số cũ-->
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="CS cũ:"/></TextBlock>
+                    <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCSC" IsEnabled="False"
                       Text="{Binding SelectedHoaDon.CSC}"/>
 
-                <!--Chỉ số mới-->
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="CS mới:"/></TextBlock>
-                <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCSM" IsEnabled="False"
+                    <!--Chỉ số mới-->
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="CS mới:"/></TextBlock>
+                    <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCSM" IsEnabled="False"
                       Text="{Binding SelectedHoaDon.CSM}"/>
 
-                <!--Tiêu thụ-->
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tiêu thụ:"/></TextBlock>
-                <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbTieuThu"
+                    <!--Tiêu thụ-->
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tiêu thụ:"/></TextBlock>
+                    <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbTieuThu"
                       Text="{Binding SelectedHoaDon.TieuThuMoi}"/>
 
-                <!--Ghi chú đọc số-->
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Ghi chú ĐS:"/></TextBlock>
-                <TextBox  FontSize="15" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbGCDS"
+                    <!--Ghi chú đọc số-->
+                    <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Ghi chú ĐS:"/></TextBlock>
+                    <TextBox  FontSize="15" Height="30" Width="150" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbGCDS"
                       Text="{Binding SelectedHoaDon.GhiChuDS}"/>
 
-            </StackPanel>
-            <StackPanel Grid.Row="2" Margin="0,0,0,10">
+                </StackPanel>
+                <StackPanel Grid.Row="2" Margin="0,10,0,0">
 
-            </StackPanel>
-            <Grid Grid.Row="3" Height="400" ShowGridLines="True" Background="White">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*" MinWidth="1000"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <GridSplitter Background="White" Grid.Column="0" Grid.RowSpan="5" Width="10"  HorizontalAlignment="Right" VerticalAlignment="Stretch" ></GridSplitter>
+                </StackPanel>
+                <Grid Grid.Row="3" Height="400" ShowGridLines="True" Background="White"
+                  Margin="0,10,0,0"                  >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" MinWidth="1000"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <GridSplitter Background="White" Grid.Column="0" Grid.RowSpan="5" Width="10"  HorizontalAlignment="Right" VerticalAlignment="Stretch" ></GridSplitter>
 
-                <DataGrid SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged}" 
+                    <DataGrid SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged}" 
                           AutoGenerateColumns="False" Name="dtgridMain" 
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
                           Width="Auto" Margin="10,0,10,0" Height="400" 
@@ -200,129 +202,874 @@
                           BorderBrush="Black"
                           Background="White" SelectionMode="Single"
                           FontSize="12">
-                    <!--Font Color / Style of Column Heading-->
-                    <DataGrid.Resources>
-                        <Style  TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="Background" Value="Bisque"></Setter>
-                            <Setter Property="FontSize" Value="13"></Setter>
-                            <Setter Property="FontWeight" Value="SemiBold"></Setter>
-                            <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
-                            <Setter Property="BorderBrush" Value="Black"></Setter>
-                        </Style>
+                        <!--Font Color / Style of Column Heading-->
+                        <DataGrid.Resources>
+                            <Style  TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="Bisque"></Setter>
+                                <Setter Property="FontSize" Value="13"></Setter>
+                                <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                                <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
+                                <Setter Property="BorderBrush" Value="Black"></Setter>
+                            </Style>
 
-                    </DataGrid.Resources>
-                    <DataGrid.RowStyle>
-                        <Style TargetType="{x:Type DataGridRow}">
-                            <Setter Property="FontSize"  Value="13" />
-                            <Style.Triggers>
-                                <Trigger Property="IsSelected" Value="True">
-                                    <Setter Property="FontSize"  Value="20" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </DataGrid.RowStyle>
-                    <!--Header column-->
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Danh bạ" Width="100" Binding="{Binding DanhBa, Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="TTDHN Cũ" Width="100" Binding="{Binding TTHDNCu,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="TTDHN Mới" Width="100" Binding="{Binding TTHDNMoi,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Code Cũ" Width="70" Binding="{Binding CodeCu,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Code Mới" Width="70" Binding="{Binding CodeMoi,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Chỉ Số Cũ" Width="70" Binding="{Binding CSC,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Chỉ Số Mới" Width="70" Binding="{Binding CSM,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Tiêu Thụ Mới" Width="100" Binding="{Binding TieuThuMoi,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="TBTT" Width="70" Binding="{Binding TBTT,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Địa chỉ" Width="*" Binding="{Binding DiaChi,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Ghi chú đọc số" Width="*" Binding="{Binding GhiChuDS,Mode=OneWay}"></DataGridTextColumn>
-                    </DataGrid.Columns>
-                    <!--handle item click event-->
+                        </DataGrid.Resources>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="{x:Type DataGridRow}">
+                                <Setter Property="FontSize"  Value="13" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="FontSize"  Value="20" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <!--Header column-->
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Danh bạ" Width="100" Binding="{Binding DanhBa, Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="TTDHN Cũ" Width="100" Binding="{Binding TTHDNCu,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="TTDHN Mới" Width="100" Binding="{Binding TTHDNMoi,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Code Cũ" Width="70" Binding="{Binding CodeCu,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Code Mới" Width="70" Binding="{Binding CodeMoi,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Chỉ Số Cũ" Width="70" Binding="{Binding CSC,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Chỉ Số Mới" Width="70" Binding="{Binding CSM,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Tiêu Thụ Mới" Width="100" Binding="{Binding TieuThuMoi,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="TBTT" Width="70" Binding="{Binding TBTT,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Địa chỉ" Width="*" Binding="{Binding DiaChi,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Ghi chú đọc số" Width="*" Binding="{Binding GhiChuDS,Mode=OneWay}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                        <!--handle item click event-->
 
-                </DataGrid>
-                <Border BorderThickness="1" Grid.Column="1" Background="White">
-                    <Image  Source="{Binding Path=SelectedHoaDon.Image, 
+                    </DataGrid>
+                    <Border BorderThickness="1" Grid.Column="1" Background="White">
+                        <Image  Source="{Binding Path=SelectedHoaDon.Image, 
                         Converter={StaticResource ResourceKey=ImageConvert}}" Stretch="UniformToFill" 
                             ></Image>
-                </Border>
-                <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Text="Chưa có hình ảnh">
-                    <TextBlock.Style>
-                        <Style>
-                            <Setter Property="TextBlock.Visibility" Value="Hidden" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding HasImage}" Value="false">
-                                    <Setter Property="TextBlock.Visibility" Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-            </Grid>
+                    </Border>
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Text="Chưa có hình ảnh">
+                        <TextBlock.Style>
+                            <Style>
+                                <Setter Property="TextBlock.Visibility" Value="Hidden" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasImage}" Value="false">
+                                        <Setter Property="TextBlock.Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
 
-            <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="10,10,0,0">
-                <!--Tên khách hàng-->
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Tên khách hàng:"/></TextBlock>
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                <!--Grid số lệnh-->
+                <Grid Grid.Row="4" Width="Auto"
+                  Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Border  Grid.Row="0"
+                          Grid.Column="0"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                        <TextBlock HorizontalAlignment="Center" 
+                        FontWeight="Bold"
+                        Text="Số lệnh"/>
+                    </Border>
+                    <Border Grid.Row="1"
+                          Grid.Column="0"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <TextBlock HorizontalAlignment="Center" 
+                         Text="{Binding SelectedHoaDon.DanhBa}"/>
+                    </Border>
+                    <Border  Grid.Row="0"
+                          Grid.Column="1"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                        <TextBlock HorizontalAlignment="Center" 
+                        FontWeight="Bold"
+                        Text="Loại phiếu"/>
+                    </Border>
+                    <Border Grid.Row="1"
+                          Grid.Column="1"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <TextBlock HorizontalAlignment="Center" 
+                        Text=""/>
+                    </Border>
+                    <Border  Grid.Row="0"
+                          Grid.Column="2"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                        <TextBlock HorizontalAlignment="Center" 
+                        FontWeight="Bold"
+                        Text="Chỉ số đóng/mở"/>
+                    </Border>
+                    <Border Grid.Row="1"
+                          Grid.Column="2"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <TextBlock HorizontalAlignment="Center" 
+                        Text=""/>
+                    </Border>
+                    <Border  Grid.Row="0"
+                          Grid.Column="3"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                        <TextBlock HorizontalAlignment="Center" 
+                        FontWeight="Bold"
+                        Text="Ngày thực hiện"/>
+                    </Border>
+                    <Border Grid.Row="1"
+                          Grid.Column="3"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <TextBlock HorizontalAlignment="Center" 
+                        Text=""/>
+                    </Border>
+                    <Border  Grid.Row="0"
+                          Grid.Column="4"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                        <TextBlock HorizontalAlignment="Center" 
+                        FontWeight="Bold"
+                        Text="Nội dung"/>
+                    </Border>
+                    <Border Grid.Row="1"
+                          Grid.Column="4"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <TextBlock HorizontalAlignment="Center" 
+                        Text=""/>
+                    </Border>
+                    <Border  Grid.Row="0"
+                          Grid.Column="5"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                        <TextBlock HorizontalAlignment="Center" 
+                        FontWeight="Bold"
+                        Text="Hiệu"/>
+                    </Border>
+                    <Border Grid.Row="1"
+                          Grid.Column="5"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <TextBlock HorizontalAlignment="Center" 
+                        Text=""/>
+                    </Border>
+                    <Border  Grid.Row="0"
+                          Grid.Column="6"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                        <TextBlock HorizontalAlignment="Center" 
+                        FontWeight="Bold"
+                        Text="Cỡ"/>
+                    </Border>
+                    <Border Grid.Row="1"
+                          Grid.Column="6"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <TextBlock HorizontalAlignment="Center" 
+                        Text=""/>
+                    </Border>
+                    <Border  Grid.Row="0"
+                          Grid.Column="7"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                        <TextBlock HorizontalAlignment="Center" 
+                        FontWeight="Bold"
+                        Text="Ngày nhập"/>
+                    </Border>
+                    <Border Grid.Row="1"
+                          Grid.Column="7"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <TextBlock HorizontalAlignment="Center" 
+                        Text=""/>
+                    </Border>
+                </Grid>
+                <!--Grid báo thay-->
+                <Grid Grid.Row="5"  Width="Auto"
+              
+                  Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Border  Grid.Row="0"
+                          Grid.Column="0"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                        <TextBlock HorizontalAlignment="Center" 
+                        FontWeight="Bold"
+                        Text="Danh bạ"/>
+                    </Border>
+                    <Border Grid.Row="1"
+                          Grid.Column="0"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <TextBlock HorizontalAlignment="Center" 
+                         Text="{Binding SelectedHoaDon.DanhBa}"/>
+                    </Border>
+                    <Border  Grid.Row="0"
+                          Grid.Column="1"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                        <TextBlock HorizontalAlignment="Center" 
+                        FontWeight="Bold"
+                        Text="Loại báo thay"/>
+                    </Border>
+                    <Border Grid.Row="1"
+                          Grid.Column="1"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <TextBlock HorizontalAlignment="Center" 
+                        Text=""/>
+                    </Border>
+                    <Border  Grid.Row="0"
+                          Grid.Column="2"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                        <TextBlock HorizontalAlignment="Center" 
+                        FontWeight="Bold"
+                        Text="Chỉ số gỡ"/>
+                    </Border>
+                    <Border Grid.Row="1"
+                          Grid.Column="2"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <TextBlock HorizontalAlignment="Center" 
+                        Text=""/>
+                    </Border>
+                    <Border  Grid.Row="0"
+                          Grid.Column="3"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                        <TextBlock HorizontalAlignment="Center" 
+                        FontWeight="Bold"
+                        Text="Chỉ số gắn"/>
+                    </Border>
+                    <Border Grid.Row="1"
+                          Grid.Column="3"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <TextBlock HorizontalAlignment="Center" 
+                        Text=""/>
+                    </Border>
+                    <Border  Grid.Row="0"
+                          Grid.Column="4"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                        <TextBlock HorizontalAlignment="Center" 
+                        FontWeight="Bold"
+                        Text="Số thân mới"/>
+                    </Border>
+                    <Border Grid.Row="1"
+                          Grid.Column="4"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <TextBlock HorizontalAlignment="Center" 
+                        Text=""/>
+                    </Border>
+                    <Border  Grid.Row="0"
+                          Grid.Column="5"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                        <TextBlock HorizontalAlignment="Center" 
+                        FontWeight="Bold"
+                        Text="Ngày thay"/>
+                    </Border>
+                    <Border Grid.Row="1"
+                          Grid.Column="5"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <TextBlock HorizontalAlignment="Center" 
+                        Text=""/>
+                    </Border>
+                    <Border  Grid.Row="0"
+                          Grid.Column="6"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                        <TextBlock HorizontalAlignment="Center" 
+                        FontWeight="Bold"
+                        Text="Ngày cập nhật"/>
+                    </Border>
+                    <Border Grid.Row="1"
+                          Grid.Column="6"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                        <TextBlock HorizontalAlignment="Center" 
+                        Text=""/>
+                    </Border>
+                </Grid>
+                <StackPanel Grid.Row="6" Margin="0,10,0,0">
+                    <StackPanel Orientation="Horizontal"
+                      >
+                        <!--Tên khách hàng-->
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Tên khách hàng:"/></TextBlock>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
                         <Run Text="{Binding SelectedHoaDon.TenKH}"/>
-                </TextBlock>
-                <!--Danh bạ-->
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        </TextBlock>
+                        <!--Danh bạ-->
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
                         <Run Text="{Binding SelectedHoaDon.DanhBa}"/>
-                </TextBlock>
-                <!--Hợp đồng-->
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Hợp đồng:"/></TextBlock>
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        </TextBlock>
+                        <!--Hợp đồng-->
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Hợp đồng:"/></TextBlock>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
                         <Run Text="{Binding SelectedHoaDon.HopDong}"/>
-                </TextBlock>
-                <!--Hiệu-->
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Hiệu:"/></TextBlock>
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        </TextBlock>
+                        <!--Hiệu-->
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Hiệu:"/></TextBlock>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
                         <Run Text="{Binding SelectedHoaDon.Hieu}"/>
-                </TextBlock>
-                <!--Cỡ-->
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Cỡ: "/></TextBlock>
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        </TextBlock>
+                        <!--Cỡ-->
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Cỡ: "/></TextBlock>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
                         <Run Text="{Binding SelectedHoaDon.Co}"/>
-                </TextBlock>
-                <!--Giá biểu-->
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Giá biểu:"/></TextBlock>
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        </TextBlock>
+                        <!--Giá biểu-->
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Giá biểu:"/></TextBlock>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
                         <Run Text="{Binding SelectedHoaDon.GB}"/>
-                </TextBlock>
-                <!--Định mức-->
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Định mức:"/></TextBlock>
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        </TextBlock>
+                        <!--Định mức-->
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Định mức:"/></TextBlock>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
                         <Run Text="{Binding SelectedHoaDon.DM}"/>
-                </TextBlock>
-            </StackPanel>
-            <StackPanel Grid.Row="5" Orientation="Horizontal" Width="Auto" RenderTransformOrigin="1,1" Margin="10,10,0,0">
-                <StackPanel.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleY="1" ScaleX="1"/>
-                        <SkewTransform AngleY="0" AngleX="0"/>
-                        <RotateTransform Angle="0"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </StackPanel.RenderTransform>
-                <!--Địa chỉ-->
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Địa chỉ:"/></TextBlock>
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" 
+                            RenderTransformOrigin="1,1"
+                           >
+                        <StackPanel.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleY="1" ScaleX="1"/>
+                                <SkewTransform AngleY="0" AngleX="0"/>
+                                <RotateTransform Angle="0"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </StackPanel.RenderTransform>
+                        <!--Địa chỉ-->
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Địa chỉ:"/></TextBlock>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
                         <Run Text="{Binding SelectedHoaDon.DiaChi}"/>
-                </TextBlock>
-                <!--Số thân-->
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Số thân:"/></TextBlock>
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        </TextBlock>
+                        <!--Số thân-->
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Số thân:"/></TextBlock>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
                         <Run Text="{Binding SelectedHoaDon.SoThan}"/>
-                </TextBlock>
-                <!--Mã lộ trình-->
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Mã lộ trình:"/></TextBlock>
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                        </TextBlock>
+                        <!--Mã lộ trình-->
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Mã lộ trình:"/></TextBlock>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
                         <Run Text="{Binding SelectedHoaDon.MLT}"/>
-                </TextBlock>
-            </StackPanel>
-            <StackPanel Grid.Row="6">
+                        </TextBlock>
+                    </StackPanel>
+                    <Grid Width="Auto"
+                          Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border  Grid.Row="0"
+                          Grid.Column="0"
+                         BorderBrush="Black" 
+                         BorderThickness="1,1,1,0">
+                            <TextBlock 
+                        FontWeight="Bold"
+                        Text="Kỳ"/>
+                        </Border>
+                        <Border Grid.Row="1"
+                          Grid.Column="0"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock 
+                         Text="Ngày đọc"/>
+                        </Border>
+                        <Border Grid.Row="2"
+                          Grid.Column="0"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock
+                         Text="Code"/>
+                        </Border>
+                        <Border Grid.Row="3"
+                          Grid.Column="0"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock
+                         Text="Chỉ số"/>
+                        </Border>
+                        <Border Grid.Row="4"
+                          Grid.Column="0"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock 
+                         Text="Tiêu thụ"/>
+                        </Border>
+                        <Border Grid.Row="0"
+                          Grid.Column="1"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="1"
+                          Grid.Column="1"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="2"
+                          Grid.Column="1"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="3"
+                          Grid.Column="1"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="4"
+                          Grid.Column="1"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="0"
+                          Grid.Column="2"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="1"
+                          Grid.Column="2"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="2"
+                          Grid.Column="2"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="3"
+                          Grid.Column="2"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="4"
+                          Grid.Column="2"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="0"
+                          Grid.Column="3"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="1"
+                          Grid.Column="3"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="2"
+                          Grid.Column="3"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="3"
+                          Grid.Column="3"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="4"
+                          Grid.Column="3"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="0"
+                          Grid.Column="4"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="1"
+                          Grid.Column="4"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="2"
+                          Grid.Column="4"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="3"
+                          Grid.Column="4"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="4"
+                          Grid.Column="4"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="0"
+                          Grid.Column="5"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="1"
+                          Grid.Column="5"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="2"
+                          Grid.Column="5"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="3"
+                          Grid.Column="5"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="4"
+                          Grid.Column="5"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="0"
+                          Grid.Column="6"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="1"
+                          Grid.Column="6"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="2"
+                          Grid.Column="6"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="3"
+                          Grid.Column="6"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="4"
+                          Grid.Column="6"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="0"
+                          Grid.Column="7"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="1"
+                          Grid.Column="7"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="2"
+                          Grid.Column="7"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="3"
+                          Grid.Column="7"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="4"
+                          Grid.Column="7"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="0"
+                          Grid.Column="8"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="1"
+                          Grid.Column="8"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="2"
+                          Grid.Column="8"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="3"
+                          Grid.Column="8"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="4"
+                          Grid.Column="8"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="0"
+                          Grid.Column="9"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="1"
+                          Grid.Column="9"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="2"
+                          Grid.Column="9"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="3"
+                          Grid.Column="9"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="4"
+                          Grid.Column="9"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="0"
+                          Grid.Column="10"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="1"
+                          Grid.Column="10"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="2"
+                          Grid.Column="10"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="3"
+                          Grid.Column="10"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="4"
+                          Grid.Column="10"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="0"
+                          Grid.Column="11"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="1"
+                          Grid.Column="11"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="2"
+                          Grid.Column="11"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="3"
+                          Grid.Column="11"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="4"
+                          Grid.Column="11"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="0"
+                          Grid.Column="12"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="1"
+                          Grid.Column="12"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="2"
+                          Grid.Column="12"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="3"
+                          Grid.Column="12"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                        <Border Grid.Row="4"
+                          Grid.Column="12"
+                        BorderBrush="Black" 
+                        BorderThickness="1">
+                            <TextBlock HorizontalAlignment="Center" 
+                         Text=""/>
+                        </Border>
+                    </Grid>
+                </StackPanel>
 
-            </StackPanel>
-
-        </Grid>
+            </Grid>
+        </ScrollViewer>
     </DockPanel>
 </UserControl>
