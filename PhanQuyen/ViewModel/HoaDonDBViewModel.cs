@@ -10,6 +10,7 @@ namespace ViewModel
 {
     public class HoaDonDBViewModel
     {
+        private const String TABLE_NAME_BAOTHAY = "BaoThay";
         private const String TABLE_NAME_DOCSO = "Docso";
         private const String TABLE_NAME_KHACHHANG = "KhachHang";
         private const String TABLE_NAME_HINHDHN = "HinhDHN";
@@ -22,6 +23,7 @@ namespace ViewModel
             " KhachHang.So, KhachHang.Duong, KhachHang.TenKH, KhachHang.GB, KhachHang.DM, KhachHang.HopDong, KhachHang.Hieu, KhachHang.Co, KhachHang.SoThan, KhachHang.MLT1, [Image]  from " +
             TABLE_NAME_DOCSO + ", " + TABLE_NAME_KHACHHANG + ", " + TABLE_NAME_HINHDHN + " where docso.danhba = @danhba and nam = @year and ky = @month and docso.Dot = @date and docso.may = @machine and KhachHang.DanhBa = DocSo.DanhBa " +
             "and docso.DanhBa = HinhDHN.DanhBo and docso.GIOGHI = HinhDHN.CreateDate";
+        private const String SQL_SELECT_BAOTHAY = "select loaiBT, csgo, csgan, sothanmoi, ngaythay, ngaycapnhat from " + TABLE_NAME_BAOTHAY + " where danhba = @danhba";
         private const String SQL_SELECT_CONDITION = "select docso.danhba, TTDHNCu, TTDHNMoi, CodeMoi, CodeCu, CSCu, CSMOI, Tieuthumoi, TBTT, ghichuds," +
          " KhachHang.So, KhachHang.Duong, KhachHang.TenKH, KhachHang.GB, KhachHang.DM, KhachHang.HopDong, KhachHang.Hieu, KhachHang.Co, KhachHang.SoThan, KhachHang.MLT1  from " +
          TABLE_NAME_DOCSO + ", " + TABLE_NAME_KHACHHANG + " where nam = @year and ky = @month and docso.Dot = @date and docso.may = @machine and KhachHang.DanhBa = DocSo.DanhBa";
@@ -92,6 +94,7 @@ namespace ViewModel
         {
             HoaDon hoaDon = new HoaDon(); ;
             SqlDataReader dataReader = null;
+            SqlDataReader dataReader1 = null;
             try
             {
                 SqlCommand command = new SqlCommand(SQL_SELECT_INCLUDE_IMAGE_CONDITION, ConnectionViewModel.getInstance.getConnection);
@@ -126,13 +129,31 @@ namespace ViewModel
                     hoaDon.MLT = dataReader["MLT1"].ToString();
                     hoaDon.Image = dataReader["Image"] as Byte[];
                 }
+                if (!dataReader.IsClosed)
+                    dataReader.Close();
+
+                command = new SqlCommand(SQL_SELECT_BAOTHAY, ConnectionViewModel.getInstance.getConnection);
+                command.Parameters.AddWithValue("@danhba", danhba);
+                dataReader1 = command.ExecuteReader();
+                while (dataReader1.Read())
+                {
+                    hoaDon.LoaiBaoThay = dataReader1["loaibt"].ToString();
+                    hoaDon.ChiSoGo = dataReader1["csgo"].ToString();
+                    hoaDon.ChiSoGan = dataReader1["csgan"].ToString();
+                    hoaDon.SoThanMoi = dataReader1["sothanmoi"].ToString();
+                    hoaDon.NgayThay = dataReader1["ngaythay"].ToString();
+                    hoaDon.NgayCapNhat = dataReader1["ngaycapnhat"].ToString();
+                    if (hoaDon.NgayCapNhat == null)
+                        hoaDon.NgayCapNhat = "";
+                }
             }
             catch (Exception e)
             {
 
             }
-            if (!dataReader.IsClosed)
-                dataReader.Close();
+          
+            if (dataReader1 != null && !dataReader1.IsClosed)
+                dataReader1.Close();
             return hoaDon;
         }
         public List<String> getDanhBasByCondition(String year, String month, String date, String group, String machine)
