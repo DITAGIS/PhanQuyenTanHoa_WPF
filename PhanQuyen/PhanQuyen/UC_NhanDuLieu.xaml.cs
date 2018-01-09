@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ViewModel;
 
 namespace PhanQuyen
 {
@@ -23,6 +24,16 @@ namespace PhanQuyen
         public UC_NhanDuLieu()
         {
             InitializeComponent();
+
+            cbbYear.Items.Add(2018);
+
+            cbbGroup.Items.Add(1);
+        }
+
+        private void GetData_Click(object sender, RoutedEventArgs e)
+        {
+            GetDataDBViewModel.getInstance.getHoaDonsByCondition(Int16.Parse(cbbYear.SelectedValue.ToString()), cbbMonth.SelectedValue.ToString(),
+                cbbDate.SelectedValue.ToString(), Int16.Parse(cbbGroup.SelectedValue.ToString()));
         }
     }
 }

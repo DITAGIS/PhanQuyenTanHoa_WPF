@@ -12,7 +12,7 @@ using System.Windows.Threading;
 
 namespace ViewModel
 {
-    public class GetDataViewModel : INotifyPropertyChanged
+    public class UpdateHoaDonViewModel : INotifyPropertyChanged
     {
         #region Initialize
         private String pathHD;
@@ -24,7 +24,7 @@ namespace ViewModel
         }
 
         #endregion
-        public GetDataViewModel()
+        public UpdateHoaDonViewModel()
         {
             Innitialize();
             GetDataHDCommand = new RelayCommand<UIElementCollection>((p) => true, getDataHD);

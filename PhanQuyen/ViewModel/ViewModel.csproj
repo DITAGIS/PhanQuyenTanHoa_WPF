@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,7 +56,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="GetDataViewModel.cs" />
+    <Compile Include="DataClassLocal.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataClassLocal.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="DataClassServer.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataClassServer.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="GetDataDBViewModel.cs" />
+    <Compile Include="UpdateHoaDonViewModel.cs" />
     <Compile Include="ItemSelectedBehavior.cs" />
     <Compile Include="PasswordHelper.cs" />
     <Compile Include="RelayCommand.cs" />
@@ -87,6 +99,22 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="DataClassLocal.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClassLocal.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataClassLocal.dbml.layout">
+      <DependentUpon>DataClassLocal.dbml</DependentUpon>
+    </None>
+    <None Include="DataClassServer.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClassServer.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataClassServer.dbml.layout">
+      <DependentUpon>DataClassServer.dbml</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -100,6 +128,9 @@
       <Project>{4759cab0-8025-4265-8be1-b593ca32c992}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

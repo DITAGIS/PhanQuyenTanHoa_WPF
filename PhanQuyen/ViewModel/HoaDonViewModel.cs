@@ -206,7 +206,6 @@ namespace ViewModel
 
 
         private Action EmptyDelegate = delegate () { };
-
         public ICommand UpdateCommand { get; set; }
         public ICommand RotateCommand { get; set; }
         #endregion

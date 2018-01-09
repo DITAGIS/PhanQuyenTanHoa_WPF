@@ -7,11 +7,7 @@
                   xmlns:viewModel="clr-namespace:ViewModel;assembly=ViewModel"
              mc:Ignorable="d" 
              >
-    <UserControl.DataContext>
-        <viewModel:GetDataViewModel>
 
-        </viewModel:GetDataViewModel>
-    </UserControl.DataContext>
     <Grid Grid.Row="3" Height="400">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
