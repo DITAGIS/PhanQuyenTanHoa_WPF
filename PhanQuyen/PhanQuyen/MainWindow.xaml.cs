@@ -22,6 +22,7 @@ namespace PhanQuyen
         UC_DieuChinhThongTinDocSo uc_DieuChinhThonTinDocSo;
         UC_InPhieuTieuThuKH uc_InPhieuTieuThuKH;
         UC_NhanDuLieu uc_NhanDuLieu;
+        UC_CapNhatHoaDon uc_CapNhatHoaDon;
         public MainWindow()
         {
 
@@ -79,7 +80,19 @@ namespace PhanQuyen
         }
 
 
-        private void RibbonButton_Click(object sender, RoutedEventArgs e)
+        private void ribBtnCapNhatHoaDon(object sender, RoutedEventArgs e)
+        {
+            if (uc_CapNhatHoaDon == null)
+                uc_CapNhatHoaDon = new UC_CapNhatHoaDon();
+            uc_CapNhatHoaDon.Height = stkMain.ActualHeight;
+            uc_CapNhatHoaDon.Width = stkMain.ActualWidth;
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_CapNhatHoaDon);
+        }
+
+
+        private void ribBtnNhanDuLieu(object sender, RoutedEventArgs e)
         {
             if (uc_NhanDuLieu == null)
                 uc_NhanDuLieu = new UC_NhanDuLieu();
@@ -106,7 +119,6 @@ namespace PhanQuyen
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
         }
-
     }
 
     public static class CustomCommands

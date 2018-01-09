@@ -34,6 +34,7 @@ namespace Model
         public String SoThanMoi { get; set; }
         public String NgayThay { get; set; }
         public String NgayCapNhat { get; set; }
+        public String GioGhi { get; set; }
         public HoaDon(string danhBa, string tTHDNCu, string tTHDNMoi, string codeCu, string codeMoi, string cSC, string cSM, string tieuThuMoi, string tBTT, string diaChi, string ghiChuDS)
         {
             this.DanhBa = danhBa;

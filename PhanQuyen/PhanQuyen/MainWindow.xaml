@@ -63,7 +63,8 @@
             </RibbonTab>
             <RibbonTab Header="Chuẩn bị đọc số" >
                 <RibbonGroup Header="Chuẩn bị">
-                    <RibbonButton Label="Cập nhật hóa đơn" LargeImageSource="/PhanQuyen;component/Images/bill.png"></RibbonButton>
+                    <RibbonButton Label="Cập nhật hóa đơn" LargeImageSource="/PhanQuyen;component/Images/bill.png"
+                                  Click="ribBtnCapNhatHoaDon"></RibbonButton>
                     <RibbonButton Label="Kiểm tra dữ liệu"  LargeImageSource="/PhanQuyen;component/Images/check_data.png"></RibbonButton>
                     <RibbonButton Label="Cập nhật số thân"  LargeImageSource="/PhanQuyen;component/Images/update_number.png"></RibbonButton>
                 </RibbonGroup>
@@ -74,7 +75,8 @@
             </RibbonTab>
             <RibbonTab Header="Giao tiếp" >
                 <RibbonGroup Header="Nhận dữ liệu">
-                    <RibbonButton Label="Nhận dữ liệu"  LargeImageSource="/PhanQuyen;component/Images/download.png" Click="RibbonButton_Click"></RibbonButton>
+                    <RibbonButton Label="Nhận dữ liệu"  LargeImageSource="/PhanQuyen;component/Images/download.png" 
+                                  Click="ribBtnNhanDuLieu"></RibbonButton>
                 </RibbonGroup>
 
             </RibbonTab>

@@ -1050,7 +1050,7 @@
                         BorderBrush="Black" 
                         BorderThickness="1">
                             <TextBlock HorizontalAlignment="Center" 
-                         Text=""/>
+                         Text="{Binding SelectedHoaDon12Month.Code1}"/>
                         </Border>
                         <Border Grid.Row="3"
                           Grid.Column="12"

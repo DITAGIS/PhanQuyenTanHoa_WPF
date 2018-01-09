@@ -23,6 +23,8 @@ namespace ViewModel
             " KhachHang.So, KhachHang.Duong, KhachHang.TenKH, KhachHang.GB, KhachHang.DM, KhachHang.HopDong, KhachHang.Hieu, KhachHang.Co, KhachHang.SoThan, KhachHang.MLT1, [Image]  from " +
             TABLE_NAME_DOCSO + ", " + TABLE_NAME_KHACHHANG + ", " + TABLE_NAME_HINHDHN + " where docso.danhba = @danhba and nam = @year and ky = @month and docso.Dot = @date and docso.may = @machine and KhachHang.DanhBa = DocSo.DanhBa " +
             "and docso.DanhBa = HinhDHN.DanhBo and docso.GIOGHI = HinhDHN.CreateDate";
+        private const String SQL_SELECT_1_MONTH = "select gioghi, codemoi, csmoi, Tieuthumoi from " +
+           TABLE_NAME_DOCSO + " where docso.danhba = @danhba and nam = @year and ky = @month ";
         private const String SQL_SELECT_BAOTHAY = "select loaiBT, csgo, csgan, sothanmoi, ngaythay, ngaycapnhat from " + TABLE_NAME_BAOTHAY + " where danhba = @danhba";
         private const String SQL_SELECT_CONDITION = "select docso.danhba, TTDHNCu, TTDHNMoi, CodeMoi, CodeCu, CSCu, CSMOI, Tieuthumoi, TBTT, ghichuds," +
          " KhachHang.So, KhachHang.Duong, KhachHang.TenKH, KhachHang.GB, KhachHang.DM, KhachHang.HopDong, KhachHang.Hieu, KhachHang.Co, KhachHang.SoThan, KhachHang.MLT1  from " +
@@ -151,9 +153,42 @@ namespace ViewModel
             {
 
             }
-          
+
             if (dataReader1 != null && !dataReader1.IsClosed)
                 dataReader1.Close();
+            return hoaDon;
+        }
+        public HoaDon getHoaDons1MonthByCondition(String year, String month, String danhba)
+        {
+            HoaDon hoaDon = new HoaDon(); ;
+            SqlDataReader dataReader = null;
+
+            try
+            {
+                SqlCommand command = new SqlCommand(SQL_SELECT_1_MONTH, ConnectionViewModel.getInstance.getConnection);
+                //ConnectionViewModel.getInstance.Connect();
+                command.Parameters.AddWithValue("@danhba", danhba);
+                command.Parameters.AddWithValue("@year", year);
+                command.Parameters.AddWithValue("@month", month);
+
+                dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    hoaDon.DanhBa = danhba;
+
+                    hoaDon.CodeMoi = dataReader["CodeMoi"].ToString();
+                    hoaDon.GioGhi = dataReader["gioghi"].ToString();
+                    hoaDon.CSM = dataReader["CSMOI"].ToString();
+                    hoaDon.TieuThuMoi = dataReader["TieuThuMoi"].ToString();
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            if (dataReader != null && !dataReader.IsClosed)
+                dataReader.Close();
             return hoaDon;
         }
         public List<String> getDanhBasByCondition(String year, String month, String date, String group, String machine)
