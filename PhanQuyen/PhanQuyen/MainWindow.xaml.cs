@@ -101,6 +101,7 @@ namespace PhanQuyen
             if (stkMain.Children.Count == 1)
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_NhanDuLieu);
+            uc_NhanDuLieu.ShowGetDataWindow();
         }
         private void ExitCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {

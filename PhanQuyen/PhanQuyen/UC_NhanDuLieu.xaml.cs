@@ -21,15 +21,19 @@ namespace PhanQuyen
     /// </summary>
     public partial class UC_NhanDuLieu : UserControl
     {
+        private GetDaTaWindow _getDataWindow;
         public UC_NhanDuLieu()
         {
             InitializeComponent();
-
-            cbbYear.Items.Add(2018);
-
-            cbbGroup.Items.Add(1);
+            _getDataWindow = new GetDaTaWindow();
+            _getDataWindow.Height = 200;
+            _getDataWindow.Width = 500;
         }
-
+        public void ShowGetDataWindow()
+        {
+            if (_getDataWindow != null)
+                _getDataWindow.ShowDialog();
+        }
         private void GetData_Click(object sender, RoutedEventArgs e)
         {
             GetDataDBViewModel.getInstance.getDocSosByCondition(Int16.Parse(cbbYear.SelectedValue.ToString()), cbbMonth.SelectedValue.ToString(),
