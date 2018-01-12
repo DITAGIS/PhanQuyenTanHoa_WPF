@@ -32,7 +32,7 @@ namespace PhanQuyen
 
         private void GetData_Click(object sender, RoutedEventArgs e)
         {
-            GetDataDBViewModel.getInstance.getHoaDonsByCondition(Int16.Parse(cbbYear.SelectedValue.ToString()), cbbMonth.SelectedValue.ToString(),
+            GetDataDBViewModel.getInstance.getDocSosByCondition(Int16.Parse(cbbYear.SelectedValue.ToString()), cbbMonth.SelectedValue.ToString(),
                 cbbDate.SelectedValue.ToString(), Int16.Parse(cbbGroup.SelectedValue.ToString()));
         }
     }

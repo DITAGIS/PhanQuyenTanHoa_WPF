@@ -191,25 +191,29 @@ namespace ViewModel
                 dataReader.Close();
             return hoaDon;
         }
-        public List<String> getDanhBasByCondition(String year, String month, String date, String group, String machine)
+        public List<String> getDanhBasByCondition(int year, String month, String date, int xGroup, String machine)
         {
             List<String> danhBas = new List<String>();
             SqlCommand command = new SqlCommand(SQL_SELECT_DANH_BA_CONDITION, ConnectionViewModel.getInstance.getConnection);
             SqlDataReader dataReader = null;
             try
             {
-
-                //ConnectionViewModel.getInstance.Connect();
-                command.Parameters.AddWithValue("@year", year);
-                command.Parameters.AddWithValue("@month", month);
-                command.Parameters.AddWithValue("@date", date);
-                //command.Parameters.AddWithValue("@group", group);
-                command.Parameters.AddWithValue("@machine", machine);
-                dataReader = command.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    danhBas.Add(dataReader["danhba"].ToString());
-                }
+                DataClassesLocalDataContext localContext = new DataClassesLocalDataContext();
+                var getData = (from x in localContext.DocSoLocals
+                               where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.May == machine
+                               select x.DanhBa).ToList();
+                danhBas.AddRange(getData);
+                ////ConnectionViewModel.getInstance.Connect();
+                //command.Parameters.AddWithValue("@year", year);
+                //command.Parameters.AddWithValue("@month", month);
+                //command.Parameters.AddWithValue("@date", date);
+                ////command.Parameters.AddWithValue("@group", group);
+                //command.Parameters.AddWithValue("@machine", machine);
+                //dataReader = command.ExecuteReader();
+                //while (dataReader.Read())
+                //{
+                //    danhBas.Add(dataReader["danhba"].ToString());
+                //}
             }
             catch (Exception e)
             {

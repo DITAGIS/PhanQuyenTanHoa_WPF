@@ -33,6 +33,9 @@ namespace ViewModel
     partial void InsertDocSoLocal(DocSoLocal instance);
     partial void UpdateDocSoLocal(DocSoLocal instance);
     partial void DeleteDocSoLocal(DocSoLocal instance);
+    partial void InsertHinhDHNLocal(HinhDHNLocal instance);
+    partial void UpdateHinhDHNLocal(HinhDHNLocal instance);
+    partial void DeleteHinhDHNLocal(HinhDHNLocal instance);
     #endregion
 		
 		public DataClassesLocalDataContext() : 
@@ -70,6 +73,14 @@ namespace ViewModel
 			get
 			{
 				return this.GetTable<DocSoLocal>();
+			}
+		}
+		
+		public System.Data.Linq.Table<HinhDHNLocal> HinhDHNLocals
+		{
+			get
+			{
+				return this.GetTable<HinhDHNLocal>();
 			}
 		}
 	}
@@ -410,172 +421,8 @@ namespace ViewModel
 		{
 			OnCreated();
 		}
-
-        public DocSoLocal(string DocSoID, string DanhBa, string MLT1, string MLT2, string SoNhaCu, string SoNhaMoi, string Duong, string SDT, string GB, string DM, int? Nam, string Ky, string Dot, string May, int? TBTT, int? TamTinh, int? CSCu, int? CSMoi, string CodeCu, string CodeMoi, string TTDHNCu, string TTDHNMoi, int? TieuThuCu, int? TieuThuMoi, DateTime? TuNgay, DateTime? DenNgay, long? TienNuoc, int? BVMT, int? Thue, long? TongTien, string SoThanCu, string SoThanMoi, string HieuCu, string HieuMoi, string CoCu, string CoMoi, string GiengCu, string GiengMoi, string Van1Cu, string Van1Moi, string MVCu, string MVMoi, string ChiCoCu, string ChiCoMoi, string ChiThanCu, string ChiThanMoi, string ViTriCu, string ViTriMoi, string CapDoCu, string CapDoMoi, string CongDungCu, string CongDungMoi, string DMACu, string DMAMoi, string GhiChuKH, string GhiChuDS, string GhiChuTV, string NVGHI, DateTime? GIOGHI, char? BARCODE, int? SOLANGHI, string GPSDATA, string StaCapNhat, DateTime? NgayCapNhat, string NVCapNhat, int? TODS, DateTime? NgayDS, string ChiTiet, string Latitude, string Longitude, string TenKH, string NVTaoDS, string NgayTaoDS, string DutChiThan, string DutChiGoc, string DHNSaiTT, string BaoKinhDoanh, string Col08, string Col09, string Col10, string docSoID, string danhBa, string mLT1, string mLT2, string soNhaCu, string soNhaMoi, string duong, string sDT, string gB, string dM, int? nam, string ky, string dot, string may, int? tBTT, int? tamTinh, int? cSCu, int? cSMoi, string codeCu, string codeMoi, string tTDHNCu, string tTDHNMoi, int? tieuThuCu, int? tieuThuMoi, DateTime? tuNgay, DateTime? denNgay, long? tienNuoc, int? bVMT, int? thue, long? tongTien, string soThanCu, string soThanMoi, string hieuCu, string hieuMoi, string coCu, string coMoi, string giengCu, string giengMoi, string van1Cu, string van1Moi, string mVCu, string mVMoi, string chiCoCu, string chiCoMoi, string chiThanCu, string chiThanMoi, string viTriCu, string viTriMoi, string capDoCu, string capDoMoi, string congDungCu, string congDungMoi, string dMACu, string dMAMoi, string ghiChuKH, string ghiChuDS, string ghiChuTV, string nVGHI, DateTime? gIOGHI, char? bARCODE, int? sOLANGHI, string gPSDATA, string staCapNhat, DateTime? ngayCapNhat, string nVCapNhat, int? tODS, DateTime? ngayDS, string chiTiet, string latitude, string longitude, string tenKH, string nVTaoDS, string ngayTaoDS, string dutChiThan, string dutChiGoc, string dHNSaiTT, string baoKinhDoanh, string col08, string col09, string col10)
-        {
-            _DocSoID = DocSoID;
-            _DanhBa = DanhBa;
-            _MLT1 = MLT1;
-            _MLT2 = MLT2;
-            _SoNhaCu = SoNhaCu;
-            _SoNhaMoi = SoNhaMoi;
-            _Duong = Duong;
-            _SDT = SDT;
-            _GB = GB;
-            _DM = DM;
-            _Nam = Nam;
-            _Ky = Ky;
-            _Dot = Dot;
-            _May = May;
-            _TBTT = TBTT;
-            _TamTinh = TamTinh;
-            _CSCu = CSCu;
-            _CSMoi = CSMoi;
-            _CodeCu = CodeCu;
-            _CodeMoi = CodeMoi;
-            _TTDHNCu = TTDHNCu;
-            _TTDHNMoi = TTDHNMoi;
-            _TieuThuCu = TieuThuCu;
-            _TieuThuMoi = TieuThuMoi;
-            _TuNgay = TuNgay;
-            _DenNgay = DenNgay;
-            _TienNuoc = TienNuoc;
-            _BVMT = BVMT;
-            _Thue = Thue;
-            _TongTien = TongTien;
-            _SoThanCu = SoThanCu;
-            _SoThanMoi = SoThanMoi;
-            _HieuCu = HieuCu;
-            _HieuMoi = HieuMoi;
-            _CoCu = CoCu;
-            _CoMoi = CoMoi;
-            _GiengCu = GiengCu;
-            _GiengMoi = GiengMoi;
-            _Van1Cu = Van1Cu;
-            _Van1Moi = Van1Moi;
-            _MVCu = MVCu;
-            _MVMoi = MVMoi;
-            _ChiCoCu = ChiCoCu;
-            _ChiCoMoi = ChiCoMoi;
-            _ChiThanCu = ChiThanCu;
-            _ChiThanMoi = ChiThanMoi;
-            _ViTriCu = ViTriCu;
-            _ViTriMoi = ViTriMoi;
-            _CapDoCu = CapDoCu;
-            _CapDoMoi = CapDoMoi;
-            _CongDungCu = CongDungCu;
-            _CongDungMoi = CongDungMoi;
-            _DMACu = DMACu;
-            _DMAMoi = DMAMoi;
-            _GhiChuKH = GhiChuKH;
-            _GhiChuDS = GhiChuDS;
-            _GhiChuTV = GhiChuTV;
-            _NVGHI = NVGHI;
-            _GIOGHI = GIOGHI;
-            _BARCODE = BARCODE;
-            _SOLANGHI = SOLANGHI;
-            _GPSDATA = GPSDATA;
-            _StaCapNhat = StaCapNhat;
-            _NgayCapNhat = NgayCapNhat;
-            _NVCapNhat = NVCapNhat;
-            _TODS = TODS;
-            _NgayDS = NgayDS;
-            _ChiTiet = ChiTiet;
-            _Latitude = Latitude;
-            _Longitude = Longitude;
-            _TenKH = TenKH;
-            _NVTaoDS = NVTaoDS;
-            _NgayTaoDS = NgayTaoDS;
-            _DutChiThan = DutChiThan;
-            _DutChiGoc = DutChiGoc;
-            _DHNSaiTT = DHNSaiTT;
-            _BaoKinhDoanh = BaoKinhDoanh;
-            _Col08 = Col08;
-            _Col09 = Col09;
-            _Col10 = Col10;
-            this.DocSoID = docSoID;
-            this.DanhBa = danhBa;
-            this.MLT1 = mLT1;
-            this.MLT2 = mLT2;
-            this.SoNhaCu = soNhaCu;
-            this.SoNhaMoi = soNhaMoi;
-            this.Duong = duong;
-            this.SDT = sDT;
-            this.GB = gB;
-            this.DM = dM;
-            this.Nam = nam;
-            this.Ky = ky;
-            this.Dot = dot;
-            this.May = may;
-            this.TBTT = tBTT;
-            this.TamTinh = tamTinh;
-            this.CSCu = cSCu;
-            this.CSMoi = cSMoi;
-            this.CodeCu = codeCu;
-            this.CodeMoi = codeMoi;
-            this.TTDHNCu = tTDHNCu;
-            this.TTDHNMoi = tTDHNMoi;
-            this.TieuThuCu = tieuThuCu;
-            this.TieuThuMoi = tieuThuMoi;
-            this.TuNgay = tuNgay;
-            this.DenNgay = denNgay;
-            this.TienNuoc = tienNuoc;
-            this.BVMT = bVMT;
-            this.Thue = thue;
-            this.TongTien = tongTien;
-            this.SoThanCu = soThanCu;
-            this.SoThanMoi = soThanMoi;
-            this.HieuCu = hieuCu;
-            this.HieuMoi = hieuMoi;
-            this.CoCu = coCu;
-            this.CoMoi = coMoi;
-            this.GiengCu = giengCu;
-            this.GiengMoi = giengMoi;
-            this.Van1Cu = van1Cu;
-            this.Van1Moi = van1Moi;
-            this.MVCu = mVCu;
-            this.MVMoi = mVMoi;
-            this.ChiCoCu = chiCoCu;
-            this.ChiCoMoi = chiCoMoi;
-            this.ChiThanCu = chiThanCu;
-            this.ChiThanMoi = chiThanMoi;
-            this.ViTriCu = viTriCu;
-            this.ViTriMoi = viTriMoi;
-            this.CapDoCu = capDoCu;
-            this.CapDoMoi = capDoMoi;
-            this.CongDungCu = congDungCu;
-            this.CongDungMoi = congDungMoi;
-            this.DMACu = dMACu;
-            this.DMAMoi = dMAMoi;
-            this.GhiChuKH = ghiChuKH;
-            this.GhiChuDS = ghiChuDS;
-            this.GhiChuTV = ghiChuTV;
-            this.NVGHI = nVGHI;
-            this.GIOGHI = gIOGHI;
-            this.BARCODE = bARCODE;
-            this.SOLANGHI = sOLANGHI;
-            this.GPSDATA = gPSDATA;
-            this.StaCapNhat = staCapNhat;
-            this.NgayCapNhat = ngayCapNhat;
-            this.NVCapNhat = nVCapNhat;
-            this.TODS = tODS;
-            this.NgayDS = ngayDS;
-            this.ChiTiet = chiTiet;
-            this.Latitude = latitude;
-            this.Longitude = longitude;
-            this.TenKH = tenKH;
-            this.NVTaoDS = nVTaoDS;
-            this.NgayTaoDS = ngayTaoDS;
-            this.DutChiThan = dutChiThan;
-            this.DutChiGoc = dutChiGoc;
-            this.DHNSaiTT = dHNSaiTT;
-            this.BaoKinhDoanh = baoKinhDoanh;
-            this.Col08 = col08;
-            this.Col09 = col09;
-            this.Col10 = col10;
-        }
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocSoID", DbType="VarChar(17) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocSoID", DbType="VarChar(17) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string DocSoID
 		{
 			get
@@ -2171,6 +2018,212 @@ namespace ViewModel
 					this._Col10 = value;
 					this.SendPropertyChanged("Col10");
 					this.OnCol10Changed();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.HinhDHNLocal")]
+	public partial class HinhDHNLocal : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _DanhBo;
+		
+		private System.Data.Linq.Binary _Image;
+		
+		private string _Latitude;
+		
+		private string _Longitude;
+		
+		private System.Nullable<int> _CreateBy;
+		
+		private System.Nullable<System.DateTime> _CreateDate;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnDanhBoChanging(string value);
+    partial void OnDanhBoChanged();
+    partial void OnImageChanging(System.Data.Linq.Binary value);
+    partial void OnImageChanged();
+    partial void OnLatitudeChanging(string value);
+    partial void OnLatitudeChanged();
+    partial void OnLongitudeChanging(string value);
+    partial void OnLongitudeChanged();
+    partial void OnCreateByChanging(System.Nullable<int> value);
+    partial void OnCreateByChanged();
+    partial void OnCreateDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreateDateChanged();
+    #endregion
+		
+		public HinhDHNLocal()
+		{
+			OnCreated();
+		}
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DanhBo", DbType="VarChar(11)")]
+		public string DanhBo
+		{
+			get
+			{
+				return this._DanhBo;
+			}
+			set
+			{
+				if ((this._DanhBo != value))
+				{
+					this.OnDanhBoChanging(value);
+					this.SendPropertyChanging();
+					this._DanhBo = value;
+					this.SendPropertyChanged("DanhBo");
+					this.OnDanhBoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this.OnImageChanging(value);
+					this.SendPropertyChanging();
+					this._Image = value;
+					this.SendPropertyChanged("Image");
+					this.OnImageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Latitude", DbType="VarChar(50)")]
+		public string Latitude
+		{
+			get
+			{
+				return this._Latitude;
+			}
+			set
+			{
+				if ((this._Latitude != value))
+				{
+					this.OnLatitudeChanging(value);
+					this.SendPropertyChanging();
+					this._Latitude = value;
+					this.SendPropertyChanged("Latitude");
+					this.OnLatitudeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Longitude", DbType="VarChar(50)")]
+		public string Longitude
+		{
+			get
+			{
+				return this._Longitude;
+			}
+			set
+			{
+				if ((this._Longitude != value))
+				{
+					this.OnLongitudeChanging(value);
+					this.SendPropertyChanging();
+					this._Longitude = value;
+					this.SendPropertyChanged("Longitude");
+					this.OnLongitudeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateBy", DbType="Int")]
+		public System.Nullable<int> CreateBy
+		{
+			get
+			{
+				return this._CreateBy;
+			}
+			set
+			{
+				if ((this._CreateBy != value))
+				{
+					this.OnCreateByChanging(value);
+					this.SendPropertyChanging();
+					this._CreateBy = value;
+					this.SendPropertyChanged("CreateBy");
+					this.OnCreateByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreateDate
+		{
+			get
+			{
+				return this._CreateDate;
+			}
+			set
+			{
+				if ((this._CreateDate != value))
+				{
+					this.OnCreateDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreateDate = value;
+					this.SendPropertyChanged("CreateDate");
+					this.OnCreateDateChanged();
 				}
 			}
 		}

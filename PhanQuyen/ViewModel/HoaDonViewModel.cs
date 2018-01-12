@@ -160,7 +160,7 @@ namespace ViewModel
 
                 Status = "Đang tính toán dữ liệu...";
 
-                List<String> danhBas = HoaDonDBViewModel.getInstance.getDanhBasByCondition(Year, Month, Date, Group, Machine);
+                List<String> danhBas = HoaDonDBViewModel.getInstance.getDanhBasByCondition(Int16.Parse(Year), Month, Date, Int16.Parse(Group), Machine);
                 max = danhBas.Count;
                 value = 0;
 
