@@ -37,8 +37,15 @@ namespace PhanQuyen
         }
         private void GetData_Click(object sender, RoutedEventArgs e)
         {
-            List<String> danhBas = GetDataDBViewModel.getInstance.getDocsosByConditionCount(Int16.Parse(cbbYear.SelectedValue.ToString()), cbbMonth.SelectedValue.ToString(),
-                cbbDate.SelectedValue.ToString(), Int16.Parse(cbbGroup.SelectedValue.ToString()), cbbMachine.SelectedValue.ToString());
+            int year = Int16.Parse(cbbYear.SelectedValue.ToString());
+            String month = cbbMonth.SelectedValue.ToString();
+            String date = cbbDate.SelectedValue.ToString();
+            int group = Int16.Parse(cbbGroup.SelectedValue.ToString());
+            String groupString = group + "";
+            if (group < 10)
+                groupString = "0" + group;
+            String machine = cbbMachine.SelectedValue.ToString();
+            List<String> danhBas = GetDataDBViewModel.getInstance.getDocsosByConditionCount(year, month, date, group, machine);
 
             pbStatus.Maximum = danhBas.Count;
             pbStatus.Minimum = 0;
@@ -47,11 +54,12 @@ namespace PhanQuyen
             {
                 Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    
-                    GetDataDBViewModel.getInstance.getDocSosByDanhBa(danhBa, Int16.Parse(cbbYear.SelectedValue.ToString()), cbbMonth.SelectedValue.ToString(),
-               cbbDate.SelectedValue.ToString(), Int16.Parse(cbbGroup.SelectedValue.ToString()), cbbMachine.SelectedValue.ToString());
+
+                    GetDataDBViewModel.getInstance.getDocSosByDanhBa(danhBa, year, month, date, group, machine);
                     pbStatus.Value++;
                     txtbStatus.Text = String.Format("{0:0.0%}", (double)pbStatus.Value / pbStatus.Maximum);
+                    if (pbStatus.Value == pbStatus.Maximum)
+                        GetDataDBViewModel.getInstance.WriteSoDaNhan(year, month, date, groupString, (Int16)pbStatus.Maximum);
 
                 }), DispatcherPriority.Loaded);
             }

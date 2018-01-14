@@ -3,9 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+               xmlns:viewModel="clr-namespace:ViewModel;assembly=ViewModel"
              xmlns:local="clr-namespace:PhanQuyen"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="1400">
+    <UserControl.DataContext>
+        <viewModel:GetDataViewModel>
+
+        </viewModel:GetDataViewModel>
+    </UserControl.DataContext>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -19,9 +25,11 @@
         <StackPanel Grid.Row="0" 
                     VerticalAlignment="Center" Orientation="Horizontal"  Name="stpCondition"  >
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Năm:"/></TextBlock>
-            <ComboBox x:Name="cbbYear" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50">
-                <!--SelectedValue="{Binding Year, Mode=TwoWay}"--> 
-                      <!--ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">-->
+            <ComboBox x:Name="cbbYear" SelectedIndex="0" 
+                                            SelectedValue="{Binding Year, Mode=TwoWay}" 
+                      IsEditable="True" VerticalAlignment="Center" Width="50">
+                <!--SelectedValue="{Binding Year, Mode=TwoWay}"-->
+                <!--ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">-->
 
             </ComboBox>
 
@@ -34,9 +42,11 @@
                       SelectedValue="{Binding Date, Mode=TwoWay}" 
                       ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ:"/></TextBlock>
-            <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"></ComboBox>
-                          <!--SelectedValue="{Binding Group, Mode=TwoWay}"--> 
-                      <!--ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+            <ComboBox x:Name="cbbGroup" SelectedIndex="0" 
+                       SelectedValue="{Binding Group, Mode=TwoWay}" 
+                      IsEditable="True"  VerticalAlignment="Center" Width="45"></ComboBox>
+            <!--SelectedValue="{Binding Group, Mode=TwoWay}"-->
+            <!--ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>-->
             <Button Margin="10,0,0,0" Background="White"  
                     Click="GetData_Click" Name="GetData">
                 <StackPanel Orientation="Horizontal">
@@ -48,13 +58,109 @@
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-
-
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+
+
+
+            <DataGrid Grid.Column="0" 
+                      SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged}" 
+                          AutoGenerateColumns="False" Name="dtgridMain" 
+                          HorizontalAlignment="Center" VerticalAlignment="Top" 
+                          Width="Auto" Margin="10,0,10,0" Height="400" 
+                          ItemsSource="{Binding ListHoaDon}"
+                          AlternatingRowBackground="WhiteSmoke"
+                          RowBackground="White"
+                          GridLinesVisibility="All"
+                          HorizontalScrollBarVisibility="Auto"
+                          BorderThickness="2"
+                          BorderBrush="Black"
+                          Background="White" SelectionMode="Single"
+                          FontSize="12">
+                <!--Font Color / Style of Column Heading-->
+                <DataGrid.Resources>
+                    <Style  TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="Bisque"></Setter>
+                        <Setter Property="FontSize" Value="13"></Setter>
+                        <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                        <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
+                        <Setter Property="BorderBrush" Value="Black"></Setter>
+                    </Style>
+
+                </DataGrid.Resources>
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="FontSize"  Value="13" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="FontSize"  Value="20" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+                <!--Header column-->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Sổ đã ghi" Width="100" Binding="{Binding DanhBa, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tổng" Width="100" Binding="{Binding TTHDNCu,Mode=OneWay}"></DataGridTextColumn>
+                </DataGrid.Columns>
+                <!--handle item click event-->
+
+            </DataGrid>
+            <DataGrid Grid.Column="1" 
+                SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged}" 
+                          AutoGenerateColumns="False"  
+                          HorizontalAlignment="Center" VerticalAlignment="Top" 
+                          Width="Auto" Margin="10,0,10,0" Height="600"
+                          ItemsSource="{Binding ListHoaDon}"
+                          AlternatingRowBackground="WhiteSmoke"
+                          RowBackground="White"
+                          GridLinesVisibility="All"
+                          HorizontalScrollBarVisibility="Auto"
+                          BorderThickness="2"
+                          BorderBrush="Black"
+                          Background="White" SelectionMode="Single"
+                          FontSize="12">
+                <!--Font Color / Style of Column Heading-->
+                <DataGrid.Resources>
+                    <Style  TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="Bisque"></Setter>
+                        <Setter Property="FontSize" Value="13"></Setter>
+                        <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                        <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
+                        <Setter Property="BorderBrush" Value="Black"></Setter>
+                    </Style>
+
+                </DataGrid.Resources>
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="FontSize"  Value="13" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="FontSize"  Value="20" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+                <!--Header column-->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Danh bạ" Width="100" Binding="{Binding DanhBa, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="TTDHN Cũ" Width="100" Binding="{Binding TTHDNCu,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="TTDHN Mới" Width="100" Binding="{Binding TTHDNMoi,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Code Cũ" Width="70" Binding="{Binding CodeCu,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Code Mới" Width="70" Binding="{Binding CodeMoi,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Chỉ Số Cũ" Width="70" Binding="{Binding CSC,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Chỉ Số Mới" Width="70" Binding="{Binding CSM,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tiêu Thụ Mới" Width="100" Binding="{Binding TieuThuMoi,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="TBTT" Width="70" Binding="{Binding TBTT,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Địa chỉ" Width="*" Binding="{Binding DiaChi,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Ghi chú đọc số" Width="*" Binding="{Binding GhiChuDS,Mode=OneWay}"></DataGridTextColumn>
+                </DataGrid.Columns>
+                <!--handle item click event-->
+
+            </DataGrid>
         </Grid>
     </Grid>
 </UserControl>

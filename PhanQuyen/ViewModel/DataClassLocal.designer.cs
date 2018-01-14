@@ -36,6 +36,9 @@ namespace ViewModel
     partial void InsertHinhDHNLocal(HinhDHNLocal instance);
     partial void UpdateHinhDHNLocal(HinhDHNLocal instance);
     partial void DeleteHinhDHNLocal(HinhDHNLocal instance);
+    partial void InsertSoDaNhan(SoDaNhan instance);
+    partial void UpdateSoDaNhan(SoDaNhan instance);
+    partial void DeleteSoDaNhan(SoDaNhan instance);
     #endregion
 		
 		public DataClassesLocalDataContext() : 
@@ -81,6 +84,14 @@ namespace ViewModel
 			get
 			{
 				return this.GetTable<HinhDHNLocal>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SoDaNhan> SoDaNhans
+		{
+			get
+			{
+				return this.GetTable<SoDaNhan>();
 			}
 		}
 	}
@@ -2087,8 +2098,8 @@ namespace ViewModel
 		{
 			OnCreated();
 		}
-
-        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int ID
 		{
 			get
@@ -2224,6 +2235,92 @@ namespace ViewModel
 					this._CreateDate = value;
 					this.SendPropertyChanged("CreateDate");
 					this.OnCreateDateChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SoDaNhan")]
+	public partial class SoDaNhan : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _So;
+		
+		private int _SoLuong;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSoChanging(string value);
+    partial void OnSoChanged();
+    partial void OnSoLuongChanging(int value);
+    partial void OnSoLuongChanged();
+    #endregion
+		
+		public SoDaNhan()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_So", DbType="VarChar(13) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string So
+		{
+			get
+			{
+				return this._So;
+			}
+			set
+			{
+				if ((this._So != value))
+				{
+					this.OnSoChanging(value);
+					this.SendPropertyChanging();
+					this._So = value;
+					this.SendPropertyChanged("So");
+					this.OnSoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoLuong", DbType="Int NOT NULL")]
+		public int SoLuong
+		{
+			get
+			{
+				return this._SoLuong;
+			}
+			set
+			{
+				if ((this._SoLuong != value))
+				{
+					this.OnSoLuongChanging(value);
+					this.SendPropertyChanging();
+					this._SoLuong = value;
+					this.SendPropertyChanged("SoLuong");
+					this.OnSoLuongChanged();
 				}
 			}
 		}

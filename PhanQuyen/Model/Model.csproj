@@ -87,6 +87,7 @@
     <Compile Include="HoaDon.cs" />
     <Compile Include="ToID.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="Volumn_GetData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

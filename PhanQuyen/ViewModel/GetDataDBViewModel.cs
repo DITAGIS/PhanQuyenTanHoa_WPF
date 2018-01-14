@@ -38,7 +38,7 @@ namespace ViewModel
 
             DataClassServerDataContext serverContext = new DataClassServerDataContext();
             var getData = (from x in serverContext.DocSos
-                           where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.DanhBa ==danhBa && x.May == machine
+                           where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.DanhBa == danhBa && x.May == machine
                            select x).ToList();
 
             DataClassesLocalDataContext localContext = new DataClassesLocalDataContext();
@@ -113,6 +113,26 @@ namespace ViewModel
             return result;
         }
 
+        public bool WriteSoDaNhan(int year, String month, String date, String group, int count)
+        {
+            DataClassesLocalDataContext localDataContext = new DataClassesLocalDataContext();
+            try
+            {
+
+                localDataContext.SoDaNhans.InsertOnSubmit(new SoDaNhan()
+                {
+                    So = year + "_" + month + "_" + date + "_" + group,
+                    SoLuong = count
+                });
+                localDataContext.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+
+            }
+            return false;
+        }
 
         public bool getDocSosByCondition(int year, String month, String date, int xGroup)
         {
@@ -169,7 +189,7 @@ namespace ViewModel
                         GhiChuDS = item.GhiChuDS,
                         GIOGHI = (DateTime)item.GIOGHI
                     });
-               
+
                     localContext.SubmitChanges();
 
                     var imageData = (from x in serverContext.HinhDHNs
