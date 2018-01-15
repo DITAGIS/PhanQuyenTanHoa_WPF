@@ -26,7 +26,8 @@
                     VerticalAlignment="Center" Orientation="Horizontal"  Name="stpCondition"  >
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Năm:"/></TextBlock>
             <ComboBox x:Name="cbbYear" SelectedIndex="0" 
-                                            SelectedValue="{Binding Year, Mode=TwoWay}" 
+                                            SelectedValue="{Binding Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                          ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                       IsEditable="True" VerticalAlignment="Center" Width="50">
                 <!--SelectedValue="{Binding Year, Mode=TwoWay}"-->
                 <!--ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">-->
@@ -35,15 +36,16 @@
 
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Kỳ:"/></TextBlock>
             <ComboBox x:Name="cbbMonth" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45"
-                      SelectedValue="{Binding Month, Mode=TwoWay}" 
+                      SelectedValue="{Binding Month, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                       ItemsSource="{Binding ListMonth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Đợt:"/></TextBlock>
             <ComboBox x:Name="cbbDate" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
-                      SelectedValue="{Binding Date, Mode=TwoWay}" 
+                      SelectedValue="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                       ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ:"/></TextBlock>
             <ComboBox x:Name="cbbGroup" SelectedIndex="0" 
-                       SelectedValue="{Binding Group, Mode=TwoWay}" 
+                       SelectedValue="{Binding Group, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                          ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                       IsEditable="True"  VerticalAlignment="Center" Width="45"></ComboBox>
             <!--SelectedValue="{Binding Group, Mode=TwoWay}"-->
             <!--ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>-->
@@ -70,8 +72,8 @@
                       SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged}" 
                           AutoGenerateColumns="False" Name="dtgridMain" 
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
-                          Width="Auto" Margin="10,0,10,0" Height="400" 
-                          ItemsSource="{Binding ListHoaDon}"
+                          Width="Auto" Margin="10,0,10,0" Height="600" 
+                          ItemsSource="{Binding ListSoDaNhan}"
                           AlternatingRowBackground="WhiteSmoke"
                           RowBackground="White"
                           GridLinesVisibility="All"
@@ -103,8 +105,8 @@
                 </DataGrid.RowStyle>
                 <!--Header column-->
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Sổ đã ghi" Width="100" Binding="{Binding DanhBa, Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tổng" Width="100" Binding="{Binding TTHDNCu,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Sổ đã ghi" Width="100" Binding="{Binding So, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tổng" Width="100" Binding="{Binding SoLuong,Mode=OneWay}"></DataGridTextColumn>
                 </DataGrid.Columns>
                 <!--handle item click event-->
 
@@ -114,7 +116,7 @@
                           AutoGenerateColumns="False"  
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
                           Width="Auto" Margin="10,0,10,0" Height="600"
-                          ItemsSource="{Binding ListHoaDon}"
+                          ItemsSource="{Binding ListSoDaNhan, Mode=TwoWay}"
                           AlternatingRowBackground="WhiteSmoke"
                           RowBackground="White"
                           GridLinesVisibility="All"

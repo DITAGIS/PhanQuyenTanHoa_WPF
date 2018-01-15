@@ -24,7 +24,7 @@ namespace ViewModel
         public ObservableCollection<SoDaNhan> ListSoDaNhan
         {
             get { return listSoDaNhan; }
-            set { listSoDaNhan = value; }
+            set { listSoDaNhan = value; OnPropertyChanged("ListSoDaNhan"); }
         }
         private HoaDon selectedHoaDon;
         public HoaDon SelectedHoaDon
@@ -43,27 +43,56 @@ namespace ViewModel
         public int Year
         {
             get { return year; }
-            set { year = value; }
+            set { year = value; OnPropertyChanged("Year");
+                ListSoDaNhan = GetDataDBViewModel.getInstance.getDistinctSoDaNhan(Year, Month, Date, Group); }
         }
-        private int month;
-        public int Month
+        private String month;
+        public String Month
         {
             get { return month; }
-            set { month = value; }
+            set { month = value; OnPropertyChanged("Month"); ListSoDaNhan = GetDataDBViewModel.getInstance.getDistinctSoDaNhan(Year, Month, Date, Group); }
         }
-        private int date;
-        public int Date
+        private String date;
+        public String Date
         {
             get { return date; }
-            set { date = value; }
+            set { date = value; OnPropertyChanged("Date"); ListSoDaNhan = GetDataDBViewModel.getInstance.getDistinctSoDaNhan(Year, Month, Date, Group); }
         }
-        private int group;
-        public int Group
+        private String group;
+        public String Group
         {
             get { return group; }
-            set { group = value; }
+            set { group = value; OnPropertyChanged("Group");
+                ListSoDaNhan = GetDataDBViewModel.getInstance.getDistinctSoDaNhan(Year, Month, Date, Group); }
         }
+        private ObservableCollection<int> listYear;
 
+        public ObservableCollection<int> ListYear
+        {
+            get { return listYear; }
+            set { listYear = value; OnPropertyChanged("ListYear"); }
+        }
+        private ObservableCollection<String> listMonth;
+
+        public ObservableCollection<String> ListMonth
+        {
+            get { return listMonth; }
+            set { listMonth = value; OnPropertyChanged("ListMonth"); }
+        }
+        private ObservableCollection<String> listDate;
+
+        public ObservableCollection<String> ListDate
+        {
+            get { return listDate; }
+            set { listDate = value; OnPropertyChanged("ListDate"); }
+        }
+        private ObservableCollection<String> listGroup;
+
+        public ObservableCollection<String> ListGroup
+        {
+            get { return listGroup; }
+            set { listGroup = value; OnPropertyChanged("ListGroup"); }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(String name)
         {
@@ -79,12 +108,12 @@ namespace ViewModel
         {
             Initialize();
 
-            DataClassesLocalDataContext localDataContext = new DataClassesLocalDataContext();
-            var soDaNhans = (from x in localDataContext.SoDaNhans
-                             where x.So.Equals(Year + "_" + Month + "_" + Date + "_" + Group)
-                             select x).ToList();
-            foreach (var item in soDaNhans)
-                ListSoDaNhan.Add(item);
+            ListYear = GetDataDBViewModel.getInstance.getDistinctYear();
+            ListMonth = GetDataDBViewModel.getInstance.getDistinctMonth();
+            ListDate = GetDataDBViewModel.getInstance.getDistinctDate();
+            ListGroup = GetDataDBViewModel.getInstance.getDistinctGroup();
+
+
         }
         #endregion
     }
