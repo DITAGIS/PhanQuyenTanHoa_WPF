@@ -12,12 +12,12 @@ namespace ViewModel
     public class GetDataViewModel
     {
         #region Initialize
-        private ObservableCollection<HoaDon> listHoaDon;
+        private ObservableCollection<DocSoLocal> listHoaDon;
 
-        public ObservableCollection<HoaDon> ListHoaDon
+        public ObservableCollection<DocSoLocal> ListHoaDon
         {
             get { return listHoaDon; }
-            set { listHoaDon = value; }
+            set { listHoaDon = value; OnPropertyChanged("ListHoaDon"); }
         }
         private ObservableCollection<SoDaNhan> listSoDaNhan;
 
@@ -26,17 +26,18 @@ namespace ViewModel
             get { return listSoDaNhan; }
             set { listSoDaNhan = value; OnPropertyChanged("ListSoDaNhan"); }
         }
-        private HoaDon selectedHoaDon;
-        public HoaDon SelectedHoaDon
+        private SoDaNhan selectedSoDaNhan;
+        public SoDaNhan SelectedSoDaNhan
         {
             get
             {
-                return selectedHoaDon;
+                return selectedSoDaNhan;
             }
             set
             {
-                selectedHoaDon = value;
-                OnPropertyChanged("SelectedHoaDon");
+                selectedSoDaNhan = value;
+                OnPropertyChanged("SelectedSoDaNhan");
+                ListHoaDon = GetDataDBViewModel.getInstance.getDistinctHoaDon(selectedSoDaNhan);
             }
         }
         private int year;
@@ -98,22 +99,19 @@ namespace ViewModel
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
-
         }
         private void Initialize()
         {
             listSoDaNhan = new ObservableCollection<SoDaNhan>();
+            listHoaDon = new ObservableCollection<DocSoLocal>();
         }
         public GetDataViewModel()
         {
             Initialize();
-
             ListYear = GetDataDBViewModel.getInstance.getDistinctYear();
             ListMonth = GetDataDBViewModel.getInstance.getDistinctMonth();
             ListDate = GetDataDBViewModel.getInstance.getDistinctDate();
             ListGroup = GetDataDBViewModel.getInstance.getDistinctGroup();
-
-
         }
         #endregion
     }

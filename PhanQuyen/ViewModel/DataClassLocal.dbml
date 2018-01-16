@@ -99,6 +99,10 @@
     <Type Name="SoDaNhan">
       <Column Name="So" Type="System.String" DbType="VarChar(13) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nam" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ky" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="dot" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="may" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

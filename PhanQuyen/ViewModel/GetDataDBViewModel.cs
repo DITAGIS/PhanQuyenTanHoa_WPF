@@ -114,7 +114,19 @@ namespace ViewModel
             return result;
         }
 
-        public bool WriteSoDaNhan(int year, String month, String date, String group, int count)
+        public ObservableCollection<DocSoLocal> getDistinctHoaDon(SoDaNhan selectedSoDaNhan)
+        {
+            ObservableCollection<DocSoLocal> listHoaDon = new ObservableCollection<DocSoLocal>();
+            DataClassesLocalDataContext localDataContext = new DataClassesLocalDataContext();
+            var hoaDons = (from x in localDataContext.DocSoLocals
+                             where x.Nam == selectedSoDaNhan.nam && x.Ky == selectedSoDaNhan.ky && x.Dot == selectedSoDaNhan.dot && x.May == selectedSoDaNhan.may
+                             select x).ToList();
+            foreach (var item in hoaDons)
+                listHoaDon.Add(item);
+            return listHoaDon;
+        }
+
+        public bool WriteSoDaNhan(int year, String month, String date, String machine, int count)
         {
             DataClassesLocalDataContext localDataContext = new DataClassesLocalDataContext();
             try
@@ -122,8 +134,12 @@ namespace ViewModel
 
                 localDataContext.SoDaNhans.InsertOnSubmit(new SoDaNhan()
                 {
-                    So = year + "_" + month + "_" + date + "_" + group,
-                    SoLuong = count
+                    So = year + "_" + month + "_" + date + "_" + machine,
+                    SoLuong = count,
+                    nam = year,
+                    ky = month,
+                    dot = date,
+                    may = machine
                 });
                 localDataContext.SubmitChanges();
                 return true;

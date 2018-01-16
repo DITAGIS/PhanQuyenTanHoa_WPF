@@ -39,5 +39,11 @@ namespace PhanQuyen
             GetDataDBViewModel.getInstance.getDocSosByCondition(Int16.Parse(cbbYear.SelectedValue.ToString()), cbbMonth.SelectedValue.ToString(),
                 cbbDate.SelectedValue.ToString(), Int16.Parse(cbbGroup.SelectedValue.ToString()));
         }
+
+        private void dtGridSoDaNhan_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var SeletectedSoDaNhan = dtGridSoDaNhan.SelectedValue as SoDaNhan;
+            dtGridDocSos.ItemsSource = GetDataDBViewModel.getInstance.getDistinctHoaDon(SeletectedSoDaNhan);
+        }
     }
 }

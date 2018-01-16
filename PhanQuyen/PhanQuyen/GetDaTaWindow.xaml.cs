@@ -59,7 +59,7 @@ namespace PhanQuyen
                     pbStatus.Value++;
                     txtbStatus.Text = String.Format("{0:0.0%}", (double)pbStatus.Value / pbStatus.Maximum);
                     if (pbStatus.Value == pbStatus.Maximum)
-                        GetDataDBViewModel.getInstance.WriteSoDaNhan(year, month, date, groupString, (Int16)pbStatus.Maximum);
+                        GetDataDBViewModel.getInstance.WriteSoDaNhan(year, month, date, machine, (Int16)pbStatus.Maximum);
 
                 }), DispatcherPriority.Loaded);
             }

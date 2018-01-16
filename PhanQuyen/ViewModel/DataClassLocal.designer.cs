@@ -2139,7 +2139,7 @@ namespace ViewModel
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="VarBinary(MAX)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary Image
 		{
 			get
@@ -2270,6 +2270,14 @@ namespace ViewModel
 		
 		private int _SoLuong;
 		
+		private int _nam;
+		
+		private string _ky;
+		
+		private string _dot;
+		
+		private string _may;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2278,6 +2286,14 @@ namespace ViewModel
     partial void OnSoChanged();
     partial void OnSoLuongChanging(int value);
     partial void OnSoLuongChanged();
+    partial void OnnamChanging(int value);
+    partial void OnnamChanged();
+    partial void OnkyChanging(string value);
+    partial void OnkyChanged();
+    partial void OndotChanging(string value);
+    partial void OndotChanged();
+    partial void OnmayChanging(string value);
+    partial void OnmayChanged();
     #endregion
 		
 		public SoDaNhan()
@@ -2321,6 +2337,86 @@ namespace ViewModel
 					this._SoLuong = value;
 					this.SendPropertyChanged("SoLuong");
 					this.OnSoLuongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nam", DbType="Int NOT NULL")]
+		public int nam
+		{
+			get
+			{
+				return this._nam;
+			}
+			set
+			{
+				if ((this._nam != value))
+				{
+					this.OnnamChanging(value);
+					this.SendPropertyChanging();
+					this._nam = value;
+					this.SendPropertyChanged("nam");
+					this.OnnamChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ky", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string ky
+		{
+			get
+			{
+				return this._ky;
+			}
+			set
+			{
+				if ((this._ky != value))
+				{
+					this.OnkyChanging(value);
+					this.SendPropertyChanging();
+					this._ky = value;
+					this.SendPropertyChanged("ky");
+					this.OnkyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dot", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string dot
+		{
+			get
+			{
+				return this._dot;
+			}
+			set
+			{
+				if ((this._dot != value))
+				{
+					this.OndotChanging(value);
+					this.SendPropertyChanging();
+					this._dot = value;
+					this.SendPropertyChanged("dot");
+					this.OndotChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_may", DbType="VarChar(2) NOT NULL", CanBeNull=false)]
+		public string may
+		{
+			get
+			{
+				return this._may;
+			}
+			set
+			{
+				if ((this._may != value))
+				{
+					this.OnmayChanging(value);
+					this.SendPropertyChanging();
+					this._may = value;
+					this.SendPropertyChanged("may");
+					this.OnmayChanged();
 				}
 			}
 		}

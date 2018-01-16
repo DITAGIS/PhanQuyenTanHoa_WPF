@@ -63,69 +63,80 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
 
-
-            <DataGrid Grid.Column="0" 
-                      SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged}" 
-                          AutoGenerateColumns="False" Name="dtgridMain" 
-                          HorizontalAlignment="Center" VerticalAlignment="Top" 
-                          Width="Auto" Margin="10,0,10,0" Height="600" 
-                          ItemsSource="{Binding ListSoDaNhan}"
-                          AlternatingRowBackground="WhiteSmoke"
-                          RowBackground="White"
-                          GridLinesVisibility="All"
-                          HorizontalScrollBarVisibility="Auto"
-                          BorderThickness="2"
-                          BorderBrush="Black"
-                          Background="White" SelectionMode="Single"
-                          FontSize="12">
-                <!--Font Color / Style of Column Heading-->
-                <DataGrid.Resources>
-                    <Style  TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="Background" Value="Bisque"></Setter>
-                        <Setter Property="FontSize" Value="13"></Setter>
-                        <Setter Property="FontWeight" Value="SemiBold"></Setter>
-                        <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
-                        <Setter Property="BorderBrush" Value="Black"></Setter>
-                    </Style>
-
-                </DataGrid.Resources>
-                <DataGrid.RowStyle>
-                    <Style TargetType="{x:Type DataGridRow}">
-                        <Setter Property="FontSize"  Value="13" />
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="FontSize"  Value="20" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.RowStyle>
-                <!--Header column-->
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Sổ đã ghi" Width="100" Binding="{Binding So, Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tổng" Width="100" Binding="{Binding SoLuong,Mode=OneWay}"></DataGridTextColumn>
-                </DataGrid.Columns>
-                <!--handle item click event-->
-
-            </DataGrid>
-            <DataGrid Grid.Column="1" 
-                SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged}" 
+            <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto">
+                <DataGrid Grid.Column="0" Name="dtGridSoDaNhan" 
+                      SelectedItem="{Binding SelectedSoDaNhan, UpdateSourceTrigger=PropertyChanged}" 
                           AutoGenerateColumns="False"  
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
-                          Width="Auto" Margin="10,0,10,0" Height="600"
-                          ItemsSource="{Binding ListSoDaNhan, Mode=TwoWay}"
+                          Margin="10,0,10,0" 
+                          ItemsSource="{Binding ListSoDaNhan}"
                           AlternatingRowBackground="WhiteSmoke"
+                      ColumnWidth="50"
+                      MaxColumnWidth="150"
+                      MinColumnWidth="30"
                           RowBackground="White"
                           GridLinesVisibility="All"
                           HorizontalScrollBarVisibility="Auto"
                           BorderThickness="2"
                           BorderBrush="Black"
                           Background="White" SelectionMode="Single"
-                          FontSize="12">
+                          FontSize="12" SelectionChanged="dtGridSoDaNhan_SelectionChanged">
+                    <!--Font Color / Style of Column Heading-->
+                    <DataGrid.Resources>
+                        <Style  TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="Bisque"></Setter>
+                            <Setter Property="FontSize" Value="13"></Setter>
+                            <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                            <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
+                            <Setter Property="BorderBrush" Value="Black"></Setter>
+                        </Style>
+
+                    </DataGrid.Resources>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Setter Property="FontSize"  Value="13" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="FontSize"  Value="20" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <!--Header column-->
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Sổ đã ghi" Width="100" Binding="{Binding So, Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Tổng" Binding="{Binding SoLuong,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Năm"  Binding="{Binding nam, Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Kỳ" Binding="{Binding ky,Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Đợt"  Binding="{Binding dot, Mode=OneWay}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Máy"  Binding="{Binding may,Mode=OneWay}"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                    <!--handle item click event-->
+
+                </DataGrid>
+            </ScrollViewer>
+            <DataGrid   Grid.Column="1" Name="dtGridDocSos"
+                         AutoGenerateColumns="False"  
+                          HorizontalAlignment="Center" VerticalAlignment="Top" 
+                          Margin="10,0,10,0" 
+                         RowBackground="White"
+                          AlternatingRowBackground="WhiteSmoke" 
+                        GridLinesVisibility="All" 
+                        HorizontalScrollBarVisibility="Auto"  
+                        BorderThickness="2"
+                          BorderBrush="Black"
+                          Background="White" SelectionMode="Single"
+                        FontSize="12"
+                      ColumnWidth="100"
+                      MaxColumnWidth="200"
+                      MinColumnWidth="50"                          >
+
                 <!--Font Color / Style of Column Heading-->
+
                 <DataGrid.Resources>
                     <Style  TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Background" Value="Bisque"></Setter>
@@ -146,23 +157,101 @@
                         </Style.Triggers>
                     </Style>
                 </DataGrid.RowStyle>
+
                 <!--Header column-->
+
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Danh bạ" Width="100" Binding="{Binding DanhBa, Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="TTDHN Cũ" Width="100" Binding="{Binding TTHDNCu,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="TTDHN Mới" Width="100" Binding="{Binding TTHDNMoi,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Code Cũ" Width="70" Binding="{Binding CodeCu,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Code Mới" Width="70" Binding="{Binding CodeMoi,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Chỉ Số Cũ" Width="70" Binding="{Binding CSC,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Chỉ Số Mới" Width="70" Binding="{Binding CSM,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tiêu Thụ Mới" Width="100" Binding="{Binding TieuThuMoi,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="TBTT" Width="70" Binding="{Binding TBTT,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Địa chỉ" Width="*" Binding="{Binding DiaChi,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Ghi chú đọc số" Width="*" Binding="{Binding GhiChuDS,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Danh bạ" Binding="{Binding DanhBa, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="MLT1"  Binding="{Binding MLT1, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="MLT2" Binding="{Binding MLT2, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Số nhà cũ" Binding="{Binding SoNhaCu, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Số nhà mới"  Binding="{Binding SoNhaMoi, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Đường "   Binding="{Binding Duong, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="SĐT"   Binding="{Binding SDT, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Giá biểu"   Binding="{Binding GB, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Định mức"   Binding="{Binding ĐM, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Năm"   Binding="{Binding Duong, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Kỳ"   Binding="{Binding Ky, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Đợt"   Binding="{Binding Dot, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Máy"   Binding="{Binding May, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="TBTT" Binding="{Binding TBTT,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Đường"   Binding="{Binding Duong, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Chỉ Số Cũ" Binding="{Binding CSCu,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Chỉ Số Mới" Binding="{Binding CSMoi,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="TTĐHN cũ"   Binding="{Binding TTDHNCu,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="TTĐHN mới"   Binding="{Binding TTDHNMoi, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tiêu thụ cũ"   Binding="{Binding TieuThuCu, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tiêu thụ mới"   Binding="{Binding TieuThuMoi, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Từ ngày"   Binding="{Binding TuNgay, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Đến ngày"   Binding="{Binding DenNgay, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tiền nước"   Binding="{Binding TienNuoc, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="BVMT"   Binding="{Binding BVMT, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Thuế"   Binding="{Binding Thue, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tổng tiền"   Binding="{Binding TongTien, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Số thân cũ"   Binding="{Binding SoThanCu, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Số thân mới"   Binding="{Binding SoThanMoi, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Hiệu cũ"   Binding="{Binding HieuCu, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Hiệu mới"   Binding="{Binding HieuMoi, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Cỡ cũ"   Binding="{Binding CoCu, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Cỡ mới"   Binding="{Binding CoMoi, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Giếng cũ"   Binding="{Binding GiengCu, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Giếng mới"   Binding="{Binding GiengMoi, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Van 1 cũ"   Binding="{Binding Van1Cu, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Van 1 mới"   Binding="{Binding Van1Moi, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="MV cũ"   Binding="{Binding MVCu, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="MV mới"   Binding="{Binding MVMoi, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="ChiCoCu"   Binding="{Binding ChiCoCu, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="ChiCoMoi"   Binding="{Binding ChiCoMoi, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Chì than cũ"   Binding="{Binding ChiThanCu, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Chì than mới"   Binding="{Binding ChiThanMoi, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Vị trí cũ"   Binding="{Binding ViTriCu, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Vị trí mới"   Binding="{Binding ViTriMoi, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Cấp độ cũ"   Binding="{Binding CapDoCu, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Cấp độ mới"   Binding="{Binding CapDoMoi, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Công dụng cũ"   Binding="{Binding CongDungCu, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Công dụng mới"   Binding="{Binding CongDungMoi, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="DMA cũ"   Binding="{Binding DMACu, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="DMA mới"   Binding="{Binding DMAMoi, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Ghi chú KH"   Binding="{Binding GhiChuKH, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Ghi chú đọc số"   Binding="{Binding GhiChuDS, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Ghi chú TV"   Binding="{Binding GhiChuTV, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Nhân viên ghi" Binding="{Binding NVGHI,Mode=OneWay}"></DataGridTextColumn>
+
                 </DataGrid.Columns>
+
                 <!--handle item click event-->
 
+
             </DataGrid>
+
+            <!--<ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Visible">
+                <DataGrid Name="dtGridDocSos"
+                    ColumnWidth="100"
+                
+                    MinColumnWidth="50">
+                    <DataGrid.Resources>
+                        <Style  TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="Bisque"></Setter>
+                            <Setter Property="FontSize" Value="13"></Setter>
+                            <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                            <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
+                            <Setter Property="BorderBrush" Value="Black"></Setter>
+                            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Setter Property="FontSize"  Value="13" />
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="FontSize"  Value="20" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.RowStyle>
+
+                </DataGrid>
+            </ScrollViewer>-->
         </Grid>
     </Grid>
 </UserControl>
