@@ -50,16 +50,44 @@
             <!--SelectedValue="{Binding Group, Mode=TwoWay}"-->
             <!--ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>-->
             <Button Margin="10,0,0,0" Background="White"  
+                    Click="BtnRefresh_Click" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/refresh.png" Width="30" Height="30"></Image>
+                </StackPanel>
+            </Button>
+            <Button Margin="10,0,0,0" Background="White"  
                     Click="GetData_Click" Name="GetData">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/PhanQuyen;component/Images/download(2).png" Width="20" Height="20"></Image>
                     <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Tải dữ liệu</TextBlock>
                 </StackPanel>
             </Button>
+            <TextBlock Name="txtbStatus" VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" ></TextBlock>
+            <Button Margin="10,0,0,0" Background="White"  
+                    Click="GetData_Click" Name="btnViewInfo" Visibility="Hidden">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/download(2).png" Width="20" Height="20"></Image>
+                    <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Xem thông tin</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Margin="10,0,0,0" Background="White"  
+                    Click="GetData_Click" Name="btnPrintDongCua" Visibility="Hidden">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/download(2).png" Width="20" Height="20"></Image>
+                    <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >In danh sách đóng cửa</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Margin="10,0,0,0" Background="White"  
+                    Click="GetData_Click" Name="btnPrintBatThuong" Visibility="Hidden">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/download(2).png" Width="20" Height="20"></Image>
+                    <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >In danh sách tiêu thụ bất thường</TextBlock>
+                </StackPanel>
+            </Button>
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="600"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -67,11 +95,12 @@
             </Grid.ColumnDefinitions>
 
 
-            <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto">
+            <!--<ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto">-->
                 <DataGrid Grid.Column="0" Name="dtGridSoDaNhan" 
                       SelectedItem="{Binding SelectedSoDaNhan, UpdateSourceTrigger=PropertyChanged}" 
                           AutoGenerateColumns="False"  
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
+                          Height="580" MaxHeight="580"
                           Margin="10,0,10,0" 
                           ItemsSource="{Binding ListSoDaNhan}"
                           AlternatingRowBackground="WhiteSmoke"
@@ -118,10 +147,11 @@
                     <!--handle item click event-->
 
                 </DataGrid>
-            </ScrollViewer>
+            <!--</ScrollViewer>-->
             <DataGrid   Grid.Column="1" Name="dtGridDocSos"
                          AutoGenerateColumns="False"  
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
+                        Height="580" MaxHeight="580"
                           Margin="10,0,10,0" 
                          RowBackground="White"
                           AlternatingRowBackground="WhiteSmoke" 

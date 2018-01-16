@@ -14,10 +14,10 @@
         <elementListCompartment Id="66641156-83c1-4413-9761-792c3022980b" absoluteBounds="1.1400000000000001, 1.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="200b6547-c0db-4d96-9ebb-5764139e986d" absoluteBounds="7.75, 1.75, 2, 1.9631982421875">
+    <classShape Id="6410f730-0c6c-43e1-bc46-8d92fd30fd19" absoluteBounds="8.25, 1.875, 2, 2.1554996744791666">
       <DataClassMoniker Name="/DataClasses1DataContext/SoDaNhan" />
       <nestedChildShapes>
-        <elementListCompartment Id="0ae80bff-920a-47b9-80bd-ba12e1c8fde2" absoluteBounds="7.765, 2.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="331733c3-780b-4e03-acd1-0b59af749f7f" absoluteBounds="8.265, 2.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

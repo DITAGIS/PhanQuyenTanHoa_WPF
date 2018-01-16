@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="GetDataDBViewModel.cs" />
     <Compile Include="GetDataViewModel.cs" />
+    <Compile Include="IconHelper.cs" />
     <Compile Include="UpdateHoaDonViewModel.cs" />
     <Compile Include="ItemSelectedBehavior.cs" />
     <Compile Include="PasswordHelper.cs" />

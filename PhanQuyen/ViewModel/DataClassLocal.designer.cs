@@ -2276,6 +2276,8 @@ namespace ViewModel
 		
 		private string _dot;
 		
+		private int _ToDS;
+		
 		private string _may;
 		
     #region Extensibility Method Definitions
@@ -2292,6 +2294,8 @@ namespace ViewModel
     partial void OnkyChanged();
     partial void OndotChanging(string value);
     partial void OndotChanged();
+    partial void OnToDSChanging(int value);
+    partial void OnToDSChanged();
     partial void OnmayChanging(string value);
     partial void OnmayChanged();
     #endregion
@@ -2397,6 +2401,26 @@ namespace ViewModel
 					this._dot = value;
 					this.SendPropertyChanged("dot");
 					this.OndotChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToDS", DbType="Int NOT NULL")]
+		public int ToDS
+		{
+			get
+			{
+				return this._ToDS;
+			}
+			set
+			{
+				if ((this._ToDS != value))
+				{
+					this.OnToDSChanging(value);
+					this.SendPropertyChanging();
+					this._ToDS = value;
+					this.SendPropertyChanged("ToDS");
+					this.OnToDSChanged();
 				}
 			}
 		}

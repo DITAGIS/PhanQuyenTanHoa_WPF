@@ -36,14 +36,31 @@ namespace PhanQuyen
         }
         private void GetData_Click(object sender, RoutedEventArgs e)
         {
-            GetDataDBViewModel.getInstance.getDocSosByCondition(Int16.Parse(cbbYear.SelectedValue.ToString()), cbbMonth.SelectedValue.ToString(),
-                cbbDate.SelectedValue.ToString(), Int16.Parse(cbbGroup.SelectedValue.ToString()));
+            //GetDataDBViewModel.getInstance.getDocSosByCondition(Int16.Parse(cbbYear.SelectedValue.ToString()), cbbMonth.SelectedValue.ToString(),
+            //    cbbDate.SelectedValue.ToString(), Int16.Parse(cbbGroup.SelectedValue.ToString()));
+            ShowGetDataWindow();
         }
 
         private void dtGridSoDaNhan_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var SeletectedSoDaNhan = dtGridSoDaNhan.SelectedValue as SoDaNhan;
-            dtGridDocSos.ItemsSource = GetDataDBViewModel.getInstance.getDistinctHoaDon(SeletectedSoDaNhan);
+            var docSos = GetDataDBViewModel.getInstance.getDistinctHoaDon(SeletectedSoDaNhan);
+            dtGridDocSos.ItemsSource = docSos;
+            txtbStatus.Text = String.Format("Tổng: {0}   Chưa ghi: {1}   Đã ghi: {2}", docSos.Count, 0, docSos.Count);
+            btnViewInfo.Visibility = Visibility.Visible;
+            btnPrintDongCua.Visibility = Visibility.Visible;
+            btnPrintBatThuong.Visibility = Visibility.Visible;
+        }
+
+        private void BtnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            cbbYear.ItemsSource = GetDataDBViewModel.getInstance.getDistinctYear();
+            cbbMonth.ItemsSource = GetDataDBViewModel.getInstance.getDistinctMonth();
+            cbbDate.ItemsSource = GetDataDBViewModel.getInstance.getDistinctDate();
+            cbbGroup.ItemsSource = GetDataDBViewModel.getInstance.getDistinctGroup();
+            dtGridSoDaNhan.ItemsSource = GetDataDBViewModel.getInstance.getDistinctSoDaNhan(Int16.Parse(cbbYear.SelectedValue.ToString()), cbbMonth.SelectedValue.ToString(),
+                cbbDate.SelectedValue.ToString(), Int16.Parse(cbbGroup.SelectedValue.ToString()));
         }
     }
 }
+

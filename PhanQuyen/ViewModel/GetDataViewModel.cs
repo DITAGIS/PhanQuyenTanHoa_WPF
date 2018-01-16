@@ -59,8 +59,8 @@ namespace ViewModel
             get { return date; }
             set { date = value; OnPropertyChanged("Date"); ListSoDaNhan = GetDataDBViewModel.getInstance.getDistinctSoDaNhan(Year, Month, Date, Group); }
         }
-        private String group;
-        public String Group
+        private int group;
+        public int Group
         {
             get { return group; }
             set { group = value; OnPropertyChanged("Group");
@@ -87,9 +87,9 @@ namespace ViewModel
             get { return listDate; }
             set { listDate = value; OnPropertyChanged("ListDate"); }
         }
-        private ObservableCollection<String> listGroup;
+        private ObservableCollection<int> listGroup;
 
-        public ObservableCollection<String> ListGroup
+        public ObservableCollection<int> ListGroup
         {
             get { return listGroup; }
             set { listGroup = value; OnPropertyChanged("ListGroup"); }

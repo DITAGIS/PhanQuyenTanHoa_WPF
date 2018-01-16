@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PhanQuyen"
         mc:Ignorable="d"
+     
         ResizeMode="NoResize"
         Title="Lấy dữ liệu"     WindowStartupLocation="CenterScreen"
            d:DesignHeight="200" d:DesignWidth="500" Closing="Window_Closing">
@@ -23,25 +24,23 @@
                     HorizontalAlignment="Center"
                     Orientation="Horizontal"  Name="stpCondition"  >
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Năm:"/></TextBlock>
-            <ComboBox x:Name="cbbYear" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50">
-                <!--SelectedValue="{Binding Year, Mode=TwoWay}"-->
-                <!--ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">-->
-
+            <ComboBox x:Name="cbbYear"  IsEditable="True" VerticalAlignment="Center" Width="50" SelectionChanged="cbbYear_SelectionChanged"
+                      >
             </ComboBox>
 
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Kỳ:"/></TextBlock>
-            <ComboBox x:Name="cbbMonth" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45"
-                      SelectedValue="{Binding Month, Mode=TwoWay}" 
-                      ItemsSource="{Binding ListMonth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+            <ComboBox x:Name="cbbMonth"  IsEditable="True" VerticalAlignment="Center" Width="45" SelectionChanged="cbbMonth_SelectionChanged"
+                      />
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Đợt:"/></TextBlock>
-            <ComboBox x:Name="cbbDate" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
-                      SelectedValue="{Binding Date, Mode=TwoWay}" 
-                      ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox x:Name="cbbDate"  IsEditable="True"  VerticalAlignment="Center" Width="45" SelectionChanged="cbbDate_SelectionChanged"
+                     />
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ:"/></TextBlock>
-            <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"></ComboBox>
+            <ComboBox x:Name="cbbGroup"  IsEditable="True"  VerticalAlignment="Center" Width="45" SelectionChanged="cbbGroup_SelectionChanged"
+                      ></ComboBox>
 
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Máy:"/></TextBlock>
-            <ComboBox x:Name="cbbMachine" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"></ComboBox>
+            <ComboBox x:Name="cbbMachine" IsEditable="True"  VerticalAlignment="Center" Width="45" SelectionChanged="cbbMachine_SelectionChanged"
+                      ></ComboBox>
             <!--SelectedValue="{Binding Group, Mode=TwoWay}"-->
             <!--ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>-->
 
