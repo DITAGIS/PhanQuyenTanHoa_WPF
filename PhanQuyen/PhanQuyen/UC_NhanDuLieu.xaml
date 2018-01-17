@@ -122,7 +122,8 @@
                             <Setter Property="FontWeight" Value="SemiBold"></Setter>
                             <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
                             <Setter Property="BorderBrush" Value="Black"></Setter>
-                        </Style>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                    </Style>
 
                     </DataGrid.Resources>
                     <DataGrid.RowStyle>
@@ -174,6 +175,7 @@
                         <Setter Property="FontWeight" Value="SemiBold"></Setter>
                         <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
                         <Setter Property="BorderBrush" Value="Black"></Setter>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
                     </Style>
 
                 </DataGrid.Resources>

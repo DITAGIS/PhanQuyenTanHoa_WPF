@@ -219,7 +219,7 @@ namespace ViewModel
             {
 
             }
-            if (!dataReader.IsClosed)
+            if (dataReader != null && !dataReader.IsClosed)
                 dataReader.Close();
             return danhBas;
         }

@@ -43,8 +43,10 @@ namespace PhanQuyen
 
         private void dtGridSoDaNhan_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var SeletectedSoDaNhan = dtGridSoDaNhan.SelectedValue as SoDaNhan;
-            var docSos = GetDataDBViewModel.getInstance.getDistinctHoaDon(SeletectedSoDaNhan);
+            var selectedSoDaNhan = dtGridSoDaNhan.SelectedValue as SoDaNhan;
+            if (selectedSoDaNhan == null)
+                return;
+            var docSos = GetDataDBViewModel.getInstance.getDistinctHoaDon(selectedSoDaNhan);
             dtGridDocSos.ItemsSource = docSos;
             txtbStatus.Text = String.Format("Tổng: {0}   Chưa ghi: {1}   Đã ghi: {2}", docSos.Count, 0, docSos.Count);
             btnViewInfo.Visibility = Visibility.Visible;

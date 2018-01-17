@@ -17,9 +17,22 @@ namespace ViewModel
     public class HoaDonViewModel : INotifyPropertyChanged
     {
         #region Initialize
+        private Byte[] image;
+        public Byte[] Image
+        {
+            get
+            {
+                return image;
+            }
+            set
+            {
+                image = value;
+                OnPropertyChanged("Image");
+            }
+        }
         private bool hasImage;
         private String status;
-        private HoaDon selectedHoaDon;
+        private DocSoLocal selectedHoaDon;
         private HoaDon12Month hoaDon12Month;
         private int value;
         private String year;
@@ -72,10 +85,20 @@ namespace ViewModel
             get { return listCode; }
             set { listCode = value; OnPropertyChanged("ListCode"); }
         }
+        public ObservableCollection<DocSo_1Ky> listDocSo_1Ky;
+        public ObservableCollection<DocSo_1Ky> ListDocSo_1Ky
+        {
+            get { return listDocSo_1Ky; }
+            set
+            {
+                listDocSo_1Ky = value;
+                OnPropertyChanged("ListDocSo_1Ky");
+            }
+        }
         private void Innitialize()
         {
 
-            listHoaDon = new ObservableCollection<HoaDon>();
+            listHoaDon = new ObservableCollection<DocSoLocal>();
             listYear = new List<String>(HoaDonDBViewModel.getInstance.getDistinctYear());
             Year = User.getInstance.Year;
             listMonth = new List<string>();
@@ -97,11 +120,11 @@ namespace ViewModel
             listMachine = new List<string>();
             listCode = CodeModel.GetCodes();
         }
-        private ObservableCollection<HoaDon> listHoaDon;
+        private ObservableCollection<DocSoLocal> listHoaDon;
 
 
 
-        public ObservableCollection<HoaDon> ListHoaDon
+        public ObservableCollection<DocSoLocal> ListHoaDon
         {
             get { return listHoaDon; }
             set { listHoaDon = value; }
@@ -171,7 +194,7 @@ namespace ViewModel
                     Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
                         value++;
-                        ListHoaDon.Add(HoaDonDBViewModel.getInstance.getHoaDonsIncludeImageByCondition(Year, Month, Date, Group, Machine, danhBa));
+                        ListHoaDon.Add(GetDataDBViewModel.getInstance.getDocSoLocalByDanhBa(danhBa, Int16.Parse(Year), Month, Date, Int16.Parse(Group), Machine));
                         if (value < max)
                             Status = String.Format("Đang tải {0}/{1}", value, max);
                         else
@@ -278,21 +301,24 @@ namespace ViewModel
         }
         public string Machine { get => machine; set => machine = value; }
         public string Code { get => code; set => code = value; }
-        public HoaDon SelectedHoaDon
+        public DocSoLocal SelectedHoaDon
         {
             get
             {
                 if (selectedHoaDon == null)
                     HasImage = false;
-                else if (selectedHoaDon.Image != null)
+                else if (Image != null)
                     HasImage = true;
                 return selectedHoaDon;
             }
             set
             {
+
                 hoaDon12Month = new HoaDon12Month();
                 selectedHoaDon = value;
-                get12Months();
+                Image = GetDataDBViewModel.getInstance.getImageLocalByDanhBa(selectedHoaDon.DanhBa, selectedHoaDon.GIOGHI.GetValueOrDefault());
+                ListDocSo_1Ky = GetDataDBViewModel.getInstance.get12Months(Year, Month, selectedHoaDon.DanhBa);
+        
                 OnPropertyChanged("SelectedHoaDon");
             }
         }
@@ -309,57 +335,7 @@ namespace ViewModel
                 OnPropertyChanged("SelectedHoaDon12Month");
             }
         }
-        private void get12Months()
-        {
-            int count = 0;
-            int year = Int16.Parse(Year);
-            int month = Int16.Parse(Month);
-            String code1 = "";
-            String danhba = "";
-            while (count <= 12)
-            {
-                month--;
-                if (month == 0)
-                {
-                    year--;
-                    month = 12;
-                }
-                HoaDon hoaDon = HoaDonDBViewModel.getInstance.getHoaDons1MonthByCondition(year + "", month + "", selectedHoaDon.DanhBa);
-                SelectedHoaDon12Month.DanhBa = selectedHoaDon.DanhBa;
-                danhba = selectedHoaDon.DanhBa;
-                switch (count)
-                {
 
-                    case 1:
-                        SelectedHoaDon12Month.Code1 = hoaDon.CodeMoi;
-                        code1 = hoaDon.CodeMoi;
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        break;
-                    case 7: break;
-                    case 8: break;
-                    case 9:
-                        break;
-                    case 10: break;
-                    case 11: break;
-                    case 12:
-                        break;
-
-
-                }
-                count++;
-            }
-            SelectedHoaDon12Month = new HoaDon12Month(danhba, code1);
-
-        }
         public int Value { get => value; set => this.value = value; }
         public string Status { get { return status; } set { status = value; OnPropertyChanged("Status"); } }
 

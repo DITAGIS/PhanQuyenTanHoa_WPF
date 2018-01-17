@@ -114,7 +114,26 @@ namespace ViewModel
 
             return result;
         }
+        public DocSoLocal getDocSoLocalByDanhBa(String danhBa, int year, String month, String date, int xGroup, String machine)
+        {
 
+            DataClassesLocalDataContext localContext = new DataClassesLocalDataContext();
+            var data = (from x in localContext.DocSoLocals
+                        where x.DanhBa == danhBa && x.Nam == year && x.Ky == month && x.TODS == xGroup && x.May == machine
+                        select x).Single();
+            return data;
+        }
+        public byte[] getImageLocalByDanhBa(String danhBa, DateTime gioGhi)
+        {
+
+            DataClassesLocalDataContext localContext = new DataClassesLocalDataContext();
+            var data = (from x in localContext.HinhDHNLocals
+                        where x.DanhBo == danhBa && x.CreateDate == gioGhi
+                        select x.Image).FirstOrDefault();
+            if (data == null)
+                return null;
+            return ((System.Data.Linq.Binary)data).ToArray();
+        }
         public ObservableCollection<DocSoLocal> getDistinctHoaDon(SoDaNhan selectedSoDaNhan)
         {
             ObservableCollection<DocSoLocal> listHoaDon = new ObservableCollection<DocSoLocal>();
@@ -245,6 +264,66 @@ namespace ViewModel
                 lstYear.Add(item);
             return lstYear;
         }
+
+        public ObservableCollection<DocSo_1Ky> get12Months(String Year, string Month, string danhBa)
+        {
+            ObservableCollection<DocSo_1Ky> listDocSo = new ObservableCollection<DocSo_1Ky>();
+            try
+            {
+                string pattern = "dd/MM/yyyy";
+                int count = 0;
+                int year = Int16.Parse(Year);
+                int month = Int16.Parse(Month);
+                while (count <= 12)
+                {
+                    month--;
+                    if (month == 0)
+                    {
+                        year--;
+                        month = 12;
+                    }
+                    DataClassesLocalDataContext localDataContext = new DataClassesLocalDataContext();
+                    var data = (from x in localDataContext.DocSoLocals
+                                where x.DanhBa == danhBa && x.Nam == year && x.Ky == (month + "")
+                                select new {x.Ky, x.GIOGHI, x.CodeMoi, x.CSMoi, x.TieuThuMoi }).FirstOrDefault();
+                    listDocSo.Add(new DocSo_1Ky(data.Ky + "/" + year, data.GIOGHI.GetValueOrDefault().ToString(pattern), data.CodeMoi, data.CSMoi +"", data.TieuThuMoi+""));
+                    //switch (count)
+                    //{
+
+                    //    case 1:
+                    //        SelectedHoaDon12Month.Code1 = hoaDon.CodeMoi;
+                    //        code1 = hoaDon.CodeMoi;
+                    //        break;
+                    //    case 2:
+                    //        break;
+                    //    case 3:
+                    //        break;
+                    //    case 4:
+                    //        break;
+                    //    case 5:
+                    //        break;
+                    //    case 6:
+                    //        break;
+                    //    case 7: break;
+                    //    case 8: break;
+                    //    case 9:
+                    //        break;
+                    //    case 10: break;
+                    //    case 11: break;
+                    //    case 12:
+                    //        break;
+
+
+                    //}
+                    count++;
+                }
+                
+            }
+            catch { }
+
+            return listDocSo;
+        }
+
         public ObservableCollection<int> getDistinctYearServer()
         {
             DataClassServerDataContext serverDataContext = new DataClassServerDataContext();
@@ -301,12 +380,12 @@ namespace ViewModel
         {
             DataClassesLocalDataContext localDataContext = new DataClassesLocalDataContext();
             ObservableCollection<int> lstGroup = new ObservableCollection<int>();
-            
-                var items = (from x in localDataContext.DocSoLocals
-                             select x.TODS).Distinct().ToList();
-                foreach (int item in items)
-                    lstGroup.Add(item);
-         
+
+            var items = (from x in localDataContext.DocSoLocals
+                         select x.TODS).Distinct().ToList();
+            foreach (int item in items)
+                lstGroup.Add(item);
+
             return lstGroup;
         }
         public ObservableCollection<int> getDistinctGroupServer(int year, String month, String date)

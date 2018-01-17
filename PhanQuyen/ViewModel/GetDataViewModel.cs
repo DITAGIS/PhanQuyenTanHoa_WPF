@@ -37,15 +37,19 @@ namespace ViewModel
             {
                 selectedSoDaNhan = value;
                 OnPropertyChanged("SelectedSoDaNhan");
-                ListHoaDon = GetDataDBViewModel.getInstance.getDistinctHoaDon(selectedSoDaNhan);
+                if (selectedSoDaNhan != null)
+                    ListHoaDon = GetDataDBViewModel.getInstance.getDistinctHoaDon(selectedSoDaNhan);
             }
         }
         private int year;
         public int Year
         {
             get { return year; }
-            set { year = value; OnPropertyChanged("Year");
-                ListSoDaNhan = GetDataDBViewModel.getInstance.getDistinctSoDaNhan(Year, Month, Date, Group); }
+            set
+            {
+                year = value; OnPropertyChanged("Year");
+                ListSoDaNhan = GetDataDBViewModel.getInstance.getDistinctSoDaNhan(Year, Month, Date, Group);
+            }
         }
         private String month;
         public String Month
@@ -63,8 +67,11 @@ namespace ViewModel
         public int Group
         {
             get { return group; }
-            set { group = value; OnPropertyChanged("Group");
-                ListSoDaNhan = GetDataDBViewModel.getInstance.getDistinctSoDaNhan(Year, Month, Date, Group); }
+            set
+            {
+                group = value; OnPropertyChanged("Group");
+                ListSoDaNhan = GetDataDBViewModel.getInstance.getDistinctSoDaNhan(Year, Month, Date, Group);
+            }
         }
         private ObservableCollection<int> listYear;
 
