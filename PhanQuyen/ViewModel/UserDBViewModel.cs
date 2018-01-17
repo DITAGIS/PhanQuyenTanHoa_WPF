@@ -44,7 +44,7 @@ namespace ViewModel
                     User.getInstance.Password = password;
                     User.getInstance.UserName = dataReader["username"].ToString();
                     User.getInstance.UserGroup = dataReader["usergroup"].ToString();
-                    User.getInstance.ToID = dataReader["toid"].ToString();
+                    User.getInstance.ToID = dataReader["toid"].ToString().Trim();
                     User.getInstance.MayID = dataReader["mayid"].ToString();
                 }
             }

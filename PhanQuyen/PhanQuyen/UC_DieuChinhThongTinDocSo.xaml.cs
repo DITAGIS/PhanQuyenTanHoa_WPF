@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Model;
 using ViewModel;
 namespace PhanQuyen
 {
@@ -23,20 +24,61 @@ namespace PhanQuyen
     /// </summary>
     public partial class UC_DieuChinhThongTinDocSo : UserControl
     {
+        private User user;
+        private int year, group;
+        private String month, date, machine;
 
+        private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            month = cbbMonth.SelectedValue.ToString();
+            cbbDate.ItemsSource = GetDataDBViewModel.getInstance.getDistinctDateServer(year, month);
+            cbbDate.SelectedValue = User.getInstance.Date;
+        }
+
+        private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            date = cbbDate.SelectedValue.ToString();
+        }
+
+        private void cbbGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            short x;
+            if (cbbGroup.SelectedValue == null)
+                group = -1;
+            else if (Int16.TryParse(cbbGroup.SelectedValue.ToString(), out x))
+                group = Int16.Parse(cbbGroup.SelectedValue.ToString());
+            else group = x;
+            cbbMachine.ItemsSource = GetDataDBViewModel.getInstance.getDistinctMachineServer(year, month, date, group);
+        }
+
+        private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            year = Int16.Parse(cbbYear.SelectedValue.ToString());
+            cbbMonth.ItemsSource = GetDataDBViewModel.getInstance.getDistinctMonthServer(year);
+        }
 
         public UC_DieuChinhThongTinDocSo()
         {
             InitializeComponent();
-            //cbbYear.Items.Add("2017");
-            //cbbMonth.Items.Add("12");
-            //cbbDate.Items.Add("08");
-            //cbbGroup.Items.Add("' or '1'= '1");
 
-            //cbbMachine.Items.Add("01");
         }
 
-     
+        public UC_DieuChinhThongTinDocSo(User user)
+        {
+            this.user = user;
+            InitializeComponent();
+            cbbYear.ItemsSource = GetDataDBViewModel.getInstance.getDistinctYearServer();
+            cbbYear.SelectedValue = User.getInstance.Year;
+
+            if (User.getInstance.ToID == null)
+            { }
+            else if (User.getInstance.ToID.Equals(""))
+                cbbGroup.ItemsSource = ToID.GetToID();
+            else
+                cbbGroup.Items.Add(User.getInstance.ToID);
+
+
+        }
     }
     public class ByteArrayImageConverter : IValueConverter
     {

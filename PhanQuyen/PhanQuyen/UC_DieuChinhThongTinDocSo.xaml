@@ -79,22 +79,26 @@
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Năm:"/></TextBlock>
                     <ComboBox x:Name="cbbYear" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
                       SelectedValue="{Binding Year, Mode=TwoWay}" 
-                      ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                              
+                      ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbYear_SelectionChanged">
 
                     </ComboBox>
 
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Kỳ:"/></TextBlock>
                     <ComboBox x:Name="cbbMonth" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45"
                       SelectedValue="{Binding Month, Mode=TwoWay}" 
-                      ItemsSource="{Binding ListMonth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                              
+                      ItemsSource="{Binding ListMonth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbMonth_SelectionChanged" />
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Đợt:"/></TextBlock>
                     <ComboBox x:Name="cbbDate" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
                       SelectedValue="{Binding Date, Mode=TwoWay}" 
-                      ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                              
+                      ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbDate_SelectionChanged"/>
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ:"/></TextBlock>
                     <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
                           SelectedValue="{Binding Group, Mode=TwoWay}" 
-                      ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                              
+                      ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbGroup_SelectionChanged"/>
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Máy:"/></TextBlock>
                     <ComboBox x:Name="cbbMachine" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45" 
                       SelectedValue="{Binding Machine, Mode=TwoWay}" 

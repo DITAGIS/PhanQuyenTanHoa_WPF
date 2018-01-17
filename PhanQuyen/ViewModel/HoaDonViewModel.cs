@@ -35,9 +35,9 @@ namespace ViewModel
         private DocSoLocal selectedHoaDon;
         private HoaDon12Month hoaDon12Month;
         private int value;
-        private String year;
-        private List<String> listYear;
-        public List<String> ListYear
+        private int year;
+        private ObservableCollection<int> listYear;
+        public ObservableCollection<int> ListYear
         {
             get { return listYear; }
             set
@@ -47,8 +47,8 @@ namespace ViewModel
             }
         }
         private String month;
-        private List<String> listMonth;
-        public List<String> ListMonth
+        private ObservableCollection<String> listMonth;
+        public ObservableCollection<String> ListMonth
         {
             get { return listMonth; }
             set
@@ -58,22 +58,22 @@ namespace ViewModel
             }
         }
         private String date;
-        private List<String> listDate;
-        public List<String> ListDate
+        private ObservableCollection<String> listDate;
+        public ObservableCollection<String> ListDate
         {
             get { return listDate; }
             set { listDate = value; OnPropertyChanged("ListDate"); }
         }
         private String group;
-        private List<String> listGroup;
-        public List<String> ListGroup
+        private ObservableCollection<int> listGroup;
+        public ObservableCollection<int> ListGroup
         {
             get { return listGroup; }
             set { listGroup = value; OnPropertyChanged("ListGroup"); }
         }
         private String machine;
-        private List<String> listMachine;
-        public List<String> ListMachine
+        private ObservableCollection<String> listMachine;
+        public ObservableCollection<String> ListMachine
         {
             get { return listMachine; }
             set { listMachine = value; OnPropertyChanged("ListMachine"); }
@@ -99,25 +99,12 @@ namespace ViewModel
         {
 
             listHoaDon = new ObservableCollection<DocSoLocal>();
-            listYear = new List<String>(HoaDonDBViewModel.getInstance.getDistinctYear());
-            Year = User.getInstance.Year;
-            listMonth = new List<string>();
-            for (int i = 1; i <= 12; i++)
-                if (i < 10)
-                    listMonth.Add("0" + i);
-                else listMonth.Add(i.ToString());
-            Month = User.getInstance.Month;
-            listDate = new List<string>();
-            for (int i = 1; i <= 20; i++)
-                if (i < 10)
-                    listDate.Add("0" + i);
-                else listDate.Add(i.ToString());
-            Date = User.getInstance.Date;
-            listGroup = new List<string>(HoaDonDBViewModel.getInstance.getDistinctGroup());
-            foreach (String toID in ToID.GetToID())
-                if (toID.Equals(User.getInstance.ToID))
-                    ListGroup.Add(toID);
-            listMachine = new List<string>();
+            //listMonth = GetDataDBViewModel.getInstance.getDistinctMonthServer(Year);
+            //Month = User.getInstance.Month;
+            //listDate = GetDataDBViewModel.getInstance.getDistinctDateServer(Year, Month);
+            //Date = User.getInstance.Date;
+            //listGroup = GetDataDBViewModel.getInstance.getDistinctGroupServer(Year, Month, Date);
+            //listMachine = GetDataDBViewModel.getInstance.getDistinctMachineServer(Year, Month, Date, Int16.Parse(User.getInstance.UserGroup));
             listCode = CodeModel.GetCodes();
         }
         private ObservableCollection<DocSoLocal> listHoaDon;
@@ -183,7 +170,7 @@ namespace ViewModel
 
                 Status = "Đang tính toán dữ liệu...";
 
-                List<String> danhBas = HoaDonDBViewModel.getInstance.getDanhBasByCondition(Int16.Parse(Year), Month, Date, Int16.Parse(Group), Machine);
+                List<String> danhBas = HoaDonDBViewModel.getInstance.getDanhBasByCondition(Year, Month, Date, Int16.Parse(Group), Machine);
                 max = danhBas.Count;
                 value = 0;
 
@@ -194,7 +181,7 @@ namespace ViewModel
                     Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
                         value++;
-                        ListHoaDon.Add(GetDataDBViewModel.getInstance.getDocSoLocalByDanhBa(danhBa, Int16.Parse(Year), Month, Date, Int16.Parse(Group), Machine));
+                        ListHoaDon.Add(GetDataDBViewModel.getInstance.getDocSoLocalByDanhBa(danhBa, Year, Month, Date, Int16.Parse(Group), Machine));
                         if (value < max)
                             Status = String.Format("Đang tải {0}/{1}", value, max);
                         else
@@ -239,7 +226,7 @@ namespace ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
 
         }
-        public string Year
+        public int Year
         {
             get
             {
@@ -248,15 +235,7 @@ namespace ViewModel
             set
             {
                 year = value;
-                //Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                //{
-                //    listMonth.Clear();
-                //    listMonth.AddRange(HoaDonDBViewModel.getInstance.getDistinctMonth(year));
-                //    if (ListMonth.Count > 0)
-                //        month = listMonth[0];
-
-                //}), DispatcherPriority.Loaded);
-
+               
             }
         }
         public string Month
@@ -268,13 +247,7 @@ namespace ViewModel
             set
             {
                 month = value;
-                //Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                //{
-                //    listDate.Clear();
-                //    listDate.AddRange(HoaDonDBViewModel.getInstance.getDistinctDate(year, month));
-                //    if (listDate.Count > 0)
-                //        date = listDate[0];
-                //}), DispatcherPriority.Loaded);
+              
 
             }
         }
@@ -288,15 +261,7 @@ namespace ViewModel
             set
             {
                 group = value;
-                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    listMachine.Clear();
-                    listMachine.AddRange(HoaDonDBViewModel.getInstance.getDistinctMachine(group));
-                    if (listMachine.Count > 0)
-                        machine = listMachine[0];
-
-                }), DispatcherPriority.Loaded);
-
+               
             }
         }
         public string Machine { get => machine; set => machine = value; }
@@ -309,6 +274,8 @@ namespace ViewModel
                     HasImage = false;
                 else if (Image != null)
                     HasImage = true;
+                else
+                    HasImage = false;
                 return selectedHoaDon;
             }
             set
@@ -318,7 +285,7 @@ namespace ViewModel
                 selectedHoaDon = value;
                 Image = GetDataDBViewModel.getInstance.getImageLocalByDanhBa(selectedHoaDon.DanhBa, selectedHoaDon.GIOGHI.GetValueOrDefault());
                 ListDocSo_1Ky = GetDataDBViewModel.getInstance.get12Months(Year, Month, selectedHoaDon.DanhBa);
-        
+
                 OnPropertyChanged("SelectedHoaDon");
             }
         }

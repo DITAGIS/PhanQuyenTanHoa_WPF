@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Model;
 
 namespace PhanQuyen
 {
@@ -23,11 +24,18 @@ namespace PhanQuyen
         UC_InPhieuTieuThuKH uc_InPhieuTieuThuKH;
         UC_NhanDuLieu uc_NhanDuLieu;
         UC_CapNhatHoaDon uc_CapNhatHoaDon;
+        private User user;
+
         public MainWindow()
         {
 
             InitializeComponent();
 
+        }
+
+        public MainWindow(User user)
+        {
+            this.user = user; InitializeComponent();
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -60,7 +68,7 @@ namespace PhanQuyen
         private void ribBtnDieuChinhThongTinDocSo_Click(object sender, RoutedEventArgs e)
         {
             if (uc_DieuChinhThonTinDocSo == null)
-                uc_DieuChinhThonTinDocSo = new UC_DieuChinhThongTinDocSo();
+                uc_DieuChinhThonTinDocSo = new UC_DieuChinhThongTinDocSo(user);
             uc_DieuChinhThonTinDocSo.Height = stkMain.ActualHeight;
             uc_DieuChinhThonTinDocSo.Width = stkMain.ActualWidth;
             if (stkMain.Children.Count == 1)

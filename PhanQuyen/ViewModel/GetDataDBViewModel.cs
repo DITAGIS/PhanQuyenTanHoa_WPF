@@ -265,14 +265,13 @@ namespace ViewModel
             return lstYear;
         }
 
-        public ObservableCollection<DocSo_1Ky> get12Months(String Year, string Month, string danhBa)
+        public ObservableCollection<DocSo_1Ky> get12Months(int year, string Month, string danhBa)
         {
             ObservableCollection<DocSo_1Ky> listDocSo = new ObservableCollection<DocSo_1Ky>();
             try
             {
                 string pattern = "dd/MM/yyyy";
                 int count = 0;
-                int year = Int16.Parse(Year);
                 int month = Int16.Parse(Month);
                 while (count <= 12)
                 {
@@ -285,8 +284,8 @@ namespace ViewModel
                     DataClassesLocalDataContext localDataContext = new DataClassesLocalDataContext();
                     var data = (from x in localDataContext.DocSoLocals
                                 where x.DanhBa == danhBa && x.Nam == year && x.Ky == (month + "")
-                                select new {x.Ky, x.GIOGHI, x.CodeMoi, x.CSMoi, x.TieuThuMoi }).FirstOrDefault();
-                    listDocSo.Add(new DocSo_1Ky(data.Ky + "/" + year, data.GIOGHI.GetValueOrDefault().ToString(pattern), data.CodeMoi, data.CSMoi +"", data.TieuThuMoi+""));
+                                select new { x.Ky, x.GIOGHI, x.CodeMoi, x.CSMoi, x.TieuThuMoi }).FirstOrDefault();
+                    listDocSo.Add(new DocSo_1Ky(data.Ky + "/" + year, data.GIOGHI.GetValueOrDefault().ToString(pattern), data.CodeMoi, data.CSMoi + "", data.TieuThuMoi + ""));
                     //switch (count)
                     //{
 
@@ -317,7 +316,7 @@ namespace ViewModel
                     //}
                     count++;
                 }
-                
+
             }
             catch { }
 
@@ -329,7 +328,7 @@ namespace ViewModel
             DataClassServerDataContext serverDataContext = new DataClassServerDataContext();
             ObservableCollection<int> lstYear = new ObservableCollection<int>();
             var items = (from x in serverDataContext.DocSos
-                         select x.Nam).Distinct().ToList();
+                         select x.Nam).Distinct().OrderByDescending(x => x).ToList();
             foreach (int item in items)
                 lstYear.Add(item);
             return lstYear;
@@ -403,7 +402,13 @@ namespace ViewModel
         {
             DataClassServerDataContext serverDataContext = new DataClassServerDataContext();
             ObservableCollection<String> lstMachine = new ObservableCollection<String>();
-            var items = (from x in serverDataContext.DocSos
+            List<String> items;
+            if (xGroup == 0)
+               items = (from x in serverDataContext.DocSos
+                   where x.Nam == year && x.Ky == month && x.Dot == date
+                   select x.May).Distinct().ToList();
+            else
+                items = (from x in serverDataContext.DocSos
                          where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup
                          select x.May).Distinct().ToList();
             foreach (String item in items)

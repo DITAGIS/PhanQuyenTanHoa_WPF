@@ -10,7 +10,7 @@ namespace Model
     {
         public static List<String> GetToID()
         {
-            List<String> list = new List<string>() { "1", "2", "3", "4", "Tất cả" };
+            List<String> list = new List<string>() { "Tất cả", "1", "2", "3", "4" };
             return list;
         }
     }

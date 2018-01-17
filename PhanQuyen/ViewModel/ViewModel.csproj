@@ -74,7 +74,6 @@
     <Compile Include="PasswordHelper.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="UserDBViewModel.cs" />
-    <Compile Include="UserViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
