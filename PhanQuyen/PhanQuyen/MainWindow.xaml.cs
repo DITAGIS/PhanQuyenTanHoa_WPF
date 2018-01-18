@@ -24,6 +24,7 @@ namespace PhanQuyen
         UC_InPhieuTieuThuKH uc_InPhieuTieuThuKH;
         UC_NhanDuLieu uc_NhanDuLieu;
         UC_CapNhatHoaDon uc_CapNhatHoaDon;
+        UC_ChuyenMayDocSo uc_ChuyenMayDocSo;
         private User user;
 
         public MainWindow()
@@ -64,13 +65,42 @@ namespace PhanQuyen
                 uc_DieuChinhThonTinDocSo.Height = stkMain.ActualHeight;
                 uc_DieuChinhThonTinDocSo.Width = stkMain.ActualWidth;
             }
+            if (uc_ChuyenMayDocSo != null)
+            {
+                uc_ChuyenMayDocSo.Height = stkMain.ActualHeight;
+                uc_ChuyenMayDocSo.Width = stkMain.ActualWidth;
+            }
+            if (uc_InPhieuTieuThuKH != null)
+            {
+                uc_InPhieuTieuThuKH.Height = stkMain.ActualHeight;
+                uc_InPhieuTieuThuKH.Width = stkMain.ActualWidth;
+            }
+            if (uc_CapNhatHoaDon != null)
+            {
+                uc_CapNhatHoaDon.Height = stkMain.ActualHeight;
+                uc_CapNhatHoaDon.Width = stkMain.ActualWidth;
+            }
+            if (uc_NhanDuLieu != null)
+            {
+                uc_NhanDuLieu.Height = stkMain.ActualHeight;
+                uc_NhanDuLieu.Width = stkMain.ActualWidth;
+            }
+        }
+
+        private void ribBtnChuyenMayDocSo_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_ChuyenMayDocSo == null)
+                uc_ChuyenMayDocSo = new UC_ChuyenMayDocSo();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_ChuyenMayDocSo);
         }
         private void ribBtnDieuChinhThongTinDocSo_Click(object sender, RoutedEventArgs e)
         {
             if (uc_DieuChinhThonTinDocSo == null)
                 uc_DieuChinhThonTinDocSo = new UC_DieuChinhThongTinDocSo(user);
-            uc_DieuChinhThonTinDocSo.Height = stkMain.ActualHeight;
-            uc_DieuChinhThonTinDocSo.Width = stkMain.ActualWidth;
+            resizeUC();
             if (stkMain.Children.Count == 1)
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_DieuChinhThonTinDocSo);
@@ -80,8 +110,7 @@ namespace PhanQuyen
         {
             if (uc_InPhieuTieuThuKH == null)
                 uc_InPhieuTieuThuKH = new UC_InPhieuTieuThuKH();
-            uc_InPhieuTieuThuKH.Height = stkMain.ActualHeight;
-            uc_InPhieuTieuThuKH.Width = stkMain.ActualWidth;
+            resizeUC();
             if (stkMain.Children.Count == 1)
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_InPhieuTieuThuKH);
@@ -92,8 +121,7 @@ namespace PhanQuyen
         {
             if (uc_CapNhatHoaDon == null)
                 uc_CapNhatHoaDon = new UC_CapNhatHoaDon();
-            uc_CapNhatHoaDon.Height = stkMain.ActualHeight;
-            uc_CapNhatHoaDon.Width = stkMain.ActualWidth;
+            resizeUC();
             if (stkMain.Children.Count == 1)
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_CapNhatHoaDon);
@@ -104,8 +132,7 @@ namespace PhanQuyen
         {
             if (uc_NhanDuLieu == null)
                 uc_NhanDuLieu = new UC_NhanDuLieu();
-            uc_NhanDuLieu.Height = stkMain.ActualHeight;
-            uc_NhanDuLieu.Width = stkMain.ActualWidth;
+            resizeUC();
             if (stkMain.Children.Count == 1)
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_NhanDuLieu);
@@ -128,6 +155,7 @@ namespace PhanQuyen
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
         }
+
     }
 
     public static class CustomCommands

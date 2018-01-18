@@ -247,11 +247,33 @@
                         <!--handle item click event-->
 
                     </DataGrid>
-                    <Border BorderThickness="1" Grid.Column="1" Background="White">
-                        <Image  Source="{Binding Path=Image, 
-                        Converter={StaticResource ResourceKey=ImageConvert}}" Stretch="UniformToFill" 
-                            ></Image>
-                    </Border>
+                    <Grid Grid.Column="1" Name="stkImage" Margin="0,0,20,0">
+
+                        <Border BorderThickness="1" Grid.Column="1" Background="White" Name="border"
+                                 ClipToBounds="True"
+                                  Height="Auto"
+                                   Width="Auto">
+                            <Image Name="image" 
+                                   Height="Auto"
+                                   Width="Auto"
+                                   Source="{Binding Path=Image, 
+                        Converter={StaticResource ResourceKey=ImageConvert}}" Stretch="UniformToFill"  >
+
+                            </Image>
+                        </Border>
+                        <Popup Placement="Right" IsOpen="True">
+                            <Button Background="AliceBlue" Click="btnRotate_Click"
+                                Name="btnRotate"
+                                    Height="30"
+                                    Width="30">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="/PhanQuyen;component/Images/rotate.png" Width="20" Height="20"></Image>
+                                </StackPanel>
+                            </Button>
+
+                        </Popup>
+
+                    </Grid>
                     <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Text="Chưa có hình ảnh">
                         <TextBlock.Style>
                             <Style>

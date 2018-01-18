@@ -5,26 +5,59 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhanQuyen"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="1000">
+           xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms" 
+     d:DesignHeight="500" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBox}" x:Key="styleTxtb">
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsFocused" Value="True"></Condition>
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="FontSize" Value="20"></Setter>
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal"  Name="stpCondition"  >
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Năm:"/></TextBlock>
+            <ComboBox x:Name="cbbYear" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
+                      SelectedValue="{Binding Year, Mode=TwoWay}" 
+                      ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbYear_SelectionChanged">
+            </ComboBox>
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
+            <!--Danh bạ-->
+            <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbUsername" 
+                      Text="{Binding SelectedHoaDon.DanhBa}"
+                          Style="{StaticResource styleTxtb}"/>
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Ghi chú:"/></TextBlock>
+            <!--Ghi chú-->
+            <TextBox  FontSize="15" Height="30" Width="300" VerticalAlignment="Center" VerticalContentAlignment="Center"  
+                      Text="{Binding SelectedHoaDon.DanhBa}"
+                          Style="{StaticResource styleTxtb}"/>
 
-        <Border Grid.Column="1" Grid.RowSpan="4" BorderBrush="Black" 
-        BorderThickness="1,0,0,0" Background="{x:Null}" />
+            
+            <Button Margin="30,0,0,0" Background="White" Name="btnPrint">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/printer.png" Width="20" Height="20"></Image>
+                    <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">In phiếu tiêu thụ KH</TextBlock>
+                </StackPanel>
+            </Button>
 
-        <TextBlock Grid.Row="0" Grid.Column="0">Row 0, Column 1</TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="0">Row 1, Column 1</TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="0">Row 2, Column 1</TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="0">Row 3, Column 1</TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="1" Grid.RowSpan="4">Column 1</TextBlock>
+        </StackPanel>
+        <WindowsFormsHost Grid.Row="1" Margin="0,20,0,0">
+            <rv:ReportViewer x:Name="_reportViewer"/>
+        </WindowsFormsHost>
     </Grid>
 </UserControl>

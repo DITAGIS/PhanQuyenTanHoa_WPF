@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace PhanQuyen
 {
     /// <summary>
-    /// Interaction logic for UC_InPhieuTieuThuKH.xaml
+    /// Interaction logic for UC_ChuyenMayDocSo.xaml
     /// </summary>
-    public partial class UC_InPhieuTieuThuKH : UserControl
+    public partial class UC_ChuyenMayDocSo : UserControl
     {
-        public UC_InPhieuTieuThuKH()
+        public UC_ChuyenMayDocSo()
         {
             InitializeComponent();
-        }
-
-        private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

@@ -52,6 +52,8 @@
             <RibbonTab KeyTip="H" Header="Hệ thống" IsSelected="True" >
 
                 <RibbonGroup Header="Quản lý">
+                    <RibbonButton Label="Chuyển máy đọc số" LargeImageSource="/PhanQuyen;component/Images/smartphone.png"
+                                Click="ribBtnChuyenMayDocSo_Click"  ></RibbonButton>
                     <RibbonButton Label="Quản lý nhân viên đọc số" LargeImageSource="/PhanQuyen;component/Images/nhanviendocso.png"></RibbonButton>
                     <RibbonButton Label="Quản lý user"  LargeImageSource="/PhanQuyen;component/Images/quanlynhanvien.png"></RibbonButton>
                 </RibbonGroup>

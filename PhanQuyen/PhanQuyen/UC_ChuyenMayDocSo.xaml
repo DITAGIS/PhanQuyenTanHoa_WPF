@@ -1,0 +1,203 @@
+﻿<UserControl x:Class="PhanQuyen.UC_ChuyenMayDocSo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PhanQuyen"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBox}" x:Key="styleTxtb">
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsFocused" Value="True"></Condition>
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="FontSize" Value="20"></Setter>
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Center">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Height="Auto"
+              Grid.Row="0" Margin="10">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" 
+                        Grid.Column="0"
+                        VerticalAlignment="Center" Orientation="Horizontal"  >
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Tổ:"/></TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="0" 
+                        Grid.Column="1"
+                        VerticalAlignment="Center" Orientation="Horizontal"    >
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Đợt:"/></TextBlock>
+                <ComboBox x:Name="cbbDate" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
+                      >
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" 
+                        Grid.Column="0"
+                        VerticalAlignment="Center" Orientation="Horizontal"    >
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="00,0,10,0"><Run Text="Chuyển từ máy:"/></TextBlock>
+                <ComboBox x:Name="cbbMachineLeft" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
+                      SelectedValue="{Binding Year, Mode=TwoWay}" 
+                      ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" >
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" 
+                        Grid.Column="1"
+                        VerticalAlignment="Center" Orientation="Horizontal"    >
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Sang máy:"/></TextBlock>
+                <ComboBox x:Name="cbbMachineRight" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
+                      SelectedValue="{Binding Year, Mode=TwoWay}" 
+                      ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" >
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+        <Grid Height="Auto"
+              Grid.Row="1"
+              Margin="0,20,0,0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <DataGrid Grid.Column="0" Name="dtGridLeft" 
+                      SelectedItem="{Binding SelectedSoDaNhan, UpdateSourceTrigger=PropertyChanged}" 
+                          AutoGenerateColumns="False"  
+                          HorizontalAlignment="Center" VerticalAlignment="Top" 
+                          Height="580" MaxHeight="580"
+                          Margin="10,0,10,0" 
+                          ItemsSource="{Binding ListSoDaNhan}"
+                          AlternatingRowBackground="WhiteSmoke"
+                      ColumnWidth="100"
+                      MaxColumnWidth="250"
+                      MinColumnWidth="30"
+                          RowBackground="White"
+                          GridLinesVisibility="All"
+                          HorizontalScrollBarVisibility="Auto"
+                          BorderThickness="2"
+                          BorderBrush="Black"
+                          Background="White" SelectionMode="Single"
+                          FontSize="12" >
+                <!--Font Color / Style of Column Heading-->
+                <DataGrid.Resources>
+                    <Style  TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="Bisque"></Setter>
+                        <Setter Property="FontSize" Value="13"></Setter>
+                        <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                        <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
+                        <Setter Property="BorderBrush" Value="Black"></Setter>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                    </Style>
+
+                </DataGrid.Resources>
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="FontSize"  Value="13" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="FontSize"  Value="20" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+                <!--Header column-->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Danh bạ"  Binding="{Binding So, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Hợp đồng" Binding="{Binding SoLuong,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="MLT"  Binding="{Binding nam, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Địa chỉ" Width="150" Binding="{Binding ky,Mode=OneWay}"></DataGridTextColumn>
+                </DataGrid.Columns>
+                <!--handle item click event-->
+
+            </DataGrid>
+            <StackPanel Orientation="Vertical"
+                        Grid.Column="1" VerticalAlignment="Center">
+                <Button Margin="10,0,0,0" Background="White"  
+                    >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/PhanQuyen;component/Images/next.png" Width="30" Height="30"></Image>
+                    </StackPanel>
+                </Button>
+                <Button Margin="10,10,0,0" Background="White"  
+                   >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/PhanQuyen;component/Images/previous.png" Width="30" Height="30"></Image>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <DataGrid Grid.Column="2" Name="dtGridRight" 
+                      SelectedItem="{Binding SelectedSoDaNhan, UpdateSourceTrigger=PropertyChanged}" 
+                          AutoGenerateColumns="False"  
+                          HorizontalAlignment="Center" VerticalAlignment="Top" 
+                          Height="580" MaxHeight="580"
+                          Margin="10,0,10,0" 
+                          ItemsSource="{Binding ListSoDaNhan}"
+                          AlternatingRowBackground="WhiteSmoke"
+                      ColumnWidth="100"
+                      MaxColumnWidth="250"
+                      MinColumnWidth="30"
+                          RowBackground="White"
+                          GridLinesVisibility="All"
+                          HorizontalScrollBarVisibility="Auto"
+                          BorderThickness="2"
+                          BorderBrush="Black"
+                          Background="White" SelectionMode="Single"
+                          FontSize="12" >
+                <!--Font Color / Style of Column Heading-->
+                <DataGrid.Resources>
+                    <Style  TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="Bisque"></Setter>
+                        <Setter Property="FontSize" Value="13"></Setter>
+                        <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                        <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
+                        <Setter Property="BorderBrush" Value="Black"></Setter>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                    </Style>
+
+                </DataGrid.Resources>
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="FontSize"  Value="13" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="FontSize"  Value="20" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+                <!--Header column-->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Danh bạ"  Binding="{Binding So, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Hợp đồng" Binding="{Binding SoLuong,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="MLT"  Binding="{Binding nam, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Địa chỉ" Width="150" Binding="{Binding ky,Mode=OneWay}"></DataGridTextColumn>
+                </DataGrid.Columns>
+                <!--handle item click event-->
+
+            </DataGrid>
+        </Grid>
+
+    </Grid>
+</UserControl>

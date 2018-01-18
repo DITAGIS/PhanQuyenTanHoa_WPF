@@ -27,7 +27,21 @@ namespace PhanQuyen
         private User user;
         private int year, group;
         private String month, date, machine;
+        private Point origin;  // Original Offset of image
+        private Point start;   // Original Position of the mouse
+        private int rotate;
+        public UC_DieuChinhThongTinDocSo()
+        {
+            InitializeComponent();
+            rotate = 0;
 
+        }
+        private void btnRotate_Click(object sender, RoutedEventArgs e)
+        {
+            rotate += 90;
+            RotateTransform rotateTransform = new RotateTransform(rotate);
+            image.LayoutTransform = rotateTransform;
+        }
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             month = cbbMonth.SelectedValue.ToString();
@@ -40,6 +54,8 @@ namespace PhanQuyen
             date = cbbDate.SelectedValue.ToString();
         }
 
+
+
         private void cbbGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             short x;
@@ -51,17 +67,15 @@ namespace PhanQuyen
             cbbMachine.ItemsSource = GetDataDBViewModel.getInstance.getDistinctMachineServer(year, month, date, group);
         }
 
+
+
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             year = Int16.Parse(cbbYear.SelectedValue.ToString());
             cbbMonth.ItemsSource = GetDataDBViewModel.getInstance.getDistinctMonthServer(year);
         }
 
-        public UC_DieuChinhThongTinDocSo()
-        {
-            InitializeComponent();
 
-        }
 
         public UC_DieuChinhThongTinDocSo(User user)
         {
@@ -94,7 +108,7 @@ namespace PhanQuyen
                 image.BeginInit();
                 image.StreamSource = stream;
                 image.EndInit();
-
+                
                 return image;
             }
 
