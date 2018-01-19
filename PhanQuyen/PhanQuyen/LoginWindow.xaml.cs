@@ -28,7 +28,7 @@ namespace PhanQuyen
         public LogInWindow()
         {
             InitializeComponent();
-            cbbYear.ItemsSource = GetDataDBViewModel.getInstance.getDistinctYearServer();
+            cbbYear.ItemsSource = GetDataDBViewModel.Instance.getDistinctYearServer();
 
 
         }
@@ -65,7 +65,7 @@ namespace PhanQuyen
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             year = Int16.Parse(cbbYear.SelectedValue.ToString());
-            cbbMonth.ItemsSource = GetDataDBViewModel.getInstance.getDistinctMonthServer(year);
+            cbbMonth.ItemsSource = GetDataDBViewModel.Instance.getDistinctMonthServer(year);
         }
 
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -76,7 +76,7 @@ namespace PhanQuyen
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             month = cbbMonth.SelectedValue.ToString();
-            cbbDate.ItemsSource = GetDataDBViewModel.getInstance.getDistinctDateServer(year, month);
+            cbbDate.ItemsSource = GetDataDBViewModel.Instance.getDistinctDateServer(year, month);
         }
 
         //private void txtbPassword_KeyDown(object sender, KeyEventArgs e)

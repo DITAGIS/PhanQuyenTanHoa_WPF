@@ -30,11 +30,13 @@ namespace PhanQuyen
         private Point origin;  // Original Offset of image
         private Point start;   // Original Position of the mouse
         private int rotate;
+        private double scaleX, scaleY;
+        private double delta = 0.1;
         public UC_DieuChinhThongTinDocSo()
         {
             InitializeComponent();
             rotate = 0;
-
+            scaleX = scaleY = 1.1;
         }
         private void btnRotate_Click(object sender, RoutedEventArgs e)
         {
@@ -42,10 +44,23 @@ namespace PhanQuyen
             RotateTransform rotateTransform = new RotateTransform(rotate);
             image.LayoutTransform = rotateTransform;
         }
+        private void btnZoomIn_Click(object sender, RoutedEventArgs e)
+        {
+            ////scaleX += delta; scaleY += delta;
+            //ScaleTransform scaleTransform = new ScaleTransform(scaleX, scaleY, 0.5, 0.5);
+            //image.LayoutTransform = scaleTransform;
+        }
+
+        private void btnZoomOut_Click(object sender, RoutedEventArgs e)
+        {
+            //scaleX -= delta; scaleY -= delta;
+            //ScaleTransform scaleTransform = new ScaleTransform(scaleX, scaleY);
+            //image.LayoutTransform = scaleTransform;
+        }
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             month = cbbMonth.SelectedValue.ToString();
-            cbbDate.ItemsSource = GetDataDBViewModel.getInstance.getDistinctDateServer(year, month);
+            cbbDate.ItemsSource = GetDataDBViewModel.Instance.getDistinctDateServer(year, month);
             cbbDate.SelectedValue = User.getInstance.Date;
         }
 
@@ -64,7 +79,7 @@ namespace PhanQuyen
             else if (Int16.TryParse(cbbGroup.SelectedValue.ToString(), out x))
                 group = Int16.Parse(cbbGroup.SelectedValue.ToString());
             else group = x;
-            cbbMachine.ItemsSource = GetDataDBViewModel.getInstance.getDistinctMachineServer(year, month, date, group);
+            cbbMachine.ItemsSource = GetDataDBViewModel.Instance.getDistinctMachineServer(year, month, date, group);
         }
 
 
@@ -72,7 +87,7 @@ namespace PhanQuyen
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             year = Int16.Parse(cbbYear.SelectedValue.ToString());
-            cbbMonth.ItemsSource = GetDataDBViewModel.getInstance.getDistinctMonthServer(year);
+            cbbMonth.ItemsSource = GetDataDBViewModel.Instance.getDistinctMonthServer(year);
         }
 
 
@@ -81,7 +96,7 @@ namespace PhanQuyen
         {
             this.user = user;
             InitializeComponent();
-            cbbYear.ItemsSource = GetDataDBViewModel.getInstance.getDistinctYearServer();
+            cbbYear.ItemsSource = GetDataDBViewModel.Instance.getDistinctYearServer();
             cbbYear.SelectedValue = User.getInstance.Year;
 
             if (User.getInstance.ToID == null)
@@ -108,7 +123,7 @@ namespace PhanQuyen
                 image.BeginInit();
                 image.StreamSource = stream;
                 image.EndInit();
-                
+
                 return image;
             }
 

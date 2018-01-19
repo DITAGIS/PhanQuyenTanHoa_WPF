@@ -245,5 +245,9 @@
     <Resource Include="Images\next.png" />
     <Resource Include="Images\previous.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\zoom-in.png" />
+    <Resource Include="Images\zoom-out.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

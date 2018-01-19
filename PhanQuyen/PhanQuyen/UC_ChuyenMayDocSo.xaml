@@ -41,14 +41,15 @@
             <StackPanel Grid.Row="0" 
                         Grid.Column="0"
                         VerticalAlignment="Center" Orientation="Horizontal"  >
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Tổ:"/></TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"
+                           Name="txtbGroup"><Run Text="Tổ:"/></TextBlock>
             </StackPanel>
             <StackPanel Grid.Row="0" 
                         Grid.Column="1"
                         VerticalAlignment="Center" Orientation="Horizontal"    >
                 <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Đợt:"/></TextBlock>
                 <ComboBox x:Name="cbbDate" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
-                      >
+                      SelectionChanged="cbbDate_SelectionChanged">
                 </ComboBox>
             </StackPanel>
             <StackPanel Grid.Row="1" 
@@ -56,8 +57,7 @@
                         VerticalAlignment="Center" Orientation="Horizontal"    >
                 <TextBlock VerticalAlignment="Center" FontSize="13" Margin="00,0,10,0"><Run Text="Chuyển từ máy:"/></TextBlock>
                 <ComboBox x:Name="cbbMachineLeft" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
-                      SelectedValue="{Binding Year, Mode=TwoWay}" 
-                      ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" >
+                   SelectionChanged="cbbMachineLeft_SelectionChanged" >
                 </ComboBox>
             </StackPanel>
             <StackPanel Grid.Row="1" 
@@ -65,8 +65,7 @@
                         VerticalAlignment="Center" Orientation="Horizontal"    >
                 <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Sang máy:"/></TextBlock>
                 <ComboBox x:Name="cbbMachineRight" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
-                      SelectedValue="{Binding Year, Mode=TwoWay}" 
-                      ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" >
+                     SelectionChanged="cbbMachineRight_SelectionChanged" >
                 </ComboBox>
             </StackPanel>
         </Grid>
@@ -84,9 +83,10 @@
             </Grid.RowDefinitions>
             <DataGrid Grid.Column="0" Name="dtGridLeft" 
                       SelectedItem="{Binding SelectedSoDaNhan, UpdateSourceTrigger=PropertyChanged}" 
-                          AutoGenerateColumns="False"  
+                          AutoGenerateColumns="True"  
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
-                          Height="580" MaxHeight="580"
+                          Height="550" MaxHeight="550"
+                            Width="Auto"
                           Margin="10,0,10,0" 
                           ItemsSource="{Binding ListSoDaNhan}"
                           AlternatingRowBackground="WhiteSmoke"
@@ -95,7 +95,7 @@
                       MinColumnWidth="30"
                           RowBackground="White"
                           GridLinesVisibility="All"
-                          HorizontalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Visible"
                           BorderThickness="2"
                           BorderBrush="Black"
                           Background="White" SelectionMode="Single"
@@ -122,14 +122,7 @@
                         </Style.Triggers>
                     </Style>
                 </DataGrid.RowStyle>
-                <!--Header column-->
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Danh bạ"  Binding="{Binding So, Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Hợp đồng" Binding="{Binding SoLuong,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="MLT"  Binding="{Binding nam, Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Địa chỉ" Width="150" Binding="{Binding ky,Mode=OneWay}"></DataGridTextColumn>
-                </DataGrid.Columns>
-                <!--handle item click event-->
+
 
             </DataGrid>
             <StackPanel Orientation="Vertical"
@@ -149,9 +142,10 @@
             </StackPanel>
             <DataGrid Grid.Column="2" Name="dtGridRight" 
                       SelectedItem="{Binding SelectedSoDaNhan, UpdateSourceTrigger=PropertyChanged}" 
-                          AutoGenerateColumns="False"  
+                          AutoGenerateColumns="True"  
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
-                          Height="580" MaxHeight="580"
+                          Height="550" MaxHeight="550"
+                      Width="Auto"
                           Margin="10,0,10,0" 
                           ItemsSource="{Binding ListSoDaNhan}"
                           AlternatingRowBackground="WhiteSmoke"
@@ -160,7 +154,7 @@
                       MinColumnWidth="30"
                           RowBackground="White"
                           GridLinesVisibility="All"
-                          HorizontalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Visible"
                           BorderThickness="2"
                           BorderBrush="Black"
                           Background="White" SelectionMode="Single"
@@ -187,14 +181,7 @@
                         </Style.Triggers>
                     </Style>
                 </DataGrid.RowStyle>
-                <!--Header column-->
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Danh bạ"  Binding="{Binding So, Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Hợp đồng" Binding="{Binding SoLuong,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="MLT"  Binding="{Binding nam, Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Địa chỉ" Width="150" Binding="{Binding ky,Mode=OneWay}"></DataGridTextColumn>
-                </DataGrid.Columns>
-                <!--handle item click event-->
+
 
             </DataGrid>
         </Grid>

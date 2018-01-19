@@ -94,6 +94,14 @@ namespace ViewModel
 				return this.GetTable<SoDaNhan>();
 			}
 		}
+		
+		public System.Data.Linq.Table<ChuyenMayDS> ChuyenMayDs
+		{
+			get
+			{
+				return this.GetTable<ChuyenMayDS>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DocSoLocal")]
@@ -2462,6 +2470,87 @@ namespace ViewModel
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChuyenMayDS")]
+	public partial class ChuyenMayDS
+	{
+		
+		private string _DanhBa;
+		
+		private string _HopDong;
+		
+		private string _MLT;
+		
+		private string _DiaChi;
+		
+		public ChuyenMayDS()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DanhBa", DbType="VarChar(11) NOT NULL", CanBeNull=false)]
+		public string DanhBa
+		{
+			get
+			{
+				return this._DanhBa;
+			}
+			set
+			{
+				if ((this._DanhBa != value))
+				{
+					this._DanhBa = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HopDong", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string HopDong
+		{
+			get
+			{
+				return this._HopDong;
+			}
+			set
+			{
+				if ((this._HopDong != value))
+				{
+					this._HopDong = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MLT", DbType="VarChar(9) NOT NULL", CanBeNull=false)]
+		public string MLT
+		{
+			get
+			{
+				return this._MLT;
+			}
+			set
+			{
+				if ((this._MLT != value))
+				{
+					this._MLT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiaChi", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string DiaChi
+		{
+			get
+			{
+				return this._DiaChi;
+			}
+			set
+			{
+				if ((this._DiaChi != value))
+				{
+					this._DiaChi = value;
+				}
 			}
 		}
 	}

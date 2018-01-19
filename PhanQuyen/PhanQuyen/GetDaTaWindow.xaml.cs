@@ -28,7 +28,7 @@ namespace PhanQuyen
         {
             this.Closing += new System.ComponentModel.CancelEventHandler(this.Window_Closing);
             InitializeComponent();
-            cbbYear.ItemsSource = GetDataDBViewModel.getInstance.getDistinctYearServer();
+            cbbYear.ItemsSource = GetDataDBViewModel.Instance.getDistinctYearServer();
             cbbYear.SelectedIndex = cbbYear.Items.Count - 1;
 
             //IconHelper.RemoveIcon(this);
@@ -43,7 +43,7 @@ namespace PhanQuyen
             if (group < 10)
                 groupString = "0" + group;
             String machine = cbbMachine.SelectedValue.ToString();
-            List<String> danhBas = GetDataDBViewModel.getInstance.getDocsosByConditionCount(year, month, date, group, machine);
+            List<String> danhBas = GetDataDBViewModel.Instance.getDocsosByConditionCount(year, month, date, group, machine);
 
             pbStatus.Maximum = danhBas.Count;
             pbStatus.Minimum = 0;
@@ -53,11 +53,11 @@ namespace PhanQuyen
                 Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
 
-                    GetDataDBViewModel.getInstance.getDocSosByDanhBa(danhBa, year, month, date, group, machine);
+                    GetDataDBViewModel.Instance.getDocSosByDanhBa(danhBa, year, month, date, group, machine);
                     pbStatus.Value++;
                     txtbStatus.Text = String.Format("{0:0.0%}", (double)pbStatus.Value / pbStatus.Maximum);
                     if (pbStatus.Value == pbStatus.Maximum)
-                        GetDataDBViewModel.getInstance.WriteSoDaNhan(year, month, date, machine, (Int16)pbStatus.Maximum, group);
+                        GetDataDBViewModel.Instance.WriteSoDaNhan(year, month, date, machine, (Int16)pbStatus.Maximum, group);
 
                 }), DispatcherPriority.Loaded);
             }
@@ -80,7 +80,7 @@ namespace PhanQuyen
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             year = Int16.Parse(cbbYear.SelectedValue.ToString());
-            cbbMonth.ItemsSource = GetDataDBViewModel.getInstance.getDistinctMonthServer(year);
+            cbbMonth.ItemsSource = GetDataDBViewModel.Instance.getDistinctMonthServer(year);
         }
 
         private void cbbMachine_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -91,17 +91,17 @@ namespace PhanQuyen
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             month = cbbMonth.SelectedValue.ToString();
-            cbbDate.ItemsSource = GetDataDBViewModel.getInstance.getDistinctDateServer(year, month);
+            cbbDate.ItemsSource = GetDataDBViewModel.Instance.getDistinctDateServer(year, month);
         }
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             date = cbbDate.SelectedValue.ToString();
-            cbbGroup.ItemsSource = GetDataDBViewModel.getInstance.getDistinctGroupServer(year, month, date);
+            cbbGroup.ItemsSource = GetDataDBViewModel.Instance.getDistinctGroupServer(year, month, date);
         }
         private void cbbGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             group = Int16.Parse(cbbGroup.SelectedValue.ToString());
-            cbbMachine.ItemsSource = GetDataDBViewModel.getInstance.getDistinctMachineServer(year, month, date, group);
+            cbbMachine.ItemsSource = GetDataDBViewModel.Instance.getDistinctMachineServer(year, month, date, group);
         }
     }
 }

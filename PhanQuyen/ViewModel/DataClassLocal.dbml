@@ -106,4 +106,12 @@
       <Column Name="may" Type="System.String" DbType="VarChar(2) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.ChuyenMayDS" Member="ChuyenMayDs">
+    <Type Name="ChuyenMayD">
+      <Column Name="DanhBa" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="HopDong" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="MLT" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

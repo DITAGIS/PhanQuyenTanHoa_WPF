@@ -20,5 +20,11 @@
         <elementListCompartment Id="331733c3-780b-4e03-acd1-0b59af749f7f" absoluteBounds="8.265, 2.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="462d2a8e-552b-49e8-9aa3-53a946c74347" absoluteBounds="3.625, 1.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataClasses1DataContext/ChuyenMayD" />
+      <nestedChildShapes>
+        <elementListCompartment Id="804cd8b1-60ac-4677-a31a-9201a29d6b09" absoluteBounds="3.64, 2.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

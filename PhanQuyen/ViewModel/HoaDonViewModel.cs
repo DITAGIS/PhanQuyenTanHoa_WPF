@@ -181,7 +181,7 @@ namespace ViewModel
                     Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
                         value++;
-                        ListHoaDon.Add(GetDataDBViewModel.getInstance.getDocSoLocalByDanhBa(danhBa, Year, Month, Date, Int16.Parse(Group), Machine));
+                        ListHoaDon.Add(GetDataDBViewModel.Instance.getDocSoLocalByDanhBa(danhBa, Year, Month, Date, Int16.Parse(Group), Machine));
                         if (value < max)
                             Status = String.Format("Đang tải {0}/{1}", value, max);
                         else
@@ -283,8 +283,8 @@ namespace ViewModel
 
                 hoaDon12Month = new HoaDon12Month();
                 selectedHoaDon = value;
-                Image = GetDataDBViewModel.getInstance.getImageLocalByDanhBa(selectedHoaDon.DanhBa, selectedHoaDon.GIOGHI.GetValueOrDefault());
-                ListDocSo_1Ky = GetDataDBViewModel.getInstance.get12Months(Year, Month, selectedHoaDon.DanhBa);
+                Image = GetDataDBViewModel.Instance.getImageLocalByDanhBa(selectedHoaDon.DanhBa, selectedHoaDon.GIOGHI.GetValueOrDefault());
+                ListDocSo_1Ky = GetDataDBViewModel.Instance.get12Months(Year, Month, selectedHoaDon.DanhBa);
 
                 OnPropertyChanged("SelectedHoaDon");
             }
