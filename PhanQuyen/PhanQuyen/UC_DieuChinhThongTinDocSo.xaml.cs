@@ -64,6 +64,12 @@ namespace PhanQuyen
             cbbDate.SelectedValue = User.getInstance.Date;
         }
 
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            DocSoLocal selectedDocSo = dtgridMain.SelectedValue as DocSoLocal;
+
+        }
+
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             date = cbbDate.SelectedValue.ToString();

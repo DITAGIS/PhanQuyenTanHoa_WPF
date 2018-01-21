@@ -29,7 +29,7 @@ namespace PhanQuyen
             this.Closing += new System.ComponentModel.CancelEventHandler(this.Window_Closing);
             InitializeComponent();
             cbbYear.ItemsSource = GetDataDBViewModel.Instance.getDistinctYearServer();
-            cbbYear.SelectedIndex = cbbYear.Items.Count - 1;
+            cbbYear.SelectedIndex = 0;
 
             //IconHelper.RemoveIcon(this);
         }
