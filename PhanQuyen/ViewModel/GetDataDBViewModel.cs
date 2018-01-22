@@ -151,6 +151,23 @@ namespace ViewModel
                         select x).Single();
             return data;
         }
+
+        public List<string> getDanhBasByCondition(int year, string month, string date, int xGroup, string machine)
+        {
+            var data = (from x in serverContext.DocSos
+                        where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.May == machine
+                        select x.DanhBa).ToList();
+            return data;
+        }
+
+        public DocSo getDocSoByDanhBa(string danhBa, int year, string month, string date, short xGroup, string machine)
+        {
+            var data = (from x in serverContext.DocSos
+                        where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.May == machine && x.DanhBa == danhBa
+                        select x).FirstOrDefault();
+            return data;
+        }
+
         public byte[] getImageLocalByDanhBa(String danhBa, DateTime gioGhi)
         {
 
@@ -293,56 +310,59 @@ namespace ViewModel
         public ObservableCollection<DocSo_1Ky> get12Months(int year, string Month, string danhBa)
         {
             ObservableCollection<DocSo_1Ky> listDocSo = new ObservableCollection<DocSo_1Ky>();
-            try
+
+            string pattern = "dd/MM/yyyy";
+            int count = 0;
+            int month = Int16.Parse(Month);
+            String kyString;
+            while (count <= 12)
             {
-                string pattern = "dd/MM/yyyy";
-                int count = 0;
-                int month = Int16.Parse(Month);
-                while (count <= 12)
+                month--;
+                if (month == 0)
                 {
-                    month--;
-                    if (month == 0)
-                    {
-                        year--;
-                        month = 12;
-                    }
-                    var data = (from x in localContext.DocSoLocals
-                                where x.DanhBa == danhBa && x.Nam == year && x.Ky == (month + "")
-                                select new { x.Ky, x.GIOGHI, x.CodeMoi, x.CSMoi, x.TieuThuMoi }).FirstOrDefault();
-                    listDocSo.Add(new DocSo_1Ky(data.Ky + "/" + year, data.GIOGHI.GetValueOrDefault().ToString(pattern), data.CodeMoi, data.CSMoi + "", data.TieuThuMoi + ""));
-                    //switch (count)
-                    //{
-
-                    //    case 1:
-                    //        SelectedHoaDon12Month.Code1 = hoaDon.CodeMoi;
-                    //        code1 = hoaDon.CodeMoi;
-                    //        break;
-                    //    case 2:
-                    //        break;
-                    //    case 3:
-                    //        break;
-                    //    case 4:
-                    //        break;
-                    //    case 5:
-                    //        break;
-                    //    case 6:
-                    //        break;
-                    //    case 7: break;
-                    //    case 8: break;
-                    //    case 9:
-                    //        break;
-                    //    case 10: break;
-                    //    case 11: break;
-                    //    case 12:
-                    //        break;
-
-
-                    //}
-                    count++;
+                    year--;
+                    month = 12;
                 }
+                kyString = month + "";
+                if (month < 10)
+                    kyString = "0" + month;
+                var data = (from x in serverContext.DocSos
+                            where x.DanhBa == danhBa && x.Nam == year && x.Ky == kyString
+                            select new { x.Ky, x.GIOGHI, x.CodeMoi, x.CSMoi, x.TieuThuMoi }).FirstOrDefault();
+                if (data != null)
+                    listDocSo.Add(new DocSo_1Ky(data.Ky + "/" + year, data.GIOGHI.GetValueOrDefault().ToString(pattern), data.CodeMoi, data.CSMoi + "", data.TieuThuMoi + ""));
+                //switch (count)
+                //{
 
+                //    case 1:
+                //        SelectedHoaDon12Month.Code1 = hoaDon.CodeMoi;
+                //        code1 = hoaDon.CodeMoi;
+                //        break;
+                //    case 2:
+                //        break;
+                //    case 3:
+                //        break;
+                //    case 4:
+                //        break;
+                //    case 5:
+                //        break;
+                //    case 6:
+                //        break;
+                //    case 7: break;
+                //    case 8: break;
+                //    case 9:
+                //        break;
+                //    case 10: break;
+                //    case 11: break;
+                //    case 12:
+                //        break;
+
+
+                //}
+                count++;
             }
-            catch { }
+
+
 
             return listDocSo;
         }

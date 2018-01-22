@@ -70,6 +70,11 @@ namespace PhanQuyen
 
         }
 
+        private void dtgridMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             date = cbbDate.SelectedValue.ToString();

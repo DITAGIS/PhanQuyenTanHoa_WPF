@@ -119,7 +119,7 @@
 
                     <!--Chọn code-->
                     <ComboBox x:Name="cbbCode" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="70" 
-                      SelectedValue="{Binding SelectedHoaDon.CodeMoi, Mode=TwoWay}" 
+                      SelectedValue="{Binding SelectedHoaDon.CodeMoi, Mode=OneWay}" 
                       ItemsSource="{Binding ListCode, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button Margin="10,0,0,0" Background="White" Name="btnUpdate" 
                             Click="btnUpdate_Click">
@@ -173,17 +173,17 @@
                         <!--Chỉ số cũ-->
                         <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="CS cũ:"/></TextBlock>
                         <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCSC" IsEnabled="False"
-                      Text="{Binding SelectedHoaDon.CSC}"/>
+                      Text="{Binding SelectedHoaDon.CSCu}"/>
 
                         <!--Chỉ số mới-->
                         <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="CS mới:"/></TextBlock>
                         <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCSM" IsEnabled="False"
-                      Text="{Binding SelectedHoaDon.CSM}"/>
+                      Text="{Binding SelectedHoaDon.CSMoi, Mode=TwoWay}"/>
 
                         <!--Tiêu thụ-->
                         <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tiêu thụ:"/></TextBlock>
                         <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbTieuThu"
-                      Text="{Binding SelectedHoaDon.TieuThuMoi}"/>
+                      Text="{Binding SelectedHoaDon.TieuThuMoi, Mode=TwoWay}"/>
                     </StackPanel>
                     <StackPanel 
                         Grid.Row="0" Grid.Column="1"
@@ -205,7 +205,7 @@
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="1"
                                 Orientation="Horizontal">
-                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Ghi chú KH:"/></TextBlock>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Ghi chú MH:"/></TextBlock>
                         <TextBox  FontSize="15" Height="30" Width="200" VerticalAlignment="Center" VerticalContentAlignment="Center"
                               x:Name="txtbGCMH"
                       Text="{Binding SelectedHoaDon.GhiChuDS}"/>
@@ -226,7 +226,7 @@
                           AutoGenerateColumns="False" Name="dtgridMain" 
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
                           Width="Auto" Margin="0,0,0,0" Height="340" 
-                              
+                              SelectionChanged="dtgridMain_SelectionChanged"
                           ItemsSource="{Binding ListHoaDon}"
                           AlternatingRowBackground="WhiteSmoke"
                           RowBackground="White"
@@ -266,11 +266,12 @@
                             <DataGridTextColumn Header="TTDHN Mới"  Binding="{Binding TTHDNMoi,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Code Cũ" Binding="{Binding CodeCu,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Code Mới" Binding="{Binding CodeMoi,Mode=OneWay}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Chỉ Số Cũ" Binding="{Binding CSC,Mode=OneWay}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Chỉ Số Mới"  Binding="{Binding CSM,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Chỉ Số Cũ" Binding="{Binding CSCu,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Chỉ Số Mới"  Binding="{Binding CSMoi,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Tiêu Thụ Mới" Binding="{Binding TieuThuMoi,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="TBTT" Binding="{Binding TBTT,Mode=OneWay}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Địa chỉ"  Binding="{Binding DiaChi,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Số nhà"  Binding="{Binding SoNhaCu,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Đường"  Binding="{Binding Duong,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Ghi chú đọc số" Binding="{Binding GhiChuDS,Mode=OneWay}"></DataGridTextColumn>
                         </DataGrid.Columns>
                         <!--handle item click event-->

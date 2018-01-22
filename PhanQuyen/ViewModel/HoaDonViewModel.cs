@@ -32,7 +32,7 @@ namespace ViewModel
         }
         private bool hasImage;
         private String status;
-        private DocSoLocal selectedHoaDon;
+        private DocSo selectedHoaDon;
         private HoaDon12Month hoaDon12Month;
         private int value;
         private int year;
@@ -98,7 +98,7 @@ namespace ViewModel
         private void Innitialize()
         {
 
-            listHoaDon = new ObservableCollection<DocSoLocal>();
+            listHoaDon = new ObservableCollection<DocSo>();
             //listMonth = GetDataDBViewModel.getInstance.getDistinctMonthServer(Year);
             //Month = User.getInstance.Month;
             //listDate = GetDataDBViewModel.getInstance.getDistinctDateServer(Year, Month);
@@ -107,11 +107,11 @@ namespace ViewModel
             //listMachine = GetDataDBViewModel.getInstance.getDistinctMachineServer(Year, Month, Date, Int16.Parse(User.getInstance.UserGroup));
             listCode = CodeModel.GetCodes();
         }
-        private ObservableCollection<DocSoLocal> listHoaDon;
+        private ObservableCollection<DocSo> listHoaDon;
 
 
 
-        public ObservableCollection<DocSoLocal> ListHoaDon
+        public ObservableCollection<DocSo> ListHoaDon
         {
             get { return listHoaDon; }
             set { listHoaDon = value; }
@@ -170,7 +170,7 @@ namespace ViewModel
 
                 Status = "Đang tính toán dữ liệu...";
 
-                List<String> danhBas = HoaDonDBViewModel.getInstance.getDanhBasByCondition(Year, Month, Date, Int16.Parse(Group), Machine);
+                List<String> danhBas = GetDataDBViewModel.Instance.getDanhBasByCondition(Year, Month, Date, Int16.Parse(Group), Machine);
                 max = danhBas.Count;
                 value = 0;
 
@@ -181,7 +181,7 @@ namespace ViewModel
                     Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
                         value++;
-                        ListHoaDon.Add(GetDataDBViewModel.Instance.getDocSoLocalByDanhBa(danhBa, Year, Month, Date, Int16.Parse(Group), Machine));
+                        ListHoaDon.Add(GetDataDBViewModel.Instance.getDocSoByDanhBa(danhBa, Year, Month, Date, Int16.Parse(Group), Machine));
                         if (value < max)
                             Status = String.Format("Đang tải {0}/{1}", value, max);
                         else
@@ -266,7 +266,7 @@ namespace ViewModel
         }
         public string Machine { get => machine; set => machine = value; }
         public string Code { get => code; set => code = value; }
-        public DocSoLocal SelectedHoaDon
+        public DocSo SelectedHoaDon
         {
             get
             {
