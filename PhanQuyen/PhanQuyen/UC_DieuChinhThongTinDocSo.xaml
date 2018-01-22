@@ -120,6 +120,7 @@
                     <!--Chọn code-->
                     <ComboBox x:Name="cbbCode" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="70" 
                       SelectedValue="{Binding SelectedHoaDon.CodeMoi, Mode=OneWay}" 
+                              SelectionChanged="cbbCode_SelectionChanged"
                       ItemsSource="{Binding ListCode, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button Margin="10,0,0,0" Background="White" Name="btnUpdate" 
                             Click="btnUpdate_Click">
@@ -177,12 +178,13 @@
 
                         <!--Chỉ số mới-->
                         <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="CS mới:"/></TextBlock>
-                        <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCSM" IsEnabled="False"
+                        <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbCSM" IsEnabled="True"
+                                  TextChanged="txtbCSM_TextChanged"
                       Text="{Binding SelectedHoaDon.CSMoi, Mode=TwoWay}"/>
 
                         <!--Tiêu thụ-->
                         <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tiêu thụ:"/></TextBlock>
-                        <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbTieuThu"
+                        <TextBox  FontSize="15" Height="30" Width="60" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbTieuThu" IsEnabled="False"
                       Text="{Binding SelectedHoaDon.TieuThuMoi, Mode=TwoWay}"/>
                     </StackPanel>
                     <StackPanel 
@@ -200,8 +202,10 @@
 
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" Orientation="Horizontal">
-                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổng số KH:"/></TextBlock>
-                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Sản lượng:"/></TextBlock>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"
+                                   Text="{Binding TongKH}"><Run Text="Tổng số KH:"/></TextBlock>
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"
+                                   Text="{Binding TongSanLuong}"><Run Text="Sản lượng:"/></TextBlock>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="1"
                                 Orientation="Horizontal">

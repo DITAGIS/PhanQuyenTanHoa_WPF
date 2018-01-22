@@ -17,6 +17,32 @@ namespace ViewModel
     public class HoaDonViewModel : INotifyPropertyChanged
     {
         #region Initialize
+        private String tongKH;
+        public String TongKH
+        {
+            get
+            {
+                return tongKH;
+            }
+            set
+            {
+                tongKH = value;
+                OnPropertyChanged("TongKH");
+            }
+        }
+        private String tongSanLuong;
+        public String TongSanLuong
+        {
+            get
+            {
+                return tongSanLuong;
+            }
+            set
+            {
+                tongSanLuong = value;
+                OnPropertyChanged("TongSanLuong");
+            }
+        }
         private Byte[] image;
         public Byte[] Image
         {
@@ -185,10 +211,20 @@ namespace ViewModel
                         if (value < max)
                             Status = String.Format("Đang tải {0}/{1}", value, max);
                         else
+                        {
                             Status = "Tải dữ liệu hoàn tất";
+                            int sanLuong = 0;
+                            foreach (DocSo docSo in ListHoaDon)
+                                sanLuong += docSo.TieuThuMoi.GetValueOrDefault();
+
+                            TongSanLuong = String.Format("Sản lượng: {0} m3", sanLuong);
+                        }
                     }), DispatcherPriority.Loaded);
 
                 }
+
+                TongKH = String.Format("Tổng KH: {0}", max);
+                
 
                 MessageBox.Show("Cập nhật hoàn tất!");
             }
@@ -235,7 +271,7 @@ namespace ViewModel
             set
             {
                 year = value;
-               
+
             }
         }
         public string Month
@@ -247,7 +283,7 @@ namespace ViewModel
             set
             {
                 month = value;
-              
+
 
             }
         }
@@ -261,7 +297,7 @@ namespace ViewModel
             set
             {
                 group = value;
-               
+
             }
         }
         public string Machine { get => machine; set => machine = value; }
@@ -283,7 +319,11 @@ namespace ViewModel
 
                 hoaDon12Month = new HoaDon12Month();
                 selectedHoaDon = value;
-                Image = GetDataDBViewModel.Instance.getImageLocalByDanhBa(selectedHoaDon.DanhBa, selectedHoaDon.GIOGHI.GetValueOrDefault());
+                try
+                {
+                    Image = GetDataDBViewModel.Instance.getImageLocalByDanhBa(selectedHoaDon.DanhBa, selectedHoaDon.GIOGHI.GetValueOrDefault());
+                }
+                catch { }
                 ListDocSo_1Ky = GetDataDBViewModel.Instance.get12Months(Year, Month, selectedHoaDon.DanhBa);
 
                 OnPropertyChanged("SelectedHoaDon");

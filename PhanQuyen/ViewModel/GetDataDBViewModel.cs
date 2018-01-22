@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace ViewModel
 {
@@ -124,6 +125,35 @@ namespace ViewModel
             return result;
         }
 
+        public void update(ItemCollection items)
+        {
+            foreach (var item in items)
+            {
+                DocSo docSo = item as DocSo;
+                var v = (from x in serverContext.DocSos
+                         where x.DanhBa == docSo.DanhBa && x.Nam == docSo.Nam && x.Ky == docSo.Ky && x.Dot == docSo.Dot
+                         select x).FirstOrDefault();
+
+                v.CodeMoi = docSo.CodeMoi;
+                v.CSMoi = docSo.CSMoi;
+                v.TieuThuMoi = docSo.TieuThuMoi;
+                serverContext.SubmitChanges();
+
+
+            }
+        }
+        public void update(DocSo docSo)
+        {
+            var v = (from x in serverContext.DocSos
+                     where x.DanhBa == docSo.DanhBa && x.Nam == docSo.Nam && x.Ky == docSo.Ky && x.Dot == docSo.Dot
+                     select x).FirstOrDefault();
+
+            v.CodeMoi = docSo.CodeMoi;
+            v.CSMoi = docSo.CSMoi;
+            v.TieuThuMoi = docSo.TieuThuMoi;
+            serverContext.SubmitChanges();
+
+        }
         public List<ChuyenMayDS> getKH_ChuyenMayDS(string date, string machineLeft)
         {
             List<ChuyenMayDS> listData = new List<ChuyenMayDS>();
@@ -155,7 +185,7 @@ namespace ViewModel
         public List<string> getDanhBasByCondition(int year, string month, string date, int xGroup, string machine)
         {
             var data = (from x in serverContext.DocSos
-                        where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.May == machine
+                        where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.May == machine && x.CSMoi > 0
                         select x.DanhBa).ToList();
             return data;
         }
@@ -163,7 +193,7 @@ namespace ViewModel
         public DocSo getDocSoByDanhBa(string danhBa, int year, string month, string date, short xGroup, string machine)
         {
             var data = (from x in serverContext.DocSos
-                        where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.May == machine && x.DanhBa == danhBa
+                        where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.May == machine && x.DanhBa == danhBa && x.CSMoi > 0
                         select x).FirstOrDefault();
             return data;
         }
@@ -171,8 +201,9 @@ namespace ViewModel
         public byte[] getImageLocalByDanhBa(String danhBa, DateTime gioGhi)
         {
 
-            var data = (from x in localContext.HinhDHNLocals
+            var data = (from x in serverContext.HinhDHNs
                         where x.DanhBo == danhBa && x.CreateDate == gioGhi
+                        orderby x.CreateDate
                         select x.Image).FirstOrDefault();
             if (data == null)
                 return null;

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -32,6 +32,8 @@ namespace PhanQuyen
         private int rotate;
         private double scaleX, scaleY;
         private double delta = 0.1;
+        private DataGridRow row;
+        private DataGridCell gridCell;
         public UC_DieuChinhThongTinDocSo()
         {
             InitializeComponent();
@@ -66,13 +68,13 @@ namespace PhanQuyen
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            DocSoLocal selectedDocSo = dtgridMain.SelectedValue as DocSoLocal;
-
+            GetDataDBViewModel.Instance.update(dtgridMain.SelectedValue as DocSo);
         }
 
         private void dtgridMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            row = (DataGridRow)dtgridMain.ItemContainerGenerator
+                                              .ContainerFromIndex(dtgridMain.SelectedIndex);
         }
 
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -80,7 +82,12 @@ namespace PhanQuyen
             date = cbbDate.SelectedValue.ToString();
         }
 
+        private void Refresh()
+        {
+            //if (dtgridMain != null && dtgridMain.Items.Count > 0 && dtgridMain.SelectedValue != null)
+            //    dtgridMain.SelectedIndex = -1;
 
+        }
 
         private void cbbGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -93,7 +100,30 @@ namespace PhanQuyen
             cbbMachine.ItemsSource = GetDataDBViewModel.Instance.getDistinctMachineServer(year, month, date, group);
         }
 
+        private void cbbCode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //code mới
+            gridCell = TryToFindGridCell(dtgridMain, row, 4);
+            if (gridCell != null) gridCell.Content = cbbCode.SelectedValue.ToString();
 
+            Refresh();
+        }
+
+        private void txtbCSM_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //chỉ số mới
+            gridCell = TryToFindGridCell(dtgridMain, row, 6);
+            int csmoi = Int16.Parse(txtbCSM.Text.ToString());
+            if (gridCell != null) gridCell.Content = csmoi + "";
+
+            //tiêu thụ mới
+            gridCell = TryToFindGridCell(dtgridMain, row, 7);
+            int tieuThuMoi = csmoi - Int16.Parse(txtbCSC.Text.ToString());
+            txtbTieuThu.Text = tieuThuMoi + "";
+            if (gridCell != null) gridCell.Content = tieuThuMoi + "";
+
+            Refresh();
+        }
 
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -118,6 +148,40 @@ namespace PhanQuyen
                 cbbGroup.Items.Add(User.getInstance.ToID);
 
 
+        }
+
+        static DataGridCell TryToFindGridCell(DataGrid grid, DataGridRow row, int columnIndex)
+        {
+            DataGridCell result = null;
+            if (row != null)
+            {
+                if (columnIndex > -1)
+                {
+                    DataGridCellsPresenter presenter = GetVisualChild<DataGridCellsPresenter>(row);
+                    result = presenter.ItemContainerGenerator.ContainerFromIndex(columnIndex) as DataGridCell;
+                }
+            }
+            return result;
+        }
+
+        static T GetVisualChild<T>(Visual parent) where T : Visual
+        {
+            T child = default(T);
+            int numVisuals = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < numVisuals; i++)
+            {
+                Visual v = (Visual)VisualTreeHelper.GetChild(parent, i);
+                child = v as T;
+                if (child == null)
+                {
+                    child = GetVisualChild<T>(v);
+                }
+                if (child != null)
+                {
+                    break;
+                }
+            }
+            return child;
         }
     }
     public class ByteArrayImageConverter : IValueConverter
