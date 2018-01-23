@@ -35,8 +35,11 @@
         <!--</StackPanel>-->
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem Margin="10,0,0,0">
-                <TextBlock FontSize="15" Text="{Binding Status, Mode=OneWay}" 
+
+                <TextBlock FontSize="15" Text="{Binding Status, Mode=OneWay}"
+                               Margin="10,0"
                            VerticalAlignment="Center"  HorizontalAlignment="Left" />
+
             </StatusBarItem>
         </StatusBar>
         <ScrollViewer>
@@ -239,6 +242,7 @@
                           BorderThickness="1"
                               ColumnWidth="100"
                           BorderBrush="Black"
+                              CanUserAddRows="False"
                           Background="White" SelectionMode="Single"
                           FontSize="12">
                         <!--Font Color / Style of Column Heading-->
@@ -265,6 +269,7 @@
                         </DataGrid.RowStyle>
                         <!--Header column-->
                         <DataGrid.Columns>
+                            <DataGridTextColumn Header="Mã lộ trình"  Binding="{Binding MLT1, Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Danh bạ"  Binding="{Binding DanhBa, Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="TTDHN Cũ"  Binding="{Binding TTHDNCu,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="TTDHN Mới"  Binding="{Binding TTHDNMoi,Mode=OneWay}"></DataGridTextColumn>
@@ -638,12 +643,12 @@
                             <!--Hiệu-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Hiệu:"/></TextBlock>
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
-                        <Run Text="{Binding SelectedHoaDon.Hieu}"/>
+                        <Run Text="{Binding SelectedHoaDon.HieuCu}"/>
                             </TextBlock>
                             <!--Cỡ-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Cỡ: "/></TextBlock>
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
-                        <Run Text="{Binding SelectedHoaDon.Co}"/>
+                        <Run Text="{Binding SelectedHoaDon.CoCu}"/>
                             </TextBlock>
                             <!--Giá biểu-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Giá biểu:"/></TextBlock>
@@ -670,17 +675,22 @@
                             <!--Địa chỉ-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Địa chỉ:"/></TextBlock>
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
-                        <Run Text="{Binding SelectedHoaDon.DiaChi}"/>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="SelectedHoaDon.SoNhaCu" />
+                                        <Binding Path="SelectedHoaDon.Duong" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
                             </TextBlock>
                             <!--Số thân-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Số thân:"/></TextBlock>
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
-                        <Run Text="{Binding SelectedHoaDon.SoThan}"/>
+                        <Run Text="{Binding SelectedHoaDon.SoThanCu}"/>
                             </TextBlock>
                             <!--Mã lộ trình-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Mã lộ trình:"/></TextBlock>
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
-                        <Run Text="{Binding SelectedHoaDon.MLT}"/>
+                        <Run Text="{Binding SelectedHoaDon.MLT1}"/>
                             </TextBlock>
                         </StackPanel>
                         <Grid Width="Auto"

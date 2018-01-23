@@ -198,16 +198,20 @@ namespace ViewModel
             return data;
         }
 
-        public byte[] getImageLocalByDanhBa(String danhBa, DateTime gioGhi)
+        public byte[] getImageByDanhBa(String danhBa, DateTime gioGhi)
         {
 
-            var data = (from x in serverContext.HinhDHNs
-                        where x.DanhBo == danhBa && x.CreateDate == gioGhi
-                        orderby x.CreateDate
-                        select x.Image).FirstOrDefault();
-            if (data == null)
-                return null;
-            return ((System.Data.Linq.Binary)data).ToArray();
+            using (DataClassServerDataContext tempServer = new DataClassServerDataContext())
+            {
+                var data = (from x in tempServer.HinhDHNs
+                            where x.DanhBo == danhBa && x.CreateDate == gioGhi
+                            orderby x.CreateDate
+                            select x.Image).FirstOrDefault();
+                if (data == null)
+                    return null;
+
+                return ((System.Data.Linq.Binary)data).ToArray();
+            }
         }
         public ObservableCollection<DocSoLocal> getDistinctHoaDon(SoDaNhan selectedSoDaNhan)
         {
@@ -337,14 +341,19 @@ namespace ViewModel
                 lstYear.Add(item);
             return lstYear;
         }
-
+        class Item
+        {
+            public int Year { get; set; }
+            public int Month { get; set; }
+        }
         public ObservableCollection<DocSo_1Ky> get12Months(int year, string Month, string danhBa)
         {
-            ObservableCollection<DocSo_1Ky> listDocSo = new ObservableCollection<DocSo_1Ky>();
+            
 
             string pattern = "dd/MM/yyyy";
             int count = 0;
             int month = Int16.Parse(Month);
+            List<Item> r = new List<Item>();
             String kyString;
             while (count <= 12)
             {
@@ -357,44 +366,28 @@ namespace ViewModel
                 kyString = month + "";
                 if (month < 10)
                     kyString = "0" + month;
-                var data = (from x in serverContext.DocSos
-                            where x.DanhBa == danhBa && x.Nam == year && x.Ky == kyString
-                            select new { x.Ky, x.GIOGHI, x.CodeMoi, x.CSMoi, x.TieuThuMoi }).FirstOrDefault();
-                if (data != null)
-                    listDocSo.Add(new DocSo_1Ky(data.Ky + "/" + year, data.GIOGHI.GetValueOrDefault().ToString(pattern), data.CodeMoi, data.CSMoi + "", data.TieuThuMoi + ""));
-                //switch (count)
-                //{
-
-                //    case 1:
-                //        SelectedHoaDon12Month.Code1 = hoaDon.CodeMoi;
-                //        code1 = hoaDon.CodeMoi;
-                //        break;
-                //    case 2:
-                //        break;
-                //    case 3:
-                //        break;
-                //    case 4:
-                //        break;
-                //    case 5:
-                //        break;
-                //    case 6:
-                //        break;
-                //    case 7: break;
-                //    case 8: break;
-                //    case 9:
-                //        break;
-                //    case 10: break;
-                //    case 11: break;
-                //    case 12:
-                //        break;
-
-
-                //}
+                r.Add(new Item()
+                {
+                    Year = year,
+                    Month = month
+                });
+                //var data = (from x in serverContext.DocSos
+                //            where x.DanhBa == danhBa && x.Nam == year && x.Ky == kyString
+                //            select new { x.Ky, x.GIOGHI, x.CodeMoi, x.CSMoi, x.TieuThuMoi }).FirstOrDefault();
+                //if (data != null)
+                //    listDocSo.Add(new DocSo_1Ky(data.Ky + "/" + year, data.GIOGHI.GetValueOrDefault().ToString(pattern), data.CodeMoi, data.CSMoi + "", data.TieuThuMoi + ""));
                 count++;
             }
-
-
-
+            var whereStr = "and (";
+            foreach (var s in r)
+            {
+                whereStr += String.Format(" (nam = {0} and ky = {1}) or", s.Year, s.Month);
+            }
+            whereStr = whereStr.Substring(0, whereStr.Length - 3);
+            whereStr += ")";
+            List<DocSo_1Ky> datas = serverContext.ExecuteQuery<DocSo>(String.Format("select docsoID, ky, gioghi, codemoi, csmoi, tieuthumoi from Docso where danhba = '" + danhBa + "' {0} " +
+                "order by nam desc, ky desc", whereStr)).Select(data => new DocSo_1Ky(data.Ky + "/" + year, data.GIOGHI.GetValueOrDefault().ToString(pattern), data.CodeMoi, data.CSMoi + "", data.TieuThuMoi + "")).ToList();
+            ObservableCollection<DocSo_1Ky> listDocSo = new ObservableCollection<DocSo_1Ky>(datas);
             return listDocSo;
         }
 

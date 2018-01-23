@@ -195,12 +195,13 @@ namespace ViewModel
                 //ConnectionViewModel.getInstance.disConnect();
 
                 Status = "Đang tính toán dữ liệu...";
-
+                //ListHoaDon.Clear();
+                SelectedHoaDon = null;
                 List<String> danhBas = GetDataDBViewModel.Instance.getDanhBasByCondition(Year, Month, Date, Int16.Parse(Group), Machine);
                 max = danhBas.Count;
                 value = 0;
 
-                List<HoaDon> hoaDons = new List<HoaDon>();
+                //List<HoaDon> hoaDons = new List<HoaDon>();
                 foreach (String danhBa in danhBas)
                 {
 
@@ -224,9 +225,7 @@ namespace ViewModel
                 }
 
                 TongKH = String.Format("Tổng KH: {0}", max);
-                
 
-                MessageBox.Show("Cập nhật hoàn tất!");
             }
         }
         private void rotate(UIElementCollection p)
@@ -319,13 +318,35 @@ namespace ViewModel
 
                 hoaDon12Month = new HoaDon12Month();
                 selectedHoaDon = value;
-                try
+                if (selectedHoaDon != null)
                 {
-                    Image = GetDataDBViewModel.Instance.getImageLocalByDanhBa(selectedHoaDon.DanhBa, selectedHoaDon.GIOGHI.GetValueOrDefault());
-                }
-                catch { }
-                ListDocSo_1Ky = GetDataDBViewModel.Instance.get12Months(Year, Month, selectedHoaDon.DanhBa);
+                    Task.Factory.StartNew(() =>
+                    {
+                        try
+                        {
+                            //TextBlock txtbImage = new TextBlock()
+                            //{
+                            //    Text = "Đang tải hình ảnh",
+                            //    Margin = new Thickness(10, 0, 10, 0)
+                            //};
+                            Status = "Đang tải hình ảnh";
 
+                            Image = GetDataDBViewModel.Instance.getImageByDanhBa(selectedHoaDon.DanhBa, selectedHoaDon.GIOGHI.GetValueOrDefault());
+
+                            Status = Status.Replace("Đang tải hình ảnh", "");
+                        }
+                        catch { }
+                    });
+
+                    Task.Factory.StartNew(() =>
+                    {
+                        Status += "         Đang tải thông tin 12 kỳ";
+                        ListDocSo_1Ky = GetDataDBViewModel.Instance.get12Months(Year, Month, selectedHoaDon.DanhBa);
+
+                        Status = Status.Replace("Đang tải thông tin 12 kỳ", "");
+
+                    });
+                }
                 OnPropertyChanged("SelectedHoaDon");
             }
         }
