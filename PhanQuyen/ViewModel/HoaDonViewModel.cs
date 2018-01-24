@@ -30,6 +30,19 @@ namespace ViewModel
                 OnPropertyChanged("BaoThayBinding");
             }
         }
+        private MySoLenh soLenh;
+        public MySoLenh SoLenhBinding
+        {
+            get
+            {
+                return soLenh;
+            }
+            set
+            {
+                soLenh = value;
+                OnPropertyChanged("SoLenhBinding");
+            }
+        }
         private String tongKH;
         public String TongKH
         {
@@ -359,7 +372,7 @@ namespace ViewModel
                     Status = Status.Replace("Đang tải thông tin 12 kỳ", "");
 
                     //});
-
+                    SoLenhBinding = GetDataDBViewModel.Instance.getSoLenh(selectedHoaDon.DanhBa);
                     BaoThayBinding = GetDataDBViewModel.Instance.getBaoThay(selectedHoaDon.DanhBa);
 
                 }

@@ -333,6 +333,29 @@ namespace ViewModel
             return result;
         }
 
+        public MySoLenh getSoLenh(string danhBa)
+        {
+            var data = (from b in serverContext.ThongBaos
+                        join t in serverContext.ThamSos on b.LoaiLenh.ToString() equals t.Code
+                        where b.DanhBa == danhBa && t.CodeType == "TB"
+                        orderby b.ID descending
+                        select new
+                        {
+                            b.SoLenh,
+                            t.CodeDesc,
+                            b.ChiSo,
+                            b.NgayKiem,
+                            b.NoiDung,
+                            b.Hieu,
+                            b.Co,
+                            b.NgayCapNhat
+                        }).FirstOrDefault();
+            if (data == null)
+                return null;
+            return new MySoLenh(danhBa, data.CodeDesc, data.ChiSo + "", data.NgayKiem.Value.ToString(pattern),
+                data.NoiDung, data.Hieu, data.Co + "", data.NgayCapNhat.Value.ToString(pattern));
+        }
+
         public MyBaoThay getBaoThay(string danhBa)
         {
             var data = (from b in serverContext.BaoThays
