@@ -82,21 +82,44 @@
                 </RibbonGroup>
 
             </RibbonTab>-->
-            <RibbonTab Header="Xử lý" >
-                <RibbonGroup Header="Điều chỉnh">
+            <RibbonTab Header="Xử lý" IsSelected="True">
+                <RibbonGroup Header="Điều chỉnh" >
                     <RibbonButton Label="Điều chỉnh thông tin đọc số"  LargeImageSource="/PhanQuyen;component/Images/update_number.png" Name="ribBtnDieuChinhThongTinDocSo" Click="ribBtnDieuChinhThongTinDocSo_Click"></RibbonButton>
                     <RibbonButton Label="In phiếu tiêu thụ khách hàng"  LargeImageSource="/PhanQuyen;component/Images/printer.png" Name="ribBtnInPhieuTieuThuKH" Click="ribBtnInPhieuTieuThuKH_Click"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Hoàn tất">
                     <RibbonButton Label="Hoàn tất đọc số"  LargeImageSource="/PhanQuyen;component/Images/check.png"></RibbonButton>
+                    <RibbonButton Label="Hoàn tất thương vụ"  LargeImageSource="/PhanQuyen;component/Images/hoantatthuongvu.png"></RibbonButton>
                 </RibbonGroup>
 
             </RibbonTab>
-            <RibbonTab Header="Báo thay" >
+            <RibbonTab Header="Báo thay"  >
                 <RibbonGroup Header="Báo thay">
-                    <RibbonButton Label="Xem bảng kê"  LargeImageSource="/PhanQuyen;component/Images/report.png"></RibbonButton>
+                    <RibbonButton Label="Báo thay định kỳ"  LargeImageSource="/PhanQuyen;component/Images/baothaydinhky.png"></RibbonButton>
                 </RibbonGroup>
-
+                <RibbonGroup Header="Nhập">
+                    <RibbonButton Label="Nhập hoàn công"  LargeImageSource="/PhanQuyen;component/Images/nhaphoancong.png"></RibbonButton>
+                    <RibbonButton Label="Nhập thông báo"  LargeImageSource="/PhanQuyen;component/Images/nhapthongbao.png"></RibbonButton>
+                </RibbonGroup>
+                <RibbonGroup Header="Cập nhật">
+                    <RibbonButton Label="Cập nhật hoàn công"  LargeImageSource="/PhanQuyen;component/Images/capnhathoancong.png"></RibbonButton>
+                    <RibbonButton Label="Cập nhật thông báo"  LargeImageSource="/PhanQuyen;component/Images/capnhatthongbao.png"></RibbonButton>
+                </RibbonGroup>
+                <RibbonGroup Header="Hoàn công">
+                    <RibbonButton Label="Hoàn công bồi thường"  LargeImageSource="/PhanQuyen;component/Images/hoancongboithuong.png"></RibbonButton>
+                    <RibbonButton Label="Hoàn công không báo thay"  LargeImageSource="/PhanQuyen;component/Images/hoancongkhongbaothay.png"></RibbonButton>
+                </RibbonGroup>
+                <RibbonGroup Header="Lịch sử">
+                    <RibbonButton Label="Lịch sử ĐHN"  LargeImageSource="/PhanQuyen;component/Images/lichsu.png"></RibbonButton>
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="Điều chỉnh thông tin">
+                <RibbonGroup Header="Khách hàng">
+                    <RibbonButton Label="Tra cứu thông tin khách hàng"  LargeImageSource="/PhanQuyen;component/Images/customer.png"></RibbonButton>
+                </RibbonGroup>
+                <RibbonGroup Header="DMA">
+                    <RibbonButton Label="Tìm theo DMA"  LargeImageSource="/PhanQuyen;component/Images/DMA.png"></RibbonButton>
+                </RibbonGroup>
             </RibbonTab>
             <RibbonTab Header="Báo cáo">
                 <RibbonGroup Header="Thống kê">

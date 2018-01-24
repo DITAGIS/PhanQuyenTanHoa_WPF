@@ -316,5 +316,30 @@
   <ItemGroup>
     <Resource Include="Images\up-arrow.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\customer.png" />
+    <Resource Include="Images\DMA.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\nhaphoancong.png" />
+    <Resource Include="Images\nhapthongbao.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\capnhathoancong.png" />
+    <Resource Include="Images\capnhatthongbao.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\baothaydinhky.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\hoancongboithuong.png" />
+    <Resource Include="Images\hoancongkhongbaothay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\lichsu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\hoantatthuongvu.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
