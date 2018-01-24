@@ -33,6 +33,16 @@ namespace ViewModel
             localContext = new DataClassesLocalDataContext();
             serverContext = new DataClassServerDataContext();
         }
+
+        public IEnumerable getNote(string danhBa)
+        {
+            var data = (from x in serverContext.DocSos
+                        where x.DanhBa == danhBa
+                        orderby x.DocSoID descending
+                        select new { x.Ky, x.Nam, danhBa, x.CodeMoi, x.TTDHNMoi, x.CSCu, x.CSMoi, x.TieuThuMoi, x.GhiChuDS, x.GhiChuKH, x.GhiChuTV }).ToList();
+            return data;
+        }
+
         public List<String> getDocsosByConditionCount(int year, String month, String date, int xGroup, String machine)
         {
             var getData = (from x in serverContext.DocSos
@@ -178,15 +188,7 @@ namespace ViewModel
             return listData;
         }
 
-        public DocSoLocal getDocSoLocalByDanhBa(String danhBa, int year, String month, String date, int xGroup, String machine)
-        {
-
-            DataClassesLocalDataContext localContext = new DataClassesLocalDataContext();
-            var data = (from x in localContext.DocSoLocals
-                        where x.DanhBa == danhBa && x.Nam == year && x.Ky == month && x.TODS == xGroup && x.May == machine
-                        select x).Single();
-            return data;
-        }
+       
 
         public List<string> getDanhBasByCondition(int year, string month, string date, int xGroup, string machine)
         {

@@ -21,14 +21,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3B889B0D563CE3136D785F8823744A43"
-        "OwnerKey" = "8:_D951D74D9D724E67899D9D4DDB4EDE36"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3B889B0D563CE3136D785F8823744A43"
-        "OwnerKey" = "8:_B520911279C173025B0B5C3C70227B14"
+        "MsmKey" = "8:_5AE68EB778E948A1A2409A3539C68A44"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -57,13 +51,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A4C639BED38C6E7527A8AED84A452233"
+        "MsmKey" = "8:_8E8FBED4DA550A6DD21D1DFD4491DC97"
         "OwnerKey" = "8:_D951D74D9D724E67899D9D4DDB4EDE36"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B520911279C173025B0B5C3C70227B14"
+        "MsmKey" = "8:_A4C639BED38C6E7527A8AED84A452233"
         "OwnerKey" = "8:_D951D74D9D724E67899D9D4DDB4EDE36"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -93,26 +87,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6934AEFCB8841BD183EC7F6FACABD335"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_FE90F79A945A7324AF6B69B9F9265D5D"
         "OwnerKey" = "8:_D951D74D9D724E67899D9D4DDB4EDE36"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B520911279C173025B0B5C3C70227B14"
+        "MsmKey" = "8:_FE90F79A945A7324AF6B69B9F9265D5D"
+        "OwnerKey" = "8:_8E8FBED4DA550A6DD21D1DFD4491DC97"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3B889B0D563CE3136D785F8823744A43"
+        "OwnerKey" = "8:_CA1D00528B95B7CC3B19646C76C5D67D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -124,7 +112,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CA1D00528B95B7CC3B19646C76C5D67D"
+        "OwnerKey" = "8:_D951D74D9D724E67899D9D4DDB4EDE36"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8E8FBED4DA550A6DD21D1DFD4491DC97"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_FE90F79A945A7324AF6B69B9F9265D5D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -145,6 +145,12 @@
         "OwnerKey" = "8:_10E3D767688272EECDA24BCE3256EB11"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6934AEFCB8841BD183EC7F6FACABD335"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -163,6 +169,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -179,6 +201,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -239,23 +269,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3B889B0D563CE3136D785F8823744A43"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5AE68EB778E948A1A2409A3539C68A44"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_3B889B0D563CE3136D785F8823744A43"
-                    {
-                    "Name" = "8:Model.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Model.exe"
-            "TargetName" = "8:"
+            "SourcePath" = "8:D:\\OneDrive\\Documents\\ditagis\\Cap nuoc Tan Hoa\\logo.jpg"
+            "TargetName" = "8:logo.jpg"
             "Tag" = "8:"
-            "Folder" = "8:_DE6D874E157D48F1BDB2D42DF0755FEA"
+            "Folder" = "8:_B8FB0993552A49B5B58C4BFB981A2F61"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -267,7 +286,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6934AEFCB8841BD183EC7F6FACABD335"
@@ -332,20 +351,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A4C639BED38C6E7527A8AED84A452233"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8E8FBED4DA550A6DD21D1DFD4491DC97"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Windows.Controls.Ribbon, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+            "AssemblyAsmDisplayName" = "8:ViewModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_A4C639BED38C6E7527A8AED84A452233"
+                    "_8E8FBED4DA550A6DD21D1DFD4491DC97"
                     {
-                    "Name" = "8:System.Windows.Controls.Ribbon.dll"
+                    "Name" = "8:ViewModel.exe"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:System.Windows.Controls.Ribbon.dll"
+            "SourcePath" = "8:ViewModel.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_DE6D874E157D48F1BDB2D42DF0755FEA"
@@ -363,20 +382,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B520911279C173025B0B5C3C70227B14"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A4C639BED38C6E7527A8AED84A452233"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ViewModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:System.Windows.Controls.Ribbon, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
                 "ScatterAssemblies"
                 {
-                    "_B520911279C173025B0B5C3C70227B14"
+                    "_A4C639BED38C6E7527A8AED84A452233"
                     {
-                    "Name" = "8:ViewModel.exe"
+                    "Name" = "8:System.Windows.Controls.Ribbon.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:ViewModel.exe"
+            "SourcePath" = "8:System.Windows.Controls.Ribbon.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_DE6D874E157D48F1BDB2D42DF0755FEA"
@@ -439,6 +458,37 @@
                     }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_DE6D874E157D48F1BDB2D42DF0755FEA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FE90F79A945A7324AF6B69B9F9265D5D"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_FE90F79A945A7324AF6B69B9F9265D5D"
+                    {
+                    "Name" = "8:Model.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Model.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_DE6D874E157D48F1BDB2D42DF0755FEA"
@@ -524,7 +574,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Setup"
         "ProductCode" = "8:{F924338E-E849-4D6B-93A1-030C3699C95A}"
-        "PackageCode" = "8:{CD4FD439-115E-449A-9FCF-4EA341EC71C0}"
+        "PackageCode" = "8:{A8351BD3-9BE7-4389-A8EF-0364DB659029}"
         "UpgradeCode" = "8:{254B99C7-2D9C-4484-98C5-7B2C268E02D8}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -705,7 +755,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5AE68EB778E948A1A2409A3539C68A44"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "ShowProgress"
@@ -749,7 +800,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5AE68EB778E948A1A2409A3539C68A44"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "InstallAllUsersVisible"
@@ -784,7 +836,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5AE68EB778E948A1A2409A3539C68A44"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -863,7 +916,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5AE68EB778E948A1A2409A3539C68A44"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "UpdateText"
@@ -951,7 +1005,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5AE68EB778E948A1A2409A3539C68A44"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -973,7 +1028,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5AE68EB778E948A1A2409A3539C68A44"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -995,7 +1051,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5AE68EB778E948A1A2409A3539C68A44"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -1052,7 +1109,8 @@
                             "Type" = "3:8"
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
-                            "Setting" = "3:1"
+                            "Setting" = "3:2"
+                            "Value" = "8:_5AE68EB778E948A1A2409A3539C68A44"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -1073,7 +1131,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D951D74D9D724E67899D9D4DDB4EDE36"
             {
-            "SourcePath" = "8:..\\PhanQuyen\\obj\\x86\\Release\\PhanQuyen.exe"
+            "SourcePath" = "8:..\\PhanQuyen\\obj\\Debug\\PhanQuyen.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_DE6D874E157D48F1BDB2D42DF0755FEA"

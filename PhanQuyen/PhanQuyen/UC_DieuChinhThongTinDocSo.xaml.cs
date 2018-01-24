@@ -36,6 +36,7 @@ namespace PhanQuyen
         private DataGridRow row;
         private DataGridCell gridCell;
         private List<DocSo> docSoList = new List<DocSo>();
+        private DocSo _selectedDocSo;
 
         private const int COLUMN_MLT = 0;
         private const int COLUMN_DANHBA = 1;
@@ -97,7 +98,11 @@ namespace PhanQuyen
             //    System.Data.DataRow MyRow = (System.Data.DataRow)row.Item;
             //    string value = MyRow[1].ToString();
             //}
-
+            _selectedDocSo = dtgridMain.SelectedValue as DocSo;
+            if (_selectedDocSo != null)
+                btnViewNote.IsEnabled = true;
+            else
+                btnViewNote.IsEnabled = false;
             row = getRow(dtgridMain.SelectedIndex);
         }
         private DataGridRow getRow(int index)
@@ -183,9 +188,9 @@ namespace PhanQuyen
 
         private void txtbCSM_TextChanged(object sender, TextChangedEventArgs e)
         {
-            int csm =Int16.Parse(txtbCSM.Text.ToString());
-            int tieuThuMoi=csm - Int16.Parse(txtbCSC.Text.ToString());
-          
+            int csm = Int16.Parse(txtbCSM.Text.ToString());
+            int tieuThuMoi = csm - Int16.Parse(txtbCSC.Text.ToString());
+
             txtbTieuThu.Text = tieuThuMoi + "";//todo 
             //if (txtbCSM.Text.Length > 0)
             //{
@@ -317,7 +322,12 @@ namespace PhanQuyen
                 machine = cbbMachine.SelectedValue.ToString();
         }
 
-        
+        private void btnViewNote_Click(object sender, RoutedEventArgs e)
+        {
+            XemGhiChuWindow xemGhiChuWindow = new XemGhiChuWindow(_selectedDocSo.DanhBa);
+            xemGhiChuWindow.ShowDialog();
+        }
+
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbbYear.SelectedValue != null)

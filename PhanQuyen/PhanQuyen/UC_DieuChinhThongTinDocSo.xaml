@@ -29,7 +29,7 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <DockPanel LastChildFill="True">
+    <DockPanel LastChildFill="True" Background="White">
         <!--<StackPanel DockPanel.Dock="Top" Orientation="Horizontal"  Background="WhiteSmoke" >-->
         <!--<TextBlock DockPanel.Dock="Top" HorizontalAlignment="Right" FontSize="15" Margin="0,0,10,0" Text="{Binding Status, Mode=OneWay}" VerticalAlignment="Center"/>-->
         <!--</StackPanel>-->
@@ -140,7 +140,9 @@
                             <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">In phiếu kiểm tra</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Margin="10,0,0,0" Background="White" Name="btnViewNote">
+                    <Button Margin="10,0,0,0" Background="White" Name="btnViewNote"
+                            IsEnabled="False"
+                            Click="btnViewNote_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="/PhanQuyen;component/Images/note.png" Width="20" Height="20"></Image>
                             <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">Xem ghi chú</TextBlock>
@@ -240,7 +242,6 @@
 
                     <DataGrid                        Grid.Column="0"
                         SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
-                                                 
                           AutoGenerateColumns="False" Name="dtgridMain" 
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
                           Width="Auto" Margin="0,0,0,0" Height="340" 
@@ -291,7 +292,14 @@
                             <DataGridTextColumn Header="Chỉ Số Mới"  Binding="{Binding CSMoi,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Tiêu Thụ Mới" Binding="{Binding TieuThuMoi,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="TBTT" Binding="{Binding TBTT,Mode=OneWay}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Số nhà"  Binding="{Binding SoNhaCu,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Địa chỉ"  >
+                                <DataGridTextColumn.Binding>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="SoNhaCu" />
+                                        <Binding Path="Duong" />
+                                    </MultiBinding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
                             <DataGridTextColumn Header="Đường"  Binding="{Binding Duong,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Ghi chú đọc số" Binding="{Binding GhiChuDS,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Ghi chú khách hàng" Binding="{Binding GhiChuKH,Mode=OneWay}"></DataGridTextColumn>
