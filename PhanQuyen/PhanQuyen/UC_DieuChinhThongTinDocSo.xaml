@@ -97,7 +97,7 @@
                               
                       ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbDate_SelectionChanged"/>
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ:"/></TextBlock>
-                    <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
+                    <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="Auto"
                           SelectedValue="{Binding Group, Mode=TwoWay}" 
                               
                       ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbGroup_SelectionChanged"/>
@@ -207,7 +207,7 @@
                     <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" Orientation="Horizontal">
                         <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"
                                    Text="{Binding TongKH}"><Run Text="Tổng số KH:"/></TextBlock>
-                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"
+                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="100,0,10,0"
                                    Text="{Binding TongSanLuong}"><Run Text="Sản lượng:"/></TextBlock>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="1"
@@ -218,7 +218,7 @@
                       Text="{Binding SelectedHoaDon.GhiChuDS}"/>
                     </StackPanel>
                 </Grid>
-                <Grid Grid.Row="2" Height="340" ShowGridLines="True" Background="White"
+                <Grid Grid.Row="2" Height="340" ShowGridLines="False" Background="White"
                   Margin="0,10,0,0"                  >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -226,10 +226,12 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*" MinWidth="1000"/>
                         <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <GridSplitter Background="White" Grid.Column="0" Grid.RowSpan="5" Width="10"  HorizontalAlignment="Right" VerticalAlignment="Stretch" ></GridSplitter>
+                    <!--<GridSplitter Background="White" Grid.Column="0" Grid.RowSpan="5" Width="10"  HorizontalAlignment="Right" VerticalAlignment="Stretch" ></GridSplitter>-->
 
-                    <DataGrid SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged}" 
+                    <DataGrid                        Grid.Column="0"
+                        SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged}" 
                           AutoGenerateColumns="False" Name="dtgridMain" 
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
                           Width="Auto" Margin="0,0,0,0" Height="340" 
@@ -282,11 +284,16 @@
                             <DataGridTextColumn Header="Số nhà"  Binding="{Binding SoNhaCu,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Đường"  Binding="{Binding Duong,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Ghi chú đọc số" Binding="{Binding GhiChuDS,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Ghi chú khách hàng" Binding="{Binding GhiChuKH,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Ghi chú thương vụ" Binding="{Binding GhiChuTV,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Thông báo" Binding="{Binding GhiChuTV,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Máy đọc số" Binding="{Binding May,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Ngày gắn" Binding="{Binding GhiChuTV,Mode=OneWay}"></DataGridTextColumn>
                         </DataGrid.Columns>
                         <!--handle item click event-->
 
                     </DataGrid>
-                    <Grid Grid.Column="1" Name="stkImage" Margin="0,0,20,0">
+                    <Grid Grid.Column="1" Name="stkImage" Margin="10,0,10,0">
 
                         <Border BorderThickness="1" Grid.Column="1" Background="White" Name="border"
                                  ClipToBounds="True"
@@ -300,35 +307,9 @@
 
                             </Image>
                         </Border>
-                        <Popup Placement="Right" IsOpen="True">
-                            <StackPanel Background="White">
-                                <Button Background="AliceBlue" Click="btnRotate_Click"
-                                Name="btnRotate"
-                                    Height="30"
-                                    Width="30">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="/PhanQuyen;component/Images/rotate.png" Width="20" Height="20"></Image>
-                                    </StackPanel>
-                                </Button>
-                                <Button Background="AliceBlue" Click="btnZoomIn_Click"
-                                Name="btnZoomIn"
-                                    Height="30"
-                                    Width="30"
-                                        Margin="0,10,0,10">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="/PhanQuyen;component/Images/zoom-in.png" Width="20" Height="20"></Image>
-                                    </StackPanel>
-                                </Button>
-                                <Button Background="AliceBlue" Click="btnZoomOut_Click"
-                                Name="btnZoomOut"
-                                    Height="30"
-                                    Width="30">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="/PhanQuyen;component/Images/zoom-out.png" Width="20" Height="20"></Image>
-                                    </StackPanel>
-                                </Button>
-                            </StackPanel>
-                        </Popup>
+                        <!--<Popup Placement="Right" IsOpen="True">-->
+                   
+                        <!--</Popup>-->
 
                     </Grid>
                     <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Text="Chưa có hình ảnh">
@@ -343,6 +324,35 @@
                             </Style>
                         </TextBlock.Style>
                     </TextBlock>
+                    <StackPanel Grid.Column="2"
+                                        Width="30"
+                                Background="White" Orientation="Vertical">
+                        <Button Background="AliceBlue" Click="btnRotate_Click"
+                                Name="btnRotate"
+                                    Height="30"
+                                    Width="30">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/PhanQuyen;component/Images/rotate.png" Width="20" Height="20"></Image>
+                            </StackPanel>
+                        </Button>
+                        <Button Background="AliceBlue" Click="btnZoomIn_Click"
+                                Name="btnZoomIn"
+                                    Height="30"
+                                    Width="30"
+                                        Margin="0,10,0,10">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/PhanQuyen;component/Images/zoom-in.png" Width="20" Height="20"></Image>
+                            </StackPanel>
+                        </Button>
+                        <Button Background="AliceBlue" Click="btnZoomOut_Click"
+                                Name="btnZoomOut"
+                                    Height="30"
+                                    Width="30">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/PhanQuyen;component/Images/zoom-out.png" Width="20" Height="20"></Image>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
                 </Grid>
 
                 <!--Grid số lệnh-->
@@ -523,7 +533,7 @@
                         BorderBrush="Gray" 
                         BorderThickness="1">
                             <TextBlock HorizontalAlignment="Center" 
-                         Text="{Binding SelectedHoaDon.DanhBa}"/>
+                         Text="{Binding BaoThayBinding.DanhBa}"/>
                         </Border>
                         <Border  Grid.Row="0"
                           Grid.Column="1"
@@ -538,7 +548,7 @@
                         BorderBrush="Gray" 
                         BorderThickness="1">
                             <TextBlock HorizontalAlignment="Center" 
-                        Text="{Binding SelectedHoaDon.LoaiBaoThay}"/>
+                        Text="{Binding BaoThayBinding.LoaiBaoThay}"/>
                         </Border>
                         <Border  Grid.Row="0"
                           Grid.Column="2"
@@ -553,7 +563,7 @@
                         BorderBrush="Gray" 
                         BorderThickness="1">
                             <TextBlock HorizontalAlignment="Center" 
-                        Text="{Binding SelectedHoaDon.ChiSoGo}"/>
+                        Text="{Binding BaoThayBinding.ChiSoGo}"/>
                         </Border>
                         <Border  Grid.Row="0"
                           Grid.Column="3"
@@ -568,7 +578,7 @@
                         BorderBrush="Gray" 
                         BorderThickness="1">
                             <TextBlock HorizontalAlignment="Center" 
-                        Text="{Binding SelectedHoaDon.ChiSoGan}"/>
+                        Text="{Binding BaoThayBinding.ChiSoGan}"/>
                         </Border>
                         <Border  Grid.Row="0"
                           Grid.Column="4"
@@ -583,7 +593,7 @@
                         BorderBrush="Gray" 
                         BorderThickness="1">
                             <TextBlock HorizontalAlignment="Center" 
-                        Text="{Binding SelectedHoaDon.SoThanMoi}"/>
+                        Text="{Binding BaoThayBinding.SoThanMoi}"/>
                         </Border>
                         <Border  Grid.Row="0"
                           Grid.Column="5"
@@ -598,7 +608,7 @@
                         BorderBrush="Gray" 
                         BorderThickness="1">
                             <TextBlock HorizontalAlignment="Center" 
-                        Text="{Binding SelectedHoaDon.NgayThay}"/>
+                        Text="{Binding BaoThayBinding.NgayThay}"/>
                         </Border>
                         <Border  Grid.Row="0"
                           Grid.Column="6"
@@ -613,7 +623,7 @@
                         BorderBrush="Gray" 
                         BorderThickness="1">
                             <TextBlock HorizontalAlignment="Center" 
-                        Text="{Binding SelectedHoaDon.NgayCapNhat}"/>
+                        Text="{Binding BaoThayBinding.NgayCapNhat}"/>
                         </Border>
                     </Grid>
                 </Border>
@@ -627,37 +637,39 @@
                         <StackPanel Orientation="Horizontal"                      >
                             <!--Tên khách hàng-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Tên khách hàng:"/></TextBlock>
-                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" 
+                                       
+                                       Style="{StaticResource styleTxbl}" FontWeight="Bold">
                         <Run Text="{Binding SelectedHoaDon.TenKH}"/>
                             </TextBlock>
                             <!--Danh bạ-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
-                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}" FontWeight="Bold">
                         <Run Text="{Binding SelectedHoaDon.DanhBa}"/>
                             </TextBlock>
                             <!--Hợp đồng-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Hợp đồng:"/></TextBlock>
-                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}" FontWeight="Bold">
                         <Run Text="{Binding SelectedHoaDon.HopDong}"/>
                             </TextBlock>
                             <!--Hiệu-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Hiệu:"/></TextBlock>
-                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}" FontWeight="Bold">
                         <Run Text="{Binding SelectedHoaDon.HieuCu}"/>
                             </TextBlock>
                             <!--Cỡ-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Cỡ: "/></TextBlock>
-                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}" FontWeight="Bold">
                         <Run Text="{Binding SelectedHoaDon.CoCu}"/>
                             </TextBlock>
                             <!--Giá biểu-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Giá biểu:"/></TextBlock>
-                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}" FontWeight="Bold">
                         <Run Text="{Binding SelectedHoaDon.GB}"/>
                             </TextBlock>
                             <!--Định mức-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Định mức:"/></TextBlock>
-                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}" FontWeight="Bold">
                         <Run Text="{Binding SelectedHoaDon.DM}"/>
                             </TextBlock>
                         </StackPanel>
@@ -674,7 +686,7 @@
                             </StackPanel.RenderTransform>
                             <!--Địa chỉ-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Địa chỉ:"/></TextBlock>
-                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}" FontWeight="Bold">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0} {1}">
                                         <Binding Path="SelectedHoaDon.SoNhaCu" />
@@ -684,12 +696,12 @@
                             </TextBlock>
                             <!--Số thân-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Số thân:"/></TextBlock>
-                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}" FontWeight="Bold">
                         <Run Text="{Binding SelectedHoaDon.SoThanCu}"/>
                             </TextBlock>
                             <!--Mã lộ trình-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Mã lộ trình:"/></TextBlock>
-                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}">
+                            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" Style="{StaticResource styleTxbl}" FontWeight="Bold">
                         <Run Text="{Binding SelectedHoaDon.MLT1}"/>
                             </TextBlock>
                         </StackPanel>

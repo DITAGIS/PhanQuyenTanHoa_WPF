@@ -102,6 +102,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MyBaoThay.cs" />
     <Compile Include="CodeModel.cs" />
     <Compile Include="DocSo_1Ky.cs" />
     <Compile Include="HoaDon12Month.cs" />

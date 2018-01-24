@@ -17,6 +17,19 @@ namespace ViewModel
     public class HoaDonViewModel : INotifyPropertyChanged
     {
         #region Initialize
+        private MyBaoThay baoThay;
+        public MyBaoThay BaoThayBinding
+        {
+            get
+            {
+                return baoThay;
+            }
+            set
+            {
+                baoThay = value;
+                OnPropertyChanged("BaoThayBinding");
+            }
+        }
         private String tongKH;
         public String TongKH
         {
@@ -338,14 +351,17 @@ namespace ViewModel
                         catch { }
                     });
 
-                    Task.Factory.StartNew(() =>
-                    {
-                        Status += "         Đang tải thông tin 12 kỳ";
-                        ListDocSo_1Ky = GetDataDBViewModel.Instance.get12Months(Year, Month, selectedHoaDon.DanhBa);
+                    //Task.Factory.StartNew(() =>
+                    //{
+                    Status += "         Đang tải thông tin 12 kỳ";
+                    ListDocSo_1Ky = GetDataDBViewModel.Instance.get12Months(Year, Month, selectedHoaDon.DanhBa);
 
-                        Status = Status.Replace("Đang tải thông tin 12 kỳ", "");
+                    Status = Status.Replace("Đang tải thông tin 12 kỳ", "");
 
-                    });
+                    //});
+
+                    BaoThayBinding = GetDataDBViewModel.Instance.getBaoThay(selectedHoaDon.DanhBa);
+
                 }
                 OnPropertyChanged("SelectedHoaDon");
             }

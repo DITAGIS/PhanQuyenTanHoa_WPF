@@ -18,6 +18,7 @@ namespace ViewModel
         private static GetDataDBViewModel _instance;
         private DataClassesLocalDataContext localContext;
         private DataClassServerDataContext serverContext;
+        string pattern = "dd/MM/yyyy";
         public static GetDataDBViewModel Instance
         {
             get
@@ -332,6 +333,27 @@ namespace ViewModel
             return result;
         }
 
+        public MyBaoThay getBaoThay(string danhBa)
+        {
+            var data = (from b in serverContext.BaoThays
+                        join t in serverContext.ThamSos on b.LoaiBT.ToString() equals t.Code
+                        where b.DanhBa == danhBa && t.CodeType == "BT"
+                        select new
+                        {
+                            danhBa,
+                            t.CodeDesc,
+                            b.CSGo,
+                            b.CSGan,
+                            b.SoThanMoi,
+                            b.NgayThay,
+                            b.NgayCapNhat
+                        }).FirstOrDefault();
+            if (data == null)
+                return null;
+            return new MyBaoThay(data.danhBa, data.CodeDesc, data.CSGo + "", data.CSGan + "",
+                data.SoThanMoi, data.NgayThay.Value.ToString(pattern), data.NgayCapNhat.Value.ToString(pattern));
+        }
+
         public ObservableCollection<int> getDistinctYear()
         {
             ObservableCollection<int> lstYear = new ObservableCollection<int>();
@@ -348,9 +370,9 @@ namespace ViewModel
         }
         public ObservableCollection<DocSo_1Ky> get12Months(int year, string Month, string danhBa)
         {
-            
 
-            string pattern = "dd/MM/yyyy";
+
+
             int count = 0;
             int month = Int16.Parse(Month);
             List<Item> r = new List<Item>();

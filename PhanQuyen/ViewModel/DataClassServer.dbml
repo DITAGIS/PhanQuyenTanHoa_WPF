@@ -95,4 +95,30 @@
       <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.BaoThay" Member="BaoThays">
+    <Type Name="BaoThay">
+      <Column Name="BaoThayID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DanhBa" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LoaiBT" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="NgayThay" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="HieuMoi" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CoMoi" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="SoThanMoi" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ViTriMoi" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ChiThanMoi" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ChiCoMoi" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CSGo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CSGan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgayCapNhat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NVCapNhat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ThamSo" Member="ThamSos">
+    <Type Name="ThamSo">
+      <Column Name="Code" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CodeDesc" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="CodeType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Stt" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>
