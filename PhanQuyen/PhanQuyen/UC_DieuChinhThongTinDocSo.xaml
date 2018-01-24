@@ -257,6 +257,7 @@
                           BorderBrush="Black"
                               CanUserAddRows="False"
                           Background="White" SelectionMode="Single"
+                          
                           FontSize="12">
                         <!--Font Color / Style of Column Heading-->
                         <DataGrid.Resources>
@@ -267,6 +268,7 @@
                                 <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
                                 <Setter Property="BorderBrush" Value="Black"></Setter>
                                 <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                                <EventSetter Event="Click" Handler="columnHeader_Click" />
                             </Style>
 
                         </DataGrid.Resources>
@@ -308,6 +310,10 @@
                             <DataGridTextColumn Header="Máy đọc số" Binding="{Binding May,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Giờ ghi" Binding="{Binding GIOGHI,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Ngày gắn" Binding="{Binding GhiChuTV,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Tạm tính" Binding="{Binding TamTinh,Mode=OneWay}"
+                                                ></DataGridTextColumn>
+                            <DataGridTextColumn Header="Sta Cập nhật" Binding="{Binding StaCapNhat,Mode=OneWay}"
+                                                ></DataGridTextColumn>
                         </DataGrid.Columns>
 
                         <!--handle item click event-->

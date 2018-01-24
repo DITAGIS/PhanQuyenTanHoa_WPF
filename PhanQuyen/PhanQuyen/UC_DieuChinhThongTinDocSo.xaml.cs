@@ -48,6 +48,7 @@ namespace PhanQuyen
         private const int COLUMN_CSMOI = 7;
         private const int COLUMN_TIEUTHUMOI = 8;
         private const int COLUMN_TTTB = 9;
+        private const int COLUMN_STACAPNHAT = 20;
         public UC_DieuChinhThongTinDocSo()
         {
             InitializeComponent();
@@ -103,12 +104,21 @@ namespace PhanQuyen
                 btnViewNote.IsEnabled = true;
             else
                 btnViewNote.IsEnabled = false;
+
             row = getRow(dtgridMain.SelectedIndex);
         }
         private DataGridRow getRow(int index)
         {
-            return (DataGridRow)dtgridMain.ItemContainerGenerator
-                                              .ContainerFromIndex(index);
+            DataGridRow row = (DataGridRow)dtgridMain.ItemContainerGenerator.ContainerFromIndex(index);
+            if (row == null)
+            {
+                // May be virtualized, bring into view and try again.
+                dtgridMain.UpdateLayout();
+                dtgridMain.ScrollIntoView(dtgridMain.Items[index]);
+                row = (DataGridRow)dtgridMain.ItemContainerGenerator.ContainerFromIndex(index);
+            }
+            return row;
+
         }
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -141,7 +151,7 @@ namespace PhanQuyen
         {
             //code mới
 
-            gridCell = TryToFindGridCell(dtgridMain, row, 4);
+            gridCell = getCell(dtgridMain, row, 4);
             if (gridCell != null)
                 gridCell.Content = cbbCode.SelectedValue.ToString();
             if (dtgridMain != null && cbbCode.SelectedValue != null && cbbCode.SelectedIndex > -1)
@@ -170,6 +180,7 @@ namespace PhanQuyen
 
                 }
             }
+            CanhBaoBatThuong();
             Refresh();
         }
         private void txtbCSM_KeyDown(object sender, KeyEventArgs e)
@@ -222,39 +233,52 @@ namespace PhanQuyen
 
             txtbSanLuong.Text = String.Format("Sản lượng: {0} m3", sanLuong);
             txtbTongKH.Text = String.Format("Tổng KH: {0}", dtgridMain.Items.Count);
-            //CanhBaoBatThuong();
+            CanhBaoBatThuong();
         }
-
+        private String getValueCell(DataGridCell cell, DataGridRow row)
+        {
+            return (cell.Column.GetCellContent(row) as TextBlock).Text.ToString();
+        }
         private void CanhBaoBatThuong()
         {
             DataGridRow row;
             SolidColorBrush red = new SolidColorBrush(Colors.Red);
             SolidColorBrush blue = new SolidColorBrush(Colors.Blue);
+            SolidColorBrush black = new SolidColorBrush(Colors.Black);
             Setter bold = new Setter(TextBlock.FontWeightProperty, FontWeights.Bold, null);
             Style newStyle;
-            for (int index = 1; index <= this.dtgridMain.Items.Count; ++index)
+            for (int index = 0; index < this.dtgridMain.Items.Count; ++index)
             {
                 row = getRow(index);
-                newStyle = new Style(row.GetType());
-                newStyle.Setters.Add(bold);
+                row.Foreground = black;
+                //newStyle = new Style(row.GetType());
+                //newStyle.Setters.Add(bold);
                 //this.dtgridMain.Rows[index].Cells["Code Cũ"].Value.ToString();
-                string str1 = TryToFindGridCell(dtgridMain, row, COLUMN_CodeMoi).Content.ToString();
-                //string str2 = this.dtgridMain.Rows[index].Cells["StaCapNhat"].Value.ToString();
-                double num1 = 0.0;
-                double num2 = 0.0;
-                double num3 = 0.0;
-                double num4 = 0.0;
+                var cellCodeMoi = getCell(dtgridMain, row, COLUMN_CodeMoi);
+                var cellStaCapNhat = getCell(dtgridMain, row, COLUMN_STACAPNHAT);
+                string str1 = "";
+                string str2 = "";
+                double csc = 0.0;
+                double csm = 0.0;
+                double ttm = 0.0;
+                double tttb = 0.0;
                 try
                 {
-                    num1 += Convert.ToDouble(TryToFindGridCell(dtgridMain, row, COLUMN_CSCU).Content.ToString());
-                    num3 += Convert.ToDouble(TryToFindGridCell(dtgridMain, row, COLUMN_TIEUTHUMOI).Content.ToString());
+
+                    var cellCSC = getCell(dtgridMain, row, COLUMN_CSCU);
+                    var cellTTM = getCell(dtgridMain, row, COLUMN_TIEUTHUMOI);
+                    csc += Convert.ToDouble(getValueCell(cellCSC, row));
+                    ttm += Convert.ToDouble(getValueCell(cellTTM, row));
+                    str1 = getValueCell(cellCodeMoi, row);
+                    str2 = getValueCell(cellStaCapNhat, row);
                 }
                 catch (Exception ex)
                 {
                 }
                 try
                 {
-                    num2 += Convert.ToDouble(TryToFindGridCell(dtgridMain, row, COLUMN_CSMOI).Content.ToString());
+                    var cellCSM = getCell(dtgridMain, row, COLUMN_CSMOI);
+                    csm += Convert.ToDouble(getValueCell(cellCSM, row));
                 }
                 catch
                 {
@@ -263,55 +287,56 @@ namespace PhanQuyen
                 }
                 try
                 {
-                    num4 += Convert.ToDouble(TryToFindGridCell(dtgridMain, getRow(index), COLUMN_TTTB).Content.ToString());
+                    var cellTTTB = getCell(dtgridMain, row, COLUMN_TTTB);
+                    tttb += Convert.ToDouble(getValueCell(cellTTTB, row));
                 }
                 catch
                 {
                 }
-                if (num3 >= 10.0 && num3 <= 49.0 && (num3 < num4 * 0.3 || num3 > num4 * 2.0))
+                if (ttm >= 10.0 && ttm <= 49.0 && (ttm < tttb * 0.3 || ttm > tttb * 2.0))
                 {
                     row.Foreground = red;
                     //  row.Style = newStyle;
                 }
-                if (num3 >= 50.0 && num3 <= 200.0 && (num3 < num4 * 0.7 || num3 > num4 * 1.5))
+                if (ttm >= 50.0 && ttm <= 200.0 && (ttm < tttb * 0.7 || ttm > tttb * 1.5))
                 {
                     row.Foreground = red;
-                    row.Style = newStyle;
+                    //row.Style = newStyle;
                 }
-                if (num3 > 200.0 && num3 <= 2000.0 && (num3 < num4 * 0.8 || num3 > num4 * 1.5))
+                if (ttm > 200.0 && ttm <= 2000.0 && (ttm < tttb * 0.8 || ttm > tttb * 1.5))
                 {
                     row.Foreground = red;
-                    row.Style = newStyle;
+                    //row.Style = newStyle;
                 }
-                if (num3 > 2000.0 && num3 <= 5000.0 && (num3 < num4 * 0.9 || num3 > num4 * 1.3))
+                if (ttm > 2000.0 && ttm <= 5000.0 && (ttm < tttb * 0.9 || ttm > tttb * 1.3))
                 {
                     row.Foreground = red;
-                    row.Style = newStyle;
+                    //row.Style = newStyle;
                 }
-                if (num3 > 5000.0 && (num3 < num4 * 0.9 || num3 > num4 * 1.2))
+                if (ttm > 5000.0 && (ttm < tttb * 0.9 || ttm > tttb * 1.2))
                 {
                     row.Foreground = red;
-                    row.Style = newStyle;
+                    //row.Style = newStyle;
                 }
-                if (num3 < 0.0)
+                if (ttm < 0.0)
                 {
                     row.Foreground = red;
-                    row.Style = newStyle;
+                    //row.Style = newStyle;
                 }
-                if (num2 - num1 != num3 || num3 == 0.0)
+                if (csm - csc != ttm || ttm == 0.0)
                 {
                     row.Foreground = red;
-                    row.Style = newStyle;
+                    //row.Style = newStyle;
                 }
-                //if (str1.Contains("N") && num3 > 0.0 && str2 != "1")
-                //{
-                //    row.Foreground = red;
-                //      row.Style = newStyle;
-                //}
+                if (str1.Contains("N") && ttm > 0.0 && str2 != "1")
+                {
+                    row.Foreground = red;
+                    //row.Style = newStyle;
+                }
                 if (str1.Trim() != "" && str1.Trim().Substring(0, 1) == "6")
                 {
                     row.Foreground = blue;
-                    row.Style = newStyle;
+                    //row.Style = newStyle;
                 }
             }
         }
@@ -326,6 +351,11 @@ namespace PhanQuyen
         {
             XemGhiChuWindow xemGhiChuWindow = new XemGhiChuWindow(_selectedDocSo.DanhBa);
             xemGhiChuWindow.ShowDialog();
+        }
+
+        private void columnHeader_Click(object sender, RoutedEventArgs e)
+        {
+            CanhBaoBatThuong();
         }
 
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -354,18 +384,22 @@ namespace PhanQuyen
             cbbKHDS.ItemsSource = GetDataDBViewModel.Instance.getDistinctKHDS();
         }
 
-        static DataGridCell TryToFindGridCell(DataGrid grid, DataGridRow row, int columnIndex)
+        static DataGridCell getCell(DataGrid grid, DataGridRow row, int column)
         {
-            DataGridCell result = null;
             if (row != null)
             {
-                if (columnIndex > -1)
+                DataGridCellsPresenter presenter = GetVisualChild<DataGridCellsPresenter>(row);
+
+                if (presenter == null)
                 {
-                    DataGridCellsPresenter presenter = GetVisualChild<DataGridCellsPresenter>(row);
-                    result = presenter.ItemContainerGenerator.ContainerFromIndex(columnIndex) as DataGridCell;
+                    grid.ScrollIntoView(row, grid.Columns[column]);
+                    presenter = GetVisualChild<DataGridCellsPresenter>(row);
                 }
+
+                DataGridCell cell = (DataGridCell)presenter.ItemContainerGenerator.ContainerFromIndex(column);
+                return cell;
             }
-            return result;
+            return null;
         }
 
         static T GetVisualChild<T>(Visual parent) where T : Visual
