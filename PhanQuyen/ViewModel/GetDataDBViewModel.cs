@@ -198,6 +198,13 @@ namespace ViewModel
                         select x).FirstOrDefault();
             return data;
         }
+        public List<DocSo> getAllDocSos(int year, string month, string date, int xGroup, string machine)
+        {
+            var data = (from x in serverContext.DocSos
+                        where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.May == machine && x.CSMoi > 0
+                        select x).ToList();
+            return data;
+        }
 
         public byte[] getImageByDanhBa(String danhBa, DateTime gioGhi)
         {

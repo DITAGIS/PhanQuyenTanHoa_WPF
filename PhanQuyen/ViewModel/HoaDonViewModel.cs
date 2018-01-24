@@ -245,6 +245,9 @@ namespace ViewModel
                                 sanLuong += docSo.TieuThuMoi.GetValueOrDefault();
 
                             TongSanLuong = String.Format("Sản lượng: {0} m3", sanLuong);
+
+                    
+
                         }
                     }), DispatcherPriority.Loaded);
 
@@ -254,6 +257,12 @@ namespace ViewModel
 
             }
         }
+
+        private void CanhBaoBatThuong()
+        {
+           
+        }
+
         private void rotate(UIElementCollection p)
         {
             if (p != null)

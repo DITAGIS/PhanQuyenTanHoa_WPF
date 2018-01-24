@@ -125,6 +125,16 @@ namespace PhanQuyen
             Refresh();
         }
 
+        private void btnGetData_Click(object sender, RoutedEventArgs e)
+        {
+            dtgridMain.ItemsSource = GetDataDBViewModel.Instance.getAllDocSos(year, month, date, group, machine);
+        }
+
+        private void cbbMachine_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            machine = cbbMachine.SelectedValue.ToString();
+        }
+
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             year = Int16.Parse(cbbYear.SelectedValue.ToString());
