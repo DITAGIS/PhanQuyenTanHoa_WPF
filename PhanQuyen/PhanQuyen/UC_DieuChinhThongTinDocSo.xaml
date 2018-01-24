@@ -42,7 +42,7 @@
 
             </StatusBarItem>
         </StatusBar>-->
-        <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+        <ScrollViewer Name="scrollMain">
             <Grid Margin="10">
                 <Grid.Resources>
                     <Style TargetType="{x:Type TextBlock}" x:Key="styleTxbl">
@@ -106,7 +106,7 @@
                       SelectedValue="{Binding Machine, Mode=TwoWay}" 
                       ItemsSource="{Binding ListMachine, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button Margin="10,0,0,0" Background="White" Name="btnGetData" 
-                            Click="btnGetData_Click"
+                        Click="btnGetData_Click"
                             >
                         <!--Command="{Binding UpdateCommand}" CommandParameter="{Binding Children, ElementName=stpCondition}">-->
                         <StackPanel Orientation="Horizontal">
@@ -125,7 +125,6 @@
 
                     <!--Chọn code-->
                     <ComboBox x:Name="cbbCode" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="70" 
-                      SelectedValue="{Binding SelectedHoaDon.CodeMoi, Mode=OneWay}" 
                               SelectionChanged="cbbCode_SelectionChanged"
                       ItemsSource="{Binding ListCode, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <Button Margin="10,0,0,0" Background="White" Name="btnUpdate" 
@@ -209,8 +208,10 @@
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" Orientation="Horizontal">
                         <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"
+                                   Name="txtbTongKH"
                                    Text="{Binding TongKH}"><Run Text="Tổng số KH:"/></TextBlock>
                         <TextBlock VerticalAlignment="Center" FontSize="13" Margin="100,0,10,0"
+                                   Name="txtbSanLuong"
                                    Text="{Binding TongSanLuong}"><Run Text="Sản lượng:"/></TextBlock>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="1"
@@ -235,6 +236,7 @@
 
                     <DataGrid                        Grid.Column="0"
                         SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged}" 
+                                                 
                           AutoGenerateColumns="False" Name="dtgridMain" 
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
                           Width="Auto" Margin="0,0,0,0" Height="340" 
@@ -291,6 +293,7 @@
                             <DataGridTextColumn Header="Ghi chú thương vụ" Binding="{Binding GhiChuTV,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Thông báo" Binding="{Binding GhiChuTV,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Máy đọc số" Binding="{Binding May,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Giờ ghi" Binding="{Binding GIOGHI,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Ngày gắn" Binding="{Binding GhiChuTV,Mode=OneWay}"></DataGridTextColumn>
                         </DataGrid.Columns>
                         <!--handle item click event-->
@@ -311,7 +314,7 @@
                             </Image>
                         </Border>
                         <!--<Popup Placement="Right" IsOpen="True">-->
-                   
+
                         <!--</Popup>-->
 
                     </Grid>
@@ -643,7 +646,7 @@
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0" 
                                        
                                        Style="{StaticResource styleTxbl}" FontWeight="Bold">
-                        <Run Text="{Binding SelectedHoaDon.TenKH}"/>
+                        <Run Text="{Binding TenKH}"/>
                             </TextBlock>
                             <!--Danh bạ-->
                             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Danh bạ:"/></TextBlock>

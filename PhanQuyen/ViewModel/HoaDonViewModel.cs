@@ -85,7 +85,6 @@ namespace ViewModel
         private bool hasImage;
         private String status;
         private DocSo selectedHoaDon;
-        private HoaDon12Month hoaDon12Month;
         private int value;
         private int year;
         private ObservableCollection<int> listYear;
@@ -246,7 +245,7 @@ namespace ViewModel
 
                             TongSanLuong = String.Format("Sản lượng: {0} m3", sanLuong);
 
-                    
+
 
                         }
                     }), DispatcherPriority.Loaded);
@@ -260,7 +259,7 @@ namespace ViewModel
 
         private void CanhBaoBatThuong()
         {
-           
+
         }
 
         private void rotate(UIElementCollection p)
@@ -336,6 +335,17 @@ namespace ViewModel
         }
         public string Machine { get => machine; set => machine = value; }
         public string Code { get => code; set => code = value; }
+
+        private String tenKH;
+        public String TenKH
+        {
+            get { return tenKH; }
+            set
+            {
+                tenKH = value;
+                OnPropertyChanged("TenKH");
+            }
+        }
         public DocSo SelectedHoaDon
         {
             get
@@ -350,8 +360,6 @@ namespace ViewModel
             }
             set
             {
-
-                hoaDon12Month = new HoaDon12Month();
                 selectedHoaDon = value;
                 if (selectedHoaDon != null)
                 {
@@ -384,21 +392,11 @@ namespace ViewModel
                     SoLenhBinding = GetDataDBViewModel.Instance.getSoLenh(selectedHoaDon.DanhBa);
                     BaoThayBinding = GetDataDBViewModel.Instance.getBaoThay(selectedHoaDon.DanhBa);
 
+                    TenKH = GetDataDBViewModel.Instance.getTenKH(selectedHoaDon.DanhBa);
+
+
                 }
                 OnPropertyChanged("SelectedHoaDon");
-            }
-        }
-        public HoaDon12Month SelectedHoaDon12Month
-        {
-            get
-            {
-
-                return hoaDon12Month;
-            }
-            set
-            {
-                hoaDon12Month = value;
-                OnPropertyChanged("SelectedHoaDon12Month");
             }
         }
 

@@ -201,7 +201,7 @@ namespace ViewModel
         public List<DocSo> getAllDocSos(int year, string month, string date, int xGroup, string machine)
         {
             var data = (from x in serverContext.DocSos
-                        where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.May == machine && x.CSMoi > 0
+                        where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.May == machine
                         select x).ToList();
             return data;
         }
@@ -338,6 +338,22 @@ namespace ViewModel
             }
 
             return result;
+        }
+
+        internal string getTenKH(string danhBa)
+        {
+            var data = (from x in serverContext.KhachHangs
+                        where x.DanhBa == danhBa
+                        select x.TenKH).FirstOrDefault();
+            return data;
+        }
+
+        public List<String> getDistinctKHDS()
+        {
+            var data = (from x in serverContext.TTDHNs
+                        orderby x.Stt
+                        select x.TTDHN1).ToList();
+            return data;
         }
 
         public MySoLenh getSoLenh(string danhBa)

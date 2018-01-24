@@ -137,4 +137,55 @@
       <Column Name="SoThan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.TTDHN" Member="TTDHNs">
+    <Type Name="TTDHN">
+      <Column Name="TTDHN" Member="TTDHN1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CODE" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Stt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Vitri" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KhachHang" Member="KhachHangs">
+    <Type Name="KhachHang">
+      <Column Name="DanhBa" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HieuLuc" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="HopDong" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MLT1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MLT2" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Dot" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="May" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TenKH" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="So" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="SoMoi" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Duong" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Phuong" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Quan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GhiChuKH" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GB" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="DM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SH" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="SX" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="DV" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="HC" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Hieu" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Co" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SoThan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LoaiDH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NgayKD" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Gieng" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Van1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MaVach" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NgayGan" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="DMA" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ChiThan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ChiCo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ViTri" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CapDo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CongDung" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GanMoi" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="TTBaoThay" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

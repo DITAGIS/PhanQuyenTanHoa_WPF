@@ -50,14 +50,30 @@ namespace PhanQuyen
             {
                 this.btnExpandRibbon.SmallImageSource = new BitmapImage(new Uri("/PhanQuyen;component/Images/up.png", UriKind.Relative));
                 this.RibbonMain.IsMinimized = false;
+                setScrollView(false);
             }
             else
             {
                 this.btnExpandRibbon.SmallImageSource = new BitmapImage(new Uri("/PhanQuyen;component/Images/down.png", UriKind.Relative));
                 this.RibbonMain.IsMinimized = true;
+                setScrollView(true);
             }
             resizeUC();
         }
+
+        private void setScrollView(bool v)
+        {
+            if (v)
+            {
+                uc_DieuChinhThonTinDocSo.GetScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+            }
+            else
+            {
+                uc_DieuChinhThonTinDocSo.GetScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
+            }
+            uc_DieuChinhThonTinDocSo.GetScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+        }
+
         private void resizeUC()
         {
             if (uc_DieuChinhThonTinDocSo != null)

@@ -34,11 +34,28 @@ namespace PhanQuyen
         private double delta = 0.1;
         private DataGridRow row;
         private DataGridCell gridCell;
+        private List<DocSo> docSoList = new List<DocSo>();
+
+        private const int COLUMN_MLT = 0;
+        private const int COLUMN_DANHBA = 1;
+        private const int COLUMN_TTDHNCu = 2;
+        private const int COLUMN_TTDHNMoi = 3;
+        private const int COLUMN_CodeCu = 4;
+        private const int COLUMN_CodeMoi = 5;
+        private const int COLUMN_CSCU = 6;
+        private const int COLUMN_CSMOI = 7;
+        private const int COLUMN_TIEUTHUMOI = 8;
+        private const int COLUMN_TTTB = 9;
         public UC_DieuChinhThongTinDocSo()
         {
             InitializeComponent();
             rotate = 0;
             scaleX = scaleY = 1.1;
+        }
+
+        public ScrollViewer GetScrollViewer
+        {
+            get { return scrollMain; }
         }
         private void btnRotate_Click(object sender, RoutedEventArgs e)
         {
@@ -73,10 +90,14 @@ namespace PhanQuyen
 
         private void dtgridMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            row = (DataGridRow)dtgridMain.ItemContainerGenerator
-                                              .ContainerFromIndex(dtgridMain.SelectedIndex);
+            row = getRow(dtgridMain.SelectedIndex);
         }
+        private DataGridRow getRow(int index)
+        {
 
+            return (DataGridRow)dtgridMain.ItemContainerGenerator
+                                              .ContainerFromIndex(index);
+        }
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             date = cbbDate.SelectedValue.ToString();
@@ -103,31 +124,163 @@ namespace PhanQuyen
         private void cbbCode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //code mới
-            gridCell = TryToFindGridCell(dtgridMain, row, 4);
-            if (gridCell != null) gridCell.Content = cbbCode.SelectedValue.ToString();
 
+            gridCell = TryToFindGridCell(dtgridMain, row, 4);
+            if (gridCell != null)
+                gridCell.Content = cbbCode.SelectedValue.ToString();
+            if (dtgridMain != null && cbbCode.SelectedValue != null && cbbCode.SelectedIndex > -1)
+            {
+                switch (cbbCode.SelectedIndex)
+                {
+                    case 0:
+                        dtgridMain.ItemsSource = null;
+                        dtgridMain.Items.Clear();
+                        dtgridMain.ItemsSource = docSoList;
+                        break;
+                    case 1: //chưa ghi
+                        dtgridMain.ItemsSource = null;
+                        dtgridMain.Items.Clear();
+                        foreach (DocSo docSo in docSoList)
+                            if (docSo.GIOGHI == new DateTime(1900, 01, 01))
+                                dtgridMain.Items.Add(docSo);
+                        break;
+                    default:
+                        dtgridMain.ItemsSource = null;
+                        dtgridMain.Items.Clear();
+                        foreach (DocSo docSo in docSoList)
+                            if (cbbCode.SelectedValue.ToString().StartsWith(docSo.CodeMoi))
+                                dtgridMain.Items.Add(docSo);
+                        break;
+
+                }
+            }
             Refresh();
         }
 
         private void txtbCSM_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //chỉ số mới
-            gridCell = TryToFindGridCell(dtgridMain, row, 6);
-            int csmoi = Int16.Parse(txtbCSM.Text.ToString());
-            if (gridCell != null) gridCell.Content = csmoi + "";
+            if (txtbCSM.Text.Length > 0)
+            {
+                //chỉ số mới
+                gridCell = TryToFindGridCell(dtgridMain, row, 6);
+                int csmoi = Int16.Parse(txtbCSM.Text.ToString());
+                if (gridCell != null) gridCell.Content = csmoi + "";
 
-            //tiêu thụ mới
-            gridCell = TryToFindGridCell(dtgridMain, row, 7);
-            int tieuThuMoi = csmoi - Int16.Parse(txtbCSC.Text.ToString());
-            txtbTieuThu.Text = tieuThuMoi + "";
-            if (gridCell != null) gridCell.Content = tieuThuMoi + "";
+                //tiêu thụ mới
+                gridCell = TryToFindGridCell(dtgridMain, row, 7);
+                int tieuThuMoi = csmoi - Int16.Parse(txtbCSC.Text.ToString());
+                txtbTieuThu.Text = tieuThuMoi + "";
+                if (gridCell != null) gridCell.Content = tieuThuMoi + "";
 
-            Refresh();
+                Refresh();
+            }
         }
 
         private void btnGetData_Click(object sender, RoutedEventArgs e)
         {
-            dtgridMain.ItemsSource = GetDataDBViewModel.Instance.getAllDocSos(year, month, date, group, machine);
+            docSoList = GetDataDBViewModel.Instance.getAllDocSos(year, month, date, group, machine);
+            dtgridMain.ItemsSource = null;
+            dtgridMain.Items.Clear();
+            dtgridMain.ItemsSource = docSoList;
+
+            int sanLuong = 0;
+            foreach (DocSo docSo in dtgridMain.Items)
+                sanLuong += docSo.TieuThuMoi.GetValueOrDefault();
+
+            txtbSanLuong.Text = String.Format("Sản lượng: {0} m3", sanLuong);
+            txtbTongKH.Text = String.Format("Tổng KH: {0}", dtgridMain.Items.Count);
+            //CanhBaoBatThuong();
+        }
+
+        private void CanhBaoBatThuong()
+        {
+            DataGridRow row;
+            SolidColorBrush red = new SolidColorBrush(Colors.Red);
+            SolidColorBrush blue = new SolidColorBrush(Colors.Blue);
+            Setter bold = new Setter(TextBlock.FontWeightProperty, FontWeights.Bold, null);
+            Style newStyle;
+            for (int index = 1; index <= this.dtgridMain.Items.Count; ++index)
+            {
+                row = getRow(index);
+                newStyle = new Style(row.GetType());
+                newStyle.Setters.Add(bold);
+                //this.dtgridMain.Rows[index].Cells["Code Cũ"].Value.ToString();
+                string str1 = TryToFindGridCell(dtgridMain, row, COLUMN_CodeMoi).Content.ToString();
+                //string str2 = this.dtgridMain.Rows[index].Cells["StaCapNhat"].Value.ToString();
+                double num1 = 0.0;
+                double num2 = 0.0;
+                double num3 = 0.0;
+                double num4 = 0.0;
+                try
+                {
+                    num1 += Convert.ToDouble(TryToFindGridCell(dtgridMain, row, COLUMN_CSCU).Content.ToString());
+                    num3 += Convert.ToDouble(TryToFindGridCell(dtgridMain, row, COLUMN_TIEUTHUMOI).Content.ToString());
+                }
+                catch (Exception ex)
+                {
+                }
+                try
+                {
+                    num2 += Convert.ToDouble(TryToFindGridCell(dtgridMain, row, COLUMN_CSMOI).Content.ToString());
+                }
+                catch
+                {
+                    row.Foreground = red;
+                    //  row.Style = newStyle;
+                }
+                try
+                {
+                    num4 += Convert.ToDouble(TryToFindGridCell(dtgridMain, getRow(index), COLUMN_TTTB).Content.ToString());
+                }
+                catch
+                {
+                }
+                if (num3 >= 10.0 && num3 <= 49.0 && (num3 < num4 * 0.3 || num3 > num4 * 2.0))
+                {
+                    row.Foreground = red;
+                    //  row.Style = newStyle;
+                }
+                if (num3 >= 50.0 && num3 <= 200.0 && (num3 < num4 * 0.7 || num3 > num4 * 1.5))
+                {
+                    row.Foreground = red;
+                    row.Style = newStyle;
+                }
+                if (num3 > 200.0 && num3 <= 2000.0 && (num3 < num4 * 0.8 || num3 > num4 * 1.5))
+                {
+                    row.Foreground = red;
+                    row.Style = newStyle;
+                }
+                if (num3 > 2000.0 && num3 <= 5000.0 && (num3 < num4 * 0.9 || num3 > num4 * 1.3))
+                {
+                    row.Foreground = red;
+                    row.Style = newStyle;
+                }
+                if (num3 > 5000.0 && (num3 < num4 * 0.9 || num3 > num4 * 1.2))
+                {
+                    row.Foreground = red;
+                    row.Style = newStyle;
+                }
+                if (num3 < 0.0)
+                {
+                    row.Foreground = red;
+                    row.Style = newStyle;
+                }
+                if (num2 - num1 != num3 || num3 == 0.0)
+                {
+                    row.Foreground = red;
+                    row.Style = newStyle;
+                }
+                //if (str1.Contains("N") && num3 > 0.0 && str2 != "1")
+                //{
+                //    row.Foreground = red;
+                //      row.Style = newStyle;
+                //}
+                if (str1.Trim() != "" && str1.Trim().Substring(0, 1) == "6")
+                {
+                    row.Foreground = blue;
+                    row.Style = newStyle;
+                }
+            }
         }
 
         private void cbbMachine_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -149,7 +302,7 @@ namespace PhanQuyen
             InitializeComponent();
             cbbYear.ItemsSource = GetDataDBViewModel.Instance.getDistinctYearServer();
             cbbYear.SelectedValue = User.getInstance.Year;
-
+            cbbMonth.SelectedValue = User.getInstance.Month;
             if (User.getInstance.ToID == null)
             { }
             else if (User.getInstance.ToID.Equals(""))
@@ -157,7 +310,7 @@ namespace PhanQuyen
             else
                 cbbGroup.Items.Add(User.getInstance.ToID);
 
-
+            cbbKHDS.ItemsSource = GetDataDBViewModel.Instance.getDistinctKHDS();
         }
 
         static DataGridCell TryToFindGridCell(DataGrid grid, DataGridRow row, int columnIndex)

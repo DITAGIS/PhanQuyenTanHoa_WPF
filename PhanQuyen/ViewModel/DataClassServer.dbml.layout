@@ -32,5 +32,17 @@
         <elementListCompartment Id="6b6f0d56-e48a-4832-a9b3-16f73544a2cb" absoluteBounds="22.14, 10.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="fc3405b8-66ec-43fb-8cdd-f86c11d77b10" absoluteBounds="18.125, 15.75, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/DataClassServerDataContext/TTDHN" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e015c1dd-9750-4b58-a9a1-4be9d74d2b8a" absoluteBounds="18.14, 16.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="60731343-1471-46d0-b0e1-3c9f85a1a925" absoluteBounds="8.5, 4.625, 2, 8.1168440755208326">
+      <DataClassMoniker Name="/DataClassServerDataContext/KhachHang" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5a1fb99e-c02e-4a1c-9058-f4d46093b458" absoluteBounds="8.515, 5.085, 1.9700000000000002, 7.556844075520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
