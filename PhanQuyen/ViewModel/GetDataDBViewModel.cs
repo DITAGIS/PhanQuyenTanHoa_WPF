@@ -126,6 +126,11 @@ namespace ViewModel
             return result;
         }
 
+        public void ThongKeDHNSauDocSo(string sqlStatement)
+        {
+            //var data = serverContext.ExecuteQuery<>(sqlStatement);
+        }
+
         public void update(ItemCollection items)
         {
             foreach (var item in items)

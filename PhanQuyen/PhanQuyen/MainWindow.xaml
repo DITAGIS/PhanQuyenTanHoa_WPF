@@ -123,7 +123,9 @@
             </RibbonTab>
             <RibbonTab Header="Báo cáo">
                 <RibbonGroup Header="Thống kê">
-                    <RibbonButton Label="Thống kê sau đọc số"  LargeImageSource="/PhanQuyen;component/Images/statistic.png"></RibbonButton>
+                    <RibbonButton Label="Thống kê sau đọc số"  LargeImageSource="/PhanQuyen;component/Images/statistic.png"
+                                  Name="ribBtnThongKeSauDocSo"
+                                  Click="ribBtnThongKeSauDocSo_Click"></RibbonButton>
                     <RibbonButton Label="Thống kê đồng hồ nước theo đợt số"  LargeImageSource="/PhanQuyen;component/Images/date.png"></RibbonButton>
                     <RibbonButton Label="Thống kê đồng hồ nước trên mạng"  LargeImageSource="/PhanQuyen;component/Images/browser.png"></RibbonButton>
                 </RibbonGroup>
@@ -132,7 +134,9 @@
                     <RibbonButton Label="In danh sách tiêu thụ bất thường"  LargeImageSource="/PhanQuyen;component/Images/alert.png"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Báo cáo">
-                    <RibbonButton Label="Báo cáo tổng hợp"  LargeImageSource="/PhanQuyen;component/Images/chart.png"></RibbonButton>
+                    <RibbonButton Label="Báo cáo tổng hợp"  LargeImageSource="/PhanQuyen;component/Images/chart.png"
+                                  Name="ribBtnBaoCaoTongHop"
+                                  Click="ribBtnBaoCaoTongHop_Click"></RibbonButton>
                 </RibbonGroup>
             </RibbonTab>
             <RibbonTab Header="Hoàn tất" >

@@ -80,7 +80,7 @@ namespace PhanQuyen
         {
             month = cbbMonth.SelectedValue.ToString();
             cbbDate.ItemsSource = GetDataDBViewModel.Instance.getDistinctDateServer(year, month);
-            cbbDate.SelectedValue = User.getInstance.Date;
+            cbbDate.SelectedValue = User.Instance.Date;
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -301,14 +301,14 @@ namespace PhanQuyen
             this.user = user;
             InitializeComponent();
             cbbYear.ItemsSource = GetDataDBViewModel.Instance.getDistinctYearServer();
-            cbbYear.SelectedValue = User.getInstance.Year;
-            cbbMonth.SelectedValue = User.getInstance.Month;
-            if (User.getInstance.ToID == null)
+            cbbYear.SelectedValue = User.Instance.Year;
+            cbbMonth.SelectedValue = User.Instance.Month;
+            if (User.Instance.ToID == null)
             { }
-            else if (User.getInstance.ToID.Equals(""))
+            else if (User.Instance.ToID.Equals(""))
                 cbbGroup.ItemsSource = ToID.GetToID();
             else
-                cbbGroup.Items.Add(User.getInstance.ToID);
+                cbbGroup.Items.Add(User.Instance.ToID);
 
             cbbKHDS.ItemsSource = GetDataDBViewModel.Instance.getDistinctKHDS();
         }

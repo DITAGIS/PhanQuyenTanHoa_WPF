@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="PhanQuyen.UC_ThongKeDHNSauDocSo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PhanQuyen"
+             mc:Ignorable="d" 
+           xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms" 
+     d:DesignHeight="500" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBox}" x:Key="styleTxtb">
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsFocused" Value="True"></Condition>
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="FontSize" Value="20"></Setter>
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal"  Name="stpCondition"  >
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Năm:"/></TextBlock>
+            <ComboBox x:Name="cbbYear"  IsEditable="True" VerticalAlignment="Center" Width="50"
+                      SelectedValue="{Binding Year, Mode=TwoWay}" 
+                              SelectionChanged="cbbYear_SelectionChanged"
+                      ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" >
+
+            </ComboBox>
+
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Kỳ:"/></TextBlock>
+            <ComboBox x:Name="cbbMonth" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45"
+                      SelectedValue="{Binding Month, Mode=TwoWay}" 
+                              SelectionChanged="cbbMonth_SelectionChanged"
+                      ItemsSource="{Binding ListMonth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Đợt:"/></TextBlock>
+            <ComboBox x:Name="cbbDate" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
+                      SelectedValue="{Binding Date, Mode=TwoWay}" 
+                              SelectionChanged="cbbDate_SelectionChanged"
+                      ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ đọc số:"/></TextBlock>
+            <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="Auto"
+                          SelectedValue="{Binding Group, Mode=TwoWay}" 
+                              SelectionChanged="cbbGroup_SelectionChanged"
+                      ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+
+
+
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Sổ đọc số:"/></TextBlock>
+            <ComboBox x:Name="cbbMachine" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="Auto"
+                          SelectedValue="{Binding Group, Mode=TwoWay}" 
+                              
+                      ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            
+            <Button Margin="30,0,0,0" Background="White" Name="btnViewReport"
+                    Click="btnViewReport_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/report.png" Width="20" Height="20"></Image>
+                    <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">Xem báo cáo</TextBlock>
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+        <WindowsFormsHost Grid.Row="1" Margin="0,20,0,0">
+            <rv:ReportViewer x:Name="_reportViewer"/>
+        </WindowsFormsHost>
+    </Grid>
+</UserControl>

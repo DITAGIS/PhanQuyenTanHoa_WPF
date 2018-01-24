@@ -27,7 +27,7 @@ namespace Model
             this.MayID = MayID;
         }
         private static User _instance;
-        public static User getInstance
+        public static User Instance
         {
             get
             {

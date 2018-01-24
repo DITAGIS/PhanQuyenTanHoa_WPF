@@ -40,19 +40,19 @@ namespace ViewModel
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    User.getInstance.UserID = userID;
-                    User.getInstance.Password = password;
-                    User.getInstance.UserName = dataReader["username"].ToString();
-                    User.getInstance.UserGroup = dataReader["usergroup"].ToString();
-                    User.getInstance.ToID = dataReader["toid"].ToString().Trim();
-                    User.getInstance.MayID = dataReader["mayid"].ToString();
+                    User.Instance.UserID = userID;
+                    User.Instance.Password = password;
+                    User.Instance.UserName = dataReader["username"].ToString();
+                    User.Instance.UserGroup = dataReader["usergroup"].ToString();
+                    User.Instance.ToID = dataReader["toid"].ToString().Trim();
+                    User.Instance.MayID = dataReader["mayid"].ToString();
                 }
             }
             catch (Exception e)
             {
 
             }
-            return User.getInstance;
+            return User.Instance;
         }
     }
 }

@@ -25,6 +25,8 @@ namespace PhanQuyen
         UC_NhanDuLieu uc_NhanDuLieu;
         UC_CapNhatHoaDon uc_CapNhatHoaDon;
         UC_ChuyenMayDocSo uc_ChuyenMayDocSo;
+        UC_ThongKeDHNSauDocSo uc_ThongKeDHNSauDocSo;
+        UC_BaoCaoTongHop uc_BaoCaoTongHop;
         private User user;
 
         public MainWindow()
@@ -101,6 +103,16 @@ namespace PhanQuyen
                 uc_NhanDuLieu.Height = stkMain.ActualHeight;
                 uc_NhanDuLieu.Width = stkMain.ActualWidth;
             }
+            if (uc_ThongKeDHNSauDocSo != null)
+            {
+                uc_ThongKeDHNSauDocSo.Height = stkMain.ActualHeight;
+                uc_ThongKeDHNSauDocSo.Width = stkMain.ActualWidth;
+            }
+            if (uc_BaoCaoTongHop != null)
+            {
+                uc_BaoCaoTongHop.Height = stkMain.ActualHeight;
+                uc_BaoCaoTongHop.Width = stkMain.ActualWidth;
+            }
         }
 
         private void ribBtnChuyenMayDocSo_Click(object sender, RoutedEventArgs e)
@@ -154,6 +166,24 @@ namespace PhanQuyen
             stkMain.Children.Add(uc_NhanDuLieu);
             uc_NhanDuLieu.ShowGetDataWindow();
         }
+        private void ribBtnThongKeSauDocSo_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_ThongKeDHNSauDocSo == null)
+                uc_ThongKeDHNSauDocSo = new UC_ThongKeDHNSauDocSo();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_ThongKeDHNSauDocSo);
+        }
+        private void ribBtnBaoCaoTongHop_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_BaoCaoTongHop == null)
+                uc_BaoCaoTongHop = new UC_BaoCaoTongHop();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_BaoCaoTongHop);
+        }
         private void ExitCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
@@ -171,6 +201,7 @@ namespace PhanQuyen
             System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
         }
+
 
     }
 
