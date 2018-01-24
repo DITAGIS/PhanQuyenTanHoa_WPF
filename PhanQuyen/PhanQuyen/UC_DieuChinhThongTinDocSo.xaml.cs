@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -78,7 +79,8 @@ namespace PhanQuyen
         }
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            month = cbbMonth.SelectedValue.ToString();
+            if (cbbMonth.SelectedValue != null)
+                month = cbbMonth.SelectedValue.ToString();
             cbbDate.ItemsSource = GetDataDBViewModel.Instance.getDistinctDateServer(year, month);
             cbbDate.SelectedValue = User.Instance.Date;
         }
@@ -90,17 +92,23 @@ namespace PhanQuyen
 
         private void dtgridMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //foreach (DataGridRow row in dtgridMain.SelectedItems)
+            //{
+            //    System.Data.DataRow MyRow = (System.Data.DataRow)row.Item;
+            //    string value = MyRow[1].ToString();
+            //}
+
             row = getRow(dtgridMain.SelectedIndex);
         }
         private DataGridRow getRow(int index)
         {
-
             return (DataGridRow)dtgridMain.ItemContainerGenerator
                                               .ContainerFromIndex(index);
         }
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            date = cbbDate.SelectedValue.ToString();
+            if (cbbDate.SelectedValue != null)
+                date = cbbDate.SelectedValue.ToString();
         }
 
         private void Refresh()
@@ -112,13 +120,16 @@ namespace PhanQuyen
 
         private void cbbGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            short x;
-            if (cbbGroup.SelectedValue == null)
-                group = -1;
-            else if (Int16.TryParse(cbbGroup.SelectedValue.ToString(), out x))
-                group = Int16.Parse(cbbGroup.SelectedValue.ToString());
-            else group = x;
-            cbbMachine.ItemsSource = GetDataDBViewModel.Instance.getDistinctMachineServer(year, month, date, group);
+            if (cbbGroup.SelectedValue != null)
+            {
+                short x;
+                if (cbbGroup.SelectedValue == null)
+                    group = -1;
+                else if (Int16.TryParse(cbbGroup.SelectedValue.ToString(), out x))
+                    group = Int16.Parse(cbbGroup.SelectedValue.ToString());
+                else group = x;
+                cbbMachine.ItemsSource = GetDataDBViewModel.Instance.getDistinctMachineServer(year, month, date, group);
+            }
         }
 
         private void cbbCode_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -156,24 +167,41 @@ namespace PhanQuyen
             }
             Refresh();
         }
+        private void txtbCSM_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                int csm = Int16.Parse(txtbCSM.Text.ToString());
+                int tieuThuMoi = csm - Int16.Parse(txtbCSC.Text.ToString());
+                if (dtgridMain.SelectedValue != null)
+                {
+                    (dtgridMain.SelectedValue as DocSo).CSMoi = csm;
+                    (dtgridMain.SelectedValue as DocSo).TieuThuMoi = tieuThuMoi;
+                }
+            }
+        }
 
         private void txtbCSM_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtbCSM.Text.Length > 0)
-            {
-                //chỉ số mới
-                gridCell = TryToFindGridCell(dtgridMain, row, 6);
-                int csmoi = Int16.Parse(txtbCSM.Text.ToString());
-                if (gridCell != null) gridCell.Content = csmoi + "";
+            int csm =Int16.Parse(txtbCSM.Text.ToString());
+            int tieuThuMoi=csm - Int16.Parse(txtbCSC.Text.ToString());
+          
+            txtbTieuThu.Text = tieuThuMoi + "";//todo 
+            //if (txtbCSM.Text.Length > 0)
+            //{
+            //    //chỉ số mới
+            //    gridCell = TryToFindGridCell(dtgridMain, row, COLUMN_CSMOI);
+            //    int csmoi = Int16.Parse(txtbCSM.Text.ToString());
+            //    if (gridCell != null) gridCell.Content = csmoi + "";
 
-                //tiêu thụ mới
-                gridCell = TryToFindGridCell(dtgridMain, row, 7);
-                int tieuThuMoi = csmoi - Int16.Parse(txtbCSC.Text.ToString());
-                txtbTieuThu.Text = tieuThuMoi + "";
-                if (gridCell != null) gridCell.Content = tieuThuMoi + "";
+            //    //tiêu thụ mới
+            //    gridCell = TryToFindGridCell(dtgridMain, row, COLUMN_TIEUTHUMOI);
+            //    int tieuThuMoi = csmoi - Int16.Parse(txtbCSC.Text.ToString());
+            //    txtbTieuThu.Text = tieuThuMoi + "";
+            //    if (gridCell != null) gridCell.Content = tieuThuMoi + "";
 
-                Refresh();
-            }
+            //    Refresh();
+            //}
         }
 
         private void btnGetData_Click(object sender, RoutedEventArgs e)
@@ -285,12 +313,15 @@ namespace PhanQuyen
 
         private void cbbMachine_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            machine = cbbMachine.SelectedValue.ToString();
+            if (cbbMachine.SelectedValue != null)
+                machine = cbbMachine.SelectedValue.ToString();
         }
 
+        
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            year = Int16.Parse(cbbYear.SelectedValue.ToString());
+            if (cbbYear.SelectedValue != null)
+                year = Int16.Parse(cbbYear.SelectedValue.ToString());
             cbbMonth.ItemsSource = GetDataDBViewModel.Instance.getDistinctMonthServer(year);
         }
 

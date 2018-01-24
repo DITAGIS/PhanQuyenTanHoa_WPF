@@ -345,12 +345,12 @@ namespace ViewModel
             return result;
         }
 
-        internal string getTenKH(string danhBa)
+        internal List<String> getTenKH(string danhBa)
         {
             var data = (from x in serverContext.KhachHangs
                         where x.DanhBa == danhBa
-                        select x.TenKH).FirstOrDefault();
-            return data;
+                        select new { x.TenKH, x.HopDong }).FirstOrDefault();
+            return new List<string>() { data.TenKH, data.HopDong };
         }
 
         public List<String> getDistinctKHDS()

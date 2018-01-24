@@ -304,7 +304,7 @@ namespace ViewModel
             set
             {
                 year = value;
-
+                OnPropertyChanged("Year");
             }
         }
         public string Month
@@ -316,7 +316,7 @@ namespace ViewModel
             set
             {
                 month = value;
-
+                OnPropertyChanged("Month");
 
             }
         }
@@ -344,6 +344,16 @@ namespace ViewModel
             {
                 tenKH = value;
                 OnPropertyChanged("TenKH");
+            }
+        }
+        private String hopDong;
+        public String HopDong
+        {
+            get { return hopDong; }
+            set
+            {
+                hopDong = value;
+                OnPropertyChanged("HopDong");
             }
         }
         public DocSo SelectedHoaDon
@@ -392,8 +402,10 @@ namespace ViewModel
                     SoLenhBinding = GetDataDBViewModel.Instance.getSoLenh(selectedHoaDon.DanhBa);
                     BaoThayBinding = GetDataDBViewModel.Instance.getBaoThay(selectedHoaDon.DanhBa);
 
-                    TenKH = GetDataDBViewModel.Instance.getTenKH(selectedHoaDon.DanhBa);
 
+                    List<String> tenKH_HopDong = GetDataDBViewModel.Instance.getTenKH(selectedHoaDon.DanhBa);
+                    TenKH = tenKH_HopDong.ElementAt(0);
+                    HopDong = tenKH_HopDong.ElementAt(1);
 
                 }
                 OnPropertyChanged("SelectedHoaDon");
