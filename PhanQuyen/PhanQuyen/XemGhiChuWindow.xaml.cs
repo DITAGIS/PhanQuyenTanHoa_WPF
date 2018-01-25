@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,9 +33,18 @@ namespace PhanQuyen
         }
         public XemGhiChuWindow()
         {
+            this.Closing += new System.ComponentModel.CancelEventHandler(this.Window_Closing);
             InitializeComponent();
             
         }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            typeof(Window).GetField("_isClosing", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(this, false);
+            e.Cancel = true;
+            this.Hide();
+        }
+
         public void GetNote(String danhBa)
         {
             dtgridMain.ItemsSource = GetDataDBViewModel.Instance.getNote(danhBa);

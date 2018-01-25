@@ -359,6 +359,8 @@ namespace PhanQuyen
 
         private void btnViewNote_Click(object sender, RoutedEventArgs e)
         {
+            if (_xemGhiChuWindow == null)
+                _xemGhiChuWindow = new XemGhiChuWindow();
            _xemGhiChuWindow.GetNote(_selectedDocSo.DanhBa);
             _xemGhiChuWindow.ShowDialog();
         }

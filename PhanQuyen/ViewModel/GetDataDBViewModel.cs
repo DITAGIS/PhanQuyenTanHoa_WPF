@@ -19,6 +19,23 @@ namespace ViewModel
         private static GetDataDBViewModel _instance;
         private DataClassesLocalDataContext localContext;
         private DataClassServerDataContext serverContext;
+        private const String TTKH_COLUMN_TENKH = "TenKH";
+        private const String TTKH_COLUMN_HIEU = "Hieu";
+        private const String TTKH_COLUMN_CO = "Co";
+        private const String TTKH_COLUMN_SDT = "SDT";
+        private const String TTKH_COLUMN_DUONG = "Duong";
+        private const String TTKH_COLUMN_SOTHAN = "SoThan";
+        private const String TTKH_COLUMN_MLT1 = "MLT1";
+        private const String TTKH_COLUMN_HOPDONG = "HopDong";
+        private const String TTKH_COLUMN_DANHBA = "DanhBa";
+        private const String TTKH_COLUMN_GB = "GB";
+        private const String TTKH_COLUMN_DM = "DM";
+        private const String TTKH_COLUMN_KY = "KY";//todo
+        private const String TTKH_COLUMN_NGAYDOC = "DenNgay";
+        private const String TTKH_COLUMN_CODE = "Code";
+        private const String TTKH_COLUMN_CSMOI = "CSMoi";
+        private const String TTKH_COLUMN_TIEUTHU = "TieuThu";
+        private const String TTKH_COLUMN_GHICHU = "GhiChu";//todo
         string pattern = "dd/MM/yyyy";
         public static GetDataDBViewModel Instance
         {
@@ -46,26 +63,20 @@ namespace ViewModel
 
         public DataTable GetInfoCheckCustomer2(int count, string str, string danhBa)
         {
-            //IEnumerable<DataRow> query = serverContext.ExecuteQuery<DataRow>("select top(" + (object)(12 - count) + ") d.DanhBa,d.MLT1,d.CodeMoi as Code,d.CSMoi,d.TieuThuMoi as TieuThu, Convert(varchar(10),d.DenNgay,103) as DenNgay, k.TenKH,k.Hieu,k.Co,k.SoThan,k.SDT,k.HopDong,k.GB,k.DM, CASE WHEN k.SoMoi is not null and  k.SoMoi != '' THEN k.SoMoi + k.Duong ELSE k.So + ' ' + k.Duong END as Duong, d.Ky as KY, d.Nam as NAM, N'" + str + "' as GhiChuKH from DocSoLuuTru as d Inner Join KhachHang k on d.DanhBa = k.DanhBa where d.DanhBa = '" + danhBa + "' order by d.DocSoID desc");
-            //return query.CopyToDataTable<DataRow>();
-            return null;
-        }
+      
 
-        public DataTable GetInfoCheckCustomer1(string str, string danhBa)
-        {
-            //    var query = serverContext.ExecuteQuery<ThongTinKH>("select top(12) d.DanhBa,d.MLT1,d.CodeMoi as Code,d.CSMoi,d.TieuThuMoi as TieuThu, Convert(varchar(10),d.DenNgay,103) as DenNgay, k.TenKH,k.Hieu,k.Co,k.SoThan,k.SDT,k.HopDong,k.GB,k.DM, CASE WHEN k.SoMoi is not null and  k.SoMoi != '' THEN k.SoMoi + k.Duong ELSE k.So + ' ' + k.Duong END as Duong, d.Ky as KY, d.Nam as NAM, N'" + str + "' as GhiChuKH from DocSo as d Inner Join KhachHang k on d.DanhBa = k.DanhBa where d.DanhBa = '" + danhBa + "' order by d.DocSoID desc")
-            //        .Select(x => new { danhBa, x.MLT, x.CodeMoi}).FirstOrDefault();
-            var query = (from d in serverContext.DocSos
+            var query = (from d in serverContext.DocSoLuuTrus
                          join k in serverContext.KhachHangs on d.DanhBa equals k.DanhBa
                          where d.DanhBa == danhBa
                          orderby d.DocSoID descending
-                         select new { d.MLT1, d.CodeMoi, d.CSMoi, d.TieuThuMoi, d.DenNgay, k.TenKH, k.Hieu, k.Co, k.SoThan, k.HopDong, k.GB, k.DM, k.So, k.SoMoi, k.Duong, d.Ky, d.Nam }).Take(12).ToList();
+                         select new { d.MLT1, d.CodeMoi, d.CSMoi, d.TieuThuMoi, d.DenNgay, k.TenKH, k.Hieu, k.Co, k.SoThan, k.HopDong, k.GB, k.DM, k.So, k.SoMoi, k.Duong, d.Ky, d.Nam })
+                         .Take(12).ToList();
             DataTable table = new DataTable();
             table.Columns.Add("TenKH", typeof(string));
             table.Columns.Add("Hieu", typeof(string));
             table.Columns.Add("Co", typeof(string));
-            table.Columns.Add("Danh bạ", typeof(string));
-            table.Columns.Add("Mã lộ trình", typeof(string));
+            table.Columns.Add("DanhBa", typeof(string));
+            table.Columns.Add("MLT1", typeof(string));
             table.Columns.Add("Code", typeof(string));
 
             foreach (var item in query)
@@ -74,13 +85,64 @@ namespace ViewModel
                 row["TenKH"] = item.TenKH;
                 row["Hieu"] = item.Hieu;
                 row["Co"] = item.Co;
-                row["Danh bạ"] = danhBa;
-                row["Mã lộ trình"] = item.MLT1;
+                row["DanhBa"] = danhBa;
+                row["MLT1"] = item.MLT1;
                 row["Code"] = item.CodeMoi;
 
                 table.Rows.Add(row);
             }
-            //return query.CopyToDataTable<DataRow>();
+            return table;
+        }
+
+        public DataTable GetInfoCheckCustomer1(string str, string danhBa)
+        {
+            var query = (from d in serverContext.DocSos
+                         join k in serverContext.KhachHangs on d.DanhBa equals k.DanhBa
+                         where d.DanhBa == danhBa
+                         orderby d.DocSoID descending
+                         select new {d.GhiChuDS, d.MLT1, d.CodeMoi, d.CSMoi, d.TieuThuMoi, d.DenNgay, k.TenKH, k.Hieu, k.Co, k.SoThan, k.HopDong, k.GB, k.DM, k.So, k.SoMoi, k.Duong, d.Ky, d.Nam, k.SDT }).Take(12).ToList();
+            DataTable table = new DataTable();
+            table.Columns.Add(TTKH_COLUMN_TENKH, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_HIEU, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_CO, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_SDT, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_DUONG, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_SOTHAN, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_MLT1, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_HOPDONG, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_DANHBA, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_GB, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_DM, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_KY, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_NGAYDOC, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_CODE, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_CSMOI, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_TIEUTHU, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_GHICHU, typeof(string));
+            foreach (var item in query)
+            {
+                DataRow row = table.NewRow();
+                row[TTKH_COLUMN_TENKH] = item.TenKH;
+                row[TTKH_COLUMN_HIEU] = item.Hieu;
+                row[TTKH_COLUMN_CO] = item.Co;
+                row[TTKH_COLUMN_SDT] = item.SDT;
+                row[TTKH_COLUMN_DUONG] = item.SoMoi.Trim().Length == 0?
+                    String.Format("{0} {1}",item.So, item.Duong) :
+                    String.Format("{0} {1}", item.SoMoi, item.Duong);
+                row[TTKH_COLUMN_SOTHAN] = item.SoThan;
+                row[TTKH_COLUMN_MLT1] = item.MLT1;
+                row[TTKH_COLUMN_HOPDONG] = item.HopDong;
+                row[TTKH_COLUMN_DANHBA] =danhBa;
+                row[TTKH_COLUMN_GB] = item.GB;
+                row[TTKH_COLUMN_DM] = item.DM;
+                row[TTKH_COLUMN_KY] = String.Format("{0}/{1}", item.Ky, item.Nam);
+                row[TTKH_COLUMN_NGAYDOC] = item.DenNgay.Value.ToString(pattern);
+                row[TTKH_COLUMN_CODE] = item.CodeMoi;
+                row[TTKH_COLUMN_CSMOI] = item.CSMoi;
+                row[TTKH_COLUMN_TIEUTHU] = item.TieuThuMoi;
+                row[TTKH_COLUMN_GHICHU] = item.GhiChuDS;
+                table.Rows.Add(row);
+            }
             return table;
 
         }

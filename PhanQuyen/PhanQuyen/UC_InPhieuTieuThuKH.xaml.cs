@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,15 @@ namespace PhanQuyen
             InitializeComponent();
 
             cbbYear.ItemsSource = GetDataDBViewModel.Instance.getDistinctYearServer();
+
+            System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
+            ps.Landscape = true;
+            ps.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1170);
+            Margins margins = new Margins(70, 50, 50, 50);
+            ps.Margins = margins;
+            ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
+            _reportViewer.SetPageSettings(ps);
+
         }
 
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -42,7 +52,7 @@ namespace PhanQuyen
             String danhBa = txtbDanhBa.Text;
             String str = txtGhiChu.Text.Trim();
             DataTable dt = GetDataDBViewModel.Instance.GetInfoCheckCustomer1(str, danhBa);
-            //dt.Merge(GetDataDBViewModel.Instance.GetInfoCheckCustomer2(dt.Rows.Count, str, danhBa));
+            dt.Merge(GetDataDBViewModel.Instance.GetInfoCheckCustomer2(dt.Rows.Count, str, danhBa));
             _reportViewer.LocalReport.ReportPath = "../Debug/Report/rptInPhieuKiemTra.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInPhieuKiemTraKH", dt));

@@ -12,7 +12,7 @@
                 <Value>Tên khách hàng</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -20,10 +20,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>1.71007in</Top>
+        <Top>1.96007in</Top>
         <Left>0.18229in</Left>
         <Height>0.25in</Height>
-        <Width>1.08334in</Width>
+        <Width>1.38904in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -44,7 +44,7 @@
                 <Value>Địa chỉ</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -52,10 +52,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>2.15451in</Top>
+        <Top>2.27951in</Top>
         <Left>0.18229in</Left>
         <Height>0.25in</Height>
-        <Width>0.79167in</Width>
+        <Width>1.38904in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -77,7 +77,7 @@
                 <Value>Hợp đồng</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -85,10 +85,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>2.46007in</Top>
+        <Top>2.58507in</Top>
         <Left>0.18229in</Left>
         <Height>0.25in</Height>
-        <Width>0.79167in</Width>
+        <Width>1.38904in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -110,7 +110,7 @@
                 <Value>=Fields!TenKH.Value</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -118,20 +118,15 @@
                 <Value xml:space="preserve">   </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
               <TextRun>
                 <Value>Hiệu: </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
@@ -139,7 +134,7 @@
                 <Value xml:space="preserve">  </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -147,7 +142,7 @@
                 <Value>=Fields!Hieu.Value</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -155,7 +150,7 @@
                 <Value xml:space="preserve">    </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -163,7 +158,7 @@
                 <Value>Cỡ</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
@@ -171,7 +166,7 @@
                 <Value> : </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -179,7 +174,7 @@
                 <Value xml:space="preserve">  </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0;(0)</Format>
                 </Style>
@@ -188,7 +183,7 @@
                 <Value>=Fields!Co.Value</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0;(0)</Format>
                 </Style>
@@ -197,7 +192,7 @@
                 <Value xml:space="preserve">     </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Format>0;(0)</Format>
                 </Style>
@@ -206,7 +201,7 @@
                 <Value>SĐT:</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
@@ -214,8 +209,8 @@
                 <Value>=Fields!SDT.Value</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -223,9 +218,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>TENKH</rd:DefaultName>
-        <Top>1.71007in</Top>
-        <Left>1.39077in</Left>
-        <Height>0.46875in</Height>
+        <Top>1.96007in</Top>
+        <Left>1.64077in</Left>
+        <Height>0.25in</Height>
         <Width>5.79152in</Width>
         <ZIndex>3</ZIndex>
         <Style>
@@ -248,15 +243,31 @@
                 <Value>=Fields!Duong.Value</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> - Số thân : </Value>
+                <Value> - </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Số thân</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> : </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -264,7 +275,7 @@
                 <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
@@ -272,23 +283,23 @@
                 <Value>=Fields!SoThan.Value</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>  Mã lộ trình</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value xml:space="preserve">  </Value>
+                <Value> : </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Mã lộ trình : </Value>
-                <Style>
-                  <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -296,7 +307,7 @@
                 <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
@@ -304,8 +315,8 @@
                 <Value>=Fields!MLT1.Value</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -313,8 +324,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>DIACHI</rd:DefaultName>
-        <Top>2.15451in</Top>
-        <Left>1.39077in</Left>
+        <Top>2.25174in</Top>
+        <Left>1.64077in</Left>
         <Height>0.25in</Height>
         <Width>5.79152in</Width>
         <ZIndex>4</ZIndex>
@@ -338,15 +349,31 @@
                 <Value>=Fields!HopDong.Value</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> - Danh bạ :  </Value>
+                <Value> - </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Danh bạ</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> :  </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -354,55 +381,47 @@
                 <Value>=Fields!DanhBa.Value</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> - GB:</Value>
+                <Value> - </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value xml:space="preserve">  </Value>
+                <Value>GB: </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Normal</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!GB.Value</Value>
-                <Style>
-                  <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>  - </Value>
-                <Style>
-                  <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>ĐM:</Value>
-                <Style>
-                  <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!GB.Value</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>  - ĐM: </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
@@ -410,8 +429,8 @@
                 <Value>=Fields!DM.Value</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -419,8 +438,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>DIACHI</rd:DefaultName>
-        <Top>2.46007in</Top>
-        <Left>1.39077in</Left>
+        <Top>2.58507in</Top>
+        <Left>1.64077in</Left>
         <Height>0.25in</Height>
         <Width>5.79152in</Width>
         <ZIndex>5</ZIndex>
@@ -441,10 +460,18 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>      TỔNG CÔNG TY CẤP NƯỚC SÀI GÒN</Value>
+                <Value>       TỔNG CÔNG TY CẤP NƯỚC SÀI GÒN                                </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>                                                  CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -455,62 +482,14 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value> TRÁCH NHIỆM HỮU HẠN MỘT THÀNH VIÊN</Value>
-                <Style>
-                  <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>CÔNG TY CỔ PHẦN CẤP NƯỚC TRUNG AN</Value>
-                <Style>
-                  <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve">                    </Value>
+                <Value>TRÁCH NHIỆM HỮU HẠN MỘT THÀNH VIÊN                             </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>12pt</FontSize>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>PHIẾU GHI CHỈ SỐ </Value>
-                <Style>
-                  <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>18pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>TIÊU THỤ NƯỚC</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>18pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>     333 Phạm Văn Đồng - P.01 - Q.Gò Vấp                                                       </Value>
+                <Value>                                                              Độc lập - Tự do - Hạnh phúc</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -525,11 +504,95 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>                     **************                                                                                 </Value>
+                <Value> CÔNG TY CỔ PHẦN CẤP NƯỚC TÂN HÒA</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>12pt</FontSize>
                   <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">                                                                        </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>                             **************</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>     95 Phạm Hữu Chí - P.12 - Q.05 - TP.HCM                                                            </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>                     **************                                                                                                                        </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value xml:space="preserve">             </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Số: __________/TH/ĐQLĐHN</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">                                                                                       </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>TP.HCM, ngày.......tháng......năm.........</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -554,10 +617,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>0.15625in</Top>
-        <Left>0.18229in</Left>
-        <Height>1.17708in</Height>
-        <Width>8.92709in</Width>
+        <Top>0.03125in</Top>
+        <Height>1.26041in</Height>
+        <Width>10.69792in</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -579,7 +641,7 @@
                 <Value>PHIẾU TIÊU THỤ VÀ THÔNG TIN KHÁCH HÀNG</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>14pt</FontSize>
+                  <FontSize>16pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -590,10 +652,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox8</rd:DefaultName>
-        <Top>1.32813in</Top>
-        <Left>0.18229in</Left>
-        <Height>0.25in</Height>
-        <Width>7in</Width>
+        <Top>1.45313in</Top>
+        <Height>0.33333in</Height>
+        <Width>10.69792in</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>
@@ -621,7 +682,7 @@
                             <Value>Kỳ</Value>
                             <Style>
                               <FontFamily>Times New Roman</FontFamily>
-                              <FontSize>12pt</FontSize>
+                              <FontSize>13pt</FontSize>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -673,7 +734,10 @@
                         <TextRuns>
                           <TextRun>
                             <Value>Ngày đọc</Value>
-                            <Style />
+                            <Style>
+                              <FontFamily>times New Roman</FontFamily>
+                              <FontSize>13pt</FontSize>
+                            </Style>
                           </TextRun>
                         </TextRuns>
                         <Style />
@@ -724,7 +788,10 @@
                         <TextRuns>
                           <TextRun>
                             <Value>Code</Value>
-                            <Style />
+                            <Style>
+                              <FontFamily>times New Roman</FontFamily>
+                              <FontSize>13pt</FontSize>
+                            </Style>
                           </TextRun>
                         </TextRuns>
                         <Style />
@@ -775,7 +842,10 @@
                         <TextRuns>
                           <TextRun>
                             <Value>Chỉ số</Value>
-                            <Style />
+                            <Style>
+                              <FontFamily>times New Roman</FontFamily>
+                              <FontSize>13pt</FontSize>
+                            </Style>
                           </TextRun>
                         </TextRuns>
                         <Style />
@@ -820,7 +890,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.76396in</Width>
+              <Width>0.99729in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -838,12 +908,14 @@
                             <TextRun>
                               <Value>=Fields!TieuThu.Value</Value>
                               <Style>
+                                <FontFamily>times New Roman</FontFamily>
+                                <FontSize>13pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Right</TextAlign>
+                            <TextAlign>Center</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -905,15 +977,18 @@
                   <TablixHeader>
                     <Size>0.27083in</Size>
                     <CellContents>
-                      <Textbox Name="KY1">
+                      <Textbox Name="Ky">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=Fields!Ky.Value.ToString + "/" + Fields!Nam.Value.ToString</Value>
-                                <Style />
+                                <Value>=Fields!Ky.Value</Value>
+                                <Style>
+                                  <FontFamily>times New Roman</FontFamily>
+                                  <FontSize>13pt</FontSize>
+                                </Style>
                               </TextRun>
                             </TextRuns>
                             <Style>
@@ -921,7 +996,7 @@
                             </Style>
                           </Paragraph>
                         </Paragraphs>
-                        <rd:DefaultName>KY1</rd:DefaultName>
+                        <rd:DefaultName>Ky</rd:DefaultName>
                         <Style>
                           <Border>
                             <Style>Solid</Style>
@@ -968,7 +1043,10 @@
                                 <TextRuns>
                                   <TextRun>
                                     <Value>=Fields!DenNgay.Value</Value>
-                                    <Style />
+                                    <Style>
+                                      <FontFamily>times New Roman</FontFamily>
+                                      <FontSize>13pt</FontSize>
+                                    </Style>
                                   </TextRun>
                                 </TextRuns>
                                 <Style>
@@ -1022,7 +1100,10 @@
                                     <TextRuns>
                                       <TextRun>
                                         <Value>=Fields!Code.Value</Value>
-                                        <Style />
+                                        <Style>
+                                          <FontFamily>times New Roman</FontFamily>
+                                          <FontSize>13pt</FontSize>
+                                        </Style>
                                       </TextRun>
                                     </TextRuns>
                                     <Style>
@@ -1077,12 +1158,14 @@
                                           <TextRun>
                                             <Value>=Fields!CSMoi.Value</Value>
                                             <Style>
+                                              <FontFamily>times New Roman</FontFamily>
+                                              <FontSize>13pt</FontSize>
                                               <FontWeight>Bold</FontWeight>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
                                         <Style>
-                                          <TextAlign>Right</TextAlign>
+                                          <TextAlign>Center</TextAlign>
                                         </Style>
                                       </Paragraph>
                                     </Paragraphs>
@@ -1144,7 +1227,7 @@
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
-                <Size>0.63542in</Size>
+                <Size>0.90834in</Size>
                 <CellContents>
                   <Textbox Name="DANHBA">
                     <CanGrow>true</CanGrow>
@@ -1154,7 +1237,10 @@
                         <TextRuns>
                           <TextRun>
                             <Value>Tiêu thụ</Value>
-                            <Style />
+                            <Style>
+                              <FontFamily>times New Roman</FontFamily>
+                              <FontSize>13pt</FontSize>
+                            </Style>
                           </TextRun>
                         </TextRuns>
                         <Style />
@@ -1205,10 +1291,10 @@
             <Value>=Fields!Ky.Value</Value>
           </SortExpression>
         </SortExpressions>
-        <Top>2.9323in</Top>
+        <Top>3.0573in</Top>
         <Left>0.18229in</Left>
         <Height>1.27083in</Height>
-        <Width>1.39938in</Width>
+        <Width>1.90563in</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>
@@ -1216,15 +1302,17 @@
           </Border>
         </Style>
       </Tablix>
-      <Textbox Name="Textbox4">
+      <Textbox Name="Textbox5">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!GhiChuKH.Value, "dtsInPhieuKiemTraKH")</Value>
+                <Value>Ghi Chú:   </Value>
                 <Style>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -1232,11 +1320,11 @@
             <Style />
           </Paragraph>
         </Paragraphs>
-        <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>10.81706cm</Top>
-        <Left>2.36802cm</Left>
+        <rd:DefaultName>Textbox5</rd:DefaultName>
+        <Top>11.13456cm</Top>
+        <Left>0.54716cm</Left>
         <Height>0.6cm</Height>
-        <Width>20.7698cm</Width>
+        <Width>2.22303cm</Width>
         <ZIndex>9</ZIndex>
         <Style>
           <Border>
@@ -1248,43 +1336,11 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="Textbox5">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Ghi Chú:</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>10.85234cm</Top>
-        <Left>0.54716cm</Left>
-        <Height>0.6cm</Height>
-        <Width>1.9267cm</Width>
-        <ZIndex>10</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
     </ReportItems>
-    <Height>11.82688cm</Height>
+    <Height>12.40484cm</Height>
     <Style />
   </Body>
-  <Width>26.74938cm</Width>
+  <Width>27.17272cm</Width>
   <Page>
     <PageHeight>21cm</PageHeight>
     <PageWidth>29.7cm</PageWidth>
