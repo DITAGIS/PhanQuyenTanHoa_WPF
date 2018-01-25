@@ -21,7 +21,7 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid Background="White">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -38,17 +38,20 @@
             </ComboBox>
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
             <!--Danh bạ-->
-            <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbUsername" 
+            <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbDanhBa" 
                       Text="{Binding SelectedHoaDon.DanhBa}"
                           Style="{StaticResource styleTxtb}"/>
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Ghi chú:"/></TextBlock>
             <!--Ghi chú-->
-            <TextBox  FontSize="15" Height="30" Width="300" VerticalAlignment="Center" VerticalContentAlignment="Center"  
+            <TextBox 
+                Name="txtGhiChu"
+                FontSize="15" Height="30" Width="300" VerticalAlignment="Center" VerticalContentAlignment="Center"  
                       Text="{Binding SelectedHoaDon.DanhBa}"
                           Style="{StaticResource styleTxtb}"/>
 
             
-            <Button Margin="30,0,0,0" Background="White" Name="btnPrint">
+            <Button Margin="30,0,0,0" Background="White" Name="btnPrint"
+                    Click="btnPrint_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/PhanQuyen;component/Images/printer.png" Width="20" Height="20"></Image>
                     <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">In phiếu tiêu thụ KH</TextBlock>
@@ -57,7 +60,8 @@
 
         </StackPanel>
         <WindowsFormsHost Grid.Row="1" Margin="0,20,0,0">
-            <rv:ReportViewer x:Name="_reportViewer"/>
+            <rv:ReportViewer x:Name="_reportViewer" 
+                             />
         </WindowsFormsHost>
     </Grid>
 </UserControl>

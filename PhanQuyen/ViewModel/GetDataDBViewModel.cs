@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -41,6 +42,47 @@ namespace ViewModel
                         orderby x.DocSoID descending
                         select new { x.Ky, x.Nam, danhBa, x.CodeMoi, x.TTDHNMoi, x.CSCu, x.CSMoi, x.TieuThuMoi, x.GhiChuDS, x.GhiChuKH, x.GhiChuTV }).ToList();
             return data;
+        }
+
+        public DataTable GetInfoCheckCustomer2(int count, string str, string danhBa)
+        {
+            //IEnumerable<DataRow> query = serverContext.ExecuteQuery<DataRow>("select top(" + (object)(12 - count) + ") d.DanhBa,d.MLT1,d.CodeMoi as Code,d.CSMoi,d.TieuThuMoi as TieuThu, Convert(varchar(10),d.DenNgay,103) as DenNgay, k.TenKH,k.Hieu,k.Co,k.SoThan,k.SDT,k.HopDong,k.GB,k.DM, CASE WHEN k.SoMoi is not null and  k.SoMoi != '' THEN k.SoMoi + k.Duong ELSE k.So + ' ' + k.Duong END as Duong, d.Ky as KY, d.Nam as NAM, N'" + str + "' as GhiChuKH from DocSoLuuTru as d Inner Join KhachHang k on d.DanhBa = k.DanhBa where d.DanhBa = '" + danhBa + "' order by d.DocSoID desc");
+            //return query.CopyToDataTable<DataRow>();
+            return null;
+        }
+
+        public DataTable GetInfoCheckCustomer1(string str, string danhBa)
+        {
+            //    var query = serverContext.ExecuteQuery<ThongTinKH>("select top(12) d.DanhBa,d.MLT1,d.CodeMoi as Code,d.CSMoi,d.TieuThuMoi as TieuThu, Convert(varchar(10),d.DenNgay,103) as DenNgay, k.TenKH,k.Hieu,k.Co,k.SoThan,k.SDT,k.HopDong,k.GB,k.DM, CASE WHEN k.SoMoi is not null and  k.SoMoi != '' THEN k.SoMoi + k.Duong ELSE k.So + ' ' + k.Duong END as Duong, d.Ky as KY, d.Nam as NAM, N'" + str + "' as GhiChuKH from DocSo as d Inner Join KhachHang k on d.DanhBa = k.DanhBa where d.DanhBa = '" + danhBa + "' order by d.DocSoID desc")
+            //        .Select(x => new { danhBa, x.MLT, x.CodeMoi}).FirstOrDefault();
+            var query = (from d in serverContext.DocSos
+                         join k in serverContext.KhachHangs on d.DanhBa equals k.DanhBa
+                         where d.DanhBa == danhBa
+                         orderby d.DocSoID descending
+                         select new { d.MLT1, d.CodeMoi, d.CSMoi, d.TieuThuMoi, d.DenNgay, k.TenKH, k.Hieu, k.Co, k.SoThan, k.HopDong, k.GB, k.DM, k.So, k.SoMoi, k.Duong, d.Ky, d.Nam }).Take(12).ToList();
+            DataTable table = new DataTable();
+            table.Columns.Add("TenKH", typeof(string));
+            table.Columns.Add("Hieu", typeof(string));
+            table.Columns.Add("Co", typeof(string));
+            table.Columns.Add("Danh bạ", typeof(string));
+            table.Columns.Add("Mã lộ trình", typeof(string));
+            table.Columns.Add("Code", typeof(string));
+
+            foreach (var item in query)
+            {
+                DataRow row = table.NewRow();
+                row["TenKH"] = item.TenKH;
+                row["Hieu"] = item.Hieu;
+                row["Co"] = item.Co;
+                row["Danh bạ"] = danhBa;
+                row["Mã lộ trình"] = item.MLT1;
+                row["Code"] = item.CodeMoi;
+
+                table.Rows.Add(row);
+            }
+            //return query.CopyToDataTable<DataRow>();
+            return table;
+
         }
 
         public List<String> getDocsosByConditionCount(int year, String month, String date, int xGroup, String machine)
@@ -188,7 +230,7 @@ namespace ViewModel
             return listData;
         }
 
-       
+
 
         public List<string> getDanhBasByCondition(int year, string month, string date, int xGroup, string machine)
         {

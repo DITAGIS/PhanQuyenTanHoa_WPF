@@ -37,6 +37,7 @@ namespace PhanQuyen
         private DataGridCell gridCell;
         private List<DocSo> docSoList = new List<DocSo>();
         private DocSo _selectedDocSo;
+        private XemGhiChuWindow _xemGhiChuWindow;
 
         private const int COLUMN_MLT = 0;
         private const int COLUMN_DANHBA = 1;
@@ -54,6 +55,8 @@ namespace PhanQuyen
             InitializeComponent();
             rotate = 0;
             scaleX = scaleY = 1.1;
+
+            _xemGhiChuWindow = new XemGhiChuWindow();
         }
 
         public ScrollViewer GetScrollViewer
@@ -101,10 +104,15 @@ namespace PhanQuyen
             //}
             _selectedDocSo = dtgridMain.SelectedValue as DocSo;
             if (_selectedDocSo != null)
+            {
                 btnViewNote.IsEnabled = true;
+                btnPrint.IsEnabled = true;
+            }
             else
+            {
                 btnViewNote.IsEnabled = false;
-
+                btnPrint.IsEnabled = false;
+            }
             row = getRow(dtgridMain.SelectedIndex);
         }
         private DataGridRow getRow(int index)
@@ -241,6 +249,8 @@ namespace PhanQuyen
         }
         private void CanhBaoBatThuong()
         {
+            if (dtgridMain == null)
+                return;
             DataGridRow row;
             SolidColorBrush red = new SolidColorBrush(Colors.Red);
             SolidColorBrush blue = new SolidColorBrush(Colors.Blue);
@@ -349,13 +359,18 @@ namespace PhanQuyen
 
         private void btnViewNote_Click(object sender, RoutedEventArgs e)
         {
-            XemGhiChuWindow xemGhiChuWindow = new XemGhiChuWindow(_selectedDocSo.DanhBa);
-            xemGhiChuWindow.ShowDialog();
+           _xemGhiChuWindow.GetNote(_selectedDocSo.DanhBa);
+            _xemGhiChuWindow.ShowDialog();
         }
 
         private void columnHeader_Click(object sender, RoutedEventArgs e)
         {
             CanhBaoBatThuong();
+        }
+
+        private void btnPrint_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -107,6 +107,7 @@
     <Compile Include="DocSo_1Ky.cs" />
     <Compile Include="HoaDon.cs" />
     <Compile Include="MySoLenh.cs" />
+    <Compile Include="ThongTinKH.cs" />
     <Compile Include="ToID.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Volumn_GetData.cs" />

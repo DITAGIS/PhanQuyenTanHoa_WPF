@@ -34,5 +34,9 @@ namespace PhanQuyen
             InitializeComponent();
             
         }
+        public void GetNote(String danhBa)
+        {
+            dtgridMain.ItemsSource = GetDataDBViewModel.Instance.getNote(danhBa);
+        }
     }
 }
