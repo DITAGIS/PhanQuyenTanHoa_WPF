@@ -682,7 +682,7 @@
                             <Value>Kỳ</Value>
                             <Style>
                               <FontFamily>Times New Roman</FontFamily>
-                              <FontSize>13pt</FontSize>
+                              <FontSize>11pt</FontSize>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -736,7 +736,7 @@
                             <Value>Ngày đọc</Value>
                             <Style>
                               <FontFamily>times New Roman</FontFamily>
-                              <FontSize>13pt</FontSize>
+                              <FontSize>11pt</FontSize>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -790,7 +790,7 @@
                             <Value>Code</Value>
                             <Style>
                               <FontFamily>times New Roman</FontFamily>
-                              <FontSize>13pt</FontSize>
+                              <FontSize>11pt</FontSize>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -844,7 +844,7 @@
                             <Value>Chỉ số</Value>
                             <Style>
                               <FontFamily>times New Roman</FontFamily>
-                              <FontSize>13pt</FontSize>
+                              <FontSize>11pt</FontSize>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -890,7 +890,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.99729in</Width>
+              <Width>0.77229in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -909,7 +909,6 @@
                               <Value>=Fields!TieuThu.Value</Value>
                               <Style>
                                 <FontFamily>times New Roman</FontFamily>
-                                <FontSize>13pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -987,7 +986,6 @@
                                 <Value>=Fields!Ky.Value</Value>
                                 <Style>
                                   <FontFamily>times New Roman</FontFamily>
-                                  <FontSize>13pt</FontSize>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -1045,7 +1043,6 @@
                                     <Value>=Fields!DenNgay.Value</Value>
                                     <Style>
                                       <FontFamily>times New Roman</FontFamily>
-                                      <FontSize>13pt</FontSize>
                                     </Style>
                                   </TextRun>
                                 </TextRuns>
@@ -1102,7 +1099,6 @@
                                         <Value>=Fields!Code.Value</Value>
                                         <Style>
                                           <FontFamily>times New Roman</FontFamily>
-                                          <FontSize>13pt</FontSize>
                                         </Style>
                                       </TextRun>
                                     </TextRuns>
@@ -1159,7 +1155,6 @@
                                             <Value>=Fields!CSMoi.Value</Value>
                                             <Style>
                                               <FontFamily>times New Roman</FontFamily>
-                                              <FontSize>13pt</FontSize>
                                               <FontWeight>Bold</FontWeight>
                                             </Style>
                                           </TextRun>
@@ -1227,7 +1222,7 @@
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
-                <Size>0.90834in</Size>
+                <Size>0.76667in</Size>
                 <CellContents>
                   <Textbox Name="DANHBA">
                     <CanGrow>true</CanGrow>
@@ -1239,7 +1234,7 @@
                             <Value>Tiêu thụ</Value>
                             <Style>
                               <FontFamily>times New Roman</FontFamily>
-                              <FontSize>13pt</FontSize>
+                              <FontSize>11pt</FontSize>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -1294,7 +1289,7 @@
         <Top>3.0573in</Top>
         <Left>0.18229in</Left>
         <Height>1.27083in</Height>
-        <Width>1.90563in</Width>
+        <Width>1.53896in</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>

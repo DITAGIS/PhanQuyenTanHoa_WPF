@@ -32,11 +32,11 @@ namespace PhanQuyen
             cbbYear.ItemsSource = GetDataDBViewModel.Instance.getDistinctYearServer();
 
             System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
-            ps.Landscape = true;
-            ps.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1170);
+            //ps.Landscape = true;
+            //ps.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1170);
             Margins margins = new Margins(70, 50, 50, 50);
             ps.Margins = margins;
-            ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
+            //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
             _reportViewer.SetPageSettings(ps);
 
         }
