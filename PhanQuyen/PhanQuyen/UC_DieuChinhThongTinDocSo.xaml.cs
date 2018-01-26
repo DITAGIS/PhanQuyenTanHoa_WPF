@@ -420,7 +420,7 @@ namespace PhanQuyen
 
         private void btnGetData_Click(object sender, RoutedEventArgs e)
         {
-            docSoList = DataDBViewModel.Instance.getAllDocSos(year, month, date, group, machine);
+            docSoList = DataDBViewModel.Instance.getAllDocSos(year, month, date, machine);
             dtgridMain.ItemsSource = null;
             dtgridMain.Items.Clear();
             dtgridMain.ItemsSource = docSoList;

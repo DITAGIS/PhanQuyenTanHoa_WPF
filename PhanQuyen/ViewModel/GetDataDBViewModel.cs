@@ -331,10 +331,10 @@ namespace ViewModel
                         select x).FirstOrDefault();
             return data;
         }
-        public List<DocSo> getAllDocSos(int year, string month, string date, int xGroup, string machine)
+        public List<DocSo> getAllDocSos(int year, string month, string date, string machine)
         {
             var data = (from x in serverContext.DocSos
-                        where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.May == machine
+                        where x.Nam == year && x.Ky == month && x.Dot == date && x.May == machine
                         select x).ToList();
             return data;
         }
