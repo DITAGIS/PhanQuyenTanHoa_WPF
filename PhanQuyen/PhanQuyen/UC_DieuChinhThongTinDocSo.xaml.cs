@@ -562,7 +562,8 @@ namespace PhanQuyen
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
-
+            InPhieuKiemTraWindow inPhieuKiemtRaWindow = new InPhieuKiemTraWindow(txtbDanhBa.Text.ToString());
+            inPhieuKiemtRaWindow.ShowDialog();
         }
 
         private void cbbKHDS_SelectionChanged(object sender, SelectionChangedEventArgs e)

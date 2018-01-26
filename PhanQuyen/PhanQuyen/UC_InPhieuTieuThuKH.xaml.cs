@@ -32,15 +32,29 @@ namespace PhanQuyen
             cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
 
             System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
-            //ps.Landscape = true;
+            ps.Landscape = true;
+            //ps.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1170);
+            Margins margins = new Margins(70, 50, 50, 50);
+            ps.Margins = margins;
+            //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
+            _reportViewer.SetPageSettings(ps);
+        }
+        public UC_InPhieuTieuThuKH(string danhBa)
+        {
+            InitializeComponent();
+
+            cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
+
+            System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
+            ps.Landscape = true;
             //ps.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1170);
             Margins margins = new Margins(70, 50, 50, 50);
             ps.Margins = margins;
             //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
             _reportViewer.SetPageSettings(ps);
 
+            this.txtbDanhBa.Text = danhBa;
         }
-
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbbYear.SelectedValue != null)
