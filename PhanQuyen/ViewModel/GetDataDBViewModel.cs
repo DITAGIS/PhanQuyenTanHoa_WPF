@@ -46,6 +46,29 @@ namespace ViewModel
                 return _instance;
             }
         }
+
+        public List<CapNhatHoaDon> GetCapNhatHoaDon(string month, int year)
+        {
+            List<CapNhatHoaDon> data = new List<CapNhatHoaDon>(); ;
+            try
+            {
+                data = serverContext.ExecuteQuery<CapNhatHoaDon>("SELECT Dot , COUNT(DANHBA) as SoDanhBa, SUM(TieuThu) as TieuThu FROM HoaDon WHERE KY = " + month + " and NAM = '" + year + "' GROUP BY DOT ORDER BY DOT")
+                    //.Select(x => new CapNhatHoaDon()
+                    //{
+                    //    Dot = x.Dot,
+                    //    SoDanhBa = x.SoDanhBa,
+                    //    TieuThu = x.TieuThu
+                    //})
+                    .ToList();
+            }
+            catch(Exception e)
+            {
+
+            }
+            return data;
+
+        }
+
         private DataDBViewModel()
         {
             localContext = new DataClassesLocalDataContext();
