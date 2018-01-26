@@ -491,11 +491,11 @@ namespace ViewModel
             return new List<string>() { data.TenKH, data.HopDong };
         }
 
-        public List<String> getDistinctKHDS()
+        public IEnumerable<object> getDistinctKHDS()
         {
             var data = (from x in serverContext.TTDHNs
                         orderby x.Stt
-                        select x.TTDHN1).ToList();
+                        select new { x.TTDHN1, x.CODE }).ToList();
             return data;
         }
 

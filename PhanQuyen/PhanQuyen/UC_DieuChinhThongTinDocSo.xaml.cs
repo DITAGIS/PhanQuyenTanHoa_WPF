@@ -565,6 +565,63 @@ namespace PhanQuyen
 
         }
 
+        private void cbbKHDS_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dtgridMain.SelectedValue == null || cbbKHDS.SelectedValue == null)
+                return;
+            DocSo docSo = dtgridMain.SelectedValue as DocSo;
+            this.txtbCode.Text = this.cbbKHDS.SelectedValue.ToString();
+            docSo.CodeMoi = txtbCode.Text;
+            string text = this.cbbKHDS.Text;
+            string str1 = this.cbbKHDS.SelectedValue.ToString();
+            string str2 = docSo.CodeCu.Length <= 1 ? docSo.CodeCu : docSo.CodeCu.Substring(0, 1);
+            if ((text.Length >= 4 ? str1 = this.cbbKHDS.Text.Substring(0, 4) : str1 = this.cbbKHDS.Text) == "CSBT" && (str2 == "F" || str2 == "6" || (str2 == "K" || str2 == "N") || str2 == "Q"))
+            {
+                this.txtbCSM.Focus();
+                this.txtbCode.Text = "5" + str2;
+            }
+            switch (str1)
+            {
+                case "40":
+                case "41":
+                case "42":
+                case "43":
+                case "44":
+                case "45":
+                case "81":
+                case "82":
+                case "83":
+                    this.txtbCSM.IsEnabled = true;
+                    this.txtbCSM.Focus();
+                    break;
+                case "F1":
+                case "F2":
+                case "F3":
+                case "F4":
+                case "60":
+                case "61":
+                case "62":
+                case "80":
+                    this.txtbTieuThu.Text = docSo.TBTT.Value + "";
+                    this.txtbCSM.Focus();
+                    break;
+                case "63":
+                case "64":
+                case "66":
+                    this.txtbTieuThu.Text = docSo.TBTT.Value + "";
+                    this.txtbCSM.IsEnabled = false;
+                    this.txtbCSM.Text = "0";
+                    break;
+                case "F5":
+                case "N":
+                case "K":
+                    this.txtbTieuThu.Text = "0";
+                    this.txtbCSM.Text = "0";
+                    this.txtbTieuThu.Focus();
+                    break;
+            }
+        }
+
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbbYear.SelectedValue != null)
@@ -589,6 +646,8 @@ namespace PhanQuyen
                 cbbGroup.Items.Add(User.Instance.ToID);
 
             cbbKHDS.ItemsSource = DataDBViewModel.Instance.getDistinctKHDS();
+            cbbKHDS.DisplayMemberPath = "TTDHN1";
+            cbbKHDS.SelectedValuePath = "CODE";
         }
 
         static DataGridCell getCell(DataGrid grid, DataGridRow row, int column)

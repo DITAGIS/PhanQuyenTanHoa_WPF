@@ -172,7 +172,9 @@
                                 Orientation="Horizontal" 
                         Margin="0,9.6,0.2,0" Height="30" VerticalAlignment="Top">
                         <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="KHĐS:"/></TextBlock>
-                        <ComboBox x:Name="cbbKHDS" SelectedIndex="0" IsEditable="True"/>
+                        <ComboBox x:Name="cbbKHDS" SelectedIndex="0" IsEditable="True"
+                                  
+                                  SelectionChanged="cbbKHDS_SelectionChanged"/>
 
                         <!--Code mới-->
                         <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Code:"/></TextBlock>
