@@ -58,6 +58,48 @@ namespace PhanQuyen
             scaleX = scaleY = 1.1;
 
             _xemGhiChuWindow = new XemGhiChuWindow();
+
+            CheckIzDS();
+        }
+
+        private void CheckIzDS()
+        {
+            try
+            {
+                int executeScalar = DataDBViewModel.Instance.CheckIzDS();
+                if (executeScalar == 1 && (User.Instance.UserGroup == "DS" || User.Instance.UserGroup == "Admin"))
+                {
+                    int num = (int)MessageBox.Show("Dữ liệu đã được chuyển lên thương vụ, bạn không thể điều chỉnh được thông tin.", "Thông báo");
+                    this.cbbKHDS.IsEnabled = false;
+                    this.txtbCSM.IsEnabled = false;
+                    //this.chuyenMaHoa = true;
+                }
+                else
+                {
+                    this.cbbKHDS.IsEnabled = true;
+                    this.txtbCSM.IsEnabled = true;
+                    //this.chuyenMaHoa = false;
+                }
+                //if (executeScalar == 0 && GV.UserGroup == "TV")
+                //{
+                //    this.cbbNam.Enabled = false;
+                //    this.cbbKy.Enabled = false;
+                //    this.cbbDot.Enabled = false;
+                //    this.cbbToDS.Enabled = false;
+                //    this.cbbMay.Enabled = false;
+                //    this.cbbCodeMoi.Enabled = false;
+                //    this.btnCapNhat.Enabled = false;
+                //}
+                //if (executeScalar == 1 && GV.UserGroup == "TV")
+                //    this.btnCapNhat.Enabled = true;
+                //if (!(GV.UserGroup == "VP"))
+                //    return;
+                //this.btnCapNhat.Enabled = false;
+            }
+            catch (SqlException ex)
+            {
+                int num = (int)MessageBox.Show("Lỗi hàm CheckIzDS: " + ex.Message);
+            }
         }
 
         public ScrollViewer GetScrollViewer
@@ -68,7 +110,7 @@ namespace PhanQuyen
         {
             rotate += 90;
             RotateTransform rotateTransform = new RotateTransform(rotate);
-            image.LayoutTransform = rotateTransform;
+            //image.LayoutTransform = rotateTransform;
         }
         private void btnZoomIn_Click(object sender, RoutedEventArgs e)
         {

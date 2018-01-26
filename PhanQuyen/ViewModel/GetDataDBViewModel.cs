@@ -69,6 +69,11 @@ namespace ViewModel
 
         }
 
+        public int CheckIzDS()
+        {
+            return serverContext.ExecuteQuery<int>("select count(*) from BillState where izDS = '1' and BillID ='" + User.Instance.Year + User.Instance.Month + User.Instance.Date + "'").First();
+        }
+
         private DataDBViewModel()
         {
             localContext = new DataClassesLocalDataContext();
