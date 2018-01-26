@@ -254,4 +254,14 @@
       <Column Name="GPSDATA" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.BillState" Member="BillStates">
+    <Type Name="BillState">
+      <Column Name="BillID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="izCB" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="izDS" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="izTV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="izBL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="izFI" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

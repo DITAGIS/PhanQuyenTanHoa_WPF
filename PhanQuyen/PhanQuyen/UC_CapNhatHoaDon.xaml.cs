@@ -1,6 +1,8 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,155 +35,143 @@ namespace PhanQuyen
             cbbYear.SelectedValue = User.Instance.Year;
 
         }
+        private DateTime formatStringToDate(string s)
+        {
+            if (String.IsNullOrEmpty(s))
+                return new DateTime();
+            DateTime d = new DateTime();
+            try
+            {
+                d = DateTime.ParseExact(s, "yyyyMMdd", CultureInfo.InvariantCulture);
+            }
+            catch (Exception e)
+            {
+                System.Windows.MessageBox.Show(s);
+            }
 
+            return d;
+        }
         private void btnSelectFile_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = "dat";
-            openFileDialog.Filter = "File hóa đơn|*.dat";
-            if (DialogResult.OK != openFileDialog.ShowDialog())
-                return;
-            //      string str1 = UTIin.TaoChuoiStringFormat(18, new ArrayList()
-            //{
-            //  (object) "5",
-            //  (object) "14",
-            //  (object) "15",
-            //  (object) "17",
-            //  (object) "18"
-            //});
-            //      PCData pc = (PCData)null;
-            //      string fileName = openFileDialog.FileName;
-            //      int num1 = 0;
-            //      StreamReader sr = (StreamReader)null;
-            //      string str2 = "";
-            //      SqlTransaction trans = (SqlTransaction)null;
-            //      int num2 = 0;
-            //      try
-            //      {
-            //          pc = new PCData(GV.connString);
-            //          sr = new StreamReader(fileName);
-            //          while (!sr.EndOfStream)
-            //          {
-            //              str2 = sr.ReadLine().Replace("'", "");
-            //              ++num1;
-            //          }
-            //          this.toolStripProgressBar.Minimum = 0;
-            //          this.toolStripProgressBar.Maximum = num1;
-            //          this.toolStripProgressBar.Value = 0;
-            //          this.toolStripProgressBar.Visible = true;
-            //          this.toolStripStatusLabel.Visible = true;
-            //          this.toolStripStatusLabel.Text = "0/" + (object)num1;
-            //          string[] strArray1 = str2.Split(new string[1]
-            //          {
-            //    "\",\""
-            //          }, StringSplitOptions.None);
-            //          this.nam = "20" + strArray1[19];
-            //          this.ky = strArray1[18];
-            //          if (this.nam != this.cbbNamHD.Text || this.ky != this.cbbKyHD.Text)
-            //          {
-            //              int num3 = (int)MessageBox.Show("File không chứa đúng thông tin hóa đơn Kỳ :" + this.cbbKyHD.Text + "/" + this.cbbNamHD.Text, "Thông báo");
-            //              goto label_29;
-            //          }
-            //          else
-            //          {
-            //              this.tungay = new SqlParameter("tungay", SqlDbType.Date);
-            //              pc.PCCommand.Parameters.Add(this.tungay);
-            //              this.denngay = new SqlParameter("denngay", SqlDbType.Date);
-            //              pc.PCCommand.Parameters.Add(this.denngay);
-            //              this.tenkh = new SqlParameter("tenkh", SqlDbType.NVarChar);
-            //              pc.PCCommand.Parameters.Add(this.tenkh);
-            //              string str3;
-            //              if (strArray1[20] == "M")
-            //                  str3 = strArray1[26].Trim('"');
-            //              else
-            //                  str3 = strArray1[25].Trim('"');
-            //              string str4 = strArray1[26].Trim('"');
-            //              this.tungay.Value = (object)new DateTime(int.Parse(str3.Substring(0, 4)), int.Parse(str3.Substring(4, 2)), int.Parse(str3.Substring(6)));
-            //              this.denngay.Value = (object)new DateTime(int.Parse(str4.Substring(0, 4)), int.Parse(str4.Substring(4, 2)), int.Parse(str4.Substring(6)));
-            //              this.ngayCapNhat = new SqlParameter("@ngayCapNhat", SqlDbType.DateTime);
-            //              this.ngayCapNhat.Value = (object)DateTime.Now;
-            //              pc.PCCommand.Parameters.Add(this.ngayCapNhat);
-            //              this.nvCapNhat = new SqlParameter("@nvCapNhat", SqlDbType.VarChar);
-            //              this.nvCapNhat.Value = (object)GV.UserID;
-            //              pc.PCCommand.Parameters.Add(this.nvCapNhat);
-            //              sr.Close();
-            //              sr.Dispose();
-            //              sr = (StreamReader)null;
-            //              sr = new StreamReader(fileName);
-            //              trans = pc.PCConn.BeginTransaction();
-            //              pc.PCCommand.Transaction = trans;
-            //              while (!sr.EndOfStream)
-            //              {
-            //                  string str5 = sr.ReadLine().Replace("'", "");
-            //                  if (str5 != null && str5 != "")
-            //                  {
-            //                      string[] strArray2 = str5.Split(new string[1]
-            //                      {
-            //          "\",\""
-            //                      }, StringSplitOptions.None);
-            //                      this.dot = strArray2[1];
-            //                      this.danhba = strArray2[2];
-            //                      this.tenkh.Value = (object)strArray2[7];
-            //                      this.so = strArray2[8];
-            //                      this.duong = strArray2[9];
-            //                      this.gb = strArray2[12];
-            //                      this.dm = strArray2[17];
-            //                      this.code = strArray2[20] + strArray2[21];
-            //                      this.cscu = strArray2[22];
-            //                      this.csmoi = strArray2[23];
-            //                      this.tieuthu = strArray2[28];
-            //                      this.sohoadon = strArray2[46];
-            //                      this.hoadonID = this.cbbNamHD.Text + this.ky + this.danhba;
-            //                      try
-            //                      {
-            //                          string sqlstatement = string.Format("insert into HoaDon values(" + str1 + ")", (object)this.hoadonID, (object)this.nam, (object)this.ky, (object)this.dot, (object)this.danhba, (object)"@tenkh", (object)this.so, (object)this.duong, (object)this.gb, (object)this.dm, (object)this.code, (object)this.cscu, (object)this.csmoi, (object)this.tieuthu, (object)"@tungay", (object)"@denngay", (object)this.sohoadon, (object)"@ngayCapNhat", (object)"@nvCapNhat");
-            //                          num2 += pc.GetExecuteNonQuerry(sqlstatement);
-            //                      }
-            //                      catch (SqlException ex)
-            //                      {
-            //                          string sqlstatement = "Update HoaDon set Nam ='" + this.nam + "',Ky = '" + this.ky + "',Dot = '" + this.dot + "',DanhBa = '" + this.danhba + "',TenKH = @tenkh,So = '" + this.so + "',Duong = '" + this.duong + "',GB = '" + this.gb + "',DM = '" + this.dm + "',Code = '" + this.code + "',CSCu ='" + this.cscu + "',CSMoi ='" + this.csmoi + "',TieuThu ='" + this.tieuthu + "',TuNgay = @tungay,DenNgay = @denngay,NgayCapNhat = @ngayCapNhat,NVCapNhat = @nvCapNhat where HoaDonID = '" + this.hoadonID + "'";
-            //                          num2 += pc.GetExecuteNonQuerry(sqlstatement);
-            //                      }
-            //                  }
-            //                  if (num2 < num1)
-            //                  {
-            //                      if (num2 % 200 == 0)
-            //                      {
-            //                          this.toolStripProgressBar.Value = num2;
-            //                          this.toolStripStatusLabel.Text = num2.ToString() + "/" + (object)num1;
-            //                          GC.Collect();
-            //                          GC.WaitForPendingFinalizers();
-            //                          this.Refresh();
-            //                      }
-            //                  }
-            //                  else
-            //                  {
-            //                      this.toolStripProgressBar.Value = num1;
-            //                      this.toolStripStatusLabel.Text = num1.ToString() + "/" + (object)num1;
-            //                      GC.Collect();
-            //                      GC.WaitForPendingFinalizers();
-            //                      this.Refresh();
-            //                  }
-            //              }
-            //              if (trans != null)
-            //                  trans.Commit();
-            //              this.LoadGridView((object)this.cbbNamHD.Text, (object)this.cbbKyHD.Text);
-            //          }
-            //      }
-            //      catch (Exception ex)
-            //      {
-            //          int num3 = (int)MessageBox.Show(this.Name + ".btnImport_Click() dừng tại hàng thứ :" + (object)(num2 + 1) + " \n tại danh bạ: " + this.danhba + "\n" + ex.Message);
-            //          if (trans != null)
-            //              trans.Rollback();
-            //      }
-            //      label_29:
-            //      UTIex.ReleaseSR(ref sr);
-            //      UTIex.ReleaseTRANS(ref trans);
-            //      UTIex.ReleasePCDATA(ref pc);
-            //      GC.Collect();
-            //      GC.WaitForPendingFinalizers();
-            //      this.toolStripProgressBar.Visible = false;
-            //      this.toolStripStatusLabel.Visible = false;
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.DefaultExt = "dat";
+                openFileDialog.Filter = "File hóa đơn|*.dat";
+                if (DialogResult.OK != openFileDialog.ShowDialog())
+                    return;
+                List<DocSo> result = new List<DocSo>();
+                int count = 0;
+                using (var sr = new StreamReader(new FileStream(openFileDialog.FileName, FileMode.Open)))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        sr.ReadLine();
+                        count++;
+                    }
+
+                    txtbStatus.Text = "0/" + count;
+                    sr.Close();
+                    sr.Dispose();
+                    var sr1 = (StreamReader)null;
+
+                    int current = 0;
+                    sr1 = new StreamReader(new FileStream(openFileDialog.FileName, FileMode.Open));
+                    string s = String.Empty;
+                    System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        while ((s = sr1.ReadLine()) != null)
+                        {
+                            string[] line = s.Split(new[] { "\",\"" }, StringSplitOptions.None);
+                            var Khu = line[0].Replace("\"", "") != "" ? int.Parse(line[0].Replace("\"", "")) : 0;
+                            var Dot = line[1] != "" ? int.Parse(line[1]) : 0;
+                            var Culy = line[4] != "" ? int.Parse(line[4]) : 0;
+                            var GB = line[12] != "" ? int.Parse(line[12]) : 0;
+                            var SH = line[13].Replace(" ", "") != "" ? int.Parse(line[13].Replace(" ", "")) : 0;
+                            var HCSN = line[14].Replace(" ", "") != "" ? int.Parse(line[14].Replace(" ", "")) : 0;
+                            var SX = line[15].Replace(" ", "") != "" ? int.Parse(line[15].Replace(" ", "")) : 0;
+                            var DV = line[16].Replace(" ", "") != "" ? int.Parse(line[16].Replace(" ", "")) : 0;
+                            var TGDM = line[17].Replace(" ", "") != "" ? int.Parse(line[17].Replace(" ", "")) : 0;
+                            var Ky = line[18] != "" ? int.Parse(line[18]) : 0;
+                            var Nam = line[19] != "" ? int.Parse(line[19]) : 0;
+                            var CSCu = line[22] != "" ? int.Parse(line[22]) : 0;
+                            var CSMoi = line[23] != "" ? int.Parse(line[23]) : 0;
+                            var ChuKyDS = line[27] != "" ? int.Parse(line[27]) : 0;
+                            var LNCC = line[28] != "" ? int.Parse(line[28]) : 0;
+                            var LNCT = line[29] != "" ? int.Parse(line[29]) : 0;
+                            var LN_BU_TOITHIEU = line[30] != "" ? int.Parse(line[30]) : 0;
+                            var LN_SH = line[31] != "" ? int.Parse(line[31]) : 0;
+                            var LN_HCSN = line[32] != "" ? int.Parse(line[32]) : 0;
+                            var LN_SX = line[33] != "" ? int.Parse(line[33]) : 0;
+                            var LN_DV = line[34] != "" ? int.Parse(line[34]) : 0;
+                            var GiaBan = line[37] != "" ? long.Parse(line[37]) : 0;
+                            var ThueGTGT = line[38] != "" ? int.Parse(line[38]) : 0;
+                            var BVMT = line[39] != "" ? int.Parse(line[39]) : 0;
+                            var TongTien = line[40] != "" ? long.Parse(line[40]) : 0;
+                            var GIABAN_BU_TOITHIEU = line[41] != "" ? int.Parse(line[41]) : 0;
+                            var THUE_BU_TOITHIEU = line[42] != "" ? int.Parse(line[42]) : 0;
+                            var PHIBVMT_BU_TOITHIEU = line[43] != "" ? int.Parse(line[43]) : 0;
+                            var TONGCONG_BU_TOITHIEU = line[44] != "" ? int.Parse(line[44]) : 0;
+                            var STT = line[59] != "" ? int.Parse(line[59]) : 0;
+                            var DanhBo = line[2];
+                            var CD = line[3];
+                            var MSTLK = line[5];
+                            var GiaoUoc = line[6];
+                            var HoTen = line[7];
+                            var DC1 = line[8];
+                            var DC2 = line[9];
+                            var MSKH = line[10];
+                            var MSCQ = line[11];
+                            var Code = line[20];
+                            var CodePhu = line[21];
+                            var RT = line[24];
+                            var VUNG_DMA = line[54];
+                            var TIEUVUNG_DMAZ = line[55];
+                            var FAX = line[56];
+                            var Email = line[57];
+                            var CUST_ID = line[58];
+                            var DCTruSo = line[60].Replace("\"", "");
+                            var Cuon_GCS = line[35];
+                            var Cuon_STT = line[36];
+                            var SO_PHATHANH = line[45];
+                            var SO_HOADON = line[46];
+                            var QUAN = line[48];
+                            var PHUONG = line[49];
+                            var SODHN = line[50];
+                            var MSTHUE = line[51];
+                            var TILE_TIEUTHU = line[52];
+                            var Ngay_DS_KT = this.formatStringToDate(line[25]);
+                            var Ngay_DS_KN = this.formatStringToDate(line[26]);
+                            var NGAY_PHATHANH = this.formatStringToDate(line[47]);
+                            var NGAY_GANDH = this.formatStringToDate(line[53]);
+                            var hdt = new DocSo()
+                            {
+                                //Khu = Khu,
+                                Dot = Dot + "",
+                                DanhBa = DanhBo,
+                                TenKH = HoTen,
+                                SoNhaCu = DC1,
+                                Duong = DC2,
+                                GB = GB + "",
+
+                                DM = TGDM + "",
+                                CodeCu = Code + CodePhu,
+                                Ky = Ky + "",
+                                Nam = Nam,
+                                CSCu = CSCu,
+                                CSMoi = CSMoi,
+                                TieuThuCu = LNCC,
+
+
+                            };
+                            result.Add(hdt);
+                            txtbStatus.Text = ++current + "/" + count;
+                        }
+                    }), DispatcherPriority.Loaded);
+                }
+            }
+            catch { }
+
         }
 
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)

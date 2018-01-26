@@ -88,8 +88,8 @@
                     <RibbonButton Label="In phiếu tiêu thụ khách hàng"  LargeImageSource="/PhanQuyen;component/Images/printer.png" Name="ribBtnInPhieuTieuThuKH" Click="ribBtnInPhieuTieuThuKH_Click"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Hoàn tất">
-                    <RibbonButton Label="Hoàn tất đọc số"  LargeImageSource="/PhanQuyen;component/Images/check.png"></RibbonButton>
-                    <RibbonButton Label="Hoàn tất thương vụ"  LargeImageSource="/PhanQuyen;component/Images/hoantatthuongvu.png"></RibbonButton>
+                    <RibbonButton Label="Hoàn tất đọc số"  LargeImageSource="/PhanQuyen;component/Images/check.png" Name="ribBtnHoanTatDocSo" Click="ribBtnHoanTatDocSo_Click"></RibbonButton>
+                    <RibbonButton Label="Hoàn tất thương vụ"  LargeImageSource="/PhanQuyen;component/Images/hoantatthuongvu.png" Name="ribBtnHoanTatThuongVu" Click="ribBtnHoanTatThuongVu_Click"></RibbonButton>
                 </RibbonGroup>
 
             </RibbonTab>
@@ -141,7 +141,8 @@
             </RibbonTab>
             <RibbonTab Header="Hoàn tất" >
                 <RibbonGroup Header="Chuyển billing">
-                    <RibbonButton Label="Chuyển Billing"  LargeImageSource="/PhanQuyen;component/Images/file.png"></RibbonButton>
+                    <RibbonButton Label="Chuyển Billing"  LargeImageSource="/PhanQuyen;component/Images/file.png"
+                                  Click="ribBtnChuyenBilling_Click"></RibbonButton>
                 </RibbonGroup>
 
             </RibbonTab>

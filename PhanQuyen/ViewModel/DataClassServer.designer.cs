@@ -48,6 +48,9 @@ namespace ViewModel
     partial void InsertDocSoLuuTru(DocSoLuuTru instance);
     partial void UpdateDocSoLuuTru(DocSoLuuTru instance);
     partial void DeleteDocSoLuuTru(DocSoLuuTru instance);
+    partial void InsertBillState(BillState instance);
+    partial void UpdateBillState(BillState instance);
+    partial void DeleteBillState(BillState instance);
     #endregion
 		
 		public DataClassServerDataContext() : 
@@ -141,6 +144,14 @@ namespace ViewModel
 			get
 			{
 				return this.GetTable<DocSoLuuTru>();
+			}
+		}
+		
+		public System.Data.Linq.Table<BillState> BillStates
+		{
+			get
+			{
+				return this.GetTable<BillState>();
 			}
 		}
 	}
@@ -5640,6 +5651,188 @@ namespace ViewModel
 					this._GPSDATA = value;
 					this.SendPropertyChanged("GPSDATA");
 					this.OnGPSDATAChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BillState")]
+	public partial class BillState : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _BillID;
+		
+		private string _izCB;
+		
+		private string _izDS;
+		
+		private string _izTV;
+		
+		private string _izBL;
+		
+		private string _izFI;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBillIDChanging(string value);
+    partial void OnBillIDChanged();
+    partial void OnizCBChanging(string value);
+    partial void OnizCBChanged();
+    partial void OnizDSChanging(string value);
+    partial void OnizDSChanged();
+    partial void OnizTVChanging(string value);
+    partial void OnizTVChanged();
+    partial void OnizBLChanging(string value);
+    partial void OnizBLChanged();
+    partial void OnizFIChanging(string value);
+    partial void OnizFIChanged();
+    #endregion
+		
+		public BillState()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillID", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string BillID
+		{
+			get
+			{
+				return this._BillID;
+			}
+			set
+			{
+				if ((this._BillID != value))
+				{
+					this.OnBillIDChanging(value);
+					this.SendPropertyChanging();
+					this._BillID = value;
+					this.SendPropertyChanged("BillID");
+					this.OnBillIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_izCB", DbType="VarChar(50)")]
+		public string izCB
+		{
+			get
+			{
+				return this._izCB;
+			}
+			set
+			{
+				if ((this._izCB != value))
+				{
+					this.OnizCBChanging(value);
+					this.SendPropertyChanging();
+					this._izCB = value;
+					this.SendPropertyChanged("izCB");
+					this.OnizCBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_izDS", DbType="VarChar(50)")]
+		public string izDS
+		{
+			get
+			{
+				return this._izDS;
+			}
+			set
+			{
+				if ((this._izDS != value))
+				{
+					this.OnizDSChanging(value);
+					this.SendPropertyChanging();
+					this._izDS = value;
+					this.SendPropertyChanged("izDS");
+					this.OnizDSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_izTV", DbType="VarChar(50)")]
+		public string izTV
+		{
+			get
+			{
+				return this._izTV;
+			}
+			set
+			{
+				if ((this._izTV != value))
+				{
+					this.OnizTVChanging(value);
+					this.SendPropertyChanging();
+					this._izTV = value;
+					this.SendPropertyChanged("izTV");
+					this.OnizTVChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_izBL", DbType="VarChar(50)")]
+		public string izBL
+		{
+			get
+			{
+				return this._izBL;
+			}
+			set
+			{
+				if ((this._izBL != value))
+				{
+					this.OnizBLChanging(value);
+					this.SendPropertyChanging();
+					this._izBL = value;
+					this.SendPropertyChanged("izBL");
+					this.OnizBLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_izFI", DbType="VarChar(50)")]
+		public string izFI
+		{
+			get
+			{
+				return this._izFI;
+			}
+			set
+			{
+				if ((this._izFI != value))
+				{
+					this.OnizFIChanging(value);
+					this.SendPropertyChanging();
+					this._izFI = value;
+					this.SendPropertyChanged("izFI");
+					this.OnizFIChanged();
 				}
 			}
 		}

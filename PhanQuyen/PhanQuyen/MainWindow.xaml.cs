@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,11 +8,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using ViewModel;
 
 namespace PhanQuyen
 {
@@ -27,6 +30,7 @@ namespace PhanQuyen
         UC_ChuyenMayDocSo uc_ChuyenMayDocSo;
         UC_ThongKeDHNSauDocSo uc_ThongKeDHNSauDocSo;
         UC_BaoCaoTongHop uc_BaoCaoTongHop;
+        UC_ChuyenBilling uc_ChuyenBilling;
         private User user;
 
         public MainWindow()
@@ -43,7 +47,7 @@ namespace PhanQuyen
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            Application.Current.Shutdown();
+            System.Windows.Application.Current.Shutdown();
         }
 
         private void btnExpandRibbon_Click(object sender, RoutedEventArgs e)
@@ -112,6 +116,11 @@ namespace PhanQuyen
             {
                 uc_BaoCaoTongHop.Height = stkMain.ActualHeight;
                 uc_BaoCaoTongHop.Width = stkMain.ActualWidth;
+            }
+            if (uc_ChuyenBilling != null)
+            {
+                uc_ChuyenBilling.Height = stkMain.ActualHeight;
+                uc_ChuyenBilling.Width = stkMain.ActualWidth;
             }
         }
 
@@ -190,7 +199,7 @@ namespace PhanQuyen
         }
         private void ExitCommand_Execute(object sender, ExecutedRoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            System.Windows.Application.Current.Shutdown();
         }
         private void LogoutCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -198,11 +207,53 @@ namespace PhanQuyen
         }
         private void LogoutCommand_Execute(object sender, ExecutedRoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
-            Application.Current.Shutdown();
+            System.Diagnostics.Process.Start(System.Windows.Application.ResourceAssembly.Location);
+            System.Windows.Application.Current.Shutdown();
         }
 
+        private void ribBtnChuyenBilling_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_ChuyenBilling == null)
+                uc_ChuyenBilling = new UC_ChuyenBilling();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_ChuyenBilling);
+        }
 
+        private void ribBtnHoanTatDocSo_Click(object sender, RoutedEventArgs e)
+        {
+            if (System.Windows.Forms.MessageBox.Show("Bạn có chắc chắn hoàn tất dữ liệu đọc số không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != System.Windows.Forms.DialogResult.Yes)
+                return;
+            try
+            {
+                bool result = DataDBViewModel.Instance.HoanTatDocSo();
+                if (result)
+                    System.Windows.Forms.MessageBox.Show("Hoàn tất đọc số thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+            }
+            catch (SqlException ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Lỗi khi hoàn tất đọc số: " + ex.Message);
+            }
+        }
+
+        private void ribBtnHoanTatThuongVu_Click(object sender, RoutedEventArgs e)
+        {
+            if (System.Windows.Forms.MessageBox.Show("Bạn có chắc chắn hoàn tất dữ liệu đọc số không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != System.Windows.Forms.DialogResult.Yes)
+                return;
+            try
+            {
+                bool result = DataDBViewModel.Instance.HoanTatThuongVu();
+                if (result)
+                    System.Windows.Forms.MessageBox.Show("Hoàn tất đọc số thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+            }
+            catch (SqlException ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Lỗi khi hoàn tất đọc số: " + ex.Message);
+            }
+        }
     }
 
     public static class CustomCommands

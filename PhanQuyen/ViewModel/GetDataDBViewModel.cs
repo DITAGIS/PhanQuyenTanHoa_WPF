@@ -192,6 +192,18 @@ namespace ViewModel
             return false;
         }
 
+        public bool HoanTatDocSo()
+        {
+            var data = serverContext.BillStates.SingleOrDefault(row => row.BillID == User.Instance.Year + User.Instance.Month + User.Instance.Date);
+            if(data != null)
+            {
+                data.izDS = "1";
+                serverContext.SubmitChanges();
+                return true;
+            }
+            return false;
+        }
+
         public List<String> getDocsosByConditionCount(int year, String month, String date, int xGroup, String machine)
         {
             var getData = (from x in serverContext.DocSos
@@ -200,7 +212,17 @@ namespace ViewModel
             return getData;
         }
 
-
+        public bool HoanTatThuongVu()
+        {
+            var data = serverContext.BillStates.SingleOrDefault(row => row.BillID == User.Instance.Year + User.Instance.Month + User.Instance.Date);
+            if (data != null)
+            {
+                data.izTV = "1";
+                serverContext.SubmitChanges();
+                return true;
+            }
+            return false;
+        }
 
         public bool getDocSosByDanhBa(String danhBa, int year, String month, String date, int xGroup, String machine)
         {
