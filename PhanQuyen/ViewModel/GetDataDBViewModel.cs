@@ -12,11 +12,11 @@ using System.Windows.Controls;
 
 namespace ViewModel
 {
-    public class GetDataDBViewModel
+    public class DataDBViewModel
     {
 
 
-        private static GetDataDBViewModel _instance;
+        private static DataDBViewModel _instance;
         private DataClassesLocalDataContext localContext;
         private DataClassServerDataContext serverContext;
         private const String TTKH_COLUMN_TENKH = "TenKH";
@@ -37,16 +37,16 @@ namespace ViewModel
         private const String TTKH_COLUMN_TIEUTHU = "TieuThu";
         private const String TTKH_COLUMN_GHICHU = "GhiChu";//todo
         string pattern = "dd/MM/yyyy";
-        public static GetDataDBViewModel Instance
+        public static DataDBViewModel Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new GetDataDBViewModel();
+                    _instance = new DataDBViewModel();
                 return _instance;
             }
         }
-        private GetDataDBViewModel()
+        private DataDBViewModel()
         {
             localContext = new DataClassesLocalDataContext();
             serverContext = new DataClassServerDataContext();
@@ -63,7 +63,7 @@ namespace ViewModel
 
         public DataTable GetInfoCheckCustomer2(int count, string str, string danhBa)
         {
-      
+
 
             var query = (from d in serverContext.DocSoLuuTrus
                          join k in serverContext.KhachHangs on d.DanhBa equals k.DanhBa
@@ -100,7 +100,7 @@ namespace ViewModel
                          join k in serverContext.KhachHangs on d.DanhBa equals k.DanhBa
                          where d.DanhBa == danhBa
                          orderby d.DocSoID descending
-                         select new {d.GhiChuDS, d.MLT1, d.CodeMoi, d.CSMoi, d.TieuThuMoi, d.DenNgay, k.TenKH, k.Hieu, k.Co, k.SoThan, k.HopDong, k.GB, k.DM, k.So, k.SoMoi, k.Duong, d.Ky, d.Nam, k.SDT }).Take(12).ToList();
+                         select new { d.GhiChuDS, d.MLT1, d.CodeMoi, d.CSMoi, d.TieuThuMoi, d.DenNgay, k.TenKH, k.Hieu, k.Co, k.SoThan, k.HopDong, k.GB, k.DM, k.So, k.SoMoi, k.Duong, d.Ky, d.Nam, k.SDT }).Take(12).ToList();
             DataTable table = new DataTable();
             table.Columns.Add(TTKH_COLUMN_TENKH, typeof(string));
             table.Columns.Add(TTKH_COLUMN_HIEU, typeof(string));
@@ -126,13 +126,13 @@ namespace ViewModel
                 row[TTKH_COLUMN_HIEU] = item.Hieu;
                 row[TTKH_COLUMN_CO] = item.Co;
                 row[TTKH_COLUMN_SDT] = item.SDT;
-                row[TTKH_COLUMN_DUONG] = item.SoMoi.Trim().Length == 0?
-                    String.Format("{0} {1}",item.So, item.Duong) :
+                row[TTKH_COLUMN_DUONG] = item.SoMoi.Trim().Length == 0 ?
+                    String.Format("{0} {1}", item.So, item.Duong) :
                     String.Format("{0} {1}", item.SoMoi, item.Duong);
                 row[TTKH_COLUMN_SOTHAN] = item.SoThan;
                 row[TTKH_COLUMN_MLT1] = item.MLT1;
                 row[TTKH_COLUMN_HOPDONG] = item.HopDong;
-                row[TTKH_COLUMN_DANHBA] =danhBa;
+                row[TTKH_COLUMN_DANHBA] = danhBa;
                 row[TTKH_COLUMN_GB] = item.GB;
                 row[TTKH_COLUMN_DM] = item.DM;
                 row[TTKH_COLUMN_KY] = String.Format("{0}/{1}", item.Ky, item.Nam);
@@ -145,6 +145,28 @@ namespace ViewModel
             }
             return table;
 
+        }
+
+        public bool Update(string code, string csm, string tieuThu, string ghiChuDS, string ghiChuMH, string ghiChuKH, string KHDS, DateTime ngayCapNhat, int nam, string ky, string dot, string danhBa)
+        {
+            var docSo = serverContext.DocSos.SingleOrDefault(row => row.DanhBa == danhBa && row.Nam == nam && row.Ky == ky && row.Dot == dot);
+            if (docSo != null)
+            {
+                docSo.CodeMoi = code;
+                docSo.CSMoi = Int16.Parse(csm);
+                docSo.TieuThuMoi = Int16.Parse(tieuThu);
+                docSo.GhiChuDS = ghiChuDS;
+                docSo.GhiChuTV = ghiChuMH;
+                docSo.GhiChuKH = ghiChuKH;
+                docSo.TTDHNMoi = KHDS;
+                docSo.StaCapNhat = "1";
+                docSo.NgayCapNhat = ngayCapNhat;
+                docSo.NVCapNhat = "";//todo         
+                serverContext.SubmitChanges();
+
+                return true;
+            }
+            return false;
         }
 
         public List<String> getDocsosByConditionCount(int year, String month, String date, int xGroup, String machine)
@@ -343,6 +365,16 @@ namespace ViewModel
             return listHoaDon;
         }
 
+        public XuLyCode8 GetXuLyCode8(string danhba)
+        {
+            var data = serverContext.ExecuteQuery<XuLyCode8>("declare @NgayDoc datetime select top 1 @NgayDoc = DenNgay from DocSo where DanhBa = '" + danhba + "' order by DocSoID desc Select top 1 *, DATEDIFF(DAY, NgayThay, @NgayDoc) as SoNgay from BaoThay where DanhBa ='" + danhba + "' and NgayThay is not null  order by BaoThayID desc").First();
+            return data;
+        }
+        public int GetTieuThuMoi(string danhBa, string docSoID)
+        {
+            var data = serverContext.ExecuteQuery<int>("Select top 1 TieuThuMoi from DocSo where DanhBa='" + danhBa + "' and DocSoID <> " + docSoID + " order by DocSoID desc").First();
+            return data;
+        }
         public bool WriteSoDaNhan(int year, String month, String date, String machine, int count, int xGroup)
         {
             DataClassesLocalDataContext localDataContext = new DataClassesLocalDataContext();

@@ -46,7 +46,7 @@ namespace PhanQuyen
             var selectedSoDaNhan = dtGridSoDaNhan.SelectedValue as SoDaNhan;
             if (selectedSoDaNhan == null)
                 return;
-            var docSos = GetDataDBViewModel.Instance.getDistinctHoaDon(selectedSoDaNhan);
+            var docSos = DataDBViewModel.Instance.getDistinctHoaDon(selectedSoDaNhan);
             dtGridDocSos.ItemsSource = docSos;
             txtbStatus.Text = String.Format("Tổng: {0}   Chưa ghi: {1}   Đã ghi: {2}", docSos.Count, 0, docSos.Count);
             btnViewInfo.Visibility = Visibility.Visible;
@@ -56,11 +56,11 @@ namespace PhanQuyen
 
         private void BtnRefresh_Click(object sender, RoutedEventArgs e)
         {
-            cbbYear.ItemsSource = GetDataDBViewModel.Instance.getDistinctYear();
-            cbbMonth.ItemsSource = GetDataDBViewModel.Instance.getDistinctMonth();
-            cbbDate.ItemsSource = GetDataDBViewModel.Instance.getDistinctDate();
-            cbbGroup.ItemsSource = GetDataDBViewModel.Instance.getDistinctGroup();
-            dtGridSoDaNhan.ItemsSource = GetDataDBViewModel.Instance.getDistinctSoDaNhan(Int16.Parse(cbbYear.SelectedValue.ToString()), cbbMonth.SelectedValue.ToString(),
+            cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYear();
+            cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonth();
+            cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDate();
+            cbbGroup.ItemsSource = DataDBViewModel.Instance.getDistinctGroup();
+            dtGridSoDaNhan.ItemsSource = DataDBViewModel.Instance.getDistinctSoDaNhan(Int16.Parse(cbbYear.SelectedValue.ToString()), cbbMonth.SelectedValue.ToString(),
                 cbbDate.SelectedValue.ToString(), Int16.Parse(cbbGroup.SelectedValue.ToString()));
         }
     }

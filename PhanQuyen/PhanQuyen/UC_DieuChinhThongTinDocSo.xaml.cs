@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -86,15 +87,82 @@ namespace PhanQuyen
         {
             if (cbbMonth.SelectedValue != null)
                 month = cbbMonth.SelectedValue.ToString();
-            cbbDate.ItemsSource = GetDataDBViewModel.Instance.getDistinctDateServer(year, month);
+            cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDateServer(year, month);
             cbbDate.SelectedValue = User.Instance.Date;
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            GetDataDBViewModel.Instance.update(dtgridMain.SelectedValue as DocSo);
-        }
+            try
+            {
+                Update();
+            }
+            catch
+            {
 
+            }
+        }
+        private void Update()
+        {
+            if (this.txtbDanhBa.Text.Trim().Length < 11)
+            {
+                int num = (int)MessageBox.Show("Chọn danh bạ để cập nhật", "Thông báo");
+                this.txtbDanhBa.Focus();
+            }
+            else if (this.txtbCSM.Text.Trim() == "")
+            {
+                int num = (int)MessageBox.Show("Nhập chỉ số mới, hoặc chọn bằng 0 nếu không có chỉ số", "Thông báo");
+                this.txtbCSM.Focus();
+            }
+            else if (this.txtbTieuThu.Text.Trim() == "")
+            {
+                int num = (int)MessageBox.Show("Nhập tiêu thụ khách hàng", "Thông báo");
+                this.txtbTieuThu.Focus();
+            }
+            else if (this.txtbCode.Text.Trim() == "")
+            {
+                int num = (int)MessageBox.Show("Vui lòng chọn KÝ HIỆU ĐỌC SỐ !", "Thông báo");
+                this.cbbKHDS.Focus();
+            }
+            else
+            {
+                try
+                {
+                    bool isUpdate = DataDBViewModel.Instance.Update(txtbCode.Text.Trim(), txtbCSM.Text.Trim(), txtbTieuThu.Text.Trim(), txtbGCDS.Text.Trim(),
+                         txtbGCMH.Text.Trim(), txtbGCKH.Text.Trim(), cbbKHDS.SelectedValue.ToString(), DateTime.Now, year, month, date, txtbDanhBa.Text.Trim());
+                    if (isUpdate)
+                        MessageBox.Show("Cập nhật thành công !", "Thông báo");
+                    else
+                        MessageBox.Show("Lỗi khi cập nhật !", "Thông báo");
+                    //PCData pc = new PCData(GV.connString);
+                    //string danhba = this.txtDanhBa.Text.Trim();
+                    //pc.PCCommand.Parameters.Add(new SqlParameter("@codeMoi", (object)this.txtCodeMoi.Text.Trim()));
+                    //pc.PCCommand.Parameters.Add(new SqlParameter("@chiSoMoi", (object)this.txtCSMoi.Text.Trim()));
+                    //pc.PCCommand.Parameters.Add(new SqlParameter("@tieuThuMoi", (object)this.txtTieuThuMoi.Text.Trim()));
+                    //pc.PCCommand.Parameters.Add(new SqlParameter("@ghiChuDS", (object)this.txtGhiChuDS.Text.Trim()));
+                    //pc.PCCommand.Parameters.Add(new SqlParameter("@ghiChuTV", (object)this.txtGhiChuTV.Text.Trim()));
+                    //pc.PCCommand.Parameters.Add(new SqlParameter("@ghiChuKH", (object)this.txtGhiChuKH.Text.Trim()));
+                    //pc.PCCommand.Parameters.Add(new SqlParameter("@ttDHNMoi", (object)this.cbbKyHieuDS.Text));
+                    //pc.PCCommand.Parameters.Add(new SqlParameter("@CSCu", (object)this.txtCSCu.Text.Trim()));
+                    //SqlParameter sqlParameter = new SqlParameter("@ngayCapNhat", SqlDbType.DateTime);
+                    //sqlParameter.Value = (object)DateTime.Now;
+                    //pc.PCAdapter.SelectCommand.Parameters.Add(sqlParameter);
+                    //string sqlstatement = "Update DocSo set CodeMoi = @codeMoi,CSMoi = @chiSoMoi,TieuThuMoi = @tieuThuMoi, GhiChuDS = @ghiChuDS, GhiChuTV = @ghiChuTV, GhiChuKH = @ghiChuKH, TTDHNMoi = @ttDHNMoi, CSCu = @CSCu, StaCapNhat = '1', NgayCapNhat = @ngayCapNhat, NVCapNhat = '" + GV.UserID + "' where DanhBa = '" + danhba + "' and Nam = " + this.cbbNam.Text + " and Ky = " + this.cbbKy.Text + " and Dot = " + this.cbbDot.Text;
+                    //if (pc.GetExecuteNonQuerry(sqlstatement) > 0)
+                    //{
+                    //    this.CapNhatIndex(danhba, this._index.ToString(), this.cbbKyHieuDS.Text, this.txtCodeMoi.Text, this.txtCSMoi.Text, this.txtTieuThuMoi.Text, this.txtGhiChuDS.Text, this.txtCSCu.Text, this.txtGhiChuTV.Text);
+                    //    this.CellClick(danhba);
+                    //}
+                    //pc.PCCommand.Parameters.Clear();
+                    //pc.PCAdapter.SelectCommand.Parameters.Clear();
+                    //UTIex.ReleasePCDATA(ref pc);
+                }
+                catch (SqlException ex)
+                {
+                    int num = (int)MessageBox.Show("Lỗi khi lưu đọc số: " + ex.Message);
+                }
+            }
+        }
         private void dtgridMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //foreach (DataGridRow row in dtgridMain.SelectedItems)
@@ -117,6 +185,8 @@ namespace PhanQuyen
         }
         private DataGridRow getRow(int index)
         {
+            if (index < 0)
+                return null;
             DataGridRow row = (DataGridRow)dtgridMain.ItemContainerGenerator.ContainerFromIndex(index);
             if (row == null)
             {
@@ -151,7 +221,7 @@ namespace PhanQuyen
                 else if (Int16.TryParse(cbbGroup.SelectedValue.ToString(), out x))
                     group = Int16.Parse(cbbGroup.SelectedValue.ToString());
                 else group = x;
-                cbbMachine.ItemsSource = GetDataDBViewModel.Instance.getDistinctMachineServer(year, month, date, group);
+                cbbMachine.ItemsSource = DataDBViewModel.Instance.getDistinctMachineServer(year, month, date, group);
             }
         }
 
@@ -195,7 +265,7 @@ namespace PhanQuyen
         {
             if (e.Key == Key.Enter)
             {
-                int csm = Int16.Parse(txtbCSM.Text.ToString());
+                int csm = Int16.Parse(txtbCSM.Text.Trim().ToString());
                 int tieuThuMoi = csm - Int16.Parse(txtbCSC.Text.ToString());
                 if (dtgridMain.SelectedValue != null)
                 {
@@ -203,34 +273,154 @@ namespace PhanQuyen
                     (dtgridMain.SelectedValue as DocSo).TieuThuMoi = tieuThuMoi;
                 }
             }
-        }
 
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || e.Key == Key.Back)
+                //if (e.Key == Key.D0 || e.Key == Key.D1 || e.Key == Key.D2 || e.Key == Key.D3 || e.Key == Key.D4 || e.Key == Key.D5 || e.Key == Key.D6 || e.Key == Key.D7 || e.Key == Key.D8 || e.Key == Key.D9 ||
+                //    e.Key == Key.NumPad0 || e.Key == Key.NumPad0 || e.Key == Key.NumPad0 || e.Key == Key.NumPad0 )
+                e.Handled = false;
+            else if ((int)e.Key == 13)
+            {
+                string tttb = "";
+                if (dtgridMain.SelectedValue != null)
+                    tttb = (dtgridMain.SelectedValue as DocSo).TBTT.Value + "";
+                string str = this.txtbCode.Text.Trim();
+                if (this.txtbCSM.Text == "")
+                {
+                    int num1 = (int)MessageBox.Show("Vui lòng nhập chỉ số mới.", "Thông báo");
+                }
+                else
+                {
+                    switch (str.Substring(0, 1))
+                    {
+                        case "4":
+                        case "M":
+                            this.txtbTieuThu.Text = (int.Parse(this.txtbCSM.Text.Trim()) - int.Parse(this.txtbCSC.Text.Trim())).ToString();
+                            this.txtbTieuThu.Focus();
+                            break;
+                        case "5":
+                            //int.Parse(this.lblTamTinh.Text);
+                            this.txtbTieuThu.Text = (int.Parse(this.txtbCSM.Text.Trim()) - int.Parse(this.txtbCSC.Text.Trim())).ToString();
+                            this.txtbTieuThu.Focus();
+                            break;
+                        case "X":
+                            this.txtbCSM.Focus();
+                            int num2 = int.Parse(this.txtbCSM.Text.Trim());
+                            int num3 = int.Parse(this.txtbCSC.Text.Trim());
+                            if (this.txtbCSC.Text.Trim().Length == 3)
+                                num2 += 1000;
+                            if (this.txtbCSC.Text.Trim().Length == 4)
+                                num2 += 10000;
+                            if (this.txtbCSC.Text.Trim().Length == 5)
+                                num2 += 100000;
+                            if (this.txtbCSC.Text.Trim().Length == 6)
+                                num2 += 1000000;
+                            if (this.txtbCSC.Text.Trim().Length == 7)
+                                num2 += 10000000;
+                            if (this.txtbCSC.Text.Trim().Length == 8)
+                                num2 += 100000000;
+                            this.txtbTieuThu.Text = (num2 - num3).ToString();
+                            break;
+                        case "8":
+                            this.XuLyCode8(this.txtbDanhBa.Text.Trim(), this.txtbCSC.Text.Trim(), this.txtbCSM.Text.Trim(), tttb, this.txtbCode.Text.Trim());
+                            break;
+                        case "6":
+                            if (str == "60" || str == "61" || str == "62")
+                            {
+                                this.txtbTieuThu.Text = tttb;
+                                this.txtbCSM.IsEnabled = false;
+                                break;
+                            }
+                            if (!(str == "63") && !(str == "64") && !(str == "66"))
+                                break;
+                            this.txtbTieuThu.Text = tttb;
+                            this.txtbCSM.IsEnabled = false;
+                            this.txtbCSM.Text = "0";
+                            break;
+                    }
+                }
+            }
+            else
+                e.Handled = true;
+        }
+        private void XuLyCode8(string danhba, string cscu, string csmoi, string tbttcu, string code)
+        {
+            try
+            {
+                string str = year + month + danhba;
+                XuLyCode8 xuLyCode8 = DataDBViewModel.Instance.GetXuLyCode8(danhba);
+                if (xuLyCode8 != null)
+                {
+                    int num1 = !(xuLyCode8.SoNgay.ToString() == "") &&
+                        !(xuLyCode8.SoNgay.ToString() == "0") ? int.Parse(xuLyCode8.SoNgay.ToString()) : 1;
+                    int num2 = int.Parse(xuLyCode8.CSGo.ToString());
+                    int num3 = int.Parse(xuLyCode8.CSGan.ToString());
+                    switch (code)
+                    {
+                        case "83":
+                        case "82":
+                            if (num1 > 32)
+                            {
+                                this.txtbTieuThu.Text = (int.Parse(csmoi) - num3 + (num2 - int.Parse(cscu))).ToString();
+                                break;
+                            }
+                            this.txtbTieuThu.Text = (int.Parse(csmoi) - num3 + (num2 - int.Parse(cscu))).ToString();
+                            break;
+                        case "81":
+                            if (num1 < 6)
+                            {
+                                int num4 = (int)MessageBox.Show("Chưa đủ ngày hoàn công để xử lý.", "Cảnh báo");
+                                break;
+                            }
+                            if (num1 > 30)
+                            {
+                                int executeScalar = DataDBViewModel.Instance.GetTieuThuMoi(danhba, str);
+                                this.txtbTieuThu.Text = Math.Round((double)((int.Parse(csmoi) - num3) / num1 * 60 - executeScalar), 0).ToString();
+                            }
+                            if (num1 > 6 && num1 <= 30)
+                            {
+                                this.txtbTieuThu.Text = Math.Round((double)((int.Parse(csmoi) - num3) / num1 * 30), 0).ToString();
+                                break;
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                int num = (int)MessageBox.Show("Lỗi XuLyCode8: " + ex.Message);
+            }
+        }
         private void txtbCSM_TextChanged(object sender, TextChangedEventArgs e)
         {
-            int csm = Int16.Parse(txtbCSM.Text.ToString());
-            int tieuThuMoi = csm - Int16.Parse(txtbCSC.Text.ToString());
+            try
+            {
 
-            txtbTieuThu.Text = tieuThuMoi + "";//todo 
-            //if (txtbCSM.Text.Length > 0)
-            //{
-            //    //chỉ số mới
-            //    gridCell = TryToFindGridCell(dtgridMain, row, COLUMN_CSMOI);
-            //    int csmoi = Int16.Parse(txtbCSM.Text.ToString());
-            //    if (gridCell != null) gridCell.Content = csmoi + "";
+                int csm = Int16.Parse(txtbCSM.Text.ToString());
+                int tieuThuMoi = csm - Int16.Parse(txtbCSC.Text.ToString());
 
-            //    //tiêu thụ mới
-            //    gridCell = TryToFindGridCell(dtgridMain, row, COLUMN_TIEUTHUMOI);
-            //    int tieuThuMoi = csmoi - Int16.Parse(txtbCSC.Text.ToString());
-            //    txtbTieuThu.Text = tieuThuMoi + "";
-            //    if (gridCell != null) gridCell.Content = tieuThuMoi + "";
+                txtbTieuThu.Text = tieuThuMoi + "";//todo 
+                                                   //if (txtbCSM.Text.Length > 0)
+                                                   //{
+                                                   //    //chỉ số mới
+                                                   //    gridCell = TryToFindGridCell(dtgridMain, row, COLUMN_CSMOI);
+                                                   //    int csmoi = Int16.Parse(txtbCSM.Text.ToString());
+                                                   //    if (gridCell != null) gridCell.Content = csmoi + "";
 
-            //    Refresh();
-            //}
+                //    //tiêu thụ mới
+                //    gridCell = TryToFindGridCell(dtgridMain, row, COLUMN_TIEUTHUMOI);
+                //    int tieuThuMoi = csmoi - Int16.Parse(txtbCSC.Text.ToString());
+                //    txtbTieuThu.Text = tieuThuMoi + "";
+                //    if (gridCell != null) gridCell.Content = tieuThuMoi + "";
+
+                //    Refresh();
+                //}
+            }
+            catch { }
         }
 
         private void btnGetData_Click(object sender, RoutedEventArgs e)
         {
-            docSoList = GetDataDBViewModel.Instance.getAllDocSos(year, month, date, group, machine);
+            docSoList = DataDBViewModel.Instance.getAllDocSos(year, month, date, group, machine);
             dtgridMain.ItemsSource = null;
             dtgridMain.Items.Clear();
             dtgridMain.ItemsSource = docSoList;
@@ -361,7 +551,7 @@ namespace PhanQuyen
         {
             if (_xemGhiChuWindow == null)
                 _xemGhiChuWindow = new XemGhiChuWindow();
-           _xemGhiChuWindow.GetNote(_selectedDocSo.DanhBa);
+            _xemGhiChuWindow.GetNote(_selectedDocSo.DanhBa);
             _xemGhiChuWindow.ShowDialog();
         }
 
@@ -379,7 +569,7 @@ namespace PhanQuyen
         {
             if (cbbYear.SelectedValue != null)
                 year = Int16.Parse(cbbYear.SelectedValue.ToString());
-            cbbMonth.ItemsSource = GetDataDBViewModel.Instance.getDistinctMonthServer(year);
+            cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonthServer(year);
         }
 
 
@@ -388,7 +578,7 @@ namespace PhanQuyen
         {
             this.user = user;
             InitializeComponent();
-            cbbYear.ItemsSource = GetDataDBViewModel.Instance.getDistinctYearServer();
+            cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
             cbbYear.SelectedValue = User.Instance.Year;
             cbbMonth.SelectedValue = User.Instance.Month;
             if (User.Instance.ToID == null)
@@ -398,7 +588,7 @@ namespace PhanQuyen
             else
                 cbbGroup.Items.Add(User.Instance.ToID);
 
-            cbbKHDS.ItemsSource = GetDataDBViewModel.Instance.getDistinctKHDS();
+            cbbKHDS.ItemsSource = DataDBViewModel.Instance.getDistinctKHDS();
         }
 
         static DataGridCell getCell(DataGrid grid, DataGridRow row, int column)

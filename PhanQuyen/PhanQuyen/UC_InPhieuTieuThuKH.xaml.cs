@@ -29,7 +29,7 @@ namespace PhanQuyen
         {
             InitializeComponent();
 
-            cbbYear.ItemsSource = GetDataDBViewModel.Instance.getDistinctYearServer();
+            cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
 
             System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
             //ps.Landscape = true;
@@ -51,8 +51,8 @@ namespace PhanQuyen
         {
             String danhBa = txtbDanhBa.Text;
             String str = txtGhiChu.Text.Trim();
-            DataTable dt = GetDataDBViewModel.Instance.GetInfoCheckCustomer1(str, danhBa);
-            dt.Merge(GetDataDBViewModel.Instance.GetInfoCheckCustomer2(dt.Rows.Count, str, danhBa));
+            DataTable dt = DataDBViewModel.Instance.GetInfoCheckCustomer1(str, danhBa);
+            dt.Merge(DataDBViewModel.Instance.GetInfoCheckCustomer2(dt.Rows.Count, str, danhBa));
             _reportViewer.LocalReport.ReportPath = "../Debug/Report/rptInPhieuKiemTra.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInPhieuKiemTraKH", dt));

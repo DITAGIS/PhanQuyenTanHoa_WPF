@@ -26,7 +26,7 @@ namespace PhanQuyen
         public UC_BaoCaoTongHop()
         {
             InitializeComponent();
-            cbbYear.ItemsSource = GetDataDBViewModel.Instance.getDistinctYearServer();
+            cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
         }
         #region year,month,date
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -37,7 +37,7 @@ namespace PhanQuyen
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             month = cbbMonth.SelectedValue.ToString();
-            cbbDate.ItemsSource = GetDataDBViewModel.Instance.getDistinctDateServer(year, month);
+            cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDateServer(year, month);
         }
 
 
@@ -45,7 +45,7 @@ namespace PhanQuyen
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             year = Int16.Parse(cbbYear.SelectedValue.ToString());
-            cbbMonth.ItemsSource = GetDataDBViewModel.Instance.getDistinctMonthServer(year);
+            cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonthServer(year);
         }
         #endregion
     }

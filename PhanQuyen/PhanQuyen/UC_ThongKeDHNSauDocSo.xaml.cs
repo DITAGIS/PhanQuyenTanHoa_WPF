@@ -30,7 +30,7 @@ namespace PhanQuyen
         {
             InitializeComponent();
 
-            cbbYear.ItemsSource = GetDataDBViewModel.Instance.getDistinctYearServer();
+            cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
             cbbYear.SelectedValue = User.Instance.Year;
 
         }
@@ -38,7 +38,7 @@ namespace PhanQuyen
         private void cbbGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             group = Int16.Parse(cbbGroup.SelectedValue.ToString());
-            cbbMachine.ItemsSource = GetDataDBViewModel.Instance.getDistinctMachineServer(year, month, date, group);
+            cbbMachine.ItemsSource = DataDBViewModel.Instance.getDistinctMachineServer(year, month, date, group);
         }
 
         private void btnViewReport_Click(object sender, RoutedEventArgs e)
@@ -75,13 +75,13 @@ namespace PhanQuyen
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             date = cbbDate.SelectedValue.ToString();
-            cbbGroup.ItemsSource = GetDataDBViewModel.Instance.getDistinctGroupServer(year, month, date);
+            cbbGroup.ItemsSource = DataDBViewModel.Instance.getDistinctGroupServer(year, month, date);
         }
 
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             month = cbbMonth.SelectedValue.ToString();
-            cbbDate.ItemsSource = GetDataDBViewModel.Instance.getDistinctDateServer(year, month);
+            cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDateServer(year, month);
         }
 
 
@@ -89,7 +89,7 @@ namespace PhanQuyen
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             year = Int16.Parse(cbbYear.SelectedValue.ToString());
-            cbbMonth.ItemsSource = GetDataDBViewModel.Instance.getDistinctMonthServer(year);
+            cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonthServer(year);
         }
         #endregion
     }

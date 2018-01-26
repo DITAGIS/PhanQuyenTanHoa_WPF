@@ -111,6 +111,7 @@
     <Compile Include="ToID.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Volumn_GetData.cs" />
+    <Compile Include="XuLyCode8.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

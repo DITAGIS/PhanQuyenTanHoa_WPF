@@ -118,7 +118,7 @@
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
 
                     <!--Danh bạ-->
-                    <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbUsername" 
+                    <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbDanhBa" 
                       Text="{Binding SelectedHoaDon.DanhBa}"
                       Style="{StaticResource styleTxtb}"/>
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Code:"/></TextBlock>
@@ -190,7 +190,8 @@
                                   TextChanged="txtbCSM_TextChanged"
                                   
                                   
-                      Text="{Binding SelectedHoaDon.CSMoi, Mode=TwoWay}" KeyDown="txtbCSM_KeyDown"/>
+                      Text="{Binding SelectedHoaDon.CSMoi, Mode=TwoWay}" 
+                                  KeyDown="txtbCSM_KeyDown"/>
 
                         <!--Tiêu thụ-->
                         <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tiêu thụ:"/></TextBlock>
@@ -244,6 +245,7 @@
                     <DataGrid                        Grid.Column="0"
                         SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                           AutoGenerateColumns="False" Name="dtgridMain" 
+                                                     
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
                           Width="Auto" Margin="0,0,0,0" Height="340" 
                               SelectionChanged="dtgridMain_SelectionChanged"
