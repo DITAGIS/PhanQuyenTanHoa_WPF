@@ -300,8 +300,23 @@ namespace PhanQuyen
 
                 }
             }
+            Sum();
+
             CanhBaoBatThuong();
             Refresh();
+
+        }
+        private void Sum()
+        {
+            if (dtgridMain != null && dtgridMain.Items.Count >= 0)
+            {
+                int sanLuong = 0;
+                foreach (DocSo docSo in dtgridMain.Items)
+                    sanLuong += docSo.TieuThuMoi.GetValueOrDefault();
+
+                txtbSanLuong.Text = String.Format("Sản lượng: {0} m3", sanLuong);
+                txtbTongKH.Text = String.Format("Tổng KH: {0}", dtgridMain.Items.Count);
+            }
         }
         private void txtbCSM_KeyDown(object sender, KeyEventArgs e)
         {
@@ -467,12 +482,7 @@ namespace PhanQuyen
             dtgridMain.Items.Clear();
             dtgridMain.ItemsSource = docSoList;
 
-            int sanLuong = 0;
-            foreach (DocSo docSo in dtgridMain.Items)
-                sanLuong += docSo.TieuThuMoi.GetValueOrDefault();
-
-            txtbSanLuong.Text = String.Format("Sản lượng: {0} m3", sanLuong);
-            txtbTongKH.Text = String.Format("Tổng KH: {0}", dtgridMain.Items.Count);
+            Sum();
             CanhBaoBatThuong();
         }
         private String getValueCell(DataGridCell cell, DataGridRow row)

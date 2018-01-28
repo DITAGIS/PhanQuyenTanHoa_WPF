@@ -69,7 +69,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition ></RowDefinition>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition Height="350"></RowDefinition>
+                    <RowDefinition ></RowDefinition>
                     <RowDefinition></RowDefinition>
                     <RowDefinition ></RowDefinition>
                     <RowDefinition></RowDefinition>
@@ -232,7 +232,7 @@
                       Text="{Binding SelectedHoaDon.GhiChuTV, Mode=TwoWay}"/>
                     </StackPanel>
                 </Grid>
-                <Grid Grid.Row="2" Height="340" ShowGridLines="False" Background="White"
+                <Grid Grid.Row="2" Height="250" ShowGridLines="False" Background="White"
                   Margin="0,10,0,0"                  >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -249,7 +249,7 @@
                           AutoGenerateColumns="False" Name="dtgridMain" 
                                                      
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
-                          Width="Auto" Margin="0,0,0,0" Height="340" 
+                          Width="Auto" Margin="0,0,0,0" Height="250" 
                               SelectionChanged="dtgridMain_SelectionChanged"
                         
                           RowHeight="20"
