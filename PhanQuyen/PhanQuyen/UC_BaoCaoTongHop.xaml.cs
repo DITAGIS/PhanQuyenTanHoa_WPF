@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +29,31 @@ namespace PhanQuyen
         {
             InitializeComponent();
             cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
+
+            cbbBaoCao.ItemsSource = new List<String>()
+            {
+                "Thống Kê Đồng Hồ Nước Đọc Số","Báo Cáo Số Lượng Và Sản Lượng DHN Theo DMA",
+                "Báo Cáo Số Lượng Và Sản Lượng DHN Theo Phường",
+                "Báo Cáo Số Lượng Và Sản Lượng Theo Cỡ Hiệu",
+                "Báo cáo số lượng có dùng giếng"
+            };
+        }
+
+        private void cbbBaoCao_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void btnViewReport_Click(object sender, RoutedEventArgs e)
+        {
+            String danhBa = "";
+            String str = "";
+            DataTable dt = DataDBViewModel.Instance.GetInfoCheckCustomer1(str,danhBa);
+            _reportViewer.LocalReport.ReportPath = "../Debug/Report/rptInDongCua.rdlc";
+            this._reportViewer.LocalReport.DataSources.Clear();
+            this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInDongCua", dt));
+            this._reportViewer.RefreshReport();
+
         }
         #region year,month,date
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
