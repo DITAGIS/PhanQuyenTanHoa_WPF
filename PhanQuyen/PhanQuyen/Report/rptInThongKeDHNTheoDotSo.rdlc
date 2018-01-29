@@ -1,48 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition">
-  <DataSources>
-    <DataSource Name="dtsInThongKeDHNTheoSo">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>4e888ae7-005b-4f3f-8c9a-a38c26aac25b</rd:DataSourceID>
-    </DataSource>
-  </DataSources>
-  <DataSets>
-    <DataSet Name="dtsInThongKeDHNTheoSo">
-      <Fields>
-        <Field Name="DanhBa">
-          <DataField>DanhBa</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Dot">
-          <DataField>Dot</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="May">
-          <DataField>May</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ToID">
-          <DataField>ToID</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>dtsInThongKeDHNTheoSo</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <rd:DataSetInfo>
-        <rd:DataSetName>dtsInThongKeDHNTheoSo</rd:DataSetName>
-        <rd:SchemaPath>E:\VietA-Sources\CapNuoc\Cap Nuoc Ben Thanh\CapNuoc20150116\CapNuocTA\dtsInThongKeDHNTheoSo.xsd</rd:SchemaPath>
-        <rd:TableName>dtsInThongKeDHNTheoSo</rd:TableName>
-        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
-        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>dtsInThongKeDHNTheoSoTableAdapter</rd:TableAdapterName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
       <Textbox Name="Textbox1">
@@ -52,7 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>CÔNG TY CỔ PHẦN CẤP NƯỚC TRUNG AN                                                                       </Value>
+                <Value>CÔNG TY CỔ PHẦN CẤP NƯỚC TÂN HÒA                                                                              </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -77,7 +34,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>           PHÒNG DỊCH VỤ CẤP NƯỚC                                                                                                        </Value>
+                <Value>        ĐỘI QUẢN LÝ ĐỒNG HỒ NƯỚC                                                                                                        </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -103,7 +60,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>                          -----------------                                                                                                                       </Value>
+                <Value xml:space="preserve">                           </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -111,7 +68,26 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>----------------------------------</Value>
+                <Value>----------------</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">                                                                                                                               </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>-------------------------</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Times New Roman</FontFamily>
@@ -129,11 +105,35 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>          ĐỘI QUẢN LÝ ĐỒNG HỒ NƯỚC  </Value>
+                <Value xml:space="preserve">         </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>12pt</FontSize>
                   <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Số: __________/TH-ĐQLĐHN</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">                                                                                         </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>TP.HCM, ngày.......tháng......năm.........</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -727,6 +727,50 @@
     <ColumnSpacing>1.27cm</ColumnSpacing>
     <Style />
   </Page>
-  <rd:ReportID>ed738049-8e14-45c7-abcd-34cad353e7b9</rd:ReportID>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="dtsInThongKeDHNTheoSo">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>4e888ae7-005b-4f3f-8c9a-a38c26aac25b</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="dtsInThongKeDHNTheoSo">
+      <Query>
+        <DataSourceName>dtsInThongKeDHNTheoSo</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="DanhBa">
+          <DataField>DanhBa</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Dot">
+          <DataField>Dot</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="May">
+          <DataField>May</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ToID">
+          <DataField>ToID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>dtsInThongKeDHNTheoSo</rd:DataSetName>
+        <rd:SchemaPath>E:\VietA-Sources\CapNuoc\Cap Nuoc Ben Thanh\CapNuoc20150116\CapNuocTA\dtsInThongKeDHNTheoSo.xsd</rd:SchemaPath>
+        <rd:TableName>dtsInThongKeDHNTheoSo</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>dtsInThongKeDHNTheoSoTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>ed738049-8e14-45c7-abcd-34cad353e7b9</rd:ReportID>
 </Report>

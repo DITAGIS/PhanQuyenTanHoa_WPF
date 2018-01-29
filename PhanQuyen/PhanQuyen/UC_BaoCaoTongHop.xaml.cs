@@ -48,7 +48,7 @@ namespace PhanQuyen
         {
             String danhBa = "";
             String str = "";
-            DataTable dt = DataDBViewModel.Instance.GetInfoCheckCustomer1(str,danhBa);
+            DataTable dt = DataDBViewModel.Instance.GetInfoCheckCustomer1(str, danhBa);
             _reportViewer.LocalReport.ReportPath = "../Debug/Report/rptInDongCua.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInDongCua", dt));
@@ -58,21 +58,28 @@ namespace PhanQuyen
         #region year,month,date
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            date = cbbDate.SelectedValue.ToString();
+            if (cbbDate.SelectedValue != null)
+                date = cbbDate.SelectedValue.ToString();
         }
 
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            month = cbbMonth.SelectedValue.ToString();
-            cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDateServer(year, month);
+            if (cbbMonth.SelectedValue != null)
+            {
+                month = cbbMonth.SelectedValue.ToString();
+                cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDateServer(year, month);
+            }
         }
 
 
 
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            year = Int16.Parse(cbbYear.SelectedValue.ToString());
-            cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonthServer(year);
+            if (cbbYear.SelectedValue != null)
+            {
+                year = Int16.Parse(cbbYear.SelectedValue.ToString());
+                cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonthServer(year);
+            }
         }
         #endregion
     }

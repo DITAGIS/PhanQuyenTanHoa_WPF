@@ -74,22 +74,31 @@ namespace PhanQuyen
         #region year,month,date
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            date = cbbDate.SelectedValue.ToString();
-            cbbGroup.ItemsSource = DataDBViewModel.Instance.getDistinctGroupServer(year, month, date);
+            if (cbbDate.SelectedValue != null)
+            {
+                date = cbbDate.SelectedValue.ToString();
+                cbbGroup.ItemsSource = DataDBViewModel.Instance.getDistinctGroupServer(year, month, date);
+            }
         }
 
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            month = cbbMonth.SelectedValue.ToString();
-            cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDateServer(year, month);
+            if (cbbMonth.SelectedValue != null)
+            {
+                month = cbbMonth.SelectedValue.ToString();
+                cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDateServer(year, month);
+            }
         }
 
 
 
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            year = Int16.Parse(cbbYear.SelectedValue.ToString());
-            cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonthServer(year);
+            if (cbbYear.SelectedValue != null)
+            {
+                year = Int16.Parse(cbbYear.SelectedValue.ToString());
+                cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonthServer(year);
+            }
         }
         #endregion
     }

@@ -11,70 +11,64 @@
               <TextRun>
                 <Value>DANH SÁCH ĐỒNG HỒ NƯỚC ĐÓNG CỬA TỔ </Value>
                 <Style>
-                  <FontSize>14pt</FontSize>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>16pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=Fields!ToID.Value</Value>
                 <Style>
-                  <FontSize>14pt</FontSize>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>16pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value> KỲ </Value>
                 <Style>
-                  <FontSize>14pt</FontSize>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>16pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=Fields!Ky.Value</Value>
                 <Style>
-                  <FontSize>14pt</FontSize>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>16pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value> ĐỢT </Value>
                 <Style>
-                  <FontSize>14pt</FontSize>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>16pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=Fields!Dot.Value</Value>
                 <Style>
-                  <FontSize>14pt</FontSize>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>16pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value xml:space="preserve"> </Value>
+                <Value> MÁY </Value>
                 <Style>
-                  <FontSize>14pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>MÁY </Value>
-                <Style>
-                  <FontSize>14pt</FontSize>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>16pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=Fields!May.Value</Value>
                 <Style>
-                  <FontSize>14pt</FontSize>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>16pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -107,11 +101,18 @@
             <TextRuns>
               <TextRun>
                 <Value>Nhân viên: </Value>
-                <Style />
+                <Style>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>=Fields!Username.Value</Value>
-                <Style />
+                <Style>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -148,6 +149,8 @@
                           <TextRun>
                             <Value>MLT</Value>
                             <Style>
+                              <FontFamily>times New Roman</FontFamily>
+                              <FontSize>13pt</FontSize>
                               <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
@@ -161,6 +164,8 @@
                           <TextRun>
                             <Value>SĐT</Value>
                             <Style>
+                              <FontFamily>times New Roman</FontFamily>
+                              <FontSize>13pt</FontSize>
                               <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
@@ -214,6 +219,8 @@
                           <TextRun>
                             <Value>Danh bạ</Value>
                             <Style>
+                              <FontFamily>times New Roman</FontFamily>
+                              <FontSize>13pt</FontSize>
                               <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
@@ -267,6 +274,8 @@
                           <TextRun>
                             <Value>Tên khách hàng</Value>
                             <Style>
+                              <FontFamily>times New Roman</FontFamily>
+                              <FontSize>13pt</FontSize>
                               <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
@@ -315,7 +324,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.73425in</Width>
+              <Width>1.07592in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.98425in</Width>
@@ -336,6 +345,8 @@
                             <TextRun>
                               <Value>=Fields!CodeMoi.Value</Value>
                               <Style>
+                                <FontFamily>times New Roman</FontFamily>
+                                <FontSize>13pt</FontSize>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
                             </TextRun>
@@ -349,6 +360,8 @@
                             <TextRun>
                               <Value>=Fields!CSMoi.Value</Value>
                               <Style>
+                                <FontFamily>times New Roman</FontFamily>
+                                <FontSize>13pt</FontSize>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
                             </TextRun>
@@ -362,6 +375,8 @@
                             <TextRun>
                               <Value>=Fields!TieuThuMoi.Value</Value>
                               <Style>
+                                <FontFamily>times New Roman</FontFamily>
+                                <FontSize>13pt</FontSize>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
                             </TextRun>
@@ -415,6 +430,8 @@
                             <TextRun>
                               <Value />
                               <Style>
+                                <FontFamily>times New Roman</FontFamily>
+                                <FontSize>13pt</FontSize>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
                             </TextRun>
@@ -488,6 +505,8 @@
                               <TextRun>
                                 <Value>Kỳ: </Value>
                                 <Style>
+                                  <FontFamily>times New Roman</FontFamily>
+                                  <FontSize>13pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                   <Format>0;(0)</Format>
                                 </Style>
@@ -495,6 +514,8 @@
                               <TextRun>
                                 <Value>=Fields!Ky.Value</Value>
                                 <Style>
+                                  <FontFamily>times New Roman</FontFamily>
+                                  <FontSize>13pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                   <Format>0;(0)</Format>
                                 </Style>
@@ -509,6 +530,8 @@
                               <TextRun>
                                 <Value>Code</Value>
                                 <Style>
+                                  <FontFamily>times New Roman</FontFamily>
+                                  <FontSize>13pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                   <Format>0;(0)</Format>
                                 </Style>
@@ -523,6 +546,8 @@
                               <TextRun>
                                 <Value>CS</Value>
                                 <Style>
+                                  <FontFamily>times New Roman</FontFamily>
+                                  <FontSize>13pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                   <Format>0;(0)</Format>
                                 </Style>
@@ -537,6 +562,8 @@
                               <TextRun>
                                 <Value>Tiêu thụ</Value>
                                 <Style>
+                                  <FontFamily>times New Roman</FontFamily>
+                                  <FontSize>13pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                   <Format>0;(0)</Format>
                                 </Style>
@@ -599,6 +626,8 @@
                           <TextRun>
                             <Value>CS Mới</Value>
                             <Style>
+                              <FontFamily>times New Roman</FontFamily>
+                              <FontSize>13pt</FontSize>
                               <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
@@ -655,7 +684,7 @@
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>0.86967in</Size>
+                    <Size>1.08634in</Size>
                     <CellContents>
                       <Textbox Name="Textbox71">
                         <CanGrow>true</CanGrow>
@@ -666,6 +695,8 @@
                               <TextRun>
                                 <Value>=Fields!MLT2.Value</Value>
                                 <Style>
+                                  <FontFamily>times New Roman</FontFamily>
+                                  <FontSize>13pt</FontSize>
                                   <FontWeight>Normal</FontWeight>
                                 </Style>
                               </TextRun>
@@ -679,6 +710,8 @@
                               <TextRun>
                                 <Value>=Fields!SDT.Value</Value>
                                 <Style>
+                                  <FontFamily>times New Roman</FontFamily>
+                                  <FontSize>13pt</FontSize>
                                   <FontWeight>Normal</FontWeight>
                                 </Style>
                               </TextRun>
@@ -735,6 +768,8 @@
                                   <TextRun>
                                     <Value>=Fields!DanhBa.Value</Value>
                                     <Style>
+                                      <FontFamily>times New Roman</FontFamily>
+                                      <FontSize>13pt</FontSize>
                                       <FontWeight>Normal</FontWeight>
                                     </Style>
                                   </TextRun>
@@ -791,6 +826,8 @@
                                       <TextRun>
                                         <Value>=Fields!TenKH.Value</Value>
                                         <Style>
+                                          <FontFamily>times New Roman</FontFamily>
+                                          <FontSize>13pt</FontSize>
                                           <FontWeight>Normal</FontWeight>
                                         </Style>
                                       </TextRun>
@@ -804,6 +841,8 @@
                                       <TextRun>
                                         <Value>=Fields!Duong.Value</Value>
                                         <Style>
+                                          <FontFamily>times New Roman</FontFamily>
+                                          <FontSize>13pt</FontSize>
                                           <FontWeight>Normal</FontWeight>
                                         </Style>
                                       </TextRun>
@@ -862,9 +901,9 @@
           </SortExpression>
         </SortExpressions>
         <Top>1.22917in</Top>
-        <Left>0.125in</Left>
+        <Left>0.75in</Left>
         <Height>1.29167in</Height>
-        <Width>5.33358in</Width>
+        <Width>5.89191in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>

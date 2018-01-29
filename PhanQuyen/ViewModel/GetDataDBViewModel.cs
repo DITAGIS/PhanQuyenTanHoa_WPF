@@ -31,11 +31,7 @@ namespace ViewModel
         private const String TTKH_COLUMN_MLT1 = "MLT1";
         private const String TTKH_COLUMN_HOPDONG = "HopDong";
 
-        public DataTable GetGroup(object selectedValue)
-        {
-            return null;
-        }
-
+        
         private const String TTKH_COLUMN_DANHBA = "DanhBa";
         private const String TTKH_COLUMN_GB = "GB";
         private const String TTKH_COLUMN_DM = "DM";
@@ -194,6 +190,44 @@ namespace ViewModel
             }
             return table;
         }
+        public DataTable GetGroup(object selectedValue)
+        {
+            List<KHDongCua> query = new List<KHDongCua> ();
+                DataTable table = new DataTable();
+            table.Columns.Add(DC_COLUMN_TOID, typeof(string));
+            table.Columns.Add(DC_COLUMN_KY, typeof(string));
+            table.Columns.Add(DC_COLUMN_DOT, typeof(string));
+            table.Columns.Add(DC_COLUMN_MAY, typeof(string));
+            table.Columns.Add(DC_COLUMN_MLT, typeof(string));
+            table.Columns.Add(DC_COLUMN_SDT, typeof(string));
+            table.Columns.Add(DC_COLUMN_DANHBA, typeof(string));
+            table.Columns.Add(DC_COLUMN_TENKH, typeof(string));
+            table.Columns.Add(DC_COLUMN_DUONG, typeof(string));
+            table.Columns.Add(DC_COLUMN_CODEMOI, typeof(string));
+            table.Columns.Add(DC_COLUMN_CSMOI, typeof(string));
+            table.Columns.Add(DC_COLUMN_TIEUTHUMOI, typeof(string));
+
+            foreach (var item in query)
+            {
+                DataRow row = table.NewRow();
+                row[DC_COLUMN_TOID] = item.ToID;
+                row[DC_COLUMN_KY] = "";
+                row[DC_COLUMN_DOT] = "";
+                row[DC_COLUMN_MAY] = "";
+                row[DC_COLUMN_MLT] = item.MLT2;
+                row[DC_COLUMN_SDT] = item.SDT;
+                row[DC_COLUMN_DANHBA] = item.DANHBA;
+                row[DC_COLUMN_TENKH] = item.TENKH;
+                row[DC_COLUMN_DUONG] = item.Duong;
+                row[DC_COLUMN_CODEMOI] = item.CodeMoi;
+                row[DC_COLUMN_CSMOI] = item.CSCu;
+                row[DC_COLUMN_TIEUTHUMOI] = item.TieuThuCu;
+
+                table.Rows.Add(row);
+            }
+            return table;
+        }
+
         public DataTable GetInfoCheckCustomer2(int count, string str, string danhBa)
         {
 

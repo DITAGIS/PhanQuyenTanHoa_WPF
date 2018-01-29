@@ -467,7 +467,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>                                                  CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</Value>
+                <Value>                                                      CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -489,7 +489,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>                                                              Độc lập - Tự do - Hạnh phúc</Value>
+                <Value>                                                                  Độc lập - Tự do - Hạnh phúc</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -519,7 +519,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>                             **************</Value>
+                <Value>                                 **************</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -549,7 +549,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>                     **************                                                                                                                        </Value>
+                <Value>                        **************                                                                                                                        </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -564,7 +564,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value xml:space="preserve">             </Value>
+                <Value xml:space="preserve">          </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>13pt</FontSize>
@@ -572,7 +572,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>Số: __________/TH/ĐQLĐHN</Value>
+                <Value>Số: __________/TH-ĐQLĐHN</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>13pt</FontSize>
@@ -580,7 +580,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value xml:space="preserve">                                                                                       </Value>
+                <Value xml:space="preserve">                                                                                            </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>13pt</FontSize>
