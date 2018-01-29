@@ -32,6 +32,8 @@ namespace PhanQuyen
         UC_ThongKeDHNSauDocSo uc_ThongKeDHNSauDocSo;
         UC_BaoCaoTongHop uc_BaoCaoTongHop;
         UC_ChuyenBilling uc_ChuyenBilling;
+        UC_KiemTraDuLieu uc_KiemTraDuLieu;
+        UC_ThongKeDHNTheoDotSo uc_ThongKeDHNTheoDotSo;
         private User user;
 
         public MainWindow()
@@ -127,6 +129,16 @@ namespace PhanQuyen
             {
                 uc_InDanhSachDongCua.Height = stkMain.ActualHeight;
                 uc_InDanhSachDongCua.Width = stkMain.ActualWidth;
+            }
+            if (uc_KiemTraDuLieu != null)
+            {
+                uc_KiemTraDuLieu.Height = stkMain.ActualHeight;
+                uc_KiemTraDuLieu.Width = stkMain.ActualWidth;
+            }
+            if (uc_ThongKeDHNTheoDotSo != null)
+            {
+                uc_ThongKeDHNTheoDotSo.Height = stkMain.ActualHeight;
+                uc_ThongKeDHNTheoDotSo.Width = stkMain.ActualWidth;
             }
         }
 
@@ -236,6 +248,25 @@ namespace PhanQuyen
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_InDanhSachDongCua);
         }
+
+        private void ribBtnKiemTraDuLieu_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_KiemTraDuLieu == null)
+                uc_KiemTraDuLieu = new UC_KiemTraDuLieu();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_KiemTraDuLieu);
+        }
+        private void ribBtnThongKeDHNTheoDotSo_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_ThongKeDHNTheoDotSo == null)
+                uc_ThongKeDHNTheoDotSo = new UC_ThongKeDHNTheoDotSo();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_ThongKeDHNTheoDotSo);
+        }
         private void ribBtnHoanTatDocSo_Click(object sender, RoutedEventArgs e)
         {
             if (System.Windows.Forms.MessageBox.Show("Bạn có chắc chắn hoàn tất dữ liệu đọc số không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != System.Windows.Forms.DialogResult.Yes)
@@ -270,6 +301,7 @@ namespace PhanQuyen
             }
         }
 
+     
     }
 
     public static class CustomCommands

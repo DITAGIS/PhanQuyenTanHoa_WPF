@@ -67,12 +67,13 @@
                 <RibbonGroup Header="Chuẩn bị">
                     <RibbonButton Label="Cập nhật hóa đơn" LargeImageSource="/PhanQuyen;component/Images/bill.png"
                                   Click="ribBtnCapNhatHoaDon"></RibbonButton>
-                    <RibbonButton Label="Kiểm tra dữ liệu"  LargeImageSource="/PhanQuyen;component/Images/check_data.png"></RibbonButton>
+                    <RibbonButton Name="ribBtnKiemTraDuLieu" Label="Kiểm tra dữ liệu"  LargeImageSource="/PhanQuyen;component/Images/check_data.png"
+                                  Click="ribBtnKiemTraDuLieu_Click"></RibbonButton>
                     <RibbonButton Label="Cập nhật số thân"  LargeImageSource="/PhanQuyen;component/Images/update_number.png"></RibbonButton>
                 </RibbonGroup>
-                <RibbonGroup Header="Hoàn tất">
+                <!--<RibbonGroup Header="Hoàn tất">
                     <RibbonButton Label="Chuyển File"  LargeImageSource="/PhanQuyen;component/Images/file_transfer.png"></RibbonButton>
-                </RibbonGroup>
+                </RibbonGroup>-->
 
             </RibbonTab>
             <!--<RibbonTab Header="Giao tiếp" >
@@ -126,7 +127,8 @@
                     <RibbonButton Label="Thống kê sau đọc số"  LargeImageSource="/PhanQuyen;component/Images/statistic.png"
                                   Name="ribBtnThongKeSauDocSo"
                                   Click="ribBtnThongKeSauDocSo_Click"></RibbonButton>
-                    <RibbonButton Label="Thống kê đồng hồ nước theo đợt số"  LargeImageSource="/PhanQuyen;component/Images/date.png"></RibbonButton>
+                    <RibbonButton Label="Thống kê đồng hồ nước theo đợt sổ"  LargeImageSource="/PhanQuyen;component/Images/date.png"
+                                  Name="ribBtnThongKeDHNTheoDotSo" Click="ribBtnThongKeDHNTheoDotSo_Click"></RibbonButton>
                     <RibbonButton Label="Thống kê đồng hồ nước trên mạng"  LargeImageSource="/PhanQuyen;component/Images/browser.png"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="In">

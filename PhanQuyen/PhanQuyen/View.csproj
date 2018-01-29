@@ -123,6 +123,9 @@
     <Compile Include="UC_CapNhatHoaDon.xaml.cs">
       <DependentUpon>UC_CapNhatHoaDon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC_CapNhatSoThan.xaml.cs">
+      <DependentUpon>UC_CapNhatSoThan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_ChuyenBilling.xaml.cs">
       <DependentUpon>UC_ChuyenBilling.xaml</DependentUpon>
     </Compile>
@@ -138,11 +141,17 @@
     <Compile Include="UC_InPhieuTieuThuKH.xaml.cs">
       <DependentUpon>UC_InPhieuTieuThuKH.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UC_KiemTraDuLieu.xaml.cs">
+      <DependentUpon>UC_KiemTraDuLieu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UC_NhanDuLieu.xaml.cs">
       <DependentUpon>UC_NhanDuLieu.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC_ThongKeDHNSauDocSo.xaml.cs">
       <DependentUpon>UC_ThongKeDHNSauDocSo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UC_ThongKeDHNTheoDotSo.xaml.cs">
+      <DependentUpon>UC_ThongKeDHNTheoDotSo.xaml</DependentUpon>
     </Compile>
     <Compile Include="XemGhiChuWindow.xaml.cs">
       <DependentUpon>XemGhiChuWindow.xaml</DependentUpon>
@@ -179,6 +188,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UC_CapNhatSoThan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC_ChuyenBilling.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,11 +212,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UC_KiemTraDuLieu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UC_NhanDuLieu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC_ThongKeDHNSauDocSo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UC_ThongKeDHNTheoDotSo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -237,6 +258,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\rptInPhieuKiemTra.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptInThongKeDHNTheoDotSo.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptInThongKeDHNTrenMang.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptInThongKeSauDocSo.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

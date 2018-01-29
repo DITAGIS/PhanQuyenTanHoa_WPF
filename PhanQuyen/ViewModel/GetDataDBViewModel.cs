@@ -30,6 +30,12 @@ namespace ViewModel
         private const String TTKH_COLUMN_SOTHAN = "SoThan";
         private const String TTKH_COLUMN_MLT1 = "MLT1";
         private const String TTKH_COLUMN_HOPDONG = "HopDong";
+
+        public DataTable GetGroup(object selectedValue)
+        {
+            return null;
+        }
+
         private const String TTKH_COLUMN_DANHBA = "DanhBa";
         private const String TTKH_COLUMN_GB = "GB";
         private const String TTKH_COLUMN_DM = "DM";
@@ -99,6 +105,24 @@ namespace ViewModel
             serverContext = new DataClassServerDataContext();
         }
 
+        public int CapNhatKH(int year, string month, string date)
+        {
+            var query = (from B in serverContext.BienDongs
+                         where B.Nam == year && B.Ky == month && B.Dot == date
+                         select new { B.DanhBa, B.HopDong, B.MLT1, B.So, B.May, B.Duong, B.GB, B.DM, B.SX, B.SH, B.DV, B.HC, B.Dot })
+                         .ToList();
+            foreach(var item in query)
+            {
+                var KH = serverContext.KhachHangs.SingleOrDefault(row=>row.DanhBa == item.DanhBa);
+                if(KH != null)
+                {
+                    //
+                    serverContext.SubmitChanges();
+                }
+            }
+            return query.Count;
+        }
+
         public IEnumerable getNote(string danhBa)
         {
             var data = (from x in serverContext.DocSos
@@ -106,6 +130,20 @@ namespace ViewModel
                         orderby x.DocSoID descending
                         select new { x.Ky, x.Nam, danhBa, x.CodeMoi, x.TTDHNMoi, x.CSCu, x.CSMoi, x.TieuThuMoi, x.GhiChuDS, x.GhiChuKH, x.GhiChuTV }).ToList();
             return data;
+        }
+        public int CountHoaDon(int nam, string ky, string dot)
+        {
+            var value = (from x in serverContext.HoaDons
+                         where x.Nam == nam && x.Ky == ky && x.Dot == dot
+                         select x.HoaDonID).ToList();
+            return value.Count;
+        }
+        public int CountBienDong(int nam, string ky, string dot)
+        {
+            var value = (from x in serverContext.BienDongs
+                         where x.Nam == nam && x.Ky == ky && x.Dot == dot
+                         select x.BienDongID).ToList();
+            return value.Count;
         }
         public DataTable GetListCloseDoor(int year, string month, string date, string machine)
         {
@@ -140,7 +178,7 @@ namespace ViewModel
             {
                 DataRow row = table.NewRow();
                 row[DC_COLUMN_TOID] = item.ToID;
-                row[DC_COLUMN_KY] = month ;
+                row[DC_COLUMN_KY] = month;
                 row[DC_COLUMN_DOT] = date;
                 row[DC_COLUMN_MAY] = machine;
                 row[DC_COLUMN_MLT] = item.MLT2;

@@ -51,144 +51,144 @@ namespace ViewModel
         public List<HoaDon> getHoaDonsByCondition(String year, String month, String date, String group, String machine)
         {
             List<HoaDon> hoaDons = new List<HoaDon>();
-            try
-            {
-                SqlCommand command = new SqlCommand(SQL_SELECT_CONDITION, ConnectionViewModel.getInstance.getConnection);
-                //ConnectionViewModel.getInstance.Connect();
-                command.Parameters.AddWithValue("@year", year);
-                command.Parameters.AddWithValue("@month", month);
-                command.Parameters.AddWithValue("@date", date);
-                //command.Parameters.AddWithValue("@group", group);
-                command.Parameters.AddWithValue("@machine", machine);
-                SqlDataReader dataReader = command.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    HoaDon hoaDon = new HoaDon();
-                    hoaDon.DanhBa = dataReader["danhba"].ToString();
-                    hoaDon.TTHDNCu = dataReader["TTDHNCU"].ToString();
-                    hoaDon.TTHDNMoi = dataReader["TTDHNMoi"].ToString();
-                    hoaDon.CodeMoi = dataReader["CodeMoi"].ToString();
-                    hoaDon.CodeCu = dataReader["CodeCu"].ToString();
-                    hoaDon.CSC = dataReader["CSCU"].ToString();
-                    hoaDon.CSM = dataReader["CSMOI"].ToString();
-                    hoaDon.TieuThuMoi = dataReader["TieuThuMoi"].ToString();
-                    hoaDon.TBTT = dataReader["TBTT"].ToString();
-                    hoaDon.DiaChi = dataReader["so"].ToString() + " " + dataReader["duong"].ToString(); ;
-                    hoaDon.GhiChuDS = dataReader["GhiChuDS"].ToString();
-                    hoaDon.TenKH = dataReader["TenKH"].ToString();
-                    hoaDon.HopDong = dataReader["HopDong"].ToString();
-                    hoaDon.Hieu = dataReader["Hieu"].ToString();
-                    hoaDon.Co = dataReader["Co"].ToString();
-                    hoaDon.GB = dataReader["GB"].ToString();
-                    hoaDon.DM = dataReader["DM"].ToString();
-                    hoaDon.SoThan = dataReader["SoThan"].ToString();
-                    hoaDon.MLT = dataReader["MLT1"].ToString();
-                    hoaDons.Add(hoaDon);
-                }
-            }
-            catch (Exception e)
-            {
+            //try
+            //{
+            //    SqlCommand command = new SqlCommand(SQL_SELECT_CONDITION, ConnectionViewModel.getInstance.getConnection);
+            //    //ConnectionViewModel.getInstance.Connect();
+            //    command.Parameters.AddWithValue("@year", year);
+            //    command.Parameters.AddWithValue("@month", month);
+            //    command.Parameters.AddWithValue("@date", date);
+            //    //command.Parameters.AddWithValue("@group", group);
+            //    command.Parameters.AddWithValue("@machine", machine);
+            //    SqlDataReader dataReader = command.ExecuteReader();
+            //    while (dataReader.Read())
+            //    {
+            //        HoaDon hoaDon = new HoaDon();
+            //        hoaDon.DanhBa = dataReader["danhba"].ToString();
+            //        hoaDon.TTHDNCu = dataReader["TTDHNCU"].ToString();
+            //        hoaDon.TTHDNMoi = dataReader["TTDHNMoi"].ToString();
+            //        hoaDon.CodeMoi = dataReader["CodeMoi"].ToString();
+            //        hoaDon.CodeCu = dataReader["CodeCu"].ToString();
+            //        hoaDon.CSC = dataReader["CSCU"].ToString();
+            //        hoaDon.CSM = dataReader["CSMOI"].ToString();
+            //        hoaDon.TieuThuMoi = dataReader["TieuThuMoi"].ToString();
+            //        hoaDon.TBTT = dataReader["TBTT"].ToString();
+            //        hoaDon.DiaChi = dataReader["so"].ToString() + " " + dataReader["duong"].ToString(); ;
+            //        hoaDon.GhiChuDS = dataReader["GhiChuDS"].ToString();
+            //        hoaDon.TenKH = dataReader["TenKH"].ToString();
+            //        hoaDon.HopDong = dataReader["HopDong"].ToString();
+            //        hoaDon.Hieu = dataReader["Hieu"].ToString();
+            //        hoaDon.Co = dataReader["Co"].ToString();
+            //        hoaDon.GB = dataReader["GB"].ToString();
+            //        hoaDon.DM = dataReader["DM"].ToString();
+            //        hoaDon.SoThan = dataReader["SoThan"].ToString();
+            //        hoaDon.MLT = dataReader["MLT1"].ToString();
+            //        hoaDons.Add(hoaDon);
+            //    }
+            //}
+            //catch (Exception e)
+            //{
 
-            }
+            //}
             return hoaDons;
         }
         public HoaDon getHoaDonsIncludeImageByCondition(String year, String month, String date, String group, String machine, String danhba)
         {
             HoaDon hoaDon = new HoaDon(); ;
-            SqlDataReader dataReader = null;
-            SqlDataReader dataReader1 = null;
-            try
-            {
-                SqlCommand command = new SqlCommand(SQL_SELECT_INCLUDE_IMAGE_CONDITION, ConnectionViewModel.getInstance.getConnection);
-                //ConnectionViewModel.getInstance.Connect();
-                command.Parameters.AddWithValue("@danhba", danhba);
-                command.Parameters.AddWithValue("@year", year);
-                command.Parameters.AddWithValue("@month", month);
-                command.Parameters.AddWithValue("@date", date);
-                //command.Parameters.AddWithValue("@group", group);
-                command.Parameters.AddWithValue("@machine", machine);
-                dataReader = command.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    hoaDon.DanhBa = danhba;
-                    hoaDon.TTHDNCu = dataReader["TTDHNCU"].ToString();
-                    hoaDon.TTHDNMoi = dataReader["TTDHNMoi"].ToString();
-                    hoaDon.CodeMoi = dataReader["CodeMoi"].ToString();
-                    hoaDon.CodeCu = dataReader["CodeCu"].ToString();
-                    hoaDon.CSC = dataReader["CSCU"].ToString();
-                    hoaDon.CSM = dataReader["CSMOI"].ToString();
-                    hoaDon.TieuThuMoi = dataReader["TieuThuMoi"].ToString();
-                    hoaDon.TBTT = dataReader["TBTT"].ToString();
-                    hoaDon.DiaChi = dataReader["so"].ToString() + " " + dataReader["duong"].ToString(); ;
-                    hoaDon.GhiChuDS = dataReader["GhiChuDS"].ToString();
-                    hoaDon.TenKH = dataReader["TenKH"].ToString();
-                    hoaDon.HopDong = dataReader["HopDong"].ToString();
-                    hoaDon.Hieu = dataReader["Hieu"].ToString();
-                    hoaDon.Co = dataReader["Co"].ToString();
-                    hoaDon.GB = dataReader["GB"].ToString();
-                    hoaDon.DM = dataReader["DM"].ToString();
-                    hoaDon.SoThan = dataReader["SoThan"].ToString();
-                    hoaDon.MLT = dataReader["MLT1"].ToString();
-                    hoaDon.Image = dataReader["Image"] as Byte[];
-                }
-                if (!dataReader.IsClosed)
-                    dataReader.Close();
+            //SqlDataReader dataReader = null;
+            //SqlDataReader dataReader1 = null;
+            //try
+            //{
+            //    SqlCommand command = new SqlCommand(SQL_SELECT_INCLUDE_IMAGE_CONDITION, ConnectionViewModel.getInstance.getConnection);
+            //    //ConnectionViewModel.getInstance.Connect();
+            //    command.Parameters.AddWithValue("@danhba", danhba);
+            //    command.Parameters.AddWithValue("@year", year);
+            //    command.Parameters.AddWithValue("@month", month);
+            //    command.Parameters.AddWithValue("@date", date);
+            //    //command.Parameters.AddWithValue("@group", group);
+            //    command.Parameters.AddWithValue("@machine", machine);
+            //    dataReader = command.ExecuteReader();
+            //    while (dataReader.Read())
+            //    {
+            //        hoaDon.DanhBa = danhba;
+            //        hoaDon.TTHDNCu = dataReader["TTDHNCU"].ToString();
+            //        hoaDon.TTHDNMoi = dataReader["TTDHNMoi"].ToString();
+            //        hoaDon.CodeMoi = dataReader["CodeMoi"].ToString();
+            //        hoaDon.CodeCu = dataReader["CodeCu"].ToString();
+            //        hoaDon.CSC = dataReader["CSCU"].ToString();
+            //        hoaDon.CSM = dataReader["CSMOI"].ToString();
+            //        hoaDon.TieuThuMoi = dataReader["TieuThuMoi"].ToString();
+            //        hoaDon.TBTT = dataReader["TBTT"].ToString();
+            //        hoaDon.DiaChi = dataReader["so"].ToString() + " " + dataReader["duong"].ToString(); ;
+            //        hoaDon.GhiChuDS = dataReader["GhiChuDS"].ToString();
+            //        hoaDon.TenKH = dataReader["TenKH"].ToString();
+            //        hoaDon.HopDong = dataReader["HopDong"].ToString();
+            //        hoaDon.Hieu = dataReader["Hieu"].ToString();
+            //        hoaDon.Co = dataReader["Co"].ToString();
+            //        hoaDon.GB = dataReader["GB"].ToString();
+            //        hoaDon.DM = dataReader["DM"].ToString();
+            //        hoaDon.SoThan = dataReader["SoThan"].ToString();
+            //        hoaDon.MLT = dataReader["MLT1"].ToString();
+            //        hoaDon.Image = dataReader["Image"] as Byte[];
+            //    }
+            //    if (!dataReader.IsClosed)
+            //        dataReader.Close();
 
-                command = new SqlCommand(SQL_SELECT_BAOTHAY, ConnectionViewModel.getInstance.getConnection);
-                command.Parameters.AddWithValue("@danhba", danhba);
-                dataReader1 = command.ExecuteReader();
-                while (dataReader1.Read())
-                {
-                    hoaDon.LoaiBaoThay = dataReader1["loaibt"].ToString();
-                    hoaDon.ChiSoGo = dataReader1["csgo"].ToString();
-                    hoaDon.ChiSoGan = dataReader1["csgan"].ToString();
-                    hoaDon.SoThanMoi = dataReader1["sothanmoi"].ToString();
-                    hoaDon.NgayThay = dataReader1["ngaythay"].ToString();
-                    hoaDon.NgayCapNhat = dataReader1["ngaycapnhat"].ToString();
-                    if (hoaDon.NgayCapNhat == null)
-                        hoaDon.NgayCapNhat = "";
-                }
-            }
-            catch (Exception e)
-            {
+            //    command = new SqlCommand(SQL_SELECT_BAOTHAY, ConnectionViewModel.getInstance.getConnection);
+            //    command.Parameters.AddWithValue("@danhba", danhba);
+            //    dataReader1 = command.ExecuteReader();
+            //    while (dataReader1.Read())
+            //    {
+            //        hoaDon.LoaiBaoThay = dataReader1["loaibt"].ToString();
+            //        hoaDon.ChiSoGo = dataReader1["csgo"].ToString();
+            //        hoaDon.ChiSoGan = dataReader1["csgan"].ToString();
+            //        hoaDon.SoThanMoi = dataReader1["sothanmoi"].ToString();
+            //        hoaDon.NgayThay = dataReader1["ngaythay"].ToString();
+            //        hoaDon.NgayCapNhat = dataReader1["ngaycapnhat"].ToString();
+            //        if (hoaDon.NgayCapNhat == null)
+            //            hoaDon.NgayCapNhat = "";
+            //    }
+            //}
+            //catch (Exception e)
+            //{
 
-            }
+            //}
 
-            if (dataReader1 != null && !dataReader1.IsClosed)
-                dataReader1.Close();
+            //if (dataReader1 != null && !dataReader1.IsClosed)
+            //    dataReader1.Close();
             return hoaDon;
         }
         public HoaDon getHoaDons1MonthByCondition(String year, String month, String danhba)
         {
             HoaDon hoaDon = new HoaDon(); ;
-            SqlDataReader dataReader = null;
+            //SqlDataReader dataReader = null;
 
-            try
-            {
-                SqlCommand command = new SqlCommand(SQL_SELECT_1_MONTH, ConnectionViewModel.getInstance.getConnection);
-                //ConnectionViewModel.getInstance.Connect();
-                command.Parameters.AddWithValue("@danhba", danhba);
-                command.Parameters.AddWithValue("@year", year);
-                command.Parameters.AddWithValue("@month", month);
+            //try
+            //{
+            //    SqlCommand command = new SqlCommand(SQL_SELECT_1_MONTH, ConnectionViewModel.getInstance.getConnection);
+            //    //ConnectionViewModel.getInstance.Connect();
+            //    command.Parameters.AddWithValue("@danhba", danhba);
+            //    command.Parameters.AddWithValue("@year", year);
+            //    command.Parameters.AddWithValue("@month", month);
 
-                dataReader = command.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    hoaDon.DanhBa = danhba;
+            //    dataReader = command.ExecuteReader();
+            //    while (dataReader.Read())
+            //    {
+            //        hoaDon.DanhBa = danhba;
 
-                    hoaDon.CodeMoi = dataReader["CodeMoi"].ToString();
-                    hoaDon.GioGhi = dataReader["gioghi"].ToString();
-                    hoaDon.CSM = dataReader["CSMOI"].ToString();
-                    hoaDon.TieuThuMoi = dataReader["TieuThuMoi"].ToString();
-                }
-            }
-            catch (Exception e)
-            {
+            //        hoaDon.CodeMoi = dataReader["CodeMoi"].ToString();
+            //        hoaDon.GioGhi = dataReader["gioghi"].ToString();
+            //        hoaDon.CSM = dataReader["CSMOI"].ToString();
+            //        hoaDon.TieuThuMoi = dataReader["TieuThuMoi"].ToString();
+            //    }
+            //}
+            //catch (Exception e)
+            //{
 
-            }
+            //}
 
-            if (dataReader != null && !dataReader.IsClosed)
-                dataReader.Close();
+            //if (dataReader != null && !dataReader.IsClosed)
+            //    dataReader.Close();
             return hoaDon;
         }
         public List<String> getDanhBasByCondition(int year, String month, String date, int xGroup, String machine)
