@@ -25,6 +25,7 @@ namespace PhanQuyen
     {
         UC_DieuChinhThongTinDocSo uc_DieuChinhThonTinDocSo;
         UC_InPhieuTieuThuKH uc_InPhieuTieuThuKH;
+        UC_InDanhSachDongCua uc_InDanhSachDongCua;
         UC_NhanDuLieu uc_NhanDuLieu;
         UC_CapNhatHoaDon uc_CapNhatHoaDon;
         UC_ChuyenMayDocSo uc_ChuyenMayDocSo;
@@ -121,6 +122,11 @@ namespace PhanQuyen
             {
                 uc_ChuyenBilling.Height = stkMain.ActualHeight;
                 uc_ChuyenBilling.Width = stkMain.ActualWidth;
+            }
+            if (uc_InDanhSachDongCua != null)
+            {
+                uc_InDanhSachDongCua.Height = stkMain.ActualHeight;
+                uc_InDanhSachDongCua.Width = stkMain.ActualWidth;
             }
         }
 
@@ -221,6 +227,15 @@ namespace PhanQuyen
             stkMain.Children.Add(uc_ChuyenBilling);
         }
 
+        private void ribBtnInDanhSachDongCua_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_InDanhSachDongCua == null)
+                uc_InDanhSachDongCua = new UC_InDanhSachDongCua();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_InDanhSachDongCua);
+        }
         private void ribBtnHoanTatDocSo_Click(object sender, RoutedEventArgs e)
         {
             if (System.Windows.Forms.MessageBox.Show("Bạn có chắc chắn hoàn tất dữ liệu đọc số không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != System.Windows.Forms.DialogResult.Yes)
@@ -254,6 +269,7 @@ namespace PhanQuyen
                 System.Windows.Forms.MessageBox.Show("Lỗi khi hoàn tất đọc số: " + ex.Message);
             }
         }
+
     }
 
     public static class CustomCommands

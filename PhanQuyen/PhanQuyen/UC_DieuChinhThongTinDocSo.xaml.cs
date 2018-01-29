@@ -176,28 +176,7 @@ namespace PhanQuyen
                         MessageBox.Show("Cập nhật thành công !", "Thông báo");
                     else
                         MessageBox.Show("Lỗi khi cập nhật !", "Thông báo");
-                    //PCData pc = new PCData(GV.connString);
-                    //string danhba = this.txtDanhBa.Text.Trim();
-                    //pc.PCCommand.Parameters.Add(new SqlParameter("@codeMoi", (object)this.txtCodeMoi.Text.Trim()));
-                    //pc.PCCommand.Parameters.Add(new SqlParameter("@chiSoMoi", (object)this.txtCSMoi.Text.Trim()));
-                    //pc.PCCommand.Parameters.Add(new SqlParameter("@tieuThuMoi", (object)this.txtTieuThuMoi.Text.Trim()));
-                    //pc.PCCommand.Parameters.Add(new SqlParameter("@ghiChuDS", (object)this.txtGhiChuDS.Text.Trim()));
-                    //pc.PCCommand.Parameters.Add(new SqlParameter("@ghiChuTV", (object)this.txtGhiChuTV.Text.Trim()));
-                    //pc.PCCommand.Parameters.Add(new SqlParameter("@ghiChuKH", (object)this.txtGhiChuKH.Text.Trim()));
-                    //pc.PCCommand.Parameters.Add(new SqlParameter("@ttDHNMoi", (object)this.cbbKyHieuDS.Text));
-                    //pc.PCCommand.Parameters.Add(new SqlParameter("@CSCu", (object)this.txtCSCu.Text.Trim()));
-                    //SqlParameter sqlParameter = new SqlParameter("@ngayCapNhat", SqlDbType.DateTime);
-                    //sqlParameter.Value = (object)DateTime.Now;
-                    //pc.PCAdapter.SelectCommand.Parameters.Add(sqlParameter);
-                    //string sqlstatement = "Update DocSo set CodeMoi = @codeMoi,CSMoi = @chiSoMoi,TieuThuMoi = @tieuThuMoi, GhiChuDS = @ghiChuDS, GhiChuTV = @ghiChuTV, GhiChuKH = @ghiChuKH, TTDHNMoi = @ttDHNMoi, CSCu = @CSCu, StaCapNhat = '1', NgayCapNhat = @ngayCapNhat, NVCapNhat = '" + GV.UserID + "' where DanhBa = '" + danhba + "' and Nam = " + this.cbbNam.Text + " and Ky = " + this.cbbKy.Text + " and Dot = " + this.cbbDot.Text;
-                    //if (pc.GetExecuteNonQuerry(sqlstatement) > 0)
-                    //{
-                    //    this.CapNhatIndex(danhba, this._index.ToString(), this.cbbKyHieuDS.Text, this.txtCodeMoi.Text, this.txtCSMoi.Text, this.txtTieuThuMoi.Text, this.txtGhiChuDS.Text, this.txtCSCu.Text, this.txtGhiChuTV.Text);
-                    //    this.CellClick(danhba);
-                    //}
-                    //pc.PCCommand.Parameters.Clear();
-                    //pc.PCAdapter.SelectCommand.Parameters.Clear();
-                    //UTIex.ReleasePCDATA(ref pc);
+
                 }
                 catch (SqlException ex)
                 {
@@ -304,7 +283,6 @@ namespace PhanQuyen
 
             CanhBaoBatThuong();
             Refresh();
-
         }
         private void Sum()
         {
@@ -477,7 +455,7 @@ namespace PhanQuyen
 
         private void btnGetData_Click(object sender, RoutedEventArgs e)
         {
-            docSoList = DataDBViewModel.Instance.getAllDocSos(year, month, date, machine);
+            docSoList = DataDBViewModel.Instance.getAllDocSos(year, month, date,group, machine);
             dtgridMain.ItemsSource = null;
             dtgridMain.Items.Clear();
             dtgridMain.ItemsSource = docSoList;

@@ -19,6 +19,9 @@ namespace ViewModel
         private static DataDBViewModel _instance;
         private DataClassesLocalDataContext localContext;
         private DataClassServerDataContext serverContext;
+
+        private const String ALL = "Tất cả";
+
         private const String TTKH_COLUMN_TENKH = "TenKH";
         private const String TTKH_COLUMN_HIEU = "Hieu";
         private const String TTKH_COLUMN_CO = "Co";
@@ -36,6 +39,20 @@ namespace ViewModel
         private const String TTKH_COLUMN_CSMOI = "CSMoi";
         private const String TTKH_COLUMN_TIEUTHU = "TieuThu";
         private const String TTKH_COLUMN_GHICHU = "GhiChu";//todo
+
+        private const String DC_COLUMN_TOID = "ToID";
+        private const String DC_COLUMN_KY = "Ky";
+        private const String DC_COLUMN_DOT = "Dot";
+        private const String DC_COLUMN_MAY = "May";
+        private const String DC_COLUMN_USERNAME = "Username";
+        private const String DC_COLUMN_MLT = "MLT1";
+        private const String DC_COLUMN_SDT = "SDT";
+        private const String DC_COLUMN_DANHBA = "DanhBa";
+        private const String DC_COLUMN_TENKH = "TenKH";
+        private const String DC_COLUMN_DUONG = "Duong";
+        private const String DC_COLUMN_CODEMOI = "CodeMoi";
+        private const String DC_COLUMN_CSMOI = "CsMoi";
+        private const String DC_COLUMN_TIEUTHUMOI = "TieuThuMoi";
         string pattern = "dd/MM/yyyy";
         public static DataDBViewModel Instance
         {
@@ -61,13 +78,15 @@ namespace ViewModel
                     //})
                     .ToList();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
 
             }
             return data;
 
         }
+
+
 
         public int CheckIzDS()
         {
@@ -88,7 +107,55 @@ namespace ViewModel
                         select new { x.Ky, x.Nam, danhBa, x.CodeMoi, x.TTDHNMoi, x.CSCu, x.CSMoi, x.TieuThuMoi, x.GhiChuDS, x.GhiChuKH, x.GhiChuTV }).ToList();
             return data;
         }
+        public DataTable GetListCloseDoor(int year, string month, string date, string machine)
+        {
+            List<KHDongCua> query;
+            if (machine.Equals(ALL))
+                query = serverContext.ExecuteQuery<KHDongCua>("SELECT  0 AS STT,ds.SDT,  K.MLT2, K.DANHBA" +
+                    ", RTRIM(K.TENKH) AS TENKH, CASE WHEN K.SOMOI IS NULL OR K.SOMOI = '' " +
+                    "THEN K.SO + ' ' + K.DUONG ELSE K.SO + '('+ K.SOMOI +')' + K.DUONG END AS Duong" +
+                    ",m.NhanVienID as Username," +
+                    "ds.CodeCu, DS.CodeMoi, DS.CSCu" +
+                    ",DS.TieuThuCu" +
+                    ",m.ToID" +
+                    ",k.SoThan as TamTinh " +
+                    " FROM DocSo as DS RIGHT OUTER JOIN KHACHHANG AS K ON DS.DANHBA = K.DANHBA Inner JOIN MayDS as m on DS.May = m.may " +
+                    "WHERE ds.nam = " + year + " and DS.KY = " + month + " AND DS.DOT = " + date + " AND DS.CodeMoi LIKE'F%' ORDER BY K.MLT2").ToList();
+            else query = serverContext.ExecuteQuery<KHDongCua>("SELECT  0 AS STT,ds.SDT,  K.MLT2, K.DANHBA, RTRIM(K.TENKH) AS TENKH, CASE WHEN K.SOMOI IS NULL OR K.SOMOI = '' THEN K.SO + ' ' + K.DUONG ELSE K.SO + '('+ K.SOMOI +')' + K.DUONG END AS Duong,m.NhanVienID as Username,ds.nam, DS.KY, DS.DOT, DS.MAY,ds.CodeCu, DS.CodeMoi, DS.CSCu,DS.TieuThuCu,m.ToID,k.SoThan as TamTinh  FROM DocSo as DS RIGHT OUTER JOIN KHACHHANG AS K ON DS.DANHBA = K.DANHBA Inner JOIN MayDS as m on DS.May = m.may WHERE ds.nam = " + year + " and DS.KY = " + month + " AND DS.DOT = " + date + " and ds.may = " + machine + " AND DS.CodeMoi LIKE'F%' ORDER BY K.MLT2").ToList();
+            DataTable table = new DataTable();
+            table.Columns.Add(DC_COLUMN_TOID, typeof(string));
+            table.Columns.Add(DC_COLUMN_KY, typeof(string));
+            table.Columns.Add(DC_COLUMN_DOT, typeof(string));
+            table.Columns.Add(DC_COLUMN_MAY, typeof(string));
+            table.Columns.Add(DC_COLUMN_MLT, typeof(string));
+            table.Columns.Add(DC_COLUMN_SDT, typeof(string));
+            table.Columns.Add(DC_COLUMN_DANHBA, typeof(string));
+            table.Columns.Add(DC_COLUMN_TENKH, typeof(string));
+            table.Columns.Add(DC_COLUMN_DUONG, typeof(string));
+            table.Columns.Add(DC_COLUMN_CODEMOI, typeof(string));
+            table.Columns.Add(DC_COLUMN_CSMOI, typeof(string));
+            table.Columns.Add(DC_COLUMN_TIEUTHUMOI, typeof(string));
 
+            foreach (var item in query)
+            {
+                DataRow row = table.NewRow();
+                row[DC_COLUMN_TOID] = item.ToID;
+                row[DC_COLUMN_KY] = month ;
+                row[DC_COLUMN_DOT] = date;
+                row[DC_COLUMN_MAY] = machine;
+                row[DC_COLUMN_MLT] = item.MLT2;
+                row[DC_COLUMN_SDT] = item.SDT;
+                row[DC_COLUMN_DANHBA] = item.DANHBA;
+                row[DC_COLUMN_TENKH] = item.TENKH;
+                row[DC_COLUMN_DUONG] = item.Duong;
+                row[DC_COLUMN_CODEMOI] = item.CodeMoi;
+                row[DC_COLUMN_CSMOI] = item.CSCu;
+                row[DC_COLUMN_TIEUTHUMOI] = item.TieuThuCu;
+
+                table.Rows.Add(row);
+            }
+            return table;
+        }
         public DataTable GetInfoCheckCustomer2(int count, string str, string danhBa)
         {
 
@@ -200,7 +267,7 @@ namespace ViewModel
         public bool HoanTatDocSo()
         {
             var data = serverContext.BillStates.SingleOrDefault(row => row.BillID == User.Instance.Year + User.Instance.Month + User.Instance.Date);
-            if(data != null)
+            if (data != null)
             {
                 data.izDS = "1";
                 serverContext.SubmitChanges();
@@ -381,12 +448,22 @@ namespace ViewModel
                         select x).FirstOrDefault();
             return data;
         }
-        public List<DocSo> getAllDocSos(int year, string month, string date, string machine)
+        public List<DocSo> getAllDocSos(int year, string month, string date, int xGroup, string machine)
         {
-            var data = (from x in serverContext.DocSos
-                        where x.Nam == year && x.Ky == month && x.Dot == date && x.May == machine
-                        select x).ToList();
-            return data;
+            if (machine.Equals(ALL))
+            {
+                var data = (from x in serverContext.DocSos
+                            where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup
+                            select x).ToList();
+                return data;
+            }
+            else
+            {
+                var data = (from x in serverContext.DocSos
+                            where x.Nam == year && x.Ky == month && x.Dot == date && x.May == machine
+                            select x).ToList();
+                return data;
+            }
         }
 
         public byte[] getImageByDanhBa(String danhBa, DateTime gioGhi)
@@ -743,6 +820,7 @@ namespace ViewModel
                 items = (from x in serverContext.DocSos
                          where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup
                          select x.May).Distinct().ToList();
+            lstMachine.Add(ALL);
             foreach (String item in items)
                 lstMachine.Add(item);
             return lstMachine;

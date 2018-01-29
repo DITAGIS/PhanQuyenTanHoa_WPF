@@ -130,7 +130,8 @@
                     <RibbonButton Label="Thống kê đồng hồ nước trên mạng"  LargeImageSource="/PhanQuyen;component/Images/browser.png"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="In">
-                    <RibbonButton Label="In danh sách đóng cửa"  LargeImageSource="/PhanQuyen;component/Images/door.png"></RibbonButton>
+                    <RibbonButton Name="ribBtnInDanhSachDongCua" Label="In danh sách đóng cửa"  LargeImageSource="/PhanQuyen;component/Images/door.png"
+                                  Click="ribBtnInDanhSachDongCua_Click"></RibbonButton>
                     <RibbonButton Label="In danh sách tiêu thụ bất thường"  LargeImageSource="/PhanQuyen;component/Images/alert.png"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Báo cáo">
