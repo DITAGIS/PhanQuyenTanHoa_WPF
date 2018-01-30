@@ -134,7 +134,9 @@
                 <RibbonGroup Header="In">
                     <RibbonButton Name="ribBtnInDanhSachDongCua" Label="In danh sách đóng cửa"  LargeImageSource="/PhanQuyen;component/Images/door.png"
                                   Click="ribBtnInDanhSachDongCua_Click"></RibbonButton>
-                    <RibbonButton Label="In danh sách tiêu thụ bất thường"  LargeImageSource="/PhanQuyen;component/Images/alert.png"></RibbonButton>
+                    <RibbonButton Label="In danh sách tiêu thụ bất thường"  LargeImageSource="/PhanQuyen;component/Images/alert.png"
+                                  Name="ribBtnInTieuThuBatThuong"
+                                  Click="ribBtnInTieuThuBatThuong_Click"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Báo cáo">
                     <RibbonButton Label="Báo cáo tổng hợp"  LargeImageSource="/PhanQuyen;component/Images/chart.png"

@@ -9,66 +9,72 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>DANH SÁCH ĐỒNG HỒ NƯỚC ĐÓNG CỬA TỔ </Value>
+                <Value>DANH SÁCH KHÁCH HÀNG TIÊU THỤ BẤT THƯỜNG KỲ </Value>
                 <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>16pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!ToID.Value</Value>
-                <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>16pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> KỲ </Value>
-                <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>16pt</FontSize>
+                  <FontSize>14pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=Fields!Ky.Value</Value>
                 <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>16pt</FontSize>
+                  <FontSize>14pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> ĐỢT </Value>
+                <Value xml:space="preserve"> </Value>
                 <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>16pt</FontSize>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>ĐỢT  </Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=Fields!Dot.Value</Value>
                 <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>16pt</FontSize>
+                  <FontSize>14pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> MÁY </Value>
+                <Value> TỔ </Value>
                 <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>16pt</FontSize>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!ToID.Value</Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> Máy </Value>
+                <Style>
+                  <FontSize>14pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=Fields!May.Value</Value>
                 <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>16pt</FontSize>
+                  <FontSize>14pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -79,10 +85,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>0.13542in</Top>
-        <Left>0.14329in</Left>
-        <Height>0.52083in</Height>
-        <Width>7.16134in</Width>
+        <Top>0.36195cm</Top>
+        <Left>0.2032cm</Left>
+        <Height>1.49958cm</Height>
+        <Width>15.67625cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -93,54 +99,13 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="Textbox21">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Nhân viên: </Value>
-                <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>13pt</FontSize>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!Username.Value</Value>
-                <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>13pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox21</rd:DefaultName>
-        <Top>0.78125in</Top>
-        <Left>0.14329in</Left>
-        <Height>0.25in</Height>
-        <Width>7.16134in</Width>
-        <ZIndex>1</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Tablix Name="Tablix2">
+      <Tablix Name="Tablix3">
         <TablixCorner>
           <TablixCornerRows>
             <TablixCornerRow>
               <TablixCornerCell>
                 <CellContents>
-                  <Textbox Name="Textbox67">
+                  <Textbox Name="Textbox68">
                     <CanGrow>true</CanGrow>
                     <KeepTogether>true</KeepTogether>
                     <Paragraphs>
@@ -149,8 +114,6 @@
                           <TextRun>
                             <Value>MLT</Value>
                             <Style>
-                              <FontFamily>times New Roman</FontFamily>
-                              <FontSize>13pt</FontSize>
                               <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
@@ -164,8 +127,6 @@
                           <TextRun>
                             <Value>SĐT</Value>
                             <Style>
-                              <FontFamily>times New Roman</FontFamily>
-                              <FontSize>13pt</FontSize>
                               <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
@@ -210,7 +171,7 @@
               </TablixCornerCell>
               <TablixCornerCell>
                 <CellContents>
-                  <Textbox Name="Textbox62">
+                  <Textbox Name="Textbox63">
                     <CanGrow>true</CanGrow>
                     <KeepTogether>true</KeepTogether>
                     <Paragraphs>
@@ -219,8 +180,6 @@
                           <TextRun>
                             <Value>Danh bạ</Value>
                             <Style>
-                              <FontFamily>times New Roman</FontFamily>
-                              <FontSize>13pt</FontSize>
                               <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
@@ -265,7 +224,7 @@
               </TablixCornerCell>
               <TablixCornerCell>
                 <CellContents>
-                  <Textbox Name="Textbox57">
+                  <Textbox Name="Textbox58">
                     <CanGrow>true</CanGrow>
                     <KeepTogether>true</KeepTogether>
                     <Paragraphs>
@@ -274,8 +233,6 @@
                           <TextRun>
                             <Value>Tên khách hàng</Value>
                             <Style>
-                              <FontFamily>times New Roman</FontFamily>
-                              <FontSize>13pt</FontSize>
                               <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
@@ -324,15 +281,15 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.07592in</Width>
+              <Width>0.703in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.98425in</Width>
+              <Width>0.90092in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.58333in</Height>
+              <Height>0.4375in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -345,8 +302,6 @@
                             <TextRun>
                               <Value>=Fields!CodeMoi.Value</Value>
                               <Style>
-                                <FontFamily>times New Roman</FontFamily>
-                                <FontSize>13pt</FontSize>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
                             </TextRun>
@@ -360,23 +315,6 @@
                             <TextRun>
                               <Value>=Fields!CSMoi.Value</Value>
                               <Style>
-                                <FontFamily>times New Roman</FontFamily>
-                                <FontSize>13pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!TieuThuMoi.Value</Value>
-                              <Style>
-                                <FontFamily>times New Roman</FontFamily>
-                                <FontSize>13pt</FontSize>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
                             </TextRun>
@@ -421,17 +359,28 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="CSMoi">
+                    <Textbox Name="TieuThuMoi">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Fields!TieuThuMoi.Value</Value>
                               <Style>
-                                <FontFamily>times New Roman</FontFamily>
-                                <FontSize>13pt</FontSize>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!TBTT.Value</Value>
+                              <Style>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
                             </TextRun>
@@ -441,7 +390,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>CSMoi</rd:DefaultName>
+                      <rd:DefaultName>TieuThuMoi</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -484,9 +433,13 @@
               <Group Name="KY">
                 <GroupExpressions>
                   <GroupExpression>=Fields!Ky.Value</GroupExpression>
+                  <GroupExpression>=Fields!Nam.Value</GroupExpression>
                 </GroupExpressions>
               </Group>
               <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!Nam.Value</Value>
+                </SortExpression>
                 <SortExpression>
                   <Value>=Fields!Ky.Value</Value>
                 </SortExpression>
@@ -496,7 +449,7 @@
                   <TablixHeader>
                     <Size>0.70834in</Size>
                     <CellContents>
-                      <Textbox Name="KY1">
+                      <Textbox Name="KY2">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
@@ -505,8 +458,6 @@
                               <TextRun>
                                 <Value>Kỳ: </Value>
                                 <Style>
-                                  <FontFamily>times New Roman</FontFamily>
-                                  <FontSize>13pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                   <Format>0;(0)</Format>
                                 </Style>
@@ -514,8 +465,6 @@
                               <TextRun>
                                 <Value>=Fields!Ky.Value</Value>
                                 <Style>
-                                  <FontFamily>times New Roman</FontFamily>
-                                  <FontSize>13pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                   <Format>0;(0)</Format>
                                 </Style>
@@ -528,10 +477,8 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Code</Value>
+                                <Value>Code Mới</Value>
                                 <Style>
-                                  <FontFamily>times New Roman</FontFamily>
-                                  <FontSize>13pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                   <Format>0;(0)</Format>
                                 </Style>
@@ -544,26 +491,8 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>CS</Value>
+                                <Value>CS Mới</Value>
                                 <Style>
-                                  <FontFamily>times New Roman</FontFamily>
-                                  <FontSize>13pt</FontSize>
-                                  <FontWeight>Bold</FontWeight>
-                                  <Format>0;(0)</Format>
-                                </Style>
-                              </TextRun>
-                            </TextRuns>
-                            <Style>
-                              <TextAlign>Center</TextAlign>
-                            </Style>
-                          </Paragraph>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value>Tiêu thụ</Value>
-                                <Style>
-                                  <FontFamily>times New Roman</FontFamily>
-                                  <FontSize>13pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
                                   <Format>0;(0)</Format>
                                 </Style>
@@ -624,10 +553,21 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>CS Mới</Value>
+                            <Value>Tiêu thụ mới</Value>
                             <Style>
-                              <FontFamily>times New Roman</FontFamily>
-                              <FontSize>13pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>TB Tiêu thụ</Value>
+                            <Style>
                               <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
@@ -684,7 +624,7 @@
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>1.08634in</Size>
+                    <Size>0.90717in</Size>
                     <CellContents>
                       <Textbox Name="Textbox71">
                         <CanGrow>true</CanGrow>
@@ -695,8 +635,6 @@
                               <TextRun>
                                 <Value>=Fields!MLT2.Value</Value>
                                 <Style>
-                                  <FontFamily>times New Roman</FontFamily>
-                                  <FontSize>13pt</FontSize>
                                   <FontWeight>Normal</FontWeight>
                                 </Style>
                               </TextRun>
@@ -710,8 +648,6 @@
                               <TextRun>
                                 <Value>=Fields!SDT.Value</Value>
                                 <Style>
-                                  <FontFamily>times New Roman</FontFamily>
-                                  <FontSize>13pt</FontSize>
                                   <FontWeight>Normal</FontWeight>
                                 </Style>
                               </TextRun>
@@ -757,7 +693,7 @@
                   <TablixMembers>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>1.14258in</Size>
+                        <Size>0.98425in</Size>
                         <CellContents>
                           <Textbox Name="DanhBa1">
                             <CanGrow>true</CanGrow>
@@ -768,8 +704,6 @@
                                   <TextRun>
                                     <Value>=Fields!DanhBa.Value</Value>
                                     <Style>
-                                      <FontFamily>times New Roman</FontFamily>
-                                      <FontSize>13pt</FontSize>
                                       <FontWeight>Normal</FontWeight>
                                     </Style>
                                   </TextRun>
@@ -817,7 +751,7 @@
                           <TablixHeader>
                             <Size>1.76116in</Size>
                             <CellContents>
-                              <Textbox Name="Textbox61">
+                              <Textbox Name="Textbox62">
                                 <CanGrow>true</CanGrow>
                                 <KeepTogether>true</KeepTogether>
                                 <Paragraphs>
@@ -826,8 +760,6 @@
                                       <TextRun>
                                         <Value>=Fields!TenKH.Value</Value>
                                         <Style>
-                                          <FontFamily>times New Roman</FontFamily>
-                                          <FontSize>13pt</FontSize>
                                           <FontWeight>Normal</FontWeight>
                                         </Style>
                                       </TextRun>
@@ -841,8 +773,6 @@
                                       <TextRun>
                                         <Value>=Fields!Duong.Value</Value>
                                         <Style>
-                                          <FontFamily>times New Roman</FontFamily>
-                                          <FontSize>13pt</FontSize>
                                           <FontWeight>Normal</FontWeight>
                                         </Style>
                                       </TextRun>
@@ -894,17 +824,20 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>dtsInDongCua</DataSetName>
+        <DataSetName>dtsInTieuThuBatThuong</DataSetName>
         <SortExpressions>
+          <SortExpression>
+            <Value>=Fields!Nam.Value</Value>
+          </SortExpression>
           <SortExpression>
             <Value>=Fields!Ky.Value</Value>
           </SortExpression>
         </SortExpressions>
-        <Top>1.22917in</Top>
-        <Left>0.75in</Left>
-        <Height>1.29167in</Height>
-        <Width>6.05025in</Width>
-        <ZIndex>2</ZIndex>
+        <Top>0.94791in</Top>
+        <Left>0.705in</Left>
+        <Height>1.14584in</Height>
+        <Width>5.2565in</Width>
+        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -928,11 +861,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox70</rd:DefaultName>
-        <Top>7.30223cm</Top>
-        <Left>12.59064cm</Left>
+        <Top>5.81202cm</Top>
+        <Left>10.01924cm</Left>
         <Height>0.6cm</Height>
         <Width>5.86021cm</Width>
-        <ZIndex>3</ZIndex>
+        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -962,11 +895,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox72</rd:DefaultName>
-        <Top>7.97279cm</Top>
-        <Left>12.59064cm</Left>
+        <Top>6.48258cm</Top>
+        <Left>10.01924cm</Left>
         <Height>0.6cm</Height>
         <Width>5.86021cm</Width>
-        <ZIndex>4</ZIndex>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -978,10 +911,10 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>9.60996cm</Height>
+    <Height>7.24958cm</Height>
     <Style />
   </Body>
-  <Width>18.97648cm</Width>
+  <Width>16.97529cm</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
@@ -994,18 +927,18 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="dtsInDongCua">
+    <DataSource Name="dtsInTieuThuBatThuong">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>0de31b3f-7a00-491c-b4da-248878610d42</rd:DataSourceID>
+      <rd:DataSourceID>a791febf-1548-4dfd-8f01-01aa9281c964</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="dtsInDongCua">
+    <DataSet Name="dtsInTieuThuBatThuong">
       <Query>
-        <DataSourceName>dtsInDongCua</DataSourceName>
+        <DataSourceName>dtsInTieuThuBatThuong</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -1013,13 +946,13 @@
           <DataField>DanhBa</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="MLT2">
-          <DataField>MLT2</DataField>
+        <Field Name="Duong">
+          <DataField>Duong</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="SDT">
-          <DataField>SDT</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="Nam">
+          <DataField>Nam</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="Ky">
           <DataField>Ky</DataField>
@@ -1033,25 +966,21 @@
           <DataField>May</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="CSCu">
-          <DataField>CSCu</DataField>
+        <Field Name="TBTT">
+          <DataField>TBTT</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="CSMoi">
           <DataField>CSMoi</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="CodeCu">
-          <DataField>CodeCu</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="CodeMoi">
           <DataField>CodeMoi</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TieuThuCu">
-          <DataField>TieuThuCu</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="TTDHNMoi">
+          <DataField>TTDHNMoi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="TieuThuMoi">
           <DataField>TieuThuMoi</DataField>
@@ -1061,21 +990,21 @@
           <DataField>TenKH</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="So">
-          <DataField>So</DataField>
+        <Field Name="SoMoi">
+          <DataField>SoMoi</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Duong">
-          <DataField>Duong</DataField>
+        <Field Name="NVGHI">
+          <DataField>NVGHI</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Username">
-          <DataField>Username</DataField>
+        <Field Name="MLT2">
+          <DataField>MLT2</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TamTinh">
-          <DataField>TamTinh</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="SDT">
+          <DataField>SDT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ToID">
           <DataField>ToID</DataField>
@@ -1083,15 +1012,15 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>dtsInDongCua</rd:DataSetName>
-        <rd:SchemaPath>E:\VietA-Sources\CapNuoc\Cap Nuoc Ben Thanh\CapNuoc20150116\CapNuocTA\dtsInDongCua.xsd</rd:SchemaPath>
-        <rd:TableName>dtsInDongCua</rd:TableName>
+        <rd:DataSetName>dtsInTieuThuBatThuong</rd:DataSetName>
+        <rd:SchemaPath>E:\VietA-Sources\CapNuoc\Cap Nuoc Ben Thanh\CapNuoc20150116\CapNuocTA\dtsInTieuThuBatThuong.xsd</rd:SchemaPath>
+        <rd:TableName>dtsInTieuThuBatThuong</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>dtsInDongCuaTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>dtsInTieuThuBatThuongTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>87f68cb0-dc60-45e9-b8b3-4837975f24ca</rd:ReportID>
+  <rd:ReportID>c2621716-284c-4682-a6a2-9ab07fbd7e13</rd:ReportID>
 </Report>

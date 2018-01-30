@@ -24,7 +24,7 @@ namespace PhanQuyen
     /// <summary>
     /// Interaction logic for UC_DieuChinhThongTinDocSo.xaml
     /// </summary>
-    public partial class UC_DieuChinhThongTinDocSo : UserControl
+    public partial class UC_DieuChinhThongTinDocSo : System.Windows.Controls.UserControl
     {
         private User user;
         private int year, group;

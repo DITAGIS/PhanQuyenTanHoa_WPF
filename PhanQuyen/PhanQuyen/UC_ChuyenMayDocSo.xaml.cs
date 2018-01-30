@@ -19,7 +19,7 @@ namespace PhanQuyen
     /// <summary>
     /// Interaction logic for UC_ChuyenMayDocSo.xaml
     /// </summary>
-    public partial class UC_ChuyenMayDocSo : UserControl
+    public partial class UC_ChuyenMayDocSo : System.Windows.Controls.UserControl
     {
         String date, machineLeft, machineRight;
         public UC_ChuyenMayDocSo()

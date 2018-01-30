@@ -23,7 +23,7 @@ namespace PhanQuyen
     /// <summary>
     /// Interaction logic for UC_ThongKeDHNTheoDotSo.xaml
     /// </summary>
-    public partial class UC_ThongKeDHNTheoDotSo : UserControl
+    public partial class UC_ThongKeDHNTheoDotSo : System.Windows.Controls.UserControl
     {
         public UC_ThongKeDHNTheoDotSo()
         {

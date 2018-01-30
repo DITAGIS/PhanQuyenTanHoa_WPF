@@ -22,7 +22,7 @@ namespace PhanQuyen
     /// <summary>
     /// Interaction logic for UC_ThongKeDHNSauDocSo.xaml
     /// </summary>
-    public partial class UC_ThongKeDHNSauDocSo : UserControl
+    public partial class UC_ThongKeDHNSauDocSo : System.Windows.Controls.UserControl
     {
         private int year, group;
         private String month, date, machine;

@@ -22,7 +22,7 @@ namespace PhanQuyen
     /// <summary>
     /// Interaction logic for UC_InPhieuTieuThuKH.xaml
     /// </summary>
-    public partial class UC_InPhieuTieuThuKH : UserControl
+    public partial class UC_InPhieuTieuThuKH : System.Windows.Controls.UserControl
     {
         private int year;
         public UC_InPhieuTieuThuKH()

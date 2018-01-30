@@ -18,7 +18,7 @@ namespace PhanQuyen
     /// <summary>
     /// Interaction logic for UC_ChuyenBilling.xaml
     /// </summary>
-    public partial class UC_ChuyenBilling : UserControl
+    public partial class UC_ChuyenBilling : System.Windows.Controls.UserControl
     {
         public UC_ChuyenBilling()
         {

@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
+using PhanQuyen.UserControl.BaoCao;
 using ViewModel;
 
 namespace PhanQuyen
@@ -26,6 +27,7 @@ namespace PhanQuyen
         UC_DieuChinhThongTinDocSo uc_DieuChinhThonTinDocSo;
         UC_InPhieuTieuThuKH uc_InPhieuTieuThuKH;
         UC_InDanhSachDongCua uc_InDanhSachDongCua;
+        UC_InTieuThuBatThuong uc_InTieuThuBatThuong;
         UC_NhanDuLieu uc_NhanDuLieu;
         UC_CapNhatHoaDon uc_CapNhatHoaDon;
         UC_ChuyenMayDocSo uc_ChuyenMayDocSo;
@@ -139,6 +141,11 @@ namespace PhanQuyen
             {
                 uc_ThongKeDHNTheoDotSo.Height = stkMain.ActualHeight;
                 uc_ThongKeDHNTheoDotSo.Width = stkMain.ActualWidth;
+            }
+            if (uc_InTieuThuBatThuong != null)
+            {
+                uc_InTieuThuBatThuong.Height = stkMain.ActualHeight;
+                uc_InTieuThuBatThuong.Width = stkMain.ActualWidth;
             }
         }
 
@@ -267,6 +274,15 @@ namespace PhanQuyen
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_ThongKeDHNTheoDotSo);
         }
+        private void ribBtnInTieuThuBatThuong_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_InTieuThuBatThuong == null)
+                uc_InTieuThuBatThuong = new UC_InTieuThuBatThuong();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_InTieuThuBatThuong);
+        }
         private void ribBtnHoanTatDocSo_Click(object sender, RoutedEventArgs e)
         {
             if (System.Windows.Forms.MessageBox.Show("Bạn có chắc chắn hoàn tất dữ liệu đọc số không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != System.Windows.Forms.DialogResult.Yes)
@@ -301,7 +317,7 @@ namespace PhanQuyen
             }
         }
 
-     
+       
     }
 
     public static class CustomCommands

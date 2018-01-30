@@ -19,7 +19,7 @@ namespace PhanQuyen
     /// <summary>
     /// Interaction logic for UC_NhanDuLieu.xaml
     /// </summary>
-    public partial class UC_NhanDuLieu : UserControl
+    public partial class UC_NhanDuLieu : System.Windows.Controls.UserControl
     {
         private GetDaTaWindow _getDataWindow;
         public UC_NhanDuLieu()

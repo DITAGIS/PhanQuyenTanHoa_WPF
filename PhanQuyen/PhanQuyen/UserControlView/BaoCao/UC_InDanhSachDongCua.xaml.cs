@@ -22,15 +22,14 @@
      /// <summary>
      /// Interaction logic for UC_InDanhSachDongCua.xaml
      /// </summary>
-     public partial class UC_InDanhSachDongCua : UserControl
-     {
+     public partial class UC_InDanhSachDongCua : System.Windows.Controls.UserControl
+    {
          private int year;
          private string month, date, machine;
          public UC_InDanhSachDongCua()
          {
              InitializeComponent();
              cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
-             cbbYear.SelectedValue = User.Instance.Year;
          }
  
          private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)

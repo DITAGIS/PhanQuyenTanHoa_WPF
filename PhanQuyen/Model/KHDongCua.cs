@@ -23,6 +23,7 @@ namespace Model
         public string CodeMoi { get; set; }
         public int CSCu { get; set; }
         public int TieuThuCu { get; set; }
+        public int TBTT { get; set; }
         public string ToID { get; set; }
         public string TamTinh { get; set; }
     }

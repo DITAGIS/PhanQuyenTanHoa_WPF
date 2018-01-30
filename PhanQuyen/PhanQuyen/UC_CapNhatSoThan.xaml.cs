@@ -18,7 +18,7 @@ namespace PhanQuyen
     /// <summary>
     /// Interaction logic for UC_CapNhatSoThan.xaml
     /// </summary>
-    public partial class UC_CapNhatSoThan : UserControl
+    public partial class UC_CapNhatSoThan : System.Windows.Controls.UserControl
     {
         public UC_CapNhatSoThan()
         {

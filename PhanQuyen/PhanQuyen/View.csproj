@@ -111,13 +111,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="GetDaTaWindow.xaml.cs">
+    <Compile Include="UserControlView\BaoCao\UC_InTieuThuBatThuong.xaml.cs">
+      <DependentUpon>UC_InTieuThuBatThuong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowView\GetDaTaWindow.xaml.cs">
       <DependentUpon>GetDaTaWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InPhieuKiemTraWindow.xaml.cs">
+    <Compile Include="WindowView\InPhieuKiemTraWindow.xaml.cs">
       <DependentUpon>InPhieuKiemTraWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_BaoCaoTongHop.xaml.cs">
+    <Compile Include="UserControlView\BaoCao\UC_BaoCaoTongHop.xaml.cs">
       <DependentUpon>UC_BaoCaoTongHop.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC_CapNhatHoaDon.xaml.cs">
@@ -135,10 +138,10 @@
     <Compile Include="UC_DieuChinhThongTinDocSo.xaml.cs">
       <DependentUpon>UC_DieuChinhThongTinDocSo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_InDanhSachDongCua.xaml.cs">
+    <Compile Include="UserControlView\BaoCao\UC_InDanhSachDongCua.xaml.cs">
       <DependentUpon>UC_InDanhSachDongCua.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_InPhieuTieuThuKH.xaml.cs">
+    <Compile Include="UserControlView\BaoCao\UC_InPhieuTieuThuKH.xaml.cs">
       <DependentUpon>UC_InPhieuTieuThuKH.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC_KiemTraDuLieu.xaml.cs">
@@ -147,24 +150,28 @@
     <Compile Include="UC_NhanDuLieu.xaml.cs">
       <DependentUpon>UC_NhanDuLieu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ThongKeDHNSauDocSo.xaml.cs">
+    <Compile Include="UserControlView\BaoCao\UC_ThongKeDHNSauDocSo.xaml.cs">
       <DependentUpon>UC_ThongKeDHNSauDocSo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UC_ThongKeDHNTheoDotSo.xaml.cs">
+    <Compile Include="UserControlView\BaoCao\UC_ThongKeDHNTheoDotSo.xaml.cs">
       <DependentUpon>UC_ThongKeDHNTheoDotSo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="XemGhiChuWindow.xaml.cs">
+    <Compile Include="WindowView\XemGhiChuWindow.xaml.cs">
       <DependentUpon>XemGhiChuWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="GetDaTaWindow.xaml">
+    <Page Include="UserControlView\BaoCao\UC_InTieuThuBatThuong.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="InPhieuKiemTraWindow.xaml">
+    <Page Include="WindowView\GetDaTaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LogInWindow.xaml">
+    <Page Include="WindowView\InPhieuKiemTraWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowView\LogInWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -172,15 +179,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LogInWindow.xaml.cs">
+    <Compile Include="WindowView\LogInWindow.xaml.cs">
       <DependentUpon>LogInWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="WindowView\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_BaoCaoTongHop.xaml">
+    <Page Include="UserControlView\BaoCao\UC_BaoCaoTongHop.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -204,11 +211,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_InDanhSachDongCua.xaml">
+    <Page Include="UserControlView\BaoCao\UC_InDanhSachDongCua.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_InPhieuTieuThuKH.xaml">
+    <Page Include="UserControlView\BaoCao\UC_InPhieuTieuThuKH.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,21 +227,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_ThongKeDHNSauDocSo.xaml">
+    <Page Include="UserControlView\BaoCao\UC_ThongKeDHNSauDocSo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UC_ThongKeDHNTheoDotSo.xaml">
+    <Page Include="UserControlView\BaoCao\UC_ThongKeDHNTheoDotSo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="XemGhiChuWindow.xaml">
+    <Page Include="WindowView\XemGhiChuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="WindowView\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -267,6 +274,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\rptInThongKeSauDocSo.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptInTieuThuBatThuong.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

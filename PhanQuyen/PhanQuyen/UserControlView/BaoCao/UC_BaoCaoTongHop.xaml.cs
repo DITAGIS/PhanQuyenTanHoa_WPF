@@ -21,7 +21,7 @@ namespace PhanQuyen
     /// <summary>
     /// Interaction logic for UC_BaoCaoTongHop.xaml
     /// </summary>
-    public partial class UC_BaoCaoTongHop : UserControl
+    public partial class UC_BaoCaoTongHop : System.Windows.Controls.UserControl
     {
         private int year, group;
         private String month, date, machine;
