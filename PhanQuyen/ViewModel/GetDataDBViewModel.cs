@@ -57,7 +57,10 @@ namespace ViewModel
         private const String DC_COLUMN_TIEUTHUMOI = "TieuThuMoi";
         private const String DC_COLUMN_TBTT = "TBTT";
 
+        private const String DHNTRENMANG_COLUMN_TOID = "ToID";
+        private const String DHNTRENMANG_COLUMN_MAY = "May";
         private const String DHNTRENMANG_COLUMN_KY = "KY";
+        private const String DHNTRENMANG_COLUMN_DOT = "Dot";
         private const String DHNTRENMANG_COLUMN_NAM = "NAM";
         private const String DHNTRENMANG_COLUMN_TITLE = "TITLE";
         private const String DHNTRENMANG_COLUMN_TITLE1 = "TITLE1";
@@ -281,37 +284,35 @@ namespace ViewModel
         }
         public DataTable GetGroup(object selectedValue)
         {
-            List<KHDongCua> query = new List<KHDongCua>();
+            List<DHNTrenMang> query = new List<DHNTrenMang>();
+            if (selectedValue.Equals(ALL))
+                query = serverContext.ExecuteQuery<DHNTrenMang>("Select Dot, May, COUNT(Danhba) AS Danhba FROM KhachHang WHERE HieuLuc = 1 GROUP BY Dot, May").ToList();
+            else query = serverContext.ExecuteQuery<DHNTrenMang>("SELECT m.ToID, kh.Dot, kh.May, COUNT(kh.DanhBa) as DanhBa FROM KhachHang kh Inner Join MayDS m on kh.May = m.May " +
+                "WHERE m.ToID = '" + selectedValue + "' AND kh.HieuLuc = 1 GROUP BY kh.Dot, kh.May,m.ToID").ToList();
             DataTable table = new DataTable();
-            table.Columns.Add(DC_COLUMN_TOID, typeof(string));
-            table.Columns.Add(DC_COLUMN_KY, typeof(string));
-            table.Columns.Add(DC_COLUMN_DOT, typeof(string));
-            table.Columns.Add(DC_COLUMN_MAY, typeof(string));
-            table.Columns.Add(DC_COLUMN_MLT, typeof(string));
-            table.Columns.Add(DC_COLUMN_SDT, typeof(string));
-            table.Columns.Add(DC_COLUMN_DANHBA, typeof(string));
-            table.Columns.Add(DC_COLUMN_TENKH, typeof(string));
-            table.Columns.Add(DC_COLUMN_DUONG, typeof(string));
-            table.Columns.Add(DC_COLUMN_CODEMOI, typeof(string));
-            table.Columns.Add(DC_COLUMN_CSMOI, typeof(string));
-            table.Columns.Add(DC_COLUMN_TIEUTHUMOI, typeof(string));
-
+            table.Columns.Add(DHNTRENMANG_COLUMN_KY, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_DOT, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_TOID, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_MAY, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_NAM, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_TITLE, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_TITLE1, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_HIEU, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_CO, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_DANHBA, typeof(string));
             foreach (var item in query)
             {
                 DataRow row = table.NewRow();
-                row[DC_COLUMN_TOID] = item.ToID;
-                row[DC_COLUMN_KY] = "";
-                row[DC_COLUMN_DOT] = "";
-                row[DC_COLUMN_MAY] = "";
-                row[DC_COLUMN_MLT] = item.MLT2;
-                row[DC_COLUMN_SDT] = item.SDT;
-                row[DC_COLUMN_DANHBA] = item.DANHBA;
-                row[DC_COLUMN_TENKH] = item.TENKH;
-                row[DC_COLUMN_DUONG] = item.Duong;
-                row[DC_COLUMN_CODEMOI] = item.CodeMoi;
-                row[DC_COLUMN_CSMOI] = item.CSCu;
-                row[DC_COLUMN_TIEUTHUMOI] = item.TieuThuCu;
-
+                row[DHNTRENMANG_COLUMN_TOID] = item.ToID;
+                row[DHNTRENMANG_COLUMN_MAY] = item.May;
+                row[DHNTRENMANG_COLUMN_KY] = item.Ky;
+                row[DHNTRENMANG_COLUMN_DOT] = item.Dot;
+                row[DHNTRENMANG_COLUMN_NAM] = item.Nam;
+                row[DHNTRENMANG_COLUMN_TITLE] = item.Title;
+                row[DHNTRENMANG_COLUMN_TITLE1] = item.Title1;
+                row[DHNTRENMANG_COLUMN_HIEU] = item.Hieu;
+                row[DHNTRENMANG_COLUMN_CO] = item.Co;
+                row[DHNTRENMANG_COLUMN_DANHBA] = item.DanhBa;
                 table.Rows.Add(row);
             }
             return table;

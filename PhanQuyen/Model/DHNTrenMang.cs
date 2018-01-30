@@ -8,7 +8,10 @@ namespace Model
 {
     public class DHNTrenMang
     {
+        public string ToID { get; set; }
+        public string May { get; set; }
         public string Ky { get; set; }
+        public string Dot { get; set; }
         public string Nam { get; set; }
         public string Title { get; set; }
         public string Title1 { get; set; }
