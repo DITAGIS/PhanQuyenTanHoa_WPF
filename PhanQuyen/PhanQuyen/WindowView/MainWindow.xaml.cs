@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using PhanQuyen.UserControl.BaoCao;
+using PhanQuyen.UserControlView.BaoCao;
 using ViewModel;
 
 namespace PhanQuyen
@@ -32,6 +33,7 @@ namespace PhanQuyen
         UC_CapNhatHoaDon uc_CapNhatHoaDon;
         UC_ChuyenMayDocSo uc_ChuyenMayDocSo;
         UC_ThongKeDHNSauDocSo uc_ThongKeDHNSauDocSo;
+        UC_ThongKeDHNTrenMang uc_ThongKeDHNTrenMang;
         UC_BaoCaoTongHop uc_BaoCaoTongHop;
         UC_ChuyenBilling uc_ChuyenBilling;
         UC_KiemTraDuLieu uc_KiemTraDuLieu;
@@ -146,6 +148,11 @@ namespace PhanQuyen
             {
                 uc_InTieuThuBatThuong.Height = stkMain.ActualHeight;
                 uc_InTieuThuBatThuong.Width = stkMain.ActualWidth;
+            }
+            if (uc_ThongKeDHNTrenMang != null)
+            {
+                uc_ThongKeDHNTrenMang.Height = stkMain.ActualHeight;
+                uc_ThongKeDHNTrenMang.Width = stkMain.ActualWidth;
             }
         }
 
@@ -283,6 +290,15 @@ namespace PhanQuyen
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_InTieuThuBatThuong);
         }
+        private void ribBtnThongKeDHNTrenMang_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_ThongKeDHNTrenMang == null)
+                uc_ThongKeDHNTrenMang = new UC_ThongKeDHNTrenMang();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_ThongKeDHNTrenMang);
+        }
         private void ribBtnHoanTatDocSo_Click(object sender, RoutedEventArgs e)
         {
             if (System.Windows.Forms.MessageBox.Show("Bạn có chắc chắn hoàn tất dữ liệu đọc số không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != System.Windows.Forms.DialogResult.Yes)
@@ -317,7 +333,6 @@ namespace PhanQuyen
             }
         }
 
-       
     }
 
     public static class CustomCommands

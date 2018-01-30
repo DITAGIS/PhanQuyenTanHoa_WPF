@@ -129,7 +129,9 @@
                                   Click="ribBtnThongKeSauDocSo_Click"></RibbonButton>
                     <RibbonButton Label="Thống kê đồng hồ nước theo đợt sổ"  LargeImageSource="/PhanQuyen;component/Images/date.png"
                                   Name="ribBtnThongKeDHNTheoDotSo" Click="ribBtnThongKeDHNTheoDotSo_Click"></RibbonButton>
-                    <RibbonButton Label="Thống kê đồng hồ nước trên mạng"  LargeImageSource="/PhanQuyen;component/Images/browser.png"></RibbonButton>
+                    <RibbonButton Label="Thống kê đồng hồ nước trên mạng"  LargeImageSource="/PhanQuyen;component/Images/browser.png"
+                                  Name="ribBtnThongKeDHNTrenMang"
+                                  Click="ribBtnThongKeDHNTrenMang_Click"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="In">
                     <RibbonButton Name="ribBtnInDanhSachDongCua" Label="In danh sách đóng cửa"  LargeImageSource="/PhanQuyen;component/Images/door.png"

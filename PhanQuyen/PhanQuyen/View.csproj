@@ -114,6 +114,9 @@
     <Compile Include="UserControlView\BaoCao\UC_InTieuThuBatThuong.xaml.cs">
       <DependentUpon>UC_InTieuThuBatThuong.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlView\BaoCao\UC_ThongKeDHNTrenMang.xaml.cs">
+      <DependentUpon>UC_ThongKeDHNTrenMang.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowView\GetDaTaWindow.xaml.cs">
       <DependentUpon>GetDaTaWindow.xaml</DependentUpon>
     </Compile>
@@ -160,6 +163,10 @@
       <DependentUpon>XemGhiChuWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="UserControlView\BaoCao\UC_InTieuThuBatThuong.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\BaoCao\UC_ThongKeDHNTrenMang.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

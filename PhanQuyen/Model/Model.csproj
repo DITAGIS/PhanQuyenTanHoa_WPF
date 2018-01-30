@@ -103,6 +103,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CapNhatHoaDon.cs" />
+    <Compile Include="DHNTrenMang.cs" />
     <Compile Include="KHDongCua.cs" />
     <Compile Include="MyBaoThay.cs" />
     <Compile Include="CodeModel.cs" />

@@ -29,6 +29,8 @@ namespace ViewModel
         private const String TTKH_COLUMN_DUONG = "Duong";
         private const String TTKH_COLUMN_SOTHAN = "SoThan";
         private const String TTKH_COLUMN_MLT1 = "MLT1";
+
+
         private const String TTKH_COLUMN_HOPDONG = "HopDong";
         private const String TTKH_COLUMN_DANHBA = "DanhBa";
         private const String TTKH_COLUMN_GB = "GB";
@@ -54,6 +56,14 @@ namespace ViewModel
         private const String DC_COLUMN_CSMOI = "CsMoi";
         private const String DC_COLUMN_TIEUTHUMOI = "TieuThuMoi";
         private const String DC_COLUMN_TBTT = "TBTT";
+
+        private const String DHNTRENMANG_COLUMN_KY = "KY";
+        private const String DHNTRENMANG_COLUMN_NAM = "NAM";
+        private const String DHNTRENMANG_COLUMN_TITLE = "TITLE";
+        private const String DHNTRENMANG_COLUMN_TITLE1 = "TITLE1";
+        private const String DHNTRENMANG_COLUMN_HIEU = "Hieu";
+        private const String DHNTRENMANG_COLUMN_CO = "Co";
+        private const String DHNTRENMANG_COLUMN_DANHBA = "DANHBA";
         string pattern = "dd/MM/yyyy";
         public static DataDBViewModel Instance
         {
@@ -140,6 +150,37 @@ namespace ViewModel
                          where x.Nam == nam && x.Ky == ky && x.Dot == dot
                          select x.BienDongID).ToList();
             return value.Count;
+        }
+        public DataTable GetDHNTrenMang()
+        {
+            List<DHNTrenMang> query;
+            query = serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(1)=(2) + (3)' AS TITLE1, N'Hiện có trên mạng' AS TITLE, HIEU, CO" +
+                ", 0 AS LOAI, COUNT(DANHBA) AS DANHBA FROM KHACHHANG WHERE HIEULUC =1 GROUP BY HIEU, CO").ToList();
+            query.AddRange(serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(2)' AS TITLE1,N'Hiện có trên mạng (sử dụng < 5 năm)' AS TITLE, HIEU, CO, 1 AS LOAI, COUNT(DANHBA) AS DANHBA" +
+                " FROM KHACHHANG WHERE HIEULUC =1 AND YEAR(getDate()) - Convert(varchar(4),NgayGan) < 5 GROUP BY HIEU, CO").ToList());
+            query.AddRange(serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(3)' AS TITLE1,N'Hiện có trên mạng (sử dụng > 5 năm)' AS TITLE, HIEU, CO, 2 AS LOAI, COUNT(DANHBA) AS DANHBA" +
+                " FROM KHACHHANG WHERE HIEULUC =1 AND YEAR(getDate()) - Convert(varchar(4),NgayGan) >= 5 GROUP BY HIEU, CO").ToList());
+            DataTable table = new DataTable();
+            table.Columns.Add(DHNTRENMANG_COLUMN_KY, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_NAM, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_TITLE, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_TITLE1, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_HIEU, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_CO, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_DANHBA, typeof(string));
+            foreach (var item in query)
+            {
+                DataRow row = table.NewRow();
+                row[DHNTRENMANG_COLUMN_KY] = item.Ky;
+                row[DHNTRENMANG_COLUMN_NAM] = item.Nam;
+                row[DHNTRENMANG_COLUMN_TITLE] = item.Title;
+                row[DHNTRENMANG_COLUMN_TITLE1] = item.Title1;
+                row[DHNTRENMANG_COLUMN_HIEU] = item.Hieu;
+                row[DHNTRENMANG_COLUMN_CO] = item.Co;
+                row[DHNTRENMANG_COLUMN_DANHBA] = item.DanhBa;
+                table.Rows.Add(row);
+            }
+            return table;
         }
 
         public DataTable GetListTieuThuBatThuong(int year, string month, string date, string machine)
