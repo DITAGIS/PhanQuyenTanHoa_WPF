@@ -195,6 +195,7 @@ namespace PhanQuyen
             //    string value = MyRow[1].ToString();
             //}
             _selectedDocSo = dtgridMain.SelectedValue as DocSo;
+            //cbbKHDS.SelectedValue = cbbKHDS.Items
             if (_selectedDocSo != null)
             {
                 btnViewNote.IsEnabled = true;
@@ -315,11 +316,11 @@ namespace PhanQuyen
             }
 
             if (e.Key >= Key.D0 && e.Key <= Key.D9 || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) || e.Key == Key.Back)
-                //if (e.Key == Key.D0 || e.Key == Key.D1 || e.Key == Key.D2 || e.Key == Key.D3 || e.Key == Key.D4 || e.Key == Key.D5 || e.Key == Key.D6 || e.Key == Key.D7 || e.Key == Key.D8 || e.Key == Key.D9 ||
-                //    e.Key == Key.NumPad0 || e.Key == Key.NumPad0 || e.Key == Key.NumPad0 || e.Key == Key.NumPad0 )
-                e.Handled = false;
-            else if (true)
+            //if (e.Key == Key.D0 || e.Key == Key.D1 || e.Key == Key.D2 || e.Key == Key.D3 || e.Key == Key.D4 || e.Key == Key.D5 || e.Key == Key.D6 || e.Key == Key.D7 || e.Key == Key.D8 || e.Key == Key.D9 ||
+            //    e.Key == Key.NumPad0 || e.Key == Key.NumPad0 || e.Key == Key.NumPad0 || e.Key == Key.NumPad0 )
             {
+                e.Handled = false;
+
                 string tttb = "";
                 if (dtgridMain.SelectedValue != null)
                     tttb = (dtgridMain.SelectedValue as DocSo).TBTT.Value + "";
@@ -379,6 +380,7 @@ namespace PhanQuyen
                     }
                 }
             }
+
             else
                 e.Handled = true;
         }
@@ -435,16 +437,17 @@ namespace PhanQuyen
             try
             {
 
-                int csm = Int16.Parse(txtbCSM.Text.ToString());
-                int tieuThuMoi = csm - Int16.Parse(txtbCSC.Text.ToString());
+                //int csm = Int16.Parse(txtbCSM.Text.ToString());
+                //int tieuThuMoi = csm - Int16.Parse(txtbCSC.Text.ToString());
 
-                txtbTieuThu.Text = tieuThuMoi + "";//todo 
-                                                   //if (txtbCSM.Text.Length > 0)
-                                                   //{
-                                                   //    //chỉ số mới
-                                                   //    gridCell = TryToFindGridCell(dtgridMain, row, COLUMN_CSMOI);
-                                                   //    int csmoi = Int16.Parse(txtbCSM.Text.ToString());
-                                                   //    if (gridCell != null) gridCell.Content = csmoi + "";
+                //txtbTieuThu.Text = tieuThuMoi + "";
+                //todo 
+                //if (txtbCSM.Text.Length > 0)
+                //{
+                //    //chỉ số mới
+                //    gridCell = TryToFindGridCell(dtgridMain, row, COLUMN_CSMOI);
+                //    int csmoi = Int16.Parse(txtbCSM.Text.ToString());
+                //    if (gridCell != null) gridCell.Content = csmoi + "";
 
                 //    //tiêu thụ mới
                 //    gridCell = TryToFindGridCell(dtgridMain, row, COLUMN_TIEUTHUMOI);
