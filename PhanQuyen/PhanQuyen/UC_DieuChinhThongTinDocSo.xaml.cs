@@ -195,7 +195,11 @@ namespace PhanQuyen
             //    string value = MyRow[1].ToString();
             //}
             _selectedDocSo = dtgridMain.SelectedValue as DocSo;
-            //cbbKHDS.SelectedValue = cbbKHDS.Items
+            cbbKHDS.SelectedValue = txtbCode.Text.ToString();
+            foreach(var item in cbbKHDS.Items)
+            {
+                
+            }
             if (_selectedDocSo != null)
             {
                 btnViewNote.IsEnabled = true;
@@ -467,15 +471,10 @@ namespace PhanQuyen
             dtgridMain.ItemsSource = null;
             dtgridMain.Items.Clear();
             dtgridMain.ItemsSource = docSoList;
-
+            cbbCode.SelectedIndex = 0;
             Sum();
             CanhBaoBatThuong();
-            try
-            {
-                if (dtgridMain.Items.Count > 0)
-                    dtgridMain.SelectedIndex = 0;
-            }
-            catch { }
+           
         }
         private String getValueCell(DataGridCell cell, DataGridRow row)
         {
@@ -584,6 +583,7 @@ namespace PhanQuyen
                 }
             }
             SortDataGrid();
+            SelectecTop();
         }
         private void SortDataGrid()
         {
@@ -608,16 +608,19 @@ namespace PhanQuyen
             _xemGhiChuWindow.GetNote(_selectedDocSo.DanhBa);
             _xemGhiChuWindow.ShowDialog();
         }
-
-        private void columnHeader_Click(object sender, RoutedEventArgs e)
+        private void SelectecTop()
         {
-            CanhBaoBatThuong();
             try
             {
                 if (dtgridMain.Items.Count > 0)
                     dtgridMain.SelectedIndex = 0;
             }
             catch { }
+        }
+        private void columnHeader_Click(object sender, RoutedEventArgs e)
+        {
+            CanhBaoBatThuong();
+           
         }
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)

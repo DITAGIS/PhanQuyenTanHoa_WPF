@@ -43,7 +43,7 @@
             </StatusBarItem>
         </StatusBar>-->
         <ScrollViewer Name="scrollMain">
-            <Grid Margin="10">
+            <Grid Margin="5">
                 <Grid.Resources>
                     <Style TargetType="{x:Type TextBlock}" x:Key="styleTxbl">
                         <Style.Triggers>
@@ -67,12 +67,12 @@
 
                 </Grid.Resources>
                 <Grid.RowDefinitions>
-                    <RowDefinition ></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition ></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition ></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto" ></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
