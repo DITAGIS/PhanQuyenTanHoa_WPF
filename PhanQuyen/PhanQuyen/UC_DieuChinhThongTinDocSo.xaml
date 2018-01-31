@@ -249,7 +249,7 @@
                           AutoGenerateColumns="False" Name="dtgridMain" 
                                                      
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
-                          Width="Auto" Margin="0,0,0,0" Height="250" 
+                          Width="Auto" Margin="-2,0,2.2,-0.4" Height="250" 
                               SelectionChanged="dtgridMain_SelectionChanged"
                         
                           RowHeight="20"
@@ -289,10 +289,10 @@
                         </DataGrid.RowStyle>
                         <!--Header column-->
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Mã lộ trình" Binding="{Binding MLT1, Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="MLT" Binding="{Binding MLT1, Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Danh bạ"  Binding="{Binding DanhBa, Mode=OneWay}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="TTDHN Cũ"  Binding="{Binding TTHDNCu,Mode=OneWay}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="TTDHN Mới"  Binding="{Binding TTHDNMoi,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="TTDHN Cũ"  Binding="{Binding TTDHNCu,Mode=OneWay}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="TTDHN Mới"  Binding="{Binding TTDHNMoi,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Code Cũ" Binding="{Binding CodeCu,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Code Mới" Binding="{Binding CodeMoi,Mode=OneWay}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Chỉ Số Cũ" Binding="{Binding CSCu,Mode=OneWay}"></DataGridTextColumn>

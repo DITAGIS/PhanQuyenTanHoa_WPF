@@ -27,32 +27,36 @@ namespace ViewModel
         }
         private UserDBViewModel() { }
 
-        public User getUser(String userID, String password)
+        public MyUser getUser(String userID, String password)
         {
-            
+
             try
             {
-                SqlCommand command = new SqlCommand(SQL_SELECT_LOGIN, ConnectionViewModel.getInstance.getConnection);
-                //ConnectionViewModel.getInstance.Connect();
-                command.Parameters.AddWithValue("@userid", userID);
-                command.Parameters.AddWithValue("@password", password);
-
-                SqlDataReader dataReader = command.ExecuteReader();
-                while (dataReader.Read())
+                DataClassServerDataContext serverDataContext = new DataClassServerDataContext();
+                //SqlCommand command = new SqlCommand(SQL_SELECT_LOGIN, ConnectionViewModel.getInstance.getConnection);
+                ////ConnectionViewModel.getInstance.Connect();
+                //command.Parameters.AddWithValue("@userid", userID);
+                //command.Parameters.AddWithValue("@password", password);
+                var user = (from x in serverDataContext.Users
+                            where x.UserID == userID && x.Password == password
+                            select x).First();
+                //SqlDataReader dataReader = command.ExecuteReader();
+                if (user != null)
                 {
-                    User.Instance.UserID = userID;
-                    User.Instance.Password = password;
-                    User.Instance.UserName = dataReader["username"].ToString();
-                    User.Instance.UserGroup = dataReader["usergroup"].ToString();
-                    User.Instance.ToID = dataReader["toid"].ToString().Trim();
-                    User.Instance.MayID = dataReader["mayid"].ToString();
+
+                    MyUser.Instance.UserID = user.UserID;
+                    MyUser.Instance.Password = user.Password;
+                    MyUser.Instance.UserName = user.Username;
+                    MyUser.Instance.UserGroup = user.UserGroup;
+                    MyUser.Instance.ToID = user.ToID;
+                    MyUser.Instance.MayID = user.MayID;
                 }
             }
             catch (Exception e)
             {
 
             }
-            return User.Instance;
+            return MyUser.Instance;
         }
     }
 }

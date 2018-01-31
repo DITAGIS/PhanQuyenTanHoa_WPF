@@ -24,7 +24,7 @@ namespace PhanQuyen
     {
         private int year;
         private String month, date;
-        private User user;
+        private MyUser user;
         public LogInWindow()
         {
             InitializeComponent();
@@ -46,7 +46,7 @@ namespace PhanQuyen
             if (user.UserName != null)
                 HandleLoginSuccess();
             else
-                HandleLoginFail();
+                HandleLoginFail(user);
         }
         private void HandleLoginSuccess()
         {
@@ -57,9 +57,9 @@ namespace PhanQuyen
             mainWindow.Show();
             this.Close();
         }
-        private void HandleLoginFail()
+        private void HandleLoginFail(MyUser user)
         {
-            MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu");
+            MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu: " + user.ToString() );
         }
 
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)

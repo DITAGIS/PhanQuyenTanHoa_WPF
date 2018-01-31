@@ -32,7 +32,7 @@ namespace PhanQuyen
         {
             InitializeComponent();
             cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
-            cbbYear.SelectedValue = User.Instance.Year;
+            cbbYear.SelectedValue = MyUser.Instance.Year;
 
         }
         private DateTime formatStringToDate(string s)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class User
+    public class MyUser
     {
         public String UserID { get; set; }
         public String UserName { get; set; }
@@ -17,7 +17,7 @@ namespace Model
         public String Year { get; set; }
         public String Month { get; set; }
         public String Date { get; set; }
-        public User(String UserID, String UserName, String Password, String UserGroup, String ToID, String MayID)
+        public MyUser(String UserID, String UserName, String Password, String UserGroup, String ToID, String MayID)
         {
             this.UserID = UserID;
             this.UserName = UserName;
@@ -26,17 +26,20 @@ namespace Model
             this.ToID = ToID;
             this.MayID = MayID;
         }
-        private static User _instance;
-        public static User Instance
+        private static MyUser _instance;
+        public static MyUser Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new User();
+                    _instance = new MyUser();
                 return _instance;
             }
         }
-        private User() { }
-
+        private MyUser() { }
+        public string ToString()
+        {
+            return UserID + "/" + UserName + "/" + Password + "/" + UserGroup + "/" + ToID + "/" + MayID + "/" + Year + "/" + Month + "/" + Date;
+        }
     }
 }

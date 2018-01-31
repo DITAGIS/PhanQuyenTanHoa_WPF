@@ -29,7 +29,7 @@ namespace PhanQuyen
         {
             InitializeComponent();
 
-            cbbGroup.ItemsSource = DataDBViewModel.Instance.getDistinctGroupServer(Int16.Parse(User.Instance.Year), User.Instance.Month, User.Instance.Date);
+            cbbGroup.ItemsSource = DataDBViewModel.Instance.getDistinctGroupServer(Int16.Parse(MyUser.Instance.Year), MyUser.Instance.Month, MyUser.Instance.Date);
 
             System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
             ps.Landscape = true;

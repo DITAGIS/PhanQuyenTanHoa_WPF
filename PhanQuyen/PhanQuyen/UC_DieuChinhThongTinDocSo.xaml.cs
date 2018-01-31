@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
@@ -26,7 +27,7 @@ namespace PhanQuyen
     /// </summary>
     public partial class UC_DieuChinhThongTinDocSo : System.Windows.Controls.UserControl
     {
-        private User user;
+        private MyUser user;
         private int year, group;
         private String month, date, machine;
         private Point origin;  // Original Offset of image
@@ -67,7 +68,7 @@ namespace PhanQuyen
             try
             {
                 int executeScalar = DataDBViewModel.Instance.CheckIzDS();
-                if (executeScalar == 1 && (User.Instance.UserGroup == "DS" || User.Instance.UserGroup == "Admin"))
+                if (executeScalar == 1 && (MyUser.Instance.UserGroup == "DS" || MyUser.Instance.UserGroup == "Admin"))
                 {
                     int num = (int)MessageBox.Show("Dữ liệu đã được chuyển lên thương vụ, bạn không thể điều chỉnh được thông tin.", "Thông báo");
                     this.cbbKHDS.IsEnabled = false;
@@ -127,10 +128,12 @@ namespace PhanQuyen
         }
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (month == null)
+                cbbMonth.SelectedValue = MyUser.Instance.Month;
             if (cbbMonth.SelectedValue != null)
                 month = cbbMonth.SelectedValue.ToString();
             cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDateServer(year, month);
-            cbbDate.SelectedValue = User.Instance.Date;
+            cbbDate.SelectedValue = MyUser.Instance.Date;
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -221,6 +224,8 @@ namespace PhanQuyen
         }
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (date == null)
+                cbbDate.SelectedValue = MyUser.Instance.Date;
             if (cbbDate.SelectedValue != null)
                 date = cbbDate.SelectedValue.ToString();
         }
@@ -313,7 +318,7 @@ namespace PhanQuyen
                 //if (e.Key == Key.D0 || e.Key == Key.D1 || e.Key == Key.D2 || e.Key == Key.D3 || e.Key == Key.D4 || e.Key == Key.D5 || e.Key == Key.D6 || e.Key == Key.D7 || e.Key == Key.D8 || e.Key == Key.D9 ||
                 //    e.Key == Key.NumPad0 || e.Key == Key.NumPad0 || e.Key == Key.NumPad0 || e.Key == Key.NumPad0 )
                 e.Handled = false;
-            else if ((int)e.Key == 13)
+            else if (true)
             {
                 string tttb = "";
                 if (dtgridMain.SelectedValue != null)
@@ -455,13 +460,19 @@ namespace PhanQuyen
 
         private void btnGetData_Click(object sender, RoutedEventArgs e)
         {
-            docSoList = DataDBViewModel.Instance.getAllDocSos(year, month, date,group, machine);
+            docSoList = DataDBViewModel.Instance.getAllDocSos(year, month, date, group, machine);
             dtgridMain.ItemsSource = null;
             dtgridMain.Items.Clear();
             dtgridMain.ItemsSource = docSoList;
 
             Sum();
             CanhBaoBatThuong();
+            try
+            {
+                if (dtgridMain.Items.Count > 0)
+                    dtgridMain.SelectedIndex = 0;
+            }
+            catch { }
         }
         private String getValueCell(DataGridCell cell, DataGridRow row)
         {
@@ -569,8 +580,18 @@ namespace PhanQuyen
                     //row.Style = newStyle;
                 }
             }
+            SortDataGrid();
         }
+        private void SortDataGrid()
+        {
+            //ICollectionView dataView = CollectionViewSource.GetDefaultView(dtgridMain.ItemsSource);
+            //dataView.SortDescriptions.Clear();
+            //dataView.SortDescriptions.Add(new SortDescription("MLT", ListSortDirection.Ascending));
+            //dataView.Refresh();
 
+            System.Windows.Forms.ColumnClickEventArgs args = new System.Windows.Forms.ColumnClickEventArgs(0);
+
+        }
         private void cbbMachine_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbbMachine.SelectedValue != null)
@@ -588,6 +609,12 @@ namespace PhanQuyen
         private void columnHeader_Click(object sender, RoutedEventArgs e)
         {
             CanhBaoBatThuong();
+            try
+            {
+                if (dtgridMain.Items.Count > 0)
+                    dtgridMain.SelectedIndex = 0;
+            }
+            catch { }
         }
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
@@ -662,19 +689,20 @@ namespace PhanQuyen
 
 
 
-        public UC_DieuChinhThongTinDocSo(User user)
+        public UC_DieuChinhThongTinDocSo(MyUser user)
         {
             this.user = user;
             InitializeComponent();
             cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
-            cbbYear.SelectedValue = User.Instance.Year;
-            cbbMonth.SelectedValue = User.Instance.Month;
-            if (User.Instance.ToID == null)
-            { }
-            else if (User.Instance.ToID.Equals(""))
+            cbbYear.SelectedValue = MyUser.Instance.Year;
+
+            cbbMonth.SelectedValue = MyUser.Instance.Month;
+            if (MyUser.Instance.ToID == null)
+                cbbGroup.ItemsSource = ToID.GetToID();
+            else if (MyUser.Instance.ToID.Equals(""))
                 cbbGroup.ItemsSource = ToID.GetToID();
             else
-                cbbGroup.Items.Add(User.Instance.ToID);
+                cbbGroup.Items.Add(MyUser.Instance.ToID);
 
             cbbKHDS.ItemsSource = DataDBViewModel.Instance.getDistinctKHDS();
             cbbKHDS.DisplayMemberPath = "TTDHN1";

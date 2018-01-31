@@ -38,7 +38,7 @@ namespace PhanQuyen
         UC_ChuyenBilling uc_ChuyenBilling;
         UC_KiemTraDuLieu uc_KiemTraDuLieu;
         UC_ThongKeDHNTheoDotSo uc_ThongKeDHNTheoDotSo;
-        private User user;
+        private MyUser user;
 
         public MainWindow()
         {
@@ -47,7 +47,7 @@ namespace PhanQuyen
 
         }
 
-        public MainWindow(User user)
+        public MainWindow(MyUser user)
         {
             this.user = user; InitializeComponent();
         }

@@ -68,5 +68,11 @@
         <elementListCompartment Id="c79b4700-7048-413b-9fa1-fc5098dc6c7f" absoluteBounds="4.265, 5.585, 1.9700000000000002, 5.826131184895833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="96a080f2-863b-40f2-9832-f255d479d438" absoluteBounds="3.875, 4.125, 2, 1.9631982421875">
+      <DataClassMoniker Name="/DataClassServerDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="332d1508-e1f4-40d0-a678-2e025fe502cf" absoluteBounds="3.89, 4.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

@@ -103,6 +103,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CapNhatHoaDon.cs" />
+    <Compile Include="ChuyenBilling.cs" />
     <Compile Include="DHNTrenMang.cs" />
     <Compile Include="KHDongCua.cs" />
     <Compile Include="MyBaoThay.cs" />
@@ -112,7 +113,7 @@
     <Compile Include="MySoLenh.cs" />
     <Compile Include="ThongTinKH.cs" />
     <Compile Include="ToID.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="MyUser.cs" />
     <Compile Include="Volumn_GetData.cs" />
     <Compile Include="XuLyCode8.cs" />
   </ItemGroup>

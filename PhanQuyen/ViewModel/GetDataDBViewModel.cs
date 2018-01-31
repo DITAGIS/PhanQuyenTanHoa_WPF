@@ -27,6 +27,7 @@ namespace ViewModel
         private const String TTKH_COLUMN_CO = "Co";
         private const String TTKH_COLUMN_SDT = "SDT";
         private const String TTKH_COLUMN_DUONG = "Duong";
+
         private const String TTKH_COLUMN_SOTHAN = "SoThan";
         private const String TTKH_COLUMN_MLT1 = "MLT1";
 
@@ -40,13 +41,14 @@ namespace ViewModel
         private const String TTKH_COLUMN_CODE = "Code";
         private const String TTKH_COLUMN_CSMOI = "CSMoi";
         private const String TTKH_COLUMN_TIEUTHU = "TieuThu";
+
         private const String TTKH_COLUMN_GHICHU = "GhiChu";//todo
 
         private const String DC_COLUMN_TOID = "ToID";
         private const String DC_COLUMN_KY = "Ky";
         private const String DC_COLUMN_DOT = "Dot";
         private const String DC_COLUMN_MAY = "May";
-        private const String DC_COLUMN_USERNAME = "Username";
+        private const String DC_COLUMN_MyUserNAME = "MyUsername";
         private const String DC_COLUMN_MLT = "MLT2";
         private const String DC_COLUMN_SDT = "SDT";
         private const String DC_COLUMN_DANHBA = "DanhBa";
@@ -105,7 +107,7 @@ namespace ViewModel
 
         public int CheckIzDS()
         {
-            return serverContext.ExecuteQuery<int>("select count(*) from BillState where izDS = '1' and BillID ='" + User.Instance.Year + User.Instance.Month + User.Instance.Date + "'").First();
+            return serverContext.ExecuteQuery<int>("select count(*) from BillState where izDS = '1' and BillID ='" + MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date + "'").First();
         }
 
         private DataDBViewModel()
@@ -130,6 +132,47 @@ namespace ViewModel
                 }
             }
             return query.Count;
+        }
+
+        public List<Model.ChuyenBilling> GetBilling()
+        {
+            var tmp = serverContext.ExecuteQuery<Model.ChuyenBilling>("SELECT May, COUNT(DanhBa) as DHN, SUM(TieuThuMoi) as TieuThu FROM DocSo " +
+                "WHERE Ky = '" + MyUser.Instance.Month + "' AND Dot = '" + MyUser.Instance.Date + "' AND Nam = " + MyUser.Instance.Year + " GROUP BY May ORDER BY May").ToList();
+            //int year = Int16.Parse(MyUser.Instance.Year);
+            //var query = (from x in serverContext.DocSos
+            //            where x.Nam == year && x.Ky == MyUser.Instance.Month && x.Dot == MyUser.Instance.Date
+            //            select new { x.May, x.DanhBa, x.TieuThuMoi }).ToList();
+
+            //List<ChuyenBilling> data = new List<ChuyenBilling>();
+            //int countDanhBa = 0;
+            //int tieuthu = 0;
+            //string may = query.ElementAt(0).May ;
+            //for(int i = 0; i < query.Count; i++)
+            //{
+            //    var item = query.ElementAt(i);
+            //    if (may.Equals(item.May))
+            //    {
+            //        countDanhBa++;
+            //        tieuthu += item.TieuThuMoi.Value;
+            //    }
+            //    else
+            //    {
+            //        may = item.May;
+            //        countDanhBa = 0;
+            //        tieuthu = 0;
+            //        data.Add(new ChuyenBilling()
+            //        {
+            //            May = may,
+            //            DHN = countDanhBa,
+            //            TieuThu = tieuthu
+            //        });
+            //    }
+            //}
+            //(from x in serverContext.DocSos
+            //            where x.DanhBa == danhBa
+            //            orderby x.DocSoID descending
+            //            select new { x.Ky, x.Nam, danhBa, x.CodeMoi, x.TTDHNMoi, x.CSCu, x.CSMoi, x.TieuThuMoi, x.GhiChuDS, x.GhiChuKH, x.GhiChuTV }).ToList();
+            return tmp;
         }
 
         public IEnumerable getNote(string danhBa)
@@ -186,17 +229,50 @@ namespace ViewModel
             return table;
         }
 
+        public DataTable GetThongKeSauDocSo(int year, string month, string date, string machine)
+        {
+            List<DHNTrenMang> query;
+            query = serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(1)=(2) + (3)' AS TITLE1, N'Hiện có trên mạng' AS TITLE, HIEU, CO" +
+                ", 0 AS LOAI, COUNT(DANHBA) AS DANHBA FROM KHACHHANG WHERE HIEULUC =1 GROUP BY HIEU, CO").ToList();
+            query.AddRange(serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(2)' AS TITLE1,N'Hiện có trên mạng (sử dụng < 5 năm)' AS TITLE, HIEU, CO, 1 AS LOAI, COUNT(DANHBA) AS DANHBA" +
+                " FROM KHACHHANG WHERE HIEULUC =1 AND YEAR(getDate()) - Convert(varchar(4),NgayGan) < 5 GROUP BY HIEU, CO").ToList());
+            query.AddRange(serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(3)' AS TITLE1,N'Hiện có trên mạng (sử dụng > 5 năm)' AS TITLE, HIEU, CO, 2 AS LOAI, COUNT(DANHBA) AS DANHBA" +
+                " FROM KHACHHANG WHERE HIEULUC =1 AND YEAR(getDate()) - Convert(varchar(4),NgayGan) >= 5 GROUP BY HIEU, CO").ToList());
+            DataTable table = new DataTable();
+            table.Columns.Add(DHNTRENMANG_COLUMN_KY, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_KY, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_NAM, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_TITLE, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_TITLE1, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_HIEU, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_CO, typeof(string));
+            table.Columns.Add(DHNTRENMANG_COLUMN_DANHBA, typeof(string));
+            foreach (var item in query)
+            {
+                DataRow row = table.NewRow();
+                row[DHNTRENMANG_COLUMN_KY] = item.Ky;
+                row[DHNTRENMANG_COLUMN_NAM] = item.Nam;
+                row[DHNTRENMANG_COLUMN_TITLE] = item.Title;
+                row[DHNTRENMANG_COLUMN_TITLE1] = item.Title1;
+                row[DHNTRENMANG_COLUMN_HIEU] = item.Hieu;
+                row[DHNTRENMANG_COLUMN_CO] = item.Co;
+                row[DHNTRENMANG_COLUMN_DANHBA] = item.DanhBa;
+                table.Rows.Add(row);
+            }
+            return table;
+        }
+
         public DataTable GetListTieuThuBatThuong(int year, string month, string date, string machine)
         {
             List<KHDongCua> query;
             if (machine.Equals(ALL))
-                if (User.Instance.ToID != "")
-                    query = serverContext.ExecuteQuery<KHDongCua>("SELECT KH.SDT, KH.DOT, KH.MLT2, KH.DANHBA, DS.TBTT, KH.TENKH, DS.MAY, DS.CODEMoi, DS.TIEUTHUMoi, DS.CSMOI, DS.KY,ds.Nam,m.NhanVienID as NVGHI, CASE WHEN KH.SOMOI IS NOT NULL AND  KH.SOMOI != '' THEN KH.So + ' (' + KH.SOMOI + ') ' + KH.DUONG ELSE KH.SO + ' ' + KH.DUONG END AS SoMoi,m.ToID FROM  DocSo DS LEFT OUTER JOIN KHACHHANG AS KH ON DS.DANHBA = KH.DANHBA Inner join MayDS as m on DS.May = m.May WHERE m.ToID = '" + User.Instance.ToID + "' AND DS.KY = " + month + " AND DS.DOT = " + date + " AND DS.Nam = " + year + " AND LEFT(DS.CodeMoi,1) != 'M' AND LEFT(DS.CodeMoi,1) != 'F' AND DS.TieuThuMoi > 4 ORDER BY KH.MLT2 ").ToList();
+                if (MyUser.Instance.ToID != "")
+                    query = serverContext.ExecuteQuery<KHDongCua>("SELECT KH.SDT, KH.DOT, KH.MLT2, KH.DANHBA, DS.TBTT, KH.TENKH, DS.MAY, DS.CODEMoi, DS.TIEUTHUMoi, DS.CSMOI, DS.KY,ds.Nam,m.NhanVienID as NVGHI, CASE WHEN KH.SOMOI IS NOT NULL AND  KH.SOMOI != '' THEN KH.So + ' (' + KH.SOMOI + ') ' + KH.DUONG ELSE KH.SO + ' ' + KH.DUONG END AS SoMoi,m.ToID FROM  DocSo DS LEFT OUTER JOIN KHACHHANG AS KH ON DS.DANHBA = KH.DANHBA Inner join MayDS as m on DS.May = m.May WHERE m.ToID = '" + MyUser.Instance.ToID + "' AND DS.KY = " + month + " AND DS.DOT = " + date + " AND DS.Nam = " + year + " AND LEFT(DS.CodeMoi,1) != 'M' AND LEFT(DS.CodeMoi,1) != 'F' AND DS.TieuThuMoi > 4 ORDER BY KH.MLT2 ").ToList();
                 else
                     query = serverContext.ExecuteQuery<KHDongCua>("SELECT KH.SDT, KH.DOT, KH.MLT2, KH.DANHBA, DS.TBTT, KH.TENKH, DS.MAY, DS.CODEMoi, DS.TIEUTHUMoi, DS.CSMOI, DS.KY,ds.Nam,m.NhanVienID as NVGHI, CASE WHEN KH.SOMOI IS NOT NULL AND  KH.SOMOI != '' THEN KH.So + ' (' + KH.SOMOI + ') ' + KH.DUONG ELSE KH.SO + ' ' + KH.DUONG END AS SoMoi,m.ToID FROM  DocSo DS LEFT OUTER JOIN KHACHHANG AS KH ON DS.DANHBA = KH.DANHBA Inner join MayDS as m on DS.May = m.May WHERE DS.KY = " + month + " AND DS.DOT = " + date + " AND DS.Nam = " + year + " AND LEFT(DS.CodeMoi,1) != 'M' AND LEFT(DS.CodeMoi,1) != 'F' AND DS.TieuThuMoi > 4 ORDER BY KH.MLT2 ").ToList();
             else query = serverContext.ExecuteQuery<KHDongCua>("SELECT KH.SDT, KH.DOT, KH.MLT2, KH.DANHBA, DS.TBTT, KH.TENKH, DS.MAY, DS.CODEMoi, DS.TIEUTHUMoi, DS.CSMOI, DS.KY,ds.Nam,m.NhanVienID as NVGHI, CASE WHEN KH.SOMOI IS NOT NULL AND  KH.SOMOI != '' THEN KH.So + ' (' + KH.SOMOI + ') ' + KH.DUONG ELSE KH.SO + ' ' + KH.DUONG END AS SoMoi,m.ToID FROM  DocSo DS LEFT OUTER JOIN KHACHHANG AS KH ON DS.DANHBA = KH.DANHBA Inner join MayDS as m on DS.May = m.May WHERE DS.KY = " + month + " AND DS.DOT = " + date + " AND DS.May = '" + machine + "' AND DS.Nam = " + year + " AND LEFT(DS.CodeMoi,1) != 'M' AND LEFT(DS.CodeMoi,1) != 'F' AND DS.TieuThuMoi > 4 ORDER BY KH.MLT2 ").ToList();
             DataTable table = new DataTable();
-            table.Columns.Add(DC_COLUMN_USERNAME, typeof(string));
+            table.Columns.Add(DC_COLUMN_MyUserNAME, typeof(string));
             table.Columns.Add(DC_COLUMN_TOID, typeof(string));
             table.Columns.Add(DC_COLUMN_KY, typeof(string));
             table.Columns.Add(DC_COLUMN_DOT, typeof(string));
@@ -213,7 +289,7 @@ namespace ViewModel
             foreach (var item in query)
             {
                 DataRow row = table.NewRow();
-                row[DC_COLUMN_USERNAME] = item.Username;
+                row[DC_COLUMN_MyUserNAME] = item.Username;
                 row[DC_COLUMN_TOID] = item.ToID;
                 row[DC_COLUMN_KY] = month;
                 row[DC_COLUMN_DOT] = date;
@@ -238,16 +314,16 @@ namespace ViewModel
                 query = serverContext.ExecuteQuery<KHDongCua>("SELECT  0 AS STT,ds.SDT,  K.MLT2, K.DANHBA" +
                     ", RTRIM(K.TENKH) AS TENKH, CASE WHEN K.SOMOI IS NULL OR K.SOMOI = '' " +
                     "THEN K.SO + ' ' + K.DUONG ELSE K.SO + '('+ K.SOMOI +')' + K.DUONG END AS Duong" +
-                    ",m.NhanVienID as Username," +
+                    ",m.NhanVienID as MyUsername," +
                     "ds.CodeCu, DS.CodeMoi, DS.CSCu" +
                     ",DS.TieuThuCu" +
                     ",m.ToID" +
                     ",k.SoThan as TamTinh " +
                     " FROM DocSo as DS RIGHT OUTER JOIN KHACHHANG AS K ON DS.DANHBA = K.DANHBA Inner JOIN MayDS as m on DS.May = m.may " +
                     "WHERE ds.nam = " + year + " and DS.KY = " + month + " AND DS.DOT = " + date + " AND DS.CodeMoi LIKE'F%' ORDER BY K.MLT2").ToList();
-            else query = serverContext.ExecuteQuery<KHDongCua>("SELECT  0 AS STT,ds.SDT,  K.MLT2, K.DANHBA, RTRIM(K.TENKH) AS TENKH, CASE WHEN K.SOMOI IS NULL OR K.SOMOI = '' THEN K.SO + ' ' + K.DUONG ELSE K.SO + '('+ K.SOMOI +')' + K.DUONG END AS Duong,m.NhanVienID as Username,ds.nam, DS.KY, DS.DOT, DS.MAY,ds.CodeCu, DS.CodeMoi, DS.CSCu,DS.TieuThuCu,m.ToID,k.SoThan as TamTinh  FROM DocSo as DS RIGHT OUTER JOIN KHACHHANG AS K ON DS.DANHBA = K.DANHBA Inner JOIN MayDS as m on DS.May = m.may WHERE ds.nam = " + year + " and DS.KY = " + month + " AND DS.DOT = " + date + " and ds.may = " + machine + " AND DS.CodeMoi LIKE'F%' ORDER BY K.MLT2").ToList();
+            else query = serverContext.ExecuteQuery<KHDongCua>("SELECT  0 AS STT,ds.SDT,  K.MLT2, K.DANHBA, RTRIM(K.TENKH) AS TENKH, CASE WHEN K.SOMOI IS NULL OR K.SOMOI = '' THEN K.SO + ' ' + K.DUONG ELSE K.SO + '('+ K.SOMOI +')' + K.DUONG END AS Duong,m.NhanVienID as MyUsername,ds.nam, DS.KY, DS.DOT, DS.MAY,ds.CodeCu, DS.CodeMoi, DS.CSCu,DS.TieuThuCu,m.ToID,k.SoThan as TamTinh  FROM DocSo as DS RIGHT OUTER JOIN KHACHHANG AS K ON DS.DANHBA = K.DANHBA Inner JOIN MayDS as m on DS.May = m.may WHERE ds.nam = " + year + " and DS.KY = " + month + " AND DS.DOT = " + date + " and ds.may = " + machine + " AND DS.CodeMoi LIKE'F%' ORDER BY K.MLT2").ToList();
             DataTable table = new DataTable();
-            table.Columns.Add(DC_COLUMN_USERNAME, typeof(string));
+            table.Columns.Add(DC_COLUMN_MyUserNAME, typeof(string));
             table.Columns.Add(DC_COLUMN_TOID, typeof(string));
             table.Columns.Add(DC_COLUMN_KY, typeof(string));
             table.Columns.Add(DC_COLUMN_DOT, typeof(string));
@@ -264,7 +340,7 @@ namespace ViewModel
             foreach (var item in query)
             {
                 DataRow row = table.NewRow();
-                row[DC_COLUMN_USERNAME] = item.Username;
+                row[DC_COLUMN_MyUserNAME] = item.Username;
                 row[DC_COLUMN_TOID] = item.ToID;
                 row[DC_COLUMN_KY] = month;
                 row[DC_COLUMN_DOT] = date;
@@ -428,7 +504,7 @@ namespace ViewModel
 
         public bool HoanTatDocSo()
         {
-            var data = serverContext.BillStates.SingleOrDefault(row => row.BillID == User.Instance.Year + User.Instance.Month + User.Instance.Date);
+            var data = serverContext.BillStates.SingleOrDefault(row => row.BillID == MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date);
             if (data != null)
             {
                 data.izDS = "1";
@@ -448,7 +524,7 @@ namespace ViewModel
 
         public bool HoanTatThuongVu()
         {
-            var data = serverContext.BillStates.SingleOrDefault(row => row.BillID == User.Instance.Year + User.Instance.Month + User.Instance.Date);
+            var data = serverContext.BillStates.SingleOrDefault(row => row.BillID == MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date);
             if (data != null)
             {
                 data.izTV = "1";

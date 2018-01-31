@@ -77,6 +77,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ChuyenBilling_\C_chuyenBilling.cs" />
+    <Compile Include="ChuyenBilling_\C_connOracle.cs" />
     <Compile Include="DataClassLocal.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-    class ConnectionViewModel
+   public class ConnectionViewModel
     {
         private SqlConnection conn;
         public SqlConnection getConnection

@@ -31,7 +31,7 @@ namespace PhanQuyen
             InitializeComponent();
 
             cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
-            cbbYear.SelectedValue = User.Instance.Year;
+            cbbYear.SelectedValue = MyUser.Instance.Year;
 
         }
 
@@ -43,33 +43,11 @@ namespace PhanQuyen
 
         private void btnViewReport_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    string str = "Select ds.May,m.ToID,Count(ds.DanhBa) as DanhBa, Case when ds.CodeMoi is null or ds.CodeMoi = '' then N'Chưa đọc' else ds.CodeMoi end as CodeMoi, Sum(ds.TieuThuMoi) as TieuThuMoi,ds.Ky,ds.Dot from DocSo ds Inner Join MayDS m on ds.May = m.May where ds.Ky = '" + cbbMonth.Text + "' and ds.Dot = '" + cbbDate.Text + "' and ds.Nam = " + cbbYear.Text;
-
-            //    if (this.cbbGroup.Text == "Tất cả" || this.cbbMachine.Text == "Chọn sổ đọc")
-            //    {
-            //        string sqlStatement = str + " Group by ds.May,m.ToID,ds.CodeMoi,ds.Ky,ds.Dot";
-            //        GetDataDBViewModel.Instance.ThongKeDHNSauDocSo(sqlStatement);
-            //        DataTable dataTable = pcData.GetDataTable(sqlStatement);
-            //        this._reportViewer.LocalReport.DataSources.Clear();
-            //        this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInThongKeSauDocSo", dataTable));
-            //        this._reportViewer.RefreshReport();
-            //    }
-            //    else
-            //    {
-            //        string text1 = this.cbbGroup.Text;
-            //        string text2 = this.cbbMachine.Text;
-            //        string sqlStatement = str + " and ToID = '" + text1 + "' and ds.May ='" + text2 + "' Group by ds.May,m.ToID,ds.CodeMoi,ds.Ky,ds.Dot";
-            //        this._reportViewer.LocalReport.DataSources.Clear();
-            //        this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInThongKeSauDocSo", dataTable));
-            //        this._reportViewer.RefreshReport();
-            //    }
-            //}
-            //catch (SqlException ex)
-            //{
-            //    int num = (int)MessageBox.Show("Lỗi hàm LoadReport thống kê sau đọc số: " + ex.Message);
-            //}
+            DataTable dt = DataDBViewModel.Instance.GetThongKeSauDocSo(year, month, date, machine);
+            _reportViewer.LocalReport.ReportPath = "../Debug/Report/rptInThongKeSauDocSo.rdlc";
+            this._reportViewer.LocalReport.DataSources.Clear();
+            this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInThongKeSauDocSo", dt));
+            this._reportViewer.RefreshReport();
         }
         #region year,month,date
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)

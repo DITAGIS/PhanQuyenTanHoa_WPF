@@ -57,6 +57,9 @@ namespace ViewModel
     partial void InsertBienDong(BienDong instance);
     partial void UpdateBienDong(BienDong instance);
     partial void DeleteBienDong(BienDong instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
     #endregion
 		
 		public DataClassServerDataContext() : 
@@ -174,6 +177,14 @@ namespace ViewModel
 			get
 			{
 				return this.GetTable<BienDong>();
+			}
+		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
 			}
 		}
 	}
@@ -7107,6 +7118,188 @@ namespace ViewModel
 					this._NVCapNhat = value;
 					this.SendPropertyChanged("NVCapNhat");
 					this.OnNVCapNhatChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _UserID;
+		
+		private string _Username;
+		
+		private string _Password;
+		
+		private string _UserGroup;
+		
+		private string _ToID;
+		
+		private string _MayID;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserIDChanging(string value);
+    partial void OnUserIDChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnUserGroupChanging(string value);
+    partial void OnUserGroupChanged();
+    partial void OnToIDChanging(string value);
+    partial void OnToIDChanged();
+    partial void OnMayIDChanging(string value);
+    partial void OnMayIDChanged();
+    #endregion
+		
+		public User()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(50)")]
+		public string Username
+		{
+			get
+			{
+				return this._Username;
+			}
+			set
+			{
+				if ((this._Username != value))
+				{
+					this.OnUsernameChanging(value);
+					this.SendPropertyChanging();
+					this._Username = value;
+					this.SendPropertyChanged("Username");
+					this.OnUsernameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NChar(20)")]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserGroup", DbType="VarChar(50)")]
+		public string UserGroup
+		{
+			get
+			{
+				return this._UserGroup;
+			}
+			set
+			{
+				if ((this._UserGroup != value))
+				{
+					this.OnUserGroupChanging(value);
+					this.SendPropertyChanging();
+					this._UserGroup = value;
+					this.SendPropertyChanged("UserGroup");
+					this.OnUserGroupChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToID", DbType="NChar(10)")]
+		public string ToID
+		{
+			get
+			{
+				return this._ToID;
+			}
+			set
+			{
+				if ((this._ToID != value))
+				{
+					this.OnToIDChanging(value);
+					this.SendPropertyChanging();
+					this._ToID = value;
+					this.SendPropertyChanged("ToID");
+					this.OnToIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MayID", DbType="NChar(10)")]
+		public string MayID
+		{
+			get
+			{
+				return this._MayID;
+			}
+			set
+			{
+				if ((this._MayID != value))
+				{
+					this.OnMayIDChanging(value);
+					this.SendPropertyChanging();
+					this._MayID = value;
+					this.SendPropertyChanged("MayID");
+					this.OnMayIDChanged();
 				}
 			}
 		}
