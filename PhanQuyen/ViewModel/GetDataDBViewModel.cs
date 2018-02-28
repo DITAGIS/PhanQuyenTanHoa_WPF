@@ -42,7 +42,7 @@ namespace ViewModel
         private const String TTKH_COLUMN_CSMOI = "CSMoi";
         private const String TTKH_COLUMN_TIEUTHU = "TieuThu";
 
-        private const String TTKH_COLUMN_GHICHU = "GhiChu";//todo
+        private const String TTKH_COLUMN_GHICHU = "GhiChuKH";//todo
 
         private const String DC_COLUMN_TOID = "ToID";
         private const String DC_COLUMN_KY = "Ky";
@@ -394,7 +394,7 @@ namespace ViewModel
             return table;
         }
 
-        public DataTable GetInfoCheckCustomer2(int count, string str, string danhBa)
+        public DataTable GetInfoCheckCustomer2(int count, string ghiChu, string danhBa)
         {
 
 
@@ -411,6 +411,7 @@ namespace ViewModel
             table.Columns.Add("DanhBa", typeof(string));
             table.Columns.Add("MLT1", typeof(string));
             table.Columns.Add("Code", typeof(string));
+            table.Columns.Add("GhiChuKH", typeof(string));
 
             foreach (var item in query)
             {
@@ -421,13 +422,14 @@ namespace ViewModel
                 row["DanhBa"] = danhBa;
                 row["MLT1"] = item.MLT1;
                 row["Code"] = item.CodeMoi;
+                row["GhiChuKH"] = ghiChu;
 
                 table.Rows.Add(row);
             }
             return table;
         }
 
-        public DataTable GetInfoCheckCustomer1(string str, string danhBa)
+        public DataTable GetInfoCheckCustomer1(string ghiChu, string danhBa)
         {
             var query = (from d in serverContext.DocSos
                          join k in serverContext.KhachHangs on d.DanhBa equals k.DanhBa
@@ -452,6 +454,9 @@ namespace ViewModel
             table.Columns.Add(TTKH_COLUMN_CSMOI, typeof(string));
             table.Columns.Add(TTKH_COLUMN_TIEUTHU, typeof(string));
             table.Columns.Add(TTKH_COLUMN_GHICHU, typeof(string));
+
+            
+            
             foreach (var item in query)
             {
                 DataRow row = table.NewRow();
@@ -473,7 +478,7 @@ namespace ViewModel
                 row[TTKH_COLUMN_CODE] = item.CodeMoi;
                 row[TTKH_COLUMN_CSMOI] = item.CSMoi;
                 row[TTKH_COLUMN_TIEUTHU] = item.TieuThuMoi;
-                row[TTKH_COLUMN_GHICHU] = item.GhiChuDS;
+                row[TTKH_COLUMN_GHICHU] = ghiChu;
                 table.Rows.Add(row);
             }
             return table;
@@ -517,7 +522,7 @@ namespace ViewModel
         public List<String> getDocsosByConditionCount(int year, String month, String date, int xGroup, String machine)
         {
             var getData = (from x in serverContext.DocSos
-                           where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.May == machine
+                           where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup && x.May == machine
                            select x.DanhBa).ToList();
             return getData;
         }
@@ -541,7 +546,7 @@ namespace ViewModel
 
             DataClassServerDataContext serverContext = new DataClassServerDataContext();
             var getData = (from x in serverContext.DocSos
-                           where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.DanhBa == danhBa && x.May == machine
+                           where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup && x.DanhBa == danhBa && x.May == machine
                            select x).ToList();
 
             DataClassesLocalDataContext localContext = new DataClassesLocalDataContext();
@@ -651,6 +656,7 @@ namespace ViewModel
             serverContext.SubmitChanges();
 
         }
+
         public List<ChuyenMayDS> getKH_ChuyenMayDS(string date, string machineLeft)
         {
             List<ChuyenMayDS> listData = new List<ChuyenMayDS>();
@@ -674,7 +680,7 @@ namespace ViewModel
         public List<string> getDanhBasByCondition(int year, string month, string date, int xGroup, string machine)
         {
             var data = (from x in serverContext.DocSos
-                        where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.May == machine && x.CSMoi > 0
+                        where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup && x.May == machine && x.CSMoi > 0
                         select x.DanhBa).ToList();
             return data;
         }
@@ -682,7 +688,7 @@ namespace ViewModel
         public DocSo getDocSoByDanhBa(string danhBa, int year, string month, string date, short xGroup, string machine)
         {
             var data = (from x in serverContext.DocSos
-                        where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup && x.May == machine && x.DanhBa == danhBa && x.CSMoi > 0
+                        where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup && x.May == machine && x.DanhBa == danhBa && x.CSMoi > 0
                         select x).FirstOrDefault();
             return data;
         }
@@ -691,14 +697,14 @@ namespace ViewModel
             if (machine.Equals(ALL))
             {
                 var data = (from x in serverContext.DocSos
-                            where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup
+                            where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup
                             select x).ToList();
                 return data;
             }
             else
             {
                 var data = (from x in serverContext.DocSos
-                            where x.Nam == year && x.Ky == month && x.Dot == date && x.May == machine
+                            where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.May == machine
                             select x).ToList();
                 return data;
             }
@@ -773,7 +779,7 @@ namespace ViewModel
 
             DataClassServerDataContext serverContext = new DataClassServerDataContext();
             var getData = (from x in serverContext.DocSos
-                           where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup
+                           where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup
                            select x).ToList();
 
             DataClassesLocalDataContext localContext = new DataClassesLocalDataContext();
@@ -853,7 +859,9 @@ namespace ViewModel
             var data = (from x in serverContext.KhachHangs
                         where x.DanhBa == danhBa
                         select new { x.TenKH, x.HopDong }).FirstOrDefault();
-            return new List<string>() { data.TenKH, data.HopDong };
+            if (data != null)
+                return new List<string>() { data.TenKH, data.HopDong };
+            else return new List<string>();
         }
 
         public IEnumerable<object> getDistinctKHDS()
@@ -931,6 +939,7 @@ namespace ViewModel
             int month = Int16.Parse(Month);
             List<Item> r = new List<Item>();
             String kyString;
+            month++;
             while (count <= 12)
             {
                 month--;
@@ -957,12 +966,12 @@ namespace ViewModel
             var whereStr = "and (";
             foreach (var s in r)
             {
-                whereStr += String.Format(" (nam = {0} and ky = {1}) or", s.Year, s.Month);
+                whereStr += String.Format(" docsoid like '{0}%' or", s.Year + "" + s.Month.ToString().PadLeft(2, '0'));
             }
             whereStr = whereStr.Substring(0, whereStr.Length - 3);
             whereStr += ")";
-            List<DocSo_1Ky> datas = serverContext.ExecuteQuery<DocSo>(String.Format("select docsoID, ky, gioghi, codemoi, csmoi, tieuthumoi from Docso where danhba = '" + danhBa + "' {0} " +
-                "order by nam desc, ky desc", whereStr)).Select(data => new DocSo_1Ky(data.Ky + "/" + year, data.GIOGHI.GetValueOrDefault().ToString(pattern), data.CodeMoi, data.CSMoi + "", data.TieuThuMoi + "")).ToList();
+            List<DocSo_1Ky> datas = serverContext.ExecuteQuery<DocSo>(String.Format("select docsoID, denngay, codemoi, csmoi, tieuthumoi from Docso where danhba = '" + danhBa + "' {0} " +
+                "order by nam desc, ky desc", whereStr)).Select(data => new DocSo_1Ky(data.DocSoID.Substring(4, 2) + "/" + data.DocSoID.Substring(0, 4), data.DenNgay.GetValueOrDefault().ToString(pattern), data.CodeMoi, data.CSMoi + "", data.TieuThuMoi + "")).ToList();
             ObservableCollection<DocSo_1Ky> listDocSo = new ObservableCollection<DocSo_1Ky>(datas);
             return listDocSo;
         }
@@ -976,20 +985,11 @@ namespace ViewModel
                 lstYear.Add(item);
             return lstYear;
         }
-        public ObservableCollection<String> getDistinctMonth()
-        {
-            ObservableCollection<String> lstMonth = new ObservableCollection<String>();
-            var items = (from x in localContext.DocSoLocals
-                         select x.Ky).Distinct().ToList();
-            foreach (String item in items)
-                lstMonth.Add(item);
-            return lstMonth;
-        }
         public ObservableCollection<String> getDistinctMonthServer(int year)
         {
             ObservableCollection<String> lstMonth = new ObservableCollection<String>();
             var items = (from x in serverContext.DocSos
-                         where x.Nam == year
+                         where x.DocSoID.StartsWith(year + "")
                          select x.Ky).Distinct().ToList();
             foreach (String item in items)
                 lstMonth.Add(item);
@@ -1008,7 +1008,7 @@ namespace ViewModel
         {
             ObservableCollection<String> lstDate = new ObservableCollection<String>();
             var items = (from x in serverContext.DocSos
-                         where x.Nam == year && x.Ky == month
+                         where x.DocSoID.StartsWith(year + month)
                          select x.Dot).Distinct().ToList();
             foreach (String item in items)
                 lstDate.Add(item);
@@ -1040,7 +1040,7 @@ namespace ViewModel
         {
             ObservableCollection<int> lstGroup = new ObservableCollection<int>();
             var items = (from x in serverContext.DocSos
-                         where x.Nam == year && x.Ky == month && x.Dot == date
+                         where x.DocSoID.StartsWith(year + month) && x.Dot == date
                          select x.TODS).Distinct().ToList();
             foreach (int item in items)
                 lstGroup.Add(item);
@@ -1052,11 +1052,11 @@ namespace ViewModel
             List<String> items;
             if (xGroup == 0)
                 items = (from x in serverContext.DocSos
-                         where x.Nam == year && x.Ky == month && x.Dot == date
+                         where x.DocSoID.StartsWith(year + month) && x.Dot == date
                          select x.May).Distinct().ToList();
             else
                 items = (from x in serverContext.DocSos
-                         where x.Nam == year && x.Ky == month && x.Dot == date && x.TODS == xGroup
+                         where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup
                          select x.May).Distinct().ToList();
             lstMachine.Add(ALL);
             foreach (String item in items)

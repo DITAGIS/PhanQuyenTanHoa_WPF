@@ -23,5 +23,9 @@ namespace Model
             ChiSo = chiSo;
             TieuThu = tieuThu;
         }
+
+        public DocSo_1Ky()
+        {
+        }
     }
 }

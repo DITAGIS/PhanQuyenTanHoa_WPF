@@ -120,7 +120,8 @@
                     <!--Danh bạ-->
                     <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbDanhBa" 
                       Text="{Binding SelectedHoaDon.DanhBa}"
-                      Style="{StaticResource styleTxtb}"/>
+                      Style="{StaticResource styleTxtb}"
+                              KeyDown="txtbDanhBa_KeyDown"/>
                     <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Code:"/></TextBlock>
 
                     <!--Chọn code-->
@@ -338,9 +339,11 @@
 
                             </Image>
                         </Border>
-                        --><!--<Popup Placement="Right" IsOpen="True">-->
+                        -->
+                    <!--<Popup Placement="Right" IsOpen="True">-->
 
-                        <!--</Popup>--><!--
+                    <!--</Popup>-->
+                    <!--
 
                     </Grid>
                     <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Text="Chưa có hình ảnh">
@@ -800,8 +803,10 @@
                           Grid.Column="1"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
-                         Text="{Binding ListDocSo_1Ky[11].KyNam}"/>
+                                <TextBlock 
+                                    Name="txtKyNam11"
+                                    HorizontalAlignment="Center" 
+                         Text="{Binding ListDocSo_1Ky[11].KyNam}" />
                             </Border>
                             <Border Grid.Row="1"
                           Grid.Column="1"
@@ -835,7 +840,9 @@
                           Grid.Column="2"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock 
+                                    Name="txtKyNam10"
+                                    HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[10].KyNam}"/>
                             </Border>
                             <Border Grid.Row="1"
@@ -870,7 +877,8 @@
                           Grid.Column="3"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock Name="txtKyNam9"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[9].KyNam}"/>
                             </Border>
                             <Border Grid.Row="1"
@@ -905,7 +913,8 @@
                           Grid.Column="4"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock Name="txtKyNam8"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[8].KyNam}"/>
                             </Border>
                             <Border Grid.Row="1"
@@ -940,7 +949,8 @@
                           Grid.Column="5"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock Name="txtKyNam7"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[7].KyNam}"/>
                             </Border>
                             <Border Grid.Row="1"
@@ -975,7 +985,8 @@
                           Grid.Column="6"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock Name="txtKyNam6"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[6].KyNam}"/>
                             </Border>
                             <Border Grid.Row="1"
@@ -1010,7 +1021,8 @@
                           Grid.Column="7"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock Name="txtKyNam5"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[5].KyNam}"/>
                             </Border>
                             <Border Grid.Row="1"
@@ -1045,7 +1057,8 @@
                           Grid.Column="8"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock Name="txtKyNam4"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[4].KyNam}"/>
                             </Border>
                             <Border Grid.Row="1"
@@ -1080,7 +1093,8 @@
                           Grid.Column="9"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock Name="txtKyNam3"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[3].KyNam}"/>
                             </Border>
                             <Border Grid.Row="1"
@@ -1115,7 +1129,8 @@
                           Grid.Column="10"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock Name="txtKyNam2"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[2].KyNam}"/>
                             </Border>
                             <Border Grid.Row="1"
@@ -1150,7 +1165,8 @@
                           Grid.Column="11"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock Name="txtKyNam1"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[1].KyNam}"/>
                             </Border>
                             <Border Grid.Row="1"
@@ -1185,7 +1201,8 @@
                           Grid.Column="12"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock Name="txtKyNam0"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[0].KyNam}"/>
                             </Border>
                             <Border Grid.Row="1"

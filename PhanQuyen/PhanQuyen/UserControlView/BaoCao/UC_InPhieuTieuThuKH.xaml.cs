@@ -1,4 +1,5 @@
 ﻿using Microsoft.Reporting.WinForms;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -38,6 +39,8 @@ namespace PhanQuyen
             ps.Margins = margins;
             //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
             _reportViewer.SetPageSettings(ps);
+
+
         }
         public UC_InPhieuTieuThuKH(string danhBa)
         {
@@ -54,6 +57,7 @@ namespace PhanQuyen
             _reportViewer.SetPageSettings(ps);
 
             this.txtbDanhBa.Text = danhBa;
+
         }
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -65,8 +69,12 @@ namespace PhanQuyen
         {
             String danhBa = txtbDanhBa.Text;
             String str = txtGhiChu.Text.Trim();
+            String nam = "";
+            if (cbbYear.SelectedValue != null)
+                nam = cbbYear.SelectedValue.ToString();
             DataTable dt = DataDBViewModel.Instance.GetInfoCheckCustomer1(str, danhBa);
             dt.Merge(DataDBViewModel.Instance.GetInfoCheckCustomer2(dt.Rows.Count, str, danhBa));
+
             _reportViewer.LocalReport.ReportPath = "../Debug/Report/rptInPhieuKiemTra.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInPhieuKiemTraKH", dt));

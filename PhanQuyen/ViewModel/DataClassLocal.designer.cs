@@ -95,11 +95,11 @@ namespace ViewModel
 			}
 		}
 		
-		public System.Data.Linq.Table<ChuyenMayDS> ChuyenMayDs
+		public System.Data.Linq.Table<ChuyenMayD> ChuyenMayDs
 		{
 			get
 			{
-				return this.GetTable<ChuyenMayDS>();
+				return this.GetTable<ChuyenMayD>();
 			}
 		}
 	}
@@ -2475,7 +2475,7 @@ namespace ViewModel
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChuyenMayDS")]
-	public partial class ChuyenMayDS
+	public partial class ChuyenMayD
 	{
 		
 		private string _DanhBa;
@@ -2486,7 +2486,7 @@ namespace ViewModel
 		
 		private string _DiaChi;
 		
-		public ChuyenMayDS()
+		public ChuyenMayD()
 		{
 		}
 		

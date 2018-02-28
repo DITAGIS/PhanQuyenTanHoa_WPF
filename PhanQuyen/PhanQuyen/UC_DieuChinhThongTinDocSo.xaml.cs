@@ -196,9 +196,9 @@ namespace PhanQuyen
             //}
             _selectedDocSo = dtgridMain.SelectedValue as DocSo;
             cbbKHDS.SelectedValue = txtbCode.Text.ToString();
-            foreach(var item in cbbKHDS.Items)
+            foreach (var item in cbbKHDS.Items)
             {
-                
+
             }
             if (_selectedDocSo != null)
             {
@@ -474,7 +474,7 @@ namespace PhanQuyen
             cbbCode.SelectedIndex = 0;
             Sum();
             CanhBaoBatThuong();
-           
+
         }
         private String getValueCell(DataGridCell cell, DataGridRow row)
         {
@@ -620,7 +620,7 @@ namespace PhanQuyen
         private void columnHeader_Click(object sender, RoutedEventArgs e)
         {
             CanhBaoBatThuong();
-           
+
         }
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
@@ -683,6 +683,33 @@ namespace PhanQuyen
                     this.txtbCSM.Text = "0";
                     this.txtbTieuThu.Focus();
                     break;
+            }
+        }
+
+        private void txtbDanhBa_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                string danhBa = txtbDanhBa.Text;
+                if (txtbDanhBa.Text.Length == 0)
+                {
+                    dtgridMain.ItemsSource = null;
+                    dtgridMain.Items.Clear();
+                    dtgridMain.ItemsSource = docSoList;
+                }
+                else
+                {
+                    dtgridMain.ItemsSource = null;
+                    dtgridMain.Items.Clear();
+                    foreach (DocSo docSo in docSoList)
+                        if (danhBa.Equals(docSo.DanhBa))
+                            dtgridMain.Items.Add(docSo);
+                }
+
+                Sum();
+
+                CanhBaoBatThuong();
+                Refresh();
             }
         }
 

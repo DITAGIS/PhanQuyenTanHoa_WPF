@@ -324,7 +324,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>DIACHI</rd:DefaultName>
-        <Top>2.26563in</Top>
+        <Top>2.25174in</Top>
         <Left>1.64077in</Left>
         <Height>0.25in</Height>
         <Width>5.79152in</Width>
@@ -1304,27 +1304,11 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Ghi Chú: </Value>
+                <Value>Ghi Chú:   </Value>
                 <Style>
                   <FontFamily>times New Roman</FontFamily>
                   <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!GhiChuKH.Value</Value>
-                <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>13pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve">   </Value>
-                <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>13pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -1335,7 +1319,7 @@
         <Top>11.13456cm</Top>
         <Left>0.54716cm</Left>
         <Height>0.6cm</Height>
-        <Width>25.78153cm</Width>
+        <Width>2.22303cm</Width>
         <ZIndex>9</ZIndex>
         <Style>
           <Border>

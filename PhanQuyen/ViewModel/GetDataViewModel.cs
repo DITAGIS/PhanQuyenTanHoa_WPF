@@ -116,7 +116,7 @@ namespace ViewModel
         {
             Initialize();
             ListYear = DataDBViewModel.Instance.getDistinctYear();
-            ListMonth = DataDBViewModel.Instance.getDistinctMonth();
+            //ListMonth = DataDBViewModel.Instance.getDistinctMonth();
             ListDate = DataDBViewModel.Instance.getDistinctDate();
             ListGroup = DataDBViewModel.Instance.getDistinctGroup();
         }

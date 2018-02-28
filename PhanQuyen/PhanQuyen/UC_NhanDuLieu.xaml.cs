@@ -57,7 +57,7 @@ namespace PhanQuyen
         private void BtnRefresh_Click(object sender, RoutedEventArgs e)
         {
             cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYear();
-            cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonth();
+            //cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonth();
             cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDate();
             cbbGroup.ItemsSource = DataDBViewModel.Instance.getDistinctGroup();
             dtGridSoDaNhan.ItemsSource = DataDBViewModel.Instance.getDistinctSoDaNhan(Int16.Parse(cbbYear.SelectedValue.ToString()), cbbMonth.SelectedValue.ToString(),
