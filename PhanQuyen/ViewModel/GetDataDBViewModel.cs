@@ -36,7 +36,8 @@ namespace ViewModel
         private const String TTKH_COLUMN_DANHBA = "DanhBa";
         private const String TTKH_COLUMN_GB = "GB";
         private const String TTKH_COLUMN_DM = "DM";
-        private const String TTKH_COLUMN_KY = "KY";//todo
+        private const String TTKH_COLUMN_KY = "Ky";//todo
+        private const String TTKH_COLUMN_NAM = "Nam";//todo
         private const String TTKH_COLUMN_NGAYDOC = "DenNgay";
         private const String TTKH_COLUMN_CODE = "Code";
         private const String TTKH_COLUMN_CSMOI = "CSMoi";
@@ -449,6 +450,7 @@ namespace ViewModel
             table.Columns.Add(TTKH_COLUMN_GB, typeof(string));
             table.Columns.Add(TTKH_COLUMN_DM, typeof(string));
             table.Columns.Add(TTKH_COLUMN_KY, typeof(string));
+            table.Columns.Add(TTKH_COLUMN_NAM, typeof(string));
             table.Columns.Add(TTKH_COLUMN_NGAYDOC, typeof(string));
             table.Columns.Add(TTKH_COLUMN_CODE, typeof(string));
             table.Columns.Add(TTKH_COLUMN_CSMOI, typeof(string));
@@ -473,7 +475,8 @@ namespace ViewModel
                 row[TTKH_COLUMN_DANHBA] = danhBa;
                 row[TTKH_COLUMN_GB] = item.GB;
                 row[TTKH_COLUMN_DM] = item.DM;
-                row[TTKH_COLUMN_KY] = String.Format("{0}/{1}", item.Ky, item.Nam);
+                row[TTKH_COLUMN_KY] =  item.Ky;
+                row[TTKH_COLUMN_NAM] = item.Nam;
                 row[TTKH_COLUMN_NGAYDOC] = item.DenNgay.Value.ToString(pattern);
                 row[TTKH_COLUMN_CODE] = item.CodeMoi;
                 row[TTKH_COLUMN_CSMOI] = item.CSMoi;
