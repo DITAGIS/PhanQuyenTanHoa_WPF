@@ -117,6 +117,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DocSoTHDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dtsInTieuThuBatThuong.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsInTieuThuBatThuong.xsd</DependentUpon>
+    </Compile>
     <Compile Include="UserControlView\BaoCao\UC_InTieuThuBatThuong.xaml.cs">
       <DependentUpon>UC_InTieuThuBatThuong.xaml</DependentUpon>
     </Compile>
@@ -303,6 +308,17 @@
     </None>
     <None Include="DocSoTHDataSet.xss">
       <DependentUpon>DocSoTHDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dtsInTieuThuBatThuong.xsc">
+      <DependentUpon>dtsInTieuThuBatThuong.xsd</DependentUpon>
+    </None>
+    <None Include="dtsInTieuThuBatThuong.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsInTieuThuBatThuong.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsInTieuThuBatThuong.xss">
+      <DependentUpon>dtsInTieuThuBatThuong.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

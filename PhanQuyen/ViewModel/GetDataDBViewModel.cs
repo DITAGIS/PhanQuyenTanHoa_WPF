@@ -267,46 +267,74 @@ namespace ViewModel
 
         public DataTable GetListTieuThuBatThuong(int year, string month, string date, string machine)
         {
-            List<KHDongCua> query;
+            List<KHTieuThuBatThuong> query;
             if (machine.Equals(ALL))
                 if (MyUser.Instance.ToID != "")
-                    query = serverContext.ExecuteQuery<KHDongCua>("SELECT KH.SDT, KH.DOT, KH.MLT2, KH.DANHBA, DS.TBTT, KH.TENKH, DS.MAY, DS.CODEMoi, DS.TIEUTHUMoi, DS.CSMOI, DS.KY,ds.Nam,m.NhanVienID as NVGHI, CASE WHEN KH.SOMOI IS NOT NULL AND  KH.SOMOI != '' THEN KH.So + ' (' + KH.SOMOI + ') ' + KH.DUONG ELSE KH.SO + ' ' + KH.DUONG END AS SoMoi,m.ToID FROM  DocSo DS LEFT OUTER JOIN KHACHHANG AS KH ON DS.DANHBA = KH.DANHBA Inner join MayDS as m on DS.May = m.May WHERE m.ToID = '" + MyUser.Instance.ToID + "' AND DS.KY = " + month + " AND DS.DOT = " + date + " AND DS.Nam = " + year + " AND LEFT(DS.CodeMoi,1) != 'M' AND LEFT(DS.CodeMoi,1) != 'F' AND DS.TieuThuMoi > 4 ORDER BY KH.MLT2 ").ToList();
+                    query = serverContext.ExecuteQuery<KHTieuThuBatThuong>("SELECT KH.SDT, KH.DOT, KH.MLT2, KH.DANHBA, DS.TBTT," +
+                        " KH.TENKH," +
+                        " DS.MAY, DS.CODEMoi, DS.TIEUTHUMoi, DS.CSMOI, DS.KY,ds.Nam,m.NhanVienID as NVGHI," +
+                        " CASE WHEN KH.SOMOI IS NOT NULL AND  KH.SOMOI != '' THEN KH.So + ' (' + KH.SOMOI + ') ' + KH.DUONG ELSE KH.SO + ' ' + KH.DUONG END AS SoMoi," +
+                        "m.ToID FROM  DocSo DS LEFT OUTER JOIN KHACHHANG AS KH ON DS.DANHBA = KH.DANHBA " +
+                        "Inner join MayDS as m on DS.May = m.May WHERE m.ToID = '" + MyUser.Instance.ToID + "' AND DS.KY = " + month + " AND DS.DOT = " + date + " AND DS.Nam = " + year + " AND LEFT(DS.CodeMoi,1) != 'M' AND LEFT(DS.CodeMoi,1) != 'F' AND DS.TieuThuMoi > 4 ORDER BY KH.MLT2 ").ToList();
                 else
-                    query = serverContext.ExecuteQuery<KHDongCua>("SELECT KH.SDT, KH.DOT, KH.MLT2, KH.DANHBA, DS.TBTT, KH.TENKH, DS.MAY, DS.CODEMoi, DS.TIEUTHUMoi, DS.CSMOI, DS.KY,ds.Nam,m.NhanVienID as NVGHI, CASE WHEN KH.SOMOI IS NOT NULL AND  KH.SOMOI != '' THEN KH.So + ' (' + KH.SOMOI + ') ' + KH.DUONG ELSE KH.SO + ' ' + KH.DUONG END AS SoMoi,m.ToID FROM  DocSo DS LEFT OUTER JOIN KHACHHANG AS KH ON DS.DANHBA = KH.DANHBA Inner join MayDS as m on DS.May = m.May WHERE DS.KY = " + month + " AND DS.DOT = " + date + " AND DS.Nam = " + year + " AND LEFT(DS.CodeMoi,1) != 'M' AND LEFT(DS.CodeMoi,1) != 'F' AND DS.TieuThuMoi > 4 ORDER BY KH.MLT2 ").ToList();
-            else query = serverContext.ExecuteQuery<KHDongCua>("SELECT KH.SDT, KH.DOT, KH.MLT2, KH.DANHBA, DS.TBTT, KH.TENKH, DS.MAY, DS.CODEMoi, DS.TIEUTHUMoi, DS.CSMOI, DS.KY,ds.Nam,m.NhanVienID as NVGHI, CASE WHEN KH.SOMOI IS NOT NULL AND  KH.SOMOI != '' THEN KH.So + ' (' + KH.SOMOI + ') ' + KH.DUONG ELSE KH.SO + ' ' + KH.DUONG END AS SoMoi,m.ToID FROM  DocSo DS LEFT OUTER JOIN KHACHHANG AS KH ON DS.DANHBA = KH.DANHBA Inner join MayDS as m on DS.May = m.May WHERE DS.KY = " + month + " AND DS.DOT = " + date + " AND DS.May = '" + machine + "' AND DS.Nam = " + year + " AND LEFT(DS.CodeMoi,1) != 'M' AND LEFT(DS.CodeMoi,1) != 'F' AND DS.TieuThuMoi > 4 ORDER BY KH.MLT2 ").ToList();
+                    query = serverContext.ExecuteQuery<KHTieuThuBatThuong>("SELECT KH.SDT, KH.DOT, KH.MLT2, KH.DANHBA, DS.TBTT, KH.TENKH, DS.MAY, DS.CODEMoi, DS.TIEUTHUMoi, DS.CSMOI, DS.KY,ds.Nam,m.NhanVienID as NVGHI, CASE WHEN KH.SOMOI IS NOT NULL AND  KH.SOMOI != '' THEN KH.So + ' (' + KH.SOMOI + ') ' + KH.DUONG ELSE KH.SO + ' ' + KH.DUONG END AS SoMoi,m.ToID FROM  DocSo DS LEFT OUTER JOIN KHACHHANG AS KH ON DS.DANHBA = KH.DANHBA Inner join MayDS as m on DS.May = m.May WHERE DS.KY = " + month + " AND DS.DOT = " + date + " AND DS.Nam = " + year + " AND LEFT(DS.CodeMoi,1) != 'M' AND LEFT(DS.CodeMoi,1) != 'F' AND DS.TieuThuMoi > 4 ORDER BY KH.MLT2 ").ToList();
+            else query = serverContext.ExecuteQuery<KHTieuThuBatThuong>("SELECT KH.SDT, KH.DOT, KH.MLT2, KH.DANHBA, DS.TBTT, KH.TENKH, DS.MAY, DS.CODEMoi, DS.TIEUTHUMoi, DS.CSMOI, DS.KY,ds.Nam,m.NhanVienID as NVGHI, CASE WHEN KH.SOMOI IS NOT NULL AND  KH.SOMOI != '' THEN KH.So + ' (' + KH.SOMOI + ') ' + KH.DUONG ELSE KH.SO + ' ' + KH.DUONG END AS SoMoi,m.ToID FROM  DocSo DS LEFT OUTER JOIN KHACHHANG AS KH ON DS.DANHBA = KH.DANHBA Inner join MayDS as m on DS.May = m.May WHERE DS.KY = " + month + " AND DS.DOT = " + date + " AND DS.May = '" + machine + "' AND DS.Nam = " + year + " AND LEFT(DS.CodeMoi,1) != 'M' AND LEFT(DS.CodeMoi,1) != 'F' AND DS.TieuThuMoi > 4 ORDER BY KH.MLT2 ").ToList();
             DataTable table = new DataTable();
             table.Columns.Add(DC_COLUMN_MyUserNAME, typeof(string));
             table.Columns.Add(DC_COLUMN_TODS, typeof(string));
             table.Columns.Add(DC_COLUMN_KY, typeof(string));
             table.Columns.Add(DC_COLUMN_DOT, typeof(string));
             table.Columns.Add(DC_COLUMN_MAY, typeof(string));
+            table.Columns.Add(DC_COLUMN_STT, typeof(string));
             table.Columns.Add(DC_COLUMN_MLT, typeof(string));
             table.Columns.Add(DC_COLUMN_SDT, typeof(string));
             table.Columns.Add(DC_COLUMN_DANHBA, typeof(string));
             table.Columns.Add(DC_COLUMN_TENKH, typeof(string));
             table.Columns.Add(DC_COLUMN_DUONG, typeof(string));
+            table.Columns.Add(DC_COLUMN_SOTHANCU, typeof(string));
             table.Columns.Add(DC_COLUMN_CODEMOI, typeof(string));
-            table.Columns.Add(DC_COLUMN_CSMOI, typeof(string));
-            table.Columns.Add(DC_COLUMN_TIEUTHUMOI, typeof(string));
+            table.Columns.Add(DC_COLUMN_CSCU, typeof(string));
             table.Columns.Add(DC_COLUMN_TBTT, typeof(string));
+            table.Columns.Add(DC_COLUMN_TIEUTHUMOI, typeof(string));
+            table.Columns.Add(DC_COLUMN_CSMOI, typeof(string));
+
+
+            int stt = 0;
             foreach (var item in query)
             {
-                DataRow row = table.NewRow();
-                row[DC_COLUMN_MyUserNAME] = item.MyUsername;
-                row[DC_COLUMN_TODS] = item.ToDS;
-                row[DC_COLUMN_KY] = month;
-                row[DC_COLUMN_DOT] = date;
-                row[DC_COLUMN_MAY] = machine;
-                row[DC_COLUMN_MLT] = item.MLT2;
-                row[DC_COLUMN_SDT] = item.SDT;
-                row[DC_COLUMN_DANHBA] = item.DANHBA;
-                row[DC_COLUMN_TENKH] = item.TENKH;
-                row[DC_COLUMN_DUONG] = item.Duong;
-                row[DC_COLUMN_CODEMOI] = item.CodeMoi;
-                row[DC_COLUMN_CSMOI] = item.CSCu;
-                row[DC_COLUMN_TIEUTHUMOI] = item.TieuThuCu;
-                row[DC_COLUMN_TBTT] = item.TBTT;
-                table.Rows.Add(row);
+                double num1 = item.TieuThuMoi;
+                double num2 = item.TBTT;
+                if (num1 < 0.0 ||
+                    (num1 == 0.0 && num2 > 3.0) ||
+                    (num1 >= 1.0 && num1 <= 10.0 && (num1 < num2 * 0.4 || num1 > num2 * 4.0)) ||
+                    (num1 > 10.0 && num1 <= 20.0 && (num1 < num2 * 0.55 || num1 > num2 * 4.0)) ||
+                    (num1 > 20.0 && num1 <= 40.0 && (num1 < num2 * 0.65 || num1 > num2 * 2.0)) ||
+                    (num1 > 40.0 && num1 <= 80.0 && (num1 < num2 * 0.7 || num1 > num2 * 1.8)) ||
+                    (num1 > 80.0 && num1 <= 200.0 && (num1 < num2 * 0.75 || num1 > num2 * 1.8)) ||
+                    (num1 > 200.0 && num1 <= 400.0 && (num1 < num2 * 0.8 || num1 > num2 * 1.7)) ||
+                    (num1 > 400.0 && num1 <= 800.0 && (num1 < num2 * 0.8 || num1 > num2 * 1.6)) ||
+                    (num1 > 800.0 && num1 <= 2000.0 && (num1 < num2 * 0.8 || num1 > num2 * 1.5)) ||
+                    (num1 > 2000.0 && num1 <= 5000.0 && (num1 < num2 * 0.8 || num1 > num2 * 1.4)) ||
+                    (num1 > 5000.0 && (num1 < num2 * 0.8 || num1 > num2 * 1.3)))
+                {
+                    DataRow row = table.NewRow();
+                    row[DC_COLUMN_MyUserNAME] = item.NVGHI;
+                    row[DC_COLUMN_TODS] = item.ToDS;
+                    row[DC_COLUMN_KY] = month;
+                    row[DC_COLUMN_DOT] = date;
+                    row[DC_COLUMN_MAY] = machine;
+                    row[DC_COLUMN_STT] = ++stt;
+                    row[DC_COLUMN_MLT] = item.MLT2;
+                    row[DC_COLUMN_SDT] = item.SDT;
+                    row[DC_COLUMN_DANHBA] = item.DANHBA;
+                    row[DC_COLUMN_TENKH] = item.TENKH;
+                    row[DC_COLUMN_DUONG] = item.Duong;
+                    row[DC_COLUMN_CODEMOI] = item.CodeMoi;
+                    row[DC_COLUMN_CSMOI] = item.CSMoi;
+                    row[DC_COLUMN_TIEUTHUMOI] = item.TieuThuMoi;
+                    row[DC_COLUMN_TBTT] = item.TBTT;
+                    table.Rows.Add(row);
+                }
             }
             return table;
         }
@@ -466,8 +494,8 @@ namespace ViewModel
             table.Columns.Add(TTKH_COLUMN_TIEUTHU, typeof(string));
             table.Columns.Add(TTKH_COLUMN_GHICHU, typeof(string));
 
-            
-            
+
+
             foreach (var item in query)
             {
                 DataRow row = table.NewRow();
@@ -484,7 +512,7 @@ namespace ViewModel
                 row[TTKH_COLUMN_DANHBA] = danhBa;
                 row[TTKH_COLUMN_GB] = item.GB;
                 row[TTKH_COLUMN_DM] = item.DM;
-                row[TTKH_COLUMN_KY] =  item.Ky;
+                row[TTKH_COLUMN_KY] = item.Ky;
                 row[TTKH_COLUMN_NAM] = item.Nam;
                 row[TTKH_COLUMN_NGAYDOC] = item.DenNgay.Value.ToString(pattern);
                 row[TTKH_COLUMN_CODE] = item.CodeMoi;

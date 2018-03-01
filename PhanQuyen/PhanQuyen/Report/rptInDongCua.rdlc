@@ -758,7 +758,7 @@
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>0.98425in</Size>
+                    <Size>0.50438in</Size>
                     <CellContents>
                       <Textbox Name="DocSoID">
                         <CanGrow>true</CanGrow>
@@ -1052,7 +1052,7 @@
         <Top>1.22917in</Top>
         <Left>0.75in</Left>
         <Height>1.29167in</Height>
-        <Width>7.0345in</Width>
+        <Width>6.55463in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
