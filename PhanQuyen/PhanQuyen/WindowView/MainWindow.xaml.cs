@@ -156,15 +156,7 @@ namespace PhanQuyen
             }
         }
 
-        private void ribBtnChuyenMayDocSo_Click(object sender, RoutedEventArgs e)
-        {
-            if (uc_ChuyenMayDocSo == null)
-                uc_ChuyenMayDocSo = new UC_ChuyenMayDocSo();
-            resizeUC();
-            if (stkMain.Children.Count == 1)
-                stkMain.Children.RemoveAt(0);
-            stkMain.Children.Add(uc_ChuyenMayDocSo);
-        }
+
         private void ribBtnDieuChinhThongTinDocSo_Click(object sender, RoutedEventArgs e)
         {
             if (uc_DieuChinhThonTinDocSo == null)
@@ -177,8 +169,17 @@ namespace PhanQuyen
 
         private void ribBtnInPhieuTieuThuKH_Click(object sender, RoutedEventArgs e)
         {
+            String danhBa = null;
+            if (uc_DieuChinhThonTinDocSo != null)
+            {
+                danhBa = uc_DieuChinhThonTinDocSo.DanhBa;
+            }
             if (uc_InPhieuTieuThuKH == null)
                 uc_InPhieuTieuThuKH = new UC_InPhieuTieuThuKH();
+            if (danhBa != null)
+            {
+                uc_InPhieuTieuThuKH.setDanhBa(danhBa);
+            }
             resizeUC();
             if (stkMain.Children.Count == 1)
                 stkMain.Children.RemoveAt(0);

@@ -52,6 +52,8 @@ namespace PhanQuyen
         private const int COLUMN_TIEUTHUMOI = 8;
         private const int COLUMN_TTTB = 9;
         private const int COLUMN_STACAPNHAT = 20;
+
+        public string DanhBa { get; set; }
         public UC_DieuChinhThongTinDocSo()
         {
             InitializeComponent();
@@ -195,6 +197,7 @@ namespace PhanQuyen
             //    string value = MyRow[1].ToString();
             //}
             _selectedDocSo = dtgridMain.SelectedValue as DocSo;
+            DanhBa = _selectedDocSo.DanhBa;
             cbbKHDS.SelectedValue = txtbCode.Text.ToString();
             foreach (var item in cbbKHDS.Items)
             {
@@ -237,8 +240,8 @@ namespace PhanQuyen
 
         private void Refresh()
         {
-            //if (dtgridMain != null && dtgridMain.Items.Count > 0 && dtgridMain.SelectedValue != null)
-            //    dtgridMain.SelectedIndex = -1;
+            if (dtgridMain != null && dtgridMain.Items.Count > 0)
+                dtgridMain.SelectedIndex = 0;
 
         }
 
@@ -619,7 +622,11 @@ namespace PhanQuyen
         }
         private void columnHeader_Click(object sender, RoutedEventArgs e)
         {
+
+            Sum();
+
             CanhBaoBatThuong();
+            Refresh();
 
         }
 

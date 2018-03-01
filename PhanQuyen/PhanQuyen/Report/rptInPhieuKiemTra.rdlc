@@ -1335,31 +1335,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value xml:space="preserve">   </Value>
-                <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>13pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!Ky.Value</Value>
-                <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>13pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>/</Value>
-                <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>13pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!Nam.Value</Value>
+                <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontFamily>times New Roman</FontFamily>
                   <FontSize>13pt</FontSize>

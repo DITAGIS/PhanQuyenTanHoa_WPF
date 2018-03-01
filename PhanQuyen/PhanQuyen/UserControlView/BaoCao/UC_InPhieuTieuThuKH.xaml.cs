@@ -59,6 +59,11 @@ namespace PhanQuyen
             this.txtbDanhBa.Text = danhBa;
 
         }
+        public void setDanhBa(string danhBa)
+        {
+            this.txtbDanhBa.Text = danhBa;
+
+        }
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbbYear.SelectedValue != null)
