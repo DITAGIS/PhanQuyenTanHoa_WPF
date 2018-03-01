@@ -40,6 +40,7 @@ namespace PhanQuyen
             //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
             _reportViewer.SetPageSettings(ps);
 
+            Print();
 
         }
         public UC_InPhieuTieuThuKH(string danhBa)
@@ -58,6 +59,7 @@ namespace PhanQuyen
 
             this.txtbDanhBa.Text = danhBa;
 
+            Print();
         }
         public void setDanhBa(string danhBa)
         {
@@ -72,6 +74,12 @@ namespace PhanQuyen
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
+
+            Print();
+          
+        }
+        public void Print()
+        {
             String danhBa = txtbDanhBa.Text;
             String str = txtGhiChu.Text.Trim();
             String nam = "";
@@ -84,9 +92,7 @@ namespace PhanQuyen
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInPhieuKiemTraKH", dt));
             this._reportViewer.RefreshReport();
-
-
-            //_reportViewer.LocalReport.DataSources.Add(new ReportDataSource())
+  //_reportViewer.LocalReport.DataSources.Add(new ReportDataSource())
         }
     }
 }

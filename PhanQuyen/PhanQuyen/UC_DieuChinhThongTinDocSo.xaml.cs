@@ -197,7 +197,8 @@ namespace PhanQuyen
             //    string value = MyRow[1].ToString();
             //}
             _selectedDocSo = dtgridMain.SelectedValue as DocSo;
-            DanhBa = _selectedDocSo.DanhBa;
+            if (_selectedDocSo != null && _selectedDocSo.DanhBa != null)
+                DanhBa = _selectedDocSo.DanhBa;
             cbbKHDS.SelectedValue = txtbCode.Text.ToString();
             foreach (var item in cbbKHDS.Items)
             {
@@ -737,10 +738,10 @@ namespace PhanQuyen
             cbbYear.SelectedValue = MyUser.Instance.Year;
 
             cbbMonth.SelectedValue = MyUser.Instance.Month;
-            if (MyUser.Instance.ToID == null)
+            if (MyUser.Instance.ToID == null || MyUser.Instance.ToID.Equals("")||MyUser.Instance.ToID.Trim().Equals(""))
                 cbbGroup.ItemsSource = ToID.GetToID();
-            else if (MyUser.Instance.ToID.Equals(""))
-                cbbGroup.ItemsSource = ToID.GetToID();
+            //else if (MyUser.Instance.ToID.Equals(""))
+            //    cbbGroup.ItemsSource = ToID.GetToID();
             else
                 cbbGroup.Items.Add(MyUser.Instance.ToID);
 
