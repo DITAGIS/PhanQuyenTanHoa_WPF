@@ -76,17 +76,19 @@ namespace PhanQuyen
 
         private void setScrollView(bool v)
         {
-            if (v)
+            if (uc_DieuChinhThonTinDocSo != null)
             {
-                uc_DieuChinhThonTinDocSo.GetScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+                if (v)
+                {
+                    uc_DieuChinhThonTinDocSo.GetScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+                }
+                else
+                {
+                    uc_DieuChinhThonTinDocSo.GetScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
+                }
+                uc_DieuChinhThonTinDocSo.GetScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             }
-            else
-            {
-                uc_DieuChinhThonTinDocSo.GetScrollViewer.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
-            }
-            uc_DieuChinhThonTinDocSo.GetScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
         }
-
         private void resizeUC()
         {
             if (uc_DieuChinhThonTinDocSo != null)

@@ -17,7 +17,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=Fields!ToID.Value</Value>
+                <Value>=Fields!TODS.Value</Value>
                 <Style>
                   <FontFamily>times New Roman</FontFamily>
                   <FontSize>16pt</FontSize>
@@ -57,7 +57,22 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> MÁY </Value>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>16pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>MÁY </Value>
                 <Style>
                   <FontFamily>times New Roman</FontFamily>
                   <FontSize>16pt</FontSize>
@@ -107,7 +122,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=Fields!Username.Value</Value>
+                <Value>=Fields!DM.Value</Value>
                 <Style>
                   <FontFamily>times New Roman</FontFamily>
                   <FontSize>13pt</FontSize>
@@ -138,6 +153,61 @@
         <TablixCorner>
           <TablixCornerRows>
             <TablixCornerRow>
+              <TablixCornerCell>
+                <CellContents>
+                  <Textbox Name="Textbox4">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>STT</Value>
+                            <Style>
+                              <FontFamily>times New Roman</FontFamily>
+                              <FontSize>13pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox4</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Style>Solid</Style>
+                      </Border>
+                      <TopBorder>
+                        <Color>Black</Color>
+                        <Style>Solid</Style>
+                        <Width>1pt</Width>
+                      </TopBorder>
+                      <BottomBorder>
+                        <Color>Black</Color>
+                        <Style>Solid</Style>
+                        <Width>1pt</Width>
+                      </BottomBorder>
+                      <LeftBorder>
+                        <Color>Black</Color>
+                        <Style>Solid</Style>
+                        <Width>1pt</Width>
+                      </LeftBorder>
+                      <RightBorder>
+                        <Color>Black</Color>
+                        <Style>Solid</Style>
+                        <Width>1pt</Width>
+                      </RightBorder>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixCornerCell>
               <TablixCornerCell>
                 <CellContents>
                   <Textbox Name="Textbox67">
@@ -284,6 +354,36 @@
                           <TextAlign>Center</TextAlign>
                         </Style>
                       </Paragraph>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Địa chỉ</Value>
+                            <Style>
+                              <FontFamily>times New Roman</FontFamily>
+                              <FontSize>13pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Số thân</Value>
+                            <Style>
+                              <FontFamily>times New Roman</FontFamily>
+                              <FontSize>13pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
                     </Paragraphs>
                     <rd:DefaultName>Textbox57</rd:DefaultName>
                     <Style>
@@ -358,22 +458,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!CSMoi.Value</Value>
-                              <Style>
-                                <FontFamily>times New Roman</FontFamily>
-                                <FontSize>13pt</FontSize>
-                                <FontWeight>Normal</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!TieuThuMoi.Value</Value>
+                              <Value>=Fields!CSCu.Value</Value>
                               <Style>
                                 <FontFamily>times New Roman</FontFamily>
                                 <FontSize>13pt</FontSize>
@@ -421,14 +506,29 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="CSMoi">
+                    <Textbox Name="TBTT">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Fields!TBTT.Value</Value>
+                              <Style>
+                                <FontFamily>times New Roman</FontFamily>
+                                <FontSize>13pt</FontSize>
+                                <FontWeight>Normal</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!CSMoi.Value</Value>
                               <Style>
                                 <FontFamily>times New Roman</FontFamily>
                                 <FontSize>13pt</FontSize>
@@ -441,7 +541,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>CSMoi</rd:DefaultName>
+                      <rd:DefaultName>TBTT</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -503,16 +603,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Kỳ: </Value>
-                                <Style>
-                                  <FontFamily>times New Roman</FontFamily>
-                                  <FontSize>13pt</FontSize>
-                                  <FontWeight>Bold</FontWeight>
-                                  <Format>0;(0)</Format>
-                                </Style>
-                              </TextRun>
-                              <TextRun>
-                                <Value>=Fields!Ky.Value</Value>
+                                <Value>Code mới</Value>
                                 <Style>
                                   <FontFamily>times New Roman</FontFamily>
                                   <FontSize>13pt</FontSize>
@@ -528,39 +619,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Code</Value>
-                                <Style>
-                                  <FontFamily>times New Roman</FontFamily>
-                                  <FontSize>13pt</FontSize>
-                                  <FontWeight>Bold</FontWeight>
-                                  <Format>0;(0)</Format>
-                                </Style>
-                              </TextRun>
-                            </TextRuns>
-                            <Style>
-                              <TextAlign>Center</TextAlign>
-                            </Style>
-                          </Paragraph>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value>CS</Value>
-                                <Style>
-                                  <FontFamily>times New Roman</FontFamily>
-                                  <FontSize>13pt</FontSize>
-                                  <FontWeight>Bold</FontWeight>
-                                  <Format>0;(0)</Format>
-                                </Style>
-                              </TextRun>
-                            </TextRuns>
-                            <Style>
-                              <TextAlign>Center</TextAlign>
-                            </Style>
-                          </Paragraph>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value>Tiêu thụ</Value>
+                                <Value>CS cũ</Value>
                                 <Style>
                                   <FontFamily>times New Roman</FontFamily>
                                   <FontSize>13pt</FontSize>
@@ -624,7 +683,22 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>CS Mới</Value>
+                            <Value>TB T.thụ</Value>
+                            <Style>
+                              <FontFamily>times New Roman</FontFamily>
+                              <FontSize>13pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Chỉ số</Value>
                             <Style>
                               <FontFamily>times New Roman</FontFamily>
                               <FontSize>13pt</FontSize>
@@ -684,31 +758,16 @@
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>1.08634in</Size>
+                    <Size>0.98425in</Size>
                     <CellContents>
-                      <Textbox Name="Textbox71">
+                      <Textbox Name="DocSoID">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=Fields!MLT2.Value</Value>
-                                <Style>
-                                  <FontFamily>times New Roman</FontFamily>
-                                  <FontSize>13pt</FontSize>
-                                  <FontWeight>Normal</FontWeight>
-                                </Style>
-                              </TextRun>
-                            </TextRuns>
-                            <Style>
-                              <TextAlign>Center</TextAlign>
-                            </Style>
-                          </Paragraph>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value>=Fields!SDT.Value</Value>
+                                <Value>=Fields!DocSoID.Value</Value>
                                 <Style>
                                   <FontFamily>times New Roman</FontFamily>
                                   <FontSize>13pt</FontSize>
@@ -721,7 +780,7 @@
                             </Style>
                           </Paragraph>
                         </Paragraphs>
-                        <rd:DefaultName>Textbox71</rd:DefaultName>
+                        <rd:DefaultName>DocSoID</rd:DefaultName>
                         <Style>
                           <Border>
                             <Style>Solid</Style>
@@ -757,16 +816,31 @@
                   <TablixMembers>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>1.14258in</Size>
+                        <Size>1.08634in</Size>
                         <CellContents>
-                          <Textbox Name="DanhBa1">
+                          <Textbox Name="Textbox71">
                             <CanGrow>true</CanGrow>
                             <KeepTogether>true</KeepTogether>
                             <Paragraphs>
                               <Paragraph>
                                 <TextRuns>
                                   <TextRun>
-                                    <Value>=Fields!DanhBa.Value</Value>
+                                    <Value>=Fields!MLT2.Value</Value>
+                                    <Style>
+                                      <FontFamily>times New Roman</FontFamily>
+                                      <FontSize>13pt</FontSize>
+                                      <FontWeight>Normal</FontWeight>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Center</TextAlign>
+                                </Style>
+                              </Paragraph>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>=Fields!SDT.Value</Value>
                                     <Style>
                                       <FontFamily>times New Roman</FontFamily>
                                       <FontSize>13pt</FontSize>
@@ -779,7 +853,7 @@
                                 </Style>
                               </Paragraph>
                             </Paragraphs>
-                            <rd:DefaultName>DanhBa1</rd:DefaultName>
+                            <rd:DefaultName>Textbox71</rd:DefaultName>
                             <Style>
                               <Border>
                                 <Style>Solid</Style>
@@ -815,31 +889,16 @@
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>1.76116in</Size>
+                            <Size>1.14258in</Size>
                             <CellContents>
-                              <Textbox Name="Textbox61">
+                              <Textbox Name="DanhBa1">
                                 <CanGrow>true</CanGrow>
                                 <KeepTogether>true</KeepTogether>
                                 <Paragraphs>
                                   <Paragraph>
                                     <TextRuns>
                                       <TextRun>
-                                        <Value>=Fields!TenKH.Value</Value>
-                                        <Style>
-                                          <FontFamily>times New Roman</FontFamily>
-                                          <FontSize>13pt</FontSize>
-                                          <FontWeight>Normal</FontWeight>
-                                        </Style>
-                                      </TextRun>
-                                    </TextRuns>
-                                    <Style>
-                                      <TextAlign>Center</TextAlign>
-                                    </Style>
-                                  </Paragraph>
-                                  <Paragraph>
-                                    <TextRuns>
-                                      <TextRun>
-                                        <Value>=Fields!Duong.Value</Value>
+                                        <Value>=Fields!DanhBa.Value</Value>
                                         <Style>
                                           <FontFamily>times New Roman</FontFamily>
                                           <FontSize>13pt</FontSize>
@@ -852,7 +911,7 @@
                                     </Style>
                                   </Paragraph>
                                 </Paragraphs>
-                                <rd:DefaultName>Textbox61</rd:DefaultName>
+                                <rd:DefaultName>DanhBa1</rd:DefaultName>
                                 <Style>
                                   <Border>
                                     <Style>Solid</Style>
@@ -885,6 +944,96 @@
                               </Textbox>
                             </CellContents>
                           </TablixHeader>
+                          <TablixMembers>
+                            <TablixMember>
+                              <TablixHeader>
+                                <Size>1.76116in</Size>
+                                <CellContents>
+                                  <Textbox Name="Textbox61">
+                                    <CanGrow>true</CanGrow>
+                                    <KeepTogether>true</KeepTogether>
+                                    <Paragraphs>
+                                      <Paragraph>
+                                        <TextRuns>
+                                          <TextRun>
+                                            <Value>=Fields!TenKH.Value</Value>
+                                            <Style>
+                                              <FontFamily>times New Roman</FontFamily>
+                                              <FontSize>13pt</FontSize>
+                                              <FontWeight>Normal</FontWeight>
+                                            </Style>
+                                          </TextRun>
+                                        </TextRuns>
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
+                                      </Paragraph>
+                                      <Paragraph>
+                                        <TextRuns>
+                                          <TextRun>
+                                            <Value>=Fields!Duong.Value</Value>
+                                            <Style>
+                                              <FontFamily>times New Roman</FontFamily>
+                                              <FontSize>13pt</FontSize>
+                                              <FontWeight>Normal</FontWeight>
+                                            </Style>
+                                          </TextRun>
+                                        </TextRuns>
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
+                                      </Paragraph>
+                                      <Paragraph>
+                                        <TextRuns>
+                                          <TextRun>
+                                            <Value>=Fields!SoThanCu.Value</Value>
+                                            <Style>
+                                              <FontFamily>times New Roman</FontFamily>
+                                              <FontSize>13pt</FontSize>
+                                              <FontWeight>Normal</FontWeight>
+                                            </Style>
+                                          </TextRun>
+                                        </TextRuns>
+                                        <Style>
+                                          <TextAlign>Left</TextAlign>
+                                        </Style>
+                                      </Paragraph>
+                                    </Paragraphs>
+                                    <rd:DefaultName>Textbox61</rd:DefaultName>
+                                    <Style>
+                                      <Border>
+                                        <Style>Solid</Style>
+                                      </Border>
+                                      <TopBorder>
+                                        <Color>Black</Color>
+                                        <Style>Solid</Style>
+                                        <Width>1pt</Width>
+                                      </TopBorder>
+                                      <BottomBorder>
+                                        <Color>Black</Color>
+                                        <Style>Solid</Style>
+                                        <Width>1pt</Width>
+                                      </BottomBorder>
+                                      <LeftBorder>
+                                        <Color>Black</Color>
+                                        <Style>Solid</Style>
+                                        <Width>1pt</Width>
+                                      </LeftBorder>
+                                      <RightBorder>
+                                        <Color>Black</Color>
+                                        <Style>Solid</Style>
+                                        <Width>1pt</Width>
+                                      </RightBorder>
+                                      <PaddingLeft>2pt</PaddingLeft>
+                                      <PaddingRight>2pt</PaddingRight>
+                                      <PaddingTop>2pt</PaddingTop>
+                                      <PaddingBottom>2pt</PaddingBottom>
+                                    </Style>
+                                  </Textbox>
+                                </CellContents>
+                              </TablixHeader>
+                            </TablixMember>
+                          </TablixMembers>
                         </TablixMember>
                       </TablixMembers>
                     </TablixMember>
@@ -903,7 +1052,7 @@
         <Top>1.22917in</Top>
         <Left>0.75in</Left>
         <Height>1.29167in</Height>
-        <Width>6.05025in</Width>
+        <Width>7.0345in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -918,8 +1067,10 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Ngày ........ tháng ........ năm 20...</Value>
+                <Value>Ngày ........ tháng ........ năm .......</Value>
                 <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -929,9 +1080,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox70</rd:DefaultName>
         <Top>7.30223cm</Top>
-        <Left>12.59064cm</Left>
+        <Left>11.32064cm</Left>
         <Height>0.6cm</Height>
-        <Width>5.86021cm</Width>
+        <Width>6.87621cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -952,6 +1103,8 @@
               <TextRun>
                 <Value>NV Đọc số ký xác nhận</Value>
                 <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -962,10 +1115,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox72</rd:DefaultName>
-        <Top>7.97279cm</Top>
-        <Left>12.59064cm</Left>
+        <Top>8.00806cm</Top>
+        <Left>11.32064cm</Left>
         <Height>0.6cm</Height>
-        <Width>5.86021cm</Width>
+        <Width>6.87621cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -981,7 +1134,7 @@
     <Height>9.60996cm</Height>
     <Style />
   </Body>
-  <Width>18.97648cm</Width>
+  <Width>19.77263cm</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
@@ -1001,6 +1154,13 @@
       </ConnectionProperties>
       <rd:DataSourceID>0de31b3f-7a00-491c-b4da-248878610d42</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="DocSoTHDataSet">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>6bf6e227-bb6e-4d0b-88ff-de5854f618d5</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="dtsInDongCua">
@@ -1009,17 +1169,49 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
+        <Field Name="DocSoID">
+          <DataField>DocSoID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="DanhBa">
           <DataField>DanhBa</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MLT1">
+          <DataField>MLT1</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="MLT2">
           <DataField>MLT2</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="SoNhaCu">
+          <DataField>SoNhaCu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SoNhaMoi">
+          <DataField>SoNhaMoi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Duong">
+          <DataField>Duong</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="SDT">
           <DataField>SDT</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GB">
+          <DataField>GB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DM">
+          <DataField>DM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Nam">
+          <DataField>Nam</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="Ky">
           <DataField>Ky</DataField>
@@ -1032,6 +1224,14 @@
         <Field Name="May">
           <DataField>May</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TBTT">
+          <DataField>TBTT</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TamTinh">
+          <DataField>TamTinh</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="CSCu">
           <DataField>CSCu</DataField>
@@ -1049,6 +1249,14 @@
           <DataField>CodeMoi</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="TTDHNCu">
+          <DataField>TTDHNCu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TTDHNMoi">
+          <DataField>TTDHNMoi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="TieuThuCu">
           <DataField>TieuThuCu</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
@@ -1057,38 +1265,238 @@
           <DataField>TieuThuMoi</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="TuNgay">
+          <DataField>TuNgay</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DenNgay">
+          <DataField>DenNgay</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="TienNuoc">
+          <DataField>TienNuoc</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="BVMT">
+          <DataField>BVMT</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Thue">
+          <DataField>Thue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TongTien">
+          <DataField>TongTien</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="SoThanCu">
+          <DataField>SoThanCu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SoThanMoi">
+          <DataField>SoThanMoi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="HieuCu">
+          <DataField>HieuCu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="HieuMoi">
+          <DataField>HieuMoi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CoCu">
+          <DataField>CoCu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CoMoi">
+          <DataField>CoMoi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GiengCu">
+          <DataField>GiengCu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GiengMoi">
+          <DataField>GiengMoi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Van1Cu">
+          <DataField>Van1Cu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Van1Moi">
+          <DataField>Van1Moi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MVCu">
+          <DataField>MVCu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MVMoi">
+          <DataField>MVMoi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ChiCoCu">
+          <DataField>ChiCoCu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ChiCoMoi">
+          <DataField>ChiCoMoi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ChiThanCu">
+          <DataField>ChiThanCu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ChiThanMoi">
+          <DataField>ChiThanMoi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ViTriCu">
+          <DataField>ViTriCu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ViTriMoi">
+          <DataField>ViTriMoi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CapDoCu">
+          <DataField>CapDoCu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CapDoMoi">
+          <DataField>CapDoMoi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CongDungCu">
+          <DataField>CongDungCu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CongDungMoi">
+          <DataField>CongDungMoi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DMACu">
+          <DataField>DMACu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DMAMoi">
+          <DataField>DMAMoi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GhiChuKH">
+          <DataField>GhiChuKH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GhiChuDS">
+          <DataField>GhiChuDS</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GhiChuTV">
+          <DataField>GhiChuTV</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NVGHI">
+          <DataField>NVGHI</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GIOGHI">
+          <DataField>GIOGHI</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="BARCODE">
+          <DataField>BARCODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SOLANGHI">
+          <DataField>SOLANGHI</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="GPSDATA">
+          <DataField>GPSDATA</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="StaCapNhat">
+          <DataField>StaCapNhat</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NgayCapNhat">
+          <DataField>NgayCapNhat</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="NVCapNhat">
+          <DataField>NVCapNhat</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TODS">
+          <DataField>TODS</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NgayDS">
+          <DataField>NgayDS</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ChiTiet">
+          <DataField>ChiTiet</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Latitude">
+          <DataField>Latitude</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Longitude">
+          <DataField>Longitude</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="TenKH">
           <DataField>TenKH</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="So">
-          <DataField>So</DataField>
+        <Field Name="NVTaoDS">
+          <DataField>NVTaoDS</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Duong">
-          <DataField>Duong</DataField>
+        <Field Name="NgayTaoDS">
+          <DataField>NgayTaoDS</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Username">
-          <DataField>Username</DataField>
+        <Field Name="DutChiThan">
+          <DataField>DutChiThan</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TamTinh">
-          <DataField>TamTinh</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="DutChiGoc">
+          <DataField>DutChiGoc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ToID">
-          <DataField>ToID</DataField>
+        <Field Name="DHNSaiTT">
+          <DataField>DHNSaiTT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="BaoKinhDoanh">
+          <DataField>BaoKinhDoanh</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Col08">
+          <DataField>Col08</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Col09">
+          <DataField>Col09</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Col10">
+          <DataField>Col10</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>dtsInDongCua</rd:DataSetName>
-        <rd:SchemaPath>E:\VietA-Sources\CapNuoc\Cap Nuoc Ben Thanh\CapNuoc20150116\CapNuocTA\dtsInDongCua.xsd</rd:SchemaPath>
-        <rd:TableName>dtsInDongCua</rd:TableName>
+        <rd:DataSetName>DocSoTHDataSet</rd:DataSetName>
+        <rd:SchemaPath>D:\git\TanHoa_PhanQuyen_WPF\PhanQuyen\PhanQuyen\DocSoTHDataSet.xsd</rd:SchemaPath>
+        <rd:TableName>DocSo</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>dtsInDongCuaTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>DocSoTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

@@ -112,6 +112,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DocSoTHDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocSoTHDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="UserControlView\BaoCao\UC_InTieuThuBatThuong.xaml.cs">
       <DependentUpon>UC_InTieuThuBatThuong.xaml</DependentUpon>
     </Compile>
@@ -144,6 +149,7 @@
     </Compile>
     <Compile Include="UserControlView\BaoCao\UC_InDanhSachDongCua.xaml.cs">
       <DependentUpon>UC_InDanhSachDongCua.xaml</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="UserControlView\BaoCao\UC_InPhieuTieuThuKH.xaml.cs">
       <DependentUpon>UC_InPhieuTieuThuKH.xaml</DependentUpon>
@@ -287,6 +293,17 @@
     <EmbeddedResource Include="Report\rptInTieuThuBatThuong.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <None Include="DocSoTHDataSet.xsc">
+      <DependentUpon>DocSoTHDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DocSoTHDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DocSoTHDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DocSoTHDataSet.xss">
+      <DependentUpon>DocSoTHDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
