@@ -348,7 +348,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!MLT1.Value</Value>
+                              <Value>=Sum(CInt(Fields!DanhBa.Value))</Value>
                               <Style>
                                 <FontFamily>times New Roman</FontFamily>
                                 <FontSize>13pt</FontSize>
@@ -382,7 +382,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!MLT2.Value</Value>
+                              <Value>=Sum(CInt(Fields!TieuThuMoi.Value))</Value>
                               <Style>
                                 <FontFamily>times New Roman</FontFamily>
                                 <FontSize>13pt</FontSize>

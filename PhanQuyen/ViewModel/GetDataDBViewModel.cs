@@ -81,8 +81,11 @@ namespace ViewModel
         private const String TKSAUDOCSO_COLUMN_CODEMOI = "CodeMoi";
         private const String TKSAUDOCSO_COLUMN_DANHBA = "DanhBa";
         private const String TKSAUDOCSO_COLUMN_TIEUTHUMOI = "TieuThuMoi";
-        private const String TKSAUDOCSO_COLUMN_SUMDANHBA = "MLT1";
-        private const String TKSAUDOCSO_COLUMN_SUMTIEUTHU = "MLT2";
+
+        private const String TKDHNTHEODOTSO_COLUMN_TOID = "TODS";
+        private const String TKDHNTHEODOTSO_COLUMN_DOT = "Dot";
+        private const String TKDHNTHEODOTSO_COLUMN_MAY = "May";
+        private const String TKDHNTHEODOTSO_COLUMN_DANHBA = "CSCu";
         string pattern = "dd/MM/yyyy";
         public static DataDBViewModel Instance
         {
@@ -255,8 +258,7 @@ namespace ViewModel
             table.Columns.Add(TKSAUDOCSO_COLUMN_CODEMOI, typeof(string));
             table.Columns.Add(TKSAUDOCSO_COLUMN_DANHBA, typeof(string));
             table.Columns.Add(TKSAUDOCSO_COLUMN_TIEUTHUMOI, typeof(string));
-            table.Columns.Add(TKSAUDOCSO_COLUMN_SUMDANHBA, typeof(string));
-            table.Columns.Add(TKSAUDOCSO_COLUMN_SUMTIEUTHU, typeof(string));
+       
             try
             {
                 queryStr = "Select ds.May, m.ToID, Count(ds.DanhBa) as DanhBa, Case when ds.CodeMoi is null or ds.CodeMoi = ''" +
@@ -271,12 +273,7 @@ namespace ViewModel
                     queryStr += " and ToID = " + group + " and ds.May ='" + machine + "' Group by ds.May,m.ToID,ds.CodeMoi,ds.Ky,ds.Dot";
                 }
                 query = serverContext.ExecuteQuery<TKSauDocSo>(queryStr).ToList();
-                int sumDB = 0, sumTieuThu = 0;
-                foreach (var item in query)
-                {
-                    sumDB += item.DanhBa;
-                    sumTieuThu += item.TieuThuMoi;
-                }
+              
                 foreach (var item in query)
                 {
                     DataRow row = table.NewRow();
@@ -287,9 +284,7 @@ namespace ViewModel
                     row[TKSAUDOCSO_COLUMN_CODEMOI] = item.CodeMoi;
                     row[TKSAUDOCSO_COLUMN_DANHBA] = item.DanhBa;
                     row[TKSAUDOCSO_COLUMN_TIEUTHUMOI] = item.TieuThuMoi;
-                    row[TKSAUDOCSO_COLUMN_SUMDANHBA] = sumDB;
-                    row[TKSAUDOCSO_COLUMN_SUMTIEUTHU] = sumTieuThu;
-
+                   
                     table.Rows.Add(row);
                 }
             }
@@ -432,37 +427,25 @@ namespace ViewModel
             }
             return table;
         }
-        public DataTable GetGroup(object selectedValue)
+        public DataTable GetListDate_Machine(object selectedValue)
         {
-            List<DHNTrenMang> query = new List<DHNTrenMang>();
+            List<TKDHNTheoDotSo> query;
             if (selectedValue.Equals(ALL))
-                query = serverContext.ExecuteQuery<DHNTrenMang>("Select Dot, May, COUNT(Danhba) AS Danhba FROM KhachHang WHERE HieuLuc = 1 GROUP BY Dot, May").ToList();
-            else query = serverContext.ExecuteQuery<DHNTrenMang>("SELECT m.ToID, kh.Dot, kh.May, COUNT(kh.DanhBa) as DanhBa FROM KhachHang kh Inner Join MayDS m on kh.May = m.May " +
+                query = serverContext.ExecuteQuery<TKDHNTheoDotSo>("Select Dot, May, COUNT(Danhba) AS Danhba FROM KhachHang WHERE HieuLuc = 1 GROUP BY Dot, May").ToList();
+            else query = serverContext.ExecuteQuery<TKDHNTheoDotSo>("SELECT m.ToID, kh.Dot, kh.May, COUNT(kh.DanhBa) as DanhBa FROM KhachHang kh Inner Join MayDS m on kh.May = m.May " +
                 "WHERE m.ToID = '" + selectedValue + "' AND kh.HieuLuc = 1 GROUP BY kh.Dot, kh.May,m.ToID").ToList();
             DataTable table = new DataTable();
-            table.Columns.Add(DHNTRENMANG_COLUMN_KY, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_DOT, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_TOID, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_MAY, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_NAM, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_TITLE, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_TITLE1, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_HIEU, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_CO, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_DANHBA, typeof(string));
+            table.Columns.Add(TKDHNTHEODOTSO_COLUMN_TOID, typeof(string));
+            table.Columns.Add(TKDHNTHEODOTSO_COLUMN_DOT, typeof(string));
+            table.Columns.Add(TKDHNTHEODOTSO_COLUMN_MAY, typeof(string));
+            table.Columns.Add(TKDHNTHEODOTSO_COLUMN_DANHBA, typeof(string));
             foreach (var item in query)
             {
                 DataRow row = table.NewRow();
-                row[DHNTRENMANG_COLUMN_TOID] = item.ToID;
-                row[DHNTRENMANG_COLUMN_MAY] = item.May;
-                row[DHNTRENMANG_COLUMN_KY] = item.Ky;
-                row[DHNTRENMANG_COLUMN_DOT] = item.Dot;
-                row[DHNTRENMANG_COLUMN_NAM] = item.Nam;
-                row[DHNTRENMANG_COLUMN_TITLE] = item.Title;
-                row[DHNTRENMANG_COLUMN_TITLE1] = item.Title1;
-                row[DHNTRENMANG_COLUMN_HIEU] = item.Hieu;
-                row[DHNTRENMANG_COLUMN_CO] = item.Co;
-                row[DHNTRENMANG_COLUMN_DANHBA] = item.DanhBa;
+                row[TKDHNTHEODOTSO_COLUMN_TOID] = item.ToID;
+                row[TKDHNTHEODOTSO_COLUMN_DOT] = item.Dot;
+                row[TKDHNTHEODOTSO_COLUMN_MAY] = item.May;
+                row[TKDHNTHEODOTSO_COLUMN_DANHBA] = item.Danhba;
                 table.Rows.Add(row);
             }
             return table;
@@ -698,10 +681,6 @@ namespace ViewModel
             return result;
         }
 
-        public void ThongKeDHNSauDocSo(string sqlStatement)
-        {
-            //var data = serverContext.ExecuteQuery<>(sqlStatement);
-        }
 
         public void update(ItemCollection items)
         {

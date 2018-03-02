@@ -36,14 +36,23 @@ namespace PhanQuyen
             //ps.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1170);
             Margins margins = new Margins(70, 50, 50, 50);
             ps.Margins = margins;
+
+            PrinterSettings printerSetting = new PrinterSettings();
+
+            IQueryable<PaperSize> paperSizes = printerSetting.PaperSizes.Cast<PaperSize>().AsQueryable();
+
+            PaperSize a3 = paperSizes.Where(paperSize => paperSize.Kind == PaperKind.A3).FirstOrDefault();
+
+            printerSetting.DefaultPageSettings.PaperSize = a3;
             //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
             _reportViewer.SetPageSettings(ps);
+            _reportViewer.PrinterSettings = printerSetting;
         }
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
-            DataTable dt = DataDBViewModel.Instance.GetGroup(cbbGroup.SelectedValue);
-            _reportViewer.LocalReport.ReportPath = "../Debug/Report/rptInThongKeDHNTheoDotSo.rdlc";
+            DataTable dt = DataDBViewModel.Instance.GetListDate_Machine(cbbGroup.SelectedValue);
+            _reportViewer.LocalReport.ReportPath = "../Report/rptInThongKeDHNTheoDotSo.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInThongKeDHNTheoSo", dt));
             this._reportViewer.RefreshReport();
