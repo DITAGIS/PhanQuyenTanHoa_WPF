@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace PhanQuyen
 
             cbbBaoCao.ItemsSource = DataDBViewModel.Instance.getListBaoCaoTongHop();
             cbbBaoCao.SelectedIndex = 0;
-                
+
             //    new List<String>()
             //{
             //    "Thống Kê Đồng Hồ Nước Đọc Số",
@@ -61,11 +62,35 @@ namespace PhanQuyen
                 case 2:
                     PrintTKSoLuong_SanLuongDHN_Phuong();
                     break;
+                case 3:
+                    PrintTKSoLuong_SanLuongDHN_Co_Hieu();
+                    break;
+                case 4:
+                    PrintTKSoLuongCoDungGieng();
+                    break;
             }
         }
-
+        private void PrintTKSoLuongCoDungGieng()
+        {
+            SetPageSetting(true);
+            DataTable dt = DataDBViewModel.Instance.GetTKSoLuongCoDungGieng(year, month, date);
+            _reportViewer.LocalReport.ReportPath = "../Report/rptSanLuongNhanVien.rdlc";
+            this._reportViewer.LocalReport.DataSources.Clear();
+            this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsTableDocSo", dt));
+            this._reportViewer.RefreshReport();
+        }
+        private void PrintTKSoLuong_SanLuongDHN_Co_Hieu()
+        {
+            SetPageSetting(true);
+            DataTable dt = DataDBViewModel.Instance.GetTKSoLuong_SanLuongDHN_Co_Hieu(year, month, date);
+            _reportViewer.LocalReport.ReportPath = "../Report/rptBaoCaoSoLuongSanLuongCoHieuDHN.rdlc";
+            this._reportViewer.LocalReport.DataSources.Clear();
+            this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsTableDocSoKH", dt));
+            this._reportViewer.RefreshReport();
+        }
         private void PrintTKSoLuong_SanLuongDHN_Phuong()
         {
+            SetPageSetting(false);
             DataTable dt = DataDBViewModel.Instance.GetTKSoLuong_SanLuongDHN_Phuong(year, month, date);
             _reportViewer.LocalReport.ReportPath = "../Report/rptBaoCaoSoLuongVaSanLuongTungPhuongDC.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
@@ -74,6 +99,7 @@ namespace PhanQuyen
         }
         private void PrintTKSoLuong_SanLuongDHN_DMA()
         {
+            SetPageSetting(false);
             DataTable dt = DataDBViewModel.Instance.GetTKSoLuong_SanLuongDHN_DMA(year, month, date);
             _reportViewer.LocalReport.ReportPath = "../Report/rptBaoCaoSoLuongVaSanLuongTungPhuongDMA.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
@@ -83,11 +109,23 @@ namespace PhanQuyen
 
         private void PrintTKDHNDocSo()
         {
+            SetPageSetting(false);
             DataTable dt = DataDBViewModel.Instance.GetThongKeDocSo(year, month, date);
             _reportViewer.LocalReport.ReportPath = "../Report/rptThongKeDHNDocSo.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsTableDocSo", dt));
             this._reportViewer.RefreshReport();
+        }
+
+        private void SetPageSetting(Boolean isLandscape)
+        {
+            System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
+            ps.Landscape = isLandscape;
+            //ps.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1170);
+            Margins margins = new Margins(70, 50, 50, 50);
+            ps.Margins = margins;
+            //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
+            _reportViewer.SetPageSettings(ps);
         }
         #region year,month,date
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)

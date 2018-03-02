@@ -97,6 +97,9 @@ namespace ViewModel
         private const String BCTONGHOP_COLUMN_TIEUTHUMOI = "TieuThuMoi";
         private const String BCTONGHOP_COLUMN_SOLANGHI = "SOLANGHI";
         private const String BCTONGHOP_COLUMN_TENPHUONG = "TenPhuong";
+        private const String BCTONGHOP_COLUMN_CO = "Co";
+        private const String BCTONGHOP_COLUMN_HIEU = "Hieu";
+        private const String BCTONGHOP_COLUMN_NHANVIENID = "NhanVienID";
         string pattern = "dd/MM/yyyy";
         public static DataDBViewModel Instance
         {
@@ -260,6 +263,102 @@ namespace ViewModel
                 row[DHNTRENMANG_COLUMN_DANHBA] = item.DanhBa;
                 table.Rows.Add(row);
             }
+            return table;
+        }
+        public DataTable GetTKSoLuongCoDungGieng(int year, string month, string date)
+        {
+            List<BCTongHop> query;
+            String queryStr = "";
+            DataTable table = new DataTable();
+            table.Columns.Add(BCTONGHOP_COLUMN_NAM, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_KY, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_DOT, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_TOID, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_TENPHUONG, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_SOLANGHI, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_DANHBA, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_TIEUTHUMOI, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_CO, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_HIEU, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_NHANVIENID, typeof(string));
+
+            try
+            {
+
+                queryStr = " select Toid, d.May, Dot, KY, NAM,m.nhanvienid, count(danhba) as danhba, sum(TieuThuMoi) as tieuthumoi from DocSo d inner join MayDS m on d.May=m.May     where Ky='" + month + "' and Nam='" + year + "' and CodeMoi <> 'X'    group by toid,d.May,dot,ky,NAM,m.nhanvienid order by May";
+
+                query = serverContext.ExecuteQuery<BCTongHop>(queryStr).ToList();
+
+                foreach (var item in query)
+                {
+                    DataRow row = table.NewRow();
+                    row[BCTONGHOP_COLUMN_NAM] = item.Nam;
+                    row[BCTONGHOP_COLUMN_KY] = item.Ky;
+                    row[BCTONGHOP_COLUMN_DOT] = item.Dot;
+                    row[BCTONGHOP_COLUMN_TOID] = item.Toid;
+                    row[BCTONGHOP_COLUMN_TENPHUONG] = item.TenPhuong;
+                    row[BCTONGHOP_COLUMN_SOLANGHI] = item.SOLANGHI;
+                    row[BCTONGHOP_COLUMN_DANHBA] = item.DanhBa;
+                    row[BCTONGHOP_COLUMN_TIEUTHUMOI] = item.TieuThuMoi;
+                    row[BCTONGHOP_COLUMN_CO] = item.Co;
+                    row[BCTONGHOP_COLUMN_HIEU] = item.Hieu;
+                    row[BCTONGHOP_COLUMN_NHANVIENID] = item.NhanVienID;
+
+                    table.Rows.Add(row);
+                }
+            }
+            catch
+            {
+
+            }
+
+            return table;
+        }
+        public DataTable GetTKSoLuong_SanLuongDHN_Co_Hieu(int year, string month, string date)
+        {
+            List<BCTongHop> query;
+            String queryStr = "";
+            DataTable table = new DataTable();
+            table.Columns.Add(BCTONGHOP_COLUMN_NAM, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_KY, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_DOT, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_TOID, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_TENPHUONG, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_SOLANGHI, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_DANHBA, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_TIEUTHUMOI, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_CO, typeof(string));
+            table.Columns.Add(BCTONGHOP_COLUMN_HIEU, typeof(string));
+
+            try
+            {
+
+                queryStr = " select Toid,k.Dot,ky,nam,Hieu ,cast(co as int) as co,  count(k.danhba) DanhBa, SUM(TieuThuMoi) TieuThuMoi  from DocSo d inner join MayDS m on d.May=m.May  \t\t\t  inner join KhachHang k on d.DanhBa=k.DanhBa  where k.dot='" +date + "' and Ky='" +month + "' and Nam='" + year + "'  and Hieu is not null and Co is not null  group by Toid,k.Dot,ky,nam,Hieu,co  order by Toid,k.Dot,ky,nam,Hieu, co asc ";
+
+                query = serverContext.ExecuteQuery<BCTongHop>(queryStr).ToList();
+
+                foreach (var item in query)
+                {
+                    DataRow row = table.NewRow();
+                    row[BCTONGHOP_COLUMN_NAM] = item.Nam;
+                    row[BCTONGHOP_COLUMN_KY] = item.Ky;
+                    row[BCTONGHOP_COLUMN_DOT] = item.Dot;
+                    row[BCTONGHOP_COLUMN_TOID] = item.Toid;
+                    row[BCTONGHOP_COLUMN_TENPHUONG] = item.TenPhuong;
+                    row[BCTONGHOP_COLUMN_SOLANGHI] = item.SOLANGHI;
+                    row[BCTONGHOP_COLUMN_DANHBA] = item.DanhBa;
+                    row[BCTONGHOP_COLUMN_TIEUTHUMOI] = item.TieuThuMoi;
+                    row[BCTONGHOP_COLUMN_CO] = item.Co;
+                    row[BCTONGHOP_COLUMN_HIEU] = item.Hieu;
+
+                    table.Rows.Add(row);
+                }
+            }
+            catch
+            {
+
+            }
+
             return table;
         }
         public DataTable GetTKSoLuong_SanLuongDHN_Phuong(int year, string month, string date)

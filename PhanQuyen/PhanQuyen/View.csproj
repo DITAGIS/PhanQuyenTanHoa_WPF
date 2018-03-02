@@ -291,6 +291,7 @@
     <EmbeddedResource Include="Report\rptInTieuThuBatThuong.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptSanLuongNhanVien.rdlc" />
     <EmbeddedResource Include="Report\rptThongKeDHNDocSo.rdlc" />
     <None Include="DocSoTHDataSet.xsc">
       <DependentUpon>DocSoTHDataSet.xsd</DependentUpon>
