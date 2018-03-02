@@ -3,7 +3,8 @@
  using System;
  using System.Collections.Generic;
  using System.Data;
- using System.Linq;
+using System.Drawing.Printing;
+using System.Linq;
  using System.Text;
  using System.Threading.Tasks;
  using System.Windows;
@@ -29,7 +30,15 @@
          public UC_InDanhSachDongCua()
          {
              InitializeComponent();
-             cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
+
+            System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
+            ps.Landscape = false;
+            //ps.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1170);
+            Margins margins = new Margins(50, 0, 50, 50);
+            ps.Margins = margins;
+            //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
+            _reportViewer.SetPageSettings(ps);
+            cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
          }
  
          private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -71,7 +80,7 @@
              String danhBa = "";
              String str = "";
              DataTable dt = DataDBViewModel.Instance.GetListCloseDoor(year, month, date, machine);
-             _reportViewer.LocalReport.ReportPath = "../Debug/Report/rptInDongCua.rdlc";
+             _reportViewer.LocalReport.ReportPath = "../Report/rptInDongCua.rdlc";
              this._reportViewer.LocalReport.DataSources.Clear();
              this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInDongCua", dt));
              this._reportViewer.RefreshReport();

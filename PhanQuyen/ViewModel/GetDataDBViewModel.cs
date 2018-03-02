@@ -73,6 +73,16 @@ namespace ViewModel
         private const String DHNTRENMANG_COLUMN_HIEU = "Hieu";
         private const String DHNTRENMANG_COLUMN_CO = "Co";
         private const String DHNTRENMANG_COLUMN_DANHBA = "DANHBA";
+
+        private const String TKSAUDOCSO_COLUMN_TOID = "ToDS";
+        private const String TKSAUDOCSO_COLUMN_KY = "Ky";
+        private const String TKSAUDOCSO_COLUMN_DOT = "Dot";
+        private const String TKSAUDOCSO_COLUMN_MAY = "May";
+        private const String TKSAUDOCSO_COLUMN_CODEMOI = "CodeMoi";
+        private const String TKSAUDOCSO_COLUMN_DANHBA = "DanhBa";
+        private const String TKSAUDOCSO_COLUMN_TIEUTHUMOI = "TieuThuMoi";
+        private const String TKSAUDOCSO_COLUMN_SUMDANHBA = "MLT1";
+        private const String TKSAUDOCSO_COLUMN_SUMTIEUTHU = "MLT2";
         string pattern = "dd/MM/yyyy";
         public static DataDBViewModel Instance
         {
@@ -233,35 +243,61 @@ namespace ViewModel
             return table;
         }
 
-        public DataTable GetThongKeSauDocSo(int year, string month, string date, string machine)
+        public DataTable GetThongKeSauDocSo(int year, string month, string date, int group, string machine)
         {
-            List<DHNTrenMang> query;
-            query = serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(1)=(2) + (3)' AS TITLE1, N'Hiện có trên mạng' AS TITLE, HIEU, CO" +
-                ", 0 AS LOAI, COUNT(DANHBA) AS DANHBA FROM KHACHHANG WHERE HIEULUC =1 GROUP BY HIEU, CO").ToList();
-            query.AddRange(serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(2)' AS TITLE1,N'Hiện có trên mạng (sử dụng < 5 năm)' AS TITLE, HIEU, CO, 1 AS LOAI, COUNT(DANHBA) AS DANHBA" +
-                " FROM KHACHHANG WHERE HIEULUC =1 AND YEAR(getDate()) - Convert(varchar(4),NgayGan) < 5 GROUP BY HIEU, CO").ToList());
-            query.AddRange(serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(3)' AS TITLE1,N'Hiện có trên mạng (sử dụng > 5 năm)' AS TITLE, HIEU, CO, 2 AS LOAI, COUNT(DANHBA) AS DANHBA" +
-                " FROM KHACHHANG WHERE HIEULUC =1 AND YEAR(getDate()) - Convert(varchar(4),NgayGan) >= 5 GROUP BY HIEU, CO").ToList());
+            List<TKSauDocSo> query;
+            String queryStr = "";
             DataTable table = new DataTable();
-            table.Columns.Add(DHNTRENMANG_COLUMN_KY, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_NAM, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_TITLE, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_TITLE1, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_HIEU, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_CO, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_DANHBA, typeof(string));
-            foreach (var item in query)
+            table.Columns.Add(TKSAUDOCSO_COLUMN_TOID, typeof(string));
+            table.Columns.Add(TKSAUDOCSO_COLUMN_KY, typeof(string));
+            table.Columns.Add(TKSAUDOCSO_COLUMN_DOT, typeof(string));
+            table.Columns.Add(TKSAUDOCSO_COLUMN_MAY, typeof(string));
+            table.Columns.Add(TKSAUDOCSO_COLUMN_CODEMOI, typeof(string));
+            table.Columns.Add(TKSAUDOCSO_COLUMN_DANHBA, typeof(string));
+            table.Columns.Add(TKSAUDOCSO_COLUMN_TIEUTHUMOI, typeof(string));
+            table.Columns.Add(TKSAUDOCSO_COLUMN_SUMDANHBA, typeof(string));
+            table.Columns.Add(TKSAUDOCSO_COLUMN_SUMTIEUTHU, typeof(string));
+            try
             {
-                DataRow row = table.NewRow();
-                row[DHNTRENMANG_COLUMN_KY] = item.Ky;
-                row[DHNTRENMANG_COLUMN_NAM] = item.Nam;
-                row[DHNTRENMANG_COLUMN_TITLE] = item.Title;
-                row[DHNTRENMANG_COLUMN_TITLE1] = item.Title1;
-                row[DHNTRENMANG_COLUMN_HIEU] = item.Hieu;
-                row[DHNTRENMANG_COLUMN_CO] = item.Co;
-                row[DHNTRENMANG_COLUMN_DANHBA] = item.DanhBa;
-                table.Rows.Add(row);
+                queryStr = "Select ds.May, m.ToID, Count(ds.DanhBa) as DanhBa, Case when ds.CodeMoi is null or ds.CodeMoi = ''" +
+                   " then N'Chưa đọc' else ds.CodeMoi end as CodeMoi, Sum(ds.TieuThuMoi) as TieuThuMoi, ds.Ky, ds.Dot " +
+                   "from DocSo ds Inner Join MayDS m on ds.May = m.may where ds.Ky = '" + month + "' and ds.Dot = '" + date + "' and ds.Nam = " + year;
+                if (machine.Equals(ALL) || group == 0)
+                {
+                    queryStr += " Group by ds.May,m.ToID,ds.CodeMoi,ds.Ky,ds.Dot";
+                }
+                else
+                {
+                    queryStr += " and ToID = " + group + " and ds.May ='" + machine + "' Group by ds.May,m.ToID,ds.CodeMoi,ds.Ky,ds.Dot";
+                }
+                query = serverContext.ExecuteQuery<TKSauDocSo>(queryStr).ToList();
+                int sumDB = 0, sumTieuThu = 0;
+                foreach (var item in query)
+                {
+                    sumDB += item.DanhBa;
+                    sumTieuThu += item.TieuThuMoi;
+                }
+                foreach (var item in query)
+                {
+                    DataRow row = table.NewRow();
+                    row[TKSAUDOCSO_COLUMN_TOID] = item.ToID;
+                    row[TKSAUDOCSO_COLUMN_KY] = item.Ky;
+                    row[TKSAUDOCSO_COLUMN_DOT] = item.Dot;
+                    row[TKSAUDOCSO_COLUMN_MAY] = item.May;
+                    row[TKSAUDOCSO_COLUMN_CODEMOI] = item.CodeMoi;
+                    row[TKSAUDOCSO_COLUMN_DANHBA] = item.DanhBa;
+                    row[TKSAUDOCSO_COLUMN_TIEUTHUMOI] = item.TieuThuMoi;
+                    row[TKSAUDOCSO_COLUMN_SUMDANHBA] = sumDB;
+                    row[TKSAUDOCSO_COLUMN_SUMTIEUTHU] = sumTieuThu;
+
+                    table.Rows.Add(row);
+                }
             }
+            catch
+            {
+
+            }
+
             return table;
         }
 
@@ -319,7 +355,7 @@ namespace ViewModel
                 {
                     DataRow row = table.NewRow();
                     row[DC_COLUMN_MyUserNAME] = item.NVGHI;
-                    row[DC_COLUMN_TODS] = item.ToDS;
+                    row[DC_COLUMN_TODS] = item.ToID;
                     row[DC_COLUMN_KY] = month;
                     row[DC_COLUMN_DOT] = date;
                     row[DC_COLUMN_MAY] = machine;
@@ -328,7 +364,7 @@ namespace ViewModel
                     row[DC_COLUMN_SDT] = item.SDT;
                     row[DC_COLUMN_DANHBA] = item.DANHBA;
                     row[DC_COLUMN_TENKH] = item.TENKH;
-                    row[DC_COLUMN_DUONG] = item.Duong;
+                    row[DC_COLUMN_DUONG] = item.SoMoi;
                     row[DC_COLUMN_CODEMOI] = item.CodeMoi;
                     row[DC_COLUMN_CSMOI] = item.CSMoi;
                     row[DC_COLUMN_TIEUTHUMOI] = item.TieuThuMoi;

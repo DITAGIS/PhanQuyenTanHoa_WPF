@@ -13,7 +13,7 @@ namespace Model
         public string DANHBA { get; set; }
         public string TENKH { get; set; }
         public string SoNha { get; set; }
-        public string Duong { get; set; }
+        public string SoMoi { get; set; }
         public string SoThanCu { get; set; }
         public string NVGHI { get; set; }
         public int nam { get; set; }
@@ -26,7 +26,7 @@ namespace Model
         public int CSMoi { get; set; }
         public int TieuThuCu { get; set; }
         public int TBTT { get; set; }
-        public string ToDS { get; set; }
+        public string ToID { get; set; }
         public int TieuThuMoi { get; set; }
     }
 }

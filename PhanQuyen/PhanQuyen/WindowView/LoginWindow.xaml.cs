@@ -59,24 +59,39 @@ namespace PhanQuyen
         }
         private void HandleLoginFail(MyUser user)
         {
-            MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu: " + user.ToString() );
+            MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu: " + user.ToString());
         }
 
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            year = Int16.Parse(cbbYear.SelectedValue.ToString());
-            cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonthServer(year);
+            try
+            {
+                year = Int16.Parse(cbbYear.SelectedValue.ToString());
+                cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonthServer(year);
+            }
+            catch
+            {
+
+            }
         }
 
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            date = cbbDate.SelectedValue.ToString();
+            try
+            {
+                date = cbbDate.SelectedValue.ToString();
+            }
+            catch { }
         }
 
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            month = cbbMonth.SelectedValue.ToString();
-            cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDateServer(year, month);
+            try
+            {
+                month = cbbMonth.SelectedValue.ToString();
+                cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDateServer(year, month);
+            }
+            catch { }
         }
 
         //private void txtbPassword_KeyDown(object sender, KeyEventArgs e)

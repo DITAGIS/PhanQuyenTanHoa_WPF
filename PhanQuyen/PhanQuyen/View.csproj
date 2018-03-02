@@ -280,23 +280,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\rptInDongCua.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report\rptInPhieuKiemTra.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report\rptInThongKeDHNTheoDotSo.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report\rptInThongKeDHNTrenMang.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report\rptInThongKeSauDocSo.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptInDongCua.rdlc" />
+    <EmbeddedResource Include="Report\rptInPhieuKiemTra.rdlc" />
+    <EmbeddedResource Include="Report\rptInThongKeDHNTheoDotSo.rdlc" />
+    <EmbeddedResource Include="Report\rptInThongKeDHNTrenMang.rdlc" />
+    <EmbeddedResource Include="Report\rptInThongKeSauDocSo.rdlc" />
     <EmbeddedResource Include="Report\rptInTieuThuBatThuong.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="DocSoTHDataSet.xsc">
       <DependentUpon>DocSoTHDataSet.xsd</DependentUpon>

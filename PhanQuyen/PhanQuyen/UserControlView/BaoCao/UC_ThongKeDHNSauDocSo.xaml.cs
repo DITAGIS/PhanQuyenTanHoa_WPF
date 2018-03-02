@@ -2,7 +2,9 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +31,13 @@ namespace PhanQuyen
         public UC_ThongKeDHNSauDocSo()
         {
             InitializeComponent();
-
+            System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
+            ps.Landscape = false;
+            //ps.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1170);
+            Margins margins = new Margins(50, 0, 50, 50);
+            ps.Margins = margins;
+            //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
+            _reportViewer.SetPageSettings(ps);
             cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
             cbbYear.SelectedValue = MyUser.Instance.Year;
 
@@ -37,14 +45,21 @@ namespace PhanQuyen
 
         private void cbbGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            group = Int16.Parse(cbbGroup.SelectedValue.ToString());
+            short x;
+            if (cbbGroup.SelectedValue == null)
+                group = -1;
+            else if (Int16.TryParse(cbbGroup.SelectedValue.ToString(), out x))
+                group = Int16.Parse(cbbGroup.SelectedValue.ToString());
+            else group = x;
             cbbMachine.ItemsSource = DataDBViewModel.Instance.getDistinctMachineServer(year, month, date, group);
         }
 
         private void btnViewReport_Click(object sender, RoutedEventArgs e)
         {
-            DataTable dt = DataDBViewModel.Instance.GetThongKeSauDocSo(year, month, date, machine);
-            _reportViewer.LocalReport.ReportPath = "../Debug/Report/rptInThongKeSauDocSo.rdlc";
+
+
+            DataTable dt = DataDBViewModel.Instance.GetThongKeSauDocSo(year, month, date, group, cbbMachine.SelectedItem.ToString());
+            _reportViewer.LocalReport.ReportPath = "../Report/rptInThongKeSauDocSo.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInThongKeSauDocSo", dt));
             this._reportViewer.RefreshReport();
@@ -55,7 +70,7 @@ namespace PhanQuyen
             if (cbbDate.SelectedValue != null)
             {
                 date = cbbDate.SelectedValue.ToString();
-                cbbGroup.ItemsSource = DataDBViewModel.Instance.getDistinctGroupServer(year, month, date);
+                cbbGroup.ItemsSource = ToID.GetToID();
             }
         }
 

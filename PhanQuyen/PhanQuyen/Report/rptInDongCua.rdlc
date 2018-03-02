@@ -9,7 +9,22 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>DANH SÁCH ĐỒNG HỒ NƯỚC ĐÓNG CỬA TỔ </Value>
+                <Value>DANH SÁCH ĐỒNG HỒ NƯỚC ĐÓNG CỬA </Value>
+                <Style>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>16pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>TỔ </Value>
                 <Style>
                   <FontFamily>times New Roman</FontFamily>
                   <FontSize>16pt</FontSize>
@@ -57,22 +72,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value xml:space="preserve"> </Value>
-                <Style>
-                  <FontFamily>times New Roman</FontFamily>
-                  <FontSize>16pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>MÁY </Value>
+                <Value> MÁY </Value>
                 <Style>
                   <FontFamily>times New Roman</FontFamily>
                   <FontSize>16pt</FontSize>
@@ -94,10 +94,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>0.13542in</Top>
-        <Left>0.14329in</Left>
+        <Top>1.63542in</Top>
+        <Left>0.60579in</Left>
         <Height>0.52083in</Height>
-        <Width>7.16134in</Width>
+        <Width>7.07292in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -134,10 +134,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox21</rd:DefaultName>
-        <Top>0.78125in</Top>
-        <Left>0.14329in</Left>
+        <Top>2.28125in</Top>
+        <Left>1.01829in</Left>
         <Height>0.25in</Height>
-        <Width>7.16134in</Width>
+        <Width>6.36134in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -1049,8 +1049,8 @@
             <Value>=Fields!Ky.Value</Value>
           </SortExpression>
         </SortExpressions>
-        <Top>1.22917in</Top>
-        <Left>0.75in</Left>
+        <Top>2.72917in</Top>
+        <Left>1in</Left>
         <Height>1.29167in</Height>
         <Width>6.55463in</Width>
         <ZIndex>2</ZIndex>
@@ -1079,8 +1079,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox70</rd:DefaultName>
-        <Top>7.30223cm</Top>
-        <Left>11.32064cm</Left>
+        <Top>11.11223cm</Top>
+        <Left>11.95564cm</Left>
         <Height>0.6cm</Height>
         <Width>6.87621cm</Width>
         <ZIndex>3</ZIndex>
@@ -1115,8 +1115,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox72</rd:DefaultName>
-        <Top>8.00806cm</Top>
-        <Left>11.32064cm</Left>
+        <Top>11.81806cm</Top>
+        <Left>11.95564cm</Left>
         <Height>0.6cm</Height>
         <Width>6.87621cm</Width>
         <ZIndex>4</ZIndex>
@@ -1130,8 +1130,187 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="Textbox16">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>       TỔNG CÔNG TY CẤP NƯỚC SÀI GÒN           </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>TRÁCH NHIỆM HỮU HẠN MỘT THÀNH VIÊN                </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>  Độc lập - Tự do - Hạnh phúc</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value> CÔNG TY CỔ PHẦN CẤP NƯỚC TÂN HÒA</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">                   </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>        **************</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>     95 Phạm Hữu Chí - P.12 - Q.05 - TP.HCM                                                            </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>                        **************                                                                                                                        </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value xml:space="preserve">          </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Số: __________/TH-ĐQLĐHN</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">                      </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>TP.HCM, ngày.......tháng......năm.........</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value xml:space="preserve">             </Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>0.16152in</Top>
+        <Left>0.60579in</Left>
+        <Height>1.26041in</Height>
+        <Width>7.07292in</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>9.60996cm</Height>
+    <Height>12.91196cm</Height>
     <Style />
   </Body>
   <Width>19.77263cm</Width>

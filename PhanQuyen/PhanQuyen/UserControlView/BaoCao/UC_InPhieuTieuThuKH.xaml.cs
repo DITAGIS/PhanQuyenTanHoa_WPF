@@ -88,7 +88,7 @@ namespace PhanQuyen
             DataTable dt = DataDBViewModel.Instance.GetInfoCheckCustomer1(str, danhBa);
             dt.Merge(DataDBViewModel.Instance.GetInfoCheckCustomer2(dt.Rows.Count, str, danhBa));
 
-            _reportViewer.LocalReport.ReportPath = "../Debug/Report/rptInPhieuKiemTra.rdlc";
+            _reportViewer.LocalReport.ReportPath = "../Report/rptInPhieuKiemTra.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInPhieuKiemTraKH", dt));
             this._reportViewer.RefreshReport();

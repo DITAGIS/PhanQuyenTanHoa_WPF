@@ -19,7 +19,7 @@
                          
                       
                           RowHeight="20"
-                          AlternatingRowBackground="WhiteSmoke"
+                          AlternatingRowBackground="Beige"
                           RowBackground="White"
                           GridLinesVisibility="All"
                           HorizontalScrollBarVisibility="Auto"

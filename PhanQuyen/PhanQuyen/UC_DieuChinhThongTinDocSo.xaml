@@ -254,7 +254,7 @@
                               SelectionChanged="dtgridMain_SelectionChanged"
                         
                           RowHeight="20"
-                          AlternatingRowBackground="WhiteSmoke"
+                          AlternatingRowBackground="Beige"
                           RowBackground="White"
                           GridLinesVisibility="All"
                           HorizontalScrollBarVisibility="Auto"
@@ -757,10 +757,10 @@
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                                <RowDefinition/>
+                                <RowDefinition Height="20" ></RowDefinition>
+                                <RowDefinition Height="20" ></RowDefinition>
+                                <RowDefinition Height="20" ></RowDefinition>
+                                <RowDefinition Height="20" ></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <Border  Grid.Row="0"
@@ -769,42 +769,43 @@
                          BorderThickness="1,1,1,0">
                                 <TextBlock 
                         FontWeight="Bold"
-                        Text="Kỳ"/>
+                        Text="Kỳ" FontSize="13" VerticalAlignment="Center"/>
                             </Border>
                             <Border Grid.Row="1"
                           Grid.Column="0"
                         BorderBrush="Gray" 
                         BorderThickness="1">
                                 <TextBlock 
-                         Text="Ngày đọc"/>
+                         Text="Ngày đọc" FontSize="13" VerticalAlignment="Center"/>
                             </Border>
                             <Border Grid.Row="2"
                           Grid.Column="0"
                         BorderBrush="Gray" 
                         BorderThickness="1">
                                 <TextBlock
-                         Text="Code"/>
+                         Text="Code" FontSize="13" VerticalAlignment="Center"/>
                             </Border>
                             <Border Grid.Row="3"
                           Grid.Column="0"
                         BorderBrush="Gray" 
                         BorderThickness="1">
                                 <TextBlock
-                         Text="Chỉ số"/>
+                         Text="Chỉ số" FontSize="13" VerticalAlignment="Center"/>
                             </Border>
                             <Border Grid.Row="4"
                           Grid.Column="0"
                         BorderBrush="Gray" 
                         BorderThickness="1">
                                 <TextBlock 
-                         Text="Tiêu thụ"/>
+                         Text="Tiêu thụ" FontSize="13" VerticalAlignment="Center"/>
                             </Border>
                             <Border Grid.Row="0"
                           Grid.Column="1"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock 
+                                <TextBlock FontSize="13" 
                                     Name="txtKyNam11"
+                                    VerticalAlignment="Center"
                                     HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[11].KyNam}" />
                             </Border>
@@ -812,72 +813,83 @@
                           Grid.Column="1"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" 
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[11].NgayDoc}"/>
                             </Border>
                             <Border Grid.Row="2"
                           Grid.Column="1"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[11].Code}"/>
                             </Border>
                             <Border Grid.Row="3"
                           Grid.Column="1"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[11].ChiSo}"/>
                             </Border>
                             <Border Grid.Row="4"
                           Grid.Column="1"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[11].TieuThu}"/>
                             </Border>
                             <Border Grid.Row="0"
                           Grid.Column="2"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock 
+                                <TextBlock FontSize="13" 
                                     Name="txtKyNam10"
-                                    HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[10].KyNam}"/>
                             </Border>
                             <Border Grid.Row="1"
                           Grid.Column="2"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"  
                          Text="{Binding ListDocSo_1Ky[10].NgayDoc}"/>
                             </Border>
                             <Border Grid.Row="2"
                           Grid.Column="2"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[10].Code}"/>
                             </Border>
                             <Border Grid.Row="3"
                           Grid.Column="2"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[10].ChiSo}"/>
                             </Border>
                             <Border Grid.Row="4"
                           Grid.Column="2"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[10].TieuThu}"/>
                             </Border>
                             <Border Grid.Row="0"
                           Grid.Column="3"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock Name="txtKyNam9"
+                                <TextBlock FontSize="13" Name="txtKyNam9"
+                                           VerticalAlignment="Center"
                                            HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[9].KyNam}"/>
                             </Border>
@@ -885,35 +897,40 @@
                           Grid.Column="3"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[9].NgayDoc}"/>
                             </Border>
                             <Border Grid.Row="2"
                           Grid.Column="3"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[9].Code}"/>
                             </Border>
                             <Border Grid.Row="3"
                           Grid.Column="3"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[9].ChiSo}"/>
                             </Border>
                             <Border Grid.Row="4"
                           Grid.Column="3"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[9].TieuThu}"/>
                             </Border>
                             <Border Grid.Row="0"
                           Grid.Column="4"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock Name="txtKyNam8"
+                                <TextBlock FontSize="13" Name="txtKyNam8"
+                                         VerticalAlignment="Center"
                                            HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[8].KyNam}"/>
                             </Border>
@@ -921,35 +938,40 @@
                           Grid.Column="4"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[8].NgayDoc}"/>
                             </Border>
                             <Border Grid.Row="2"
                           Grid.Column="4"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13"  VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[8].Code}"/>
                             </Border>
                             <Border Grid.Row="3"
                           Grid.Column="4"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[8].ChiSo}"/>
                             </Border>
                             <Border Grid.Row="4"
                           Grid.Column="4"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[8].TieuThu}"/>
                             </Border>
                             <Border Grid.Row="0"
                           Grid.Column="5"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock Name="txtKyNam7"
+                                <TextBlock FontSize="13" Name="txtKyNam7"
+                                          VerticalAlignment="Center"
                                            HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[7].KyNam}"/>
                             </Border>
@@ -957,35 +979,40 @@
                           Grid.Column="5"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[7].NgayDoc}"/>
                             </Border>
                             <Border Grid.Row="2"
                           Grid.Column="5"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[7].Code}"/>
                             </Border>
                             <Border Grid.Row="3"
                           Grid.Column="5"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[7].ChiSo}"/>
                             </Border>
                             <Border Grid.Row="4"
                           Grid.Column="5"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[7].TieuThu}"/>
                             </Border>
                             <Border Grid.Row="0"
                           Grid.Column="6"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock Name="txtKyNam6"
+                                <TextBlock FontSize="13" Name="txtKyNam6"
+                                         VerticalAlignment="Center"
                                            HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[6].KyNam}"/>
                             </Border>
@@ -993,35 +1020,40 @@
                           Grid.Column="6"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[6].NgayDoc}"/>
                             </Border>
                             <Border Grid.Row="2"
                           Grid.Column="6"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[6].Code}"/>
                             </Border>
                             <Border Grid.Row="3"
                           Grid.Column="6"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[6].ChiSo}"/>
                             </Border>
                             <Border Grid.Row="4"
                           Grid.Column="6"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[6].TieuThu}"/>
                             </Border>
                             <Border Grid.Row="0"
                           Grid.Column="7"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock Name="txtKyNam5"
+                                <TextBlock FontSize="13" Name="txtKyNam5"
+                                           VerticalAlignment="Center"
                                            HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[5].KyNam}"/>
                             </Border>
@@ -1029,35 +1061,40 @@
                           Grid.Column="7"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[5].NgayDoc}"/>
                             </Border>
                             <Border Grid.Row="2"
                           Grid.Column="7"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[5].Code}"/>
                             </Border>
                             <Border Grid.Row="3"
                           Grid.Column="7"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[5].ChiSo}"/>
                             </Border>
                             <Border Grid.Row="4"
                           Grid.Column="7"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[5].TieuThu}"/>
                             </Border>
                             <Border Grid.Row="0"
                           Grid.Column="8"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock Name="txtKyNam4"
+                                <TextBlock FontSize="13" Name="txtKyNam4"
+                                           VerticalAlignment="Center"
                                            HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[4].KyNam}"/>
                             </Border>
@@ -1065,35 +1102,40 @@
                           Grid.Column="8"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[4].NgayDoc}"/>
                             </Border>
                             <Border Grid.Row="2"
                           Grid.Column="8"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[4].Code}"/>
                             </Border>
                             <Border Grid.Row="3"
                           Grid.Column="8"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[4].ChiSo}"/>
                             </Border>
                             <Border Grid.Row="4"
                           Grid.Column="8"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[4].TieuThu}"/>
                             </Border>
                             <Border Grid.Row="0"
                           Grid.Column="9"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock Name="txtKyNam3"
+                                <TextBlock FontSize="13" Name="txtKyNam3"
+                                          VerticalAlignment="Center"
                                            HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[3].KyNam}"/>
                             </Border>
@@ -1101,35 +1143,40 @@
                           Grid.Column="9"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[3].NgayDoc}"/>
                             </Border>
                             <Border Grid.Row="2"
                           Grid.Column="9"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[3].Code}"/>
                             </Border>
                             <Border Grid.Row="3"
                           Grid.Column="9"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[3].ChiSo}"/>
                             </Border>
                             <Border Grid.Row="4"
                           Grid.Column="9"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[3].TieuThu}"/>
                             </Border>
                             <Border Grid.Row="0"
                           Grid.Column="10"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock Name="txtKyNam2"
+                                <TextBlock FontSize="13" Name="txtKyNam2"
+                                          VerticalAlignment="Center"
                                            HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[2].KyNam}"/>
                             </Border>
@@ -1137,35 +1184,40 @@
                           Grid.Column="10"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[2].NgayDoc}"/>
                             </Border>
                             <Border Grid.Row="2"
                           Grid.Column="10"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[2].Code}"/>
                             </Border>
                             <Border Grid.Row="3"
                           Grid.Column="10"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize= "13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[2].ChiSo}"/>
                             </Border>
                             <Border Grid.Row="4"
                           Grid.Column="10"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[2].TieuThu}"/>
                             </Border>
                             <Border Grid.Row="0"
                           Grid.Column="11"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock Name="txtKyNam1"
+                                <TextBlock FontSize="13" Name="txtKyNam1"
+                                         VerticalAlignment="Center"
                                            HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[1].KyNam}"/>
                             </Border>
@@ -1173,35 +1225,40 @@
                           Grid.Column="11"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize= "13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[1].NgayDoc}"/>
                             </Border>
                             <Border Grid.Row="2"
                           Grid.Column="11"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[1].Code}"/>
                             </Border>
                             <Border Grid.Row="3"
                           Grid.Column="11"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[1].ChiSo}"/>
                             </Border>
                             <Border Grid.Row="4"
                           Grid.Column="11"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[1].TieuThu}"/>
                             </Border>
                             <Border Grid.Row="0"
                           Grid.Column="12"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock Name="txtKyNam0"
+                                <TextBlock FontSize="13" Name="txtKyNam0"
+                                          VerticalAlignment="Center"
                                            HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[0].KyNam}"/>
                             </Border>
@@ -1209,28 +1266,32 @@
                           Grid.Column="12"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[0].NgayDoc}"/>
                             </Border>
                             <Border Grid.Row="2"
                           Grid.Column="12"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[0].Code}"/>
                             </Border>
                             <Border Grid.Row="3"
                           Grid.Column="12"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[0].ChiSo}"/>
                             </Border>
                             <Border Grid.Row="4"
                           Grid.Column="12"
                         BorderBrush="Gray" 
                         BorderThickness="1">
-                                <TextBlock HorizontalAlignment="Center" 
+                                <TextBlock FontSize ="13" VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" 
                          Text="{Binding ListDocSo_1Ky[0].TieuThu}"/>
                             </Border>
                         </Grid>
