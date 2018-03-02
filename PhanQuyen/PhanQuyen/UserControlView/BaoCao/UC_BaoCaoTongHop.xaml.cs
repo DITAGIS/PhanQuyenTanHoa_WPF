@@ -55,7 +55,30 @@ namespace PhanQuyen
                 case 0:
                     PrintTKDHNDocSo();
                     break;
+                case 1:
+                    PrintTKSoLuong_SanLuongDHN_DMA();
+                    break;
+                case 2:
+                    PrintTKSoLuong_SanLuongDHN_Phuong();
+                    break;
             }
+        }
+
+        private void PrintTKSoLuong_SanLuongDHN_Phuong()
+        {
+            DataTable dt = DataDBViewModel.Instance.GetTKSoLuong_SanLuongDHN_Phuong(year, month, date);
+            _reportViewer.LocalReport.ReportPath = "../Report/rptBaoCaoSoLuongVaSanLuongTungPhuongDC.rdlc";
+            this._reportViewer.LocalReport.DataSources.Clear();
+            this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsTableDocSoKH", dt));
+            this._reportViewer.RefreshReport();
+        }
+        private void PrintTKSoLuong_SanLuongDHN_DMA()
+        {
+            DataTable dt = DataDBViewModel.Instance.GetTKSoLuong_SanLuongDHN_DMA(year, month, date);
+            _reportViewer.LocalReport.ReportPath = "../Report/rptBaoCaoSoLuongVaSanLuongTungPhuongDMA.rdlc";
+            this._reportViewer.LocalReport.DataSources.Clear();
+            this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsTableDocSo", dt));
+            this._reportViewer.RefreshReport();
         }
 
         private void PrintTKDHNDocSo()

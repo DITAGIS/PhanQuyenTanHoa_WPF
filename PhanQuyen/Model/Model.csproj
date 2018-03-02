@@ -103,6 +103,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BCTongHop.cs" />
     <Compile Include="CapNhatHoaDon.cs" />
     <Compile Include="ChuyenBilling.cs" />
     <Compile Include="ChuyenMayDS.cs" />

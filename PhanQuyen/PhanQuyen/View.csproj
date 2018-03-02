@@ -280,6 +280,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptBaoCaoSoLuongSanLuongCoHieuDHN.rdlc" />
+    <EmbeddedResource Include="Report\rptBaoCaoSoLuongVaSanLuongTungPhuongDC.rdlc" />
+    <EmbeddedResource Include="Report\rptBaoCaoSoLuongVaSanLuongTungPhuongDMA.rdlc" />
     <EmbeddedResource Include="Report\rptInDongCua.rdlc" />
     <EmbeddedResource Include="Report\rptInPhieuKiemTra.rdlc" />
     <EmbeddedResource Include="Report\rptInThongKeDHNTheoDotSo.rdlc" />
