@@ -56,8 +56,6 @@ namespace PhanQuyen
 
         private void btnViewReport_Click(object sender, RoutedEventArgs e)
         {
-
-
             DataTable dt = DataDBViewModel.Instance.GetThongKeSauDocSo(year, month, date, group, cbbMachine.SelectedItem.ToString());
             _reportViewer.LocalReport.ReportPath = "../Report/rptInThongKeSauDocSo.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();

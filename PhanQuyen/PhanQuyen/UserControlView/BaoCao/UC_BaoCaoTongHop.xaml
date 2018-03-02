@@ -30,9 +30,10 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal"  Name="stpCondition"  >
+        <StackPanel Margin="10,10,0,0" Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal"  Name="stpCondition"  >
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Báo cáo"/></TextBlock>
-            <ComboBox x:Name="cbbBaoCao"  IsEditable="True" VerticalAlignment="Center" Width="Auto"
+            <ComboBox x:Name="cbbBaoCao"  IsEditable="True" VerticalAlignment="Center" Width="310"
+                      Margin="0,0,10,0"
                       SelectedValue="{Binding Year, Mode=TwoWay}" 
                               SelectionChanged="cbbBaoCao_SelectionChanged"
                       ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" >

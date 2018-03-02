@@ -51,6 +51,8 @@ namespace ViewModel
         private const String DC_COLUMN_MAY = "May";
         private const String DC_COLUMN_MyUserNAME = "DM";
         private const String DC_COLUMN_STT = "DocSoID";
+
+       
         private const String DC_COLUMN_MLT = "MLT2";
         private const String DC_COLUMN_SDT = "SDT";
         private const String DC_COLUMN_DANHBA = "DanhBa";
@@ -133,8 +135,14 @@ namespace ViewModel
             serverContext = new DataClassServerDataContext();
         }
 
+        public List<String> getListBaoCaoTongHop()
+        {
+            var query = serverContext.ExecuteQuery<String>("select codedesc from ThamSo where CodeType='BC' order by code").ToList();
+            return query;
+        }
         public int CapNhatKH(int year, string month, string date)
         {
+
             var query = (from B in serverContext.BienDongs
                          where B.Nam == year && B.Ky == month && B.Dot == date
                          select new { B.DanhBa, B.HopDong, B.MLT1, B.So, B.May, B.Duong, B.GB, B.DM, B.SX, B.SH, B.DV, B.HC, B.Dot })
@@ -245,6 +253,45 @@ namespace ViewModel
             }
             return table;
         }
+        public DataTable GetThongKeDocSo(int year, string month, string date)
+        {
+            List<TKSauDocSo> query;
+            String queryStr = "";
+            DataTable table = new DataTable();
+            table.Columns.Add(TKSAUDOCSO_COLUMN_TOID, typeof(string));
+            table.Columns.Add(TKSAUDOCSO_COLUMN_KY, typeof(string));
+            table.Columns.Add(TKSAUDOCSO_COLUMN_DOT, typeof(string));
+            table.Columns.Add(TKSAUDOCSO_COLUMN_MAY, typeof(string));
+            table.Columns.Add(TKSAUDOCSO_COLUMN_CODEMOI, typeof(string));
+            table.Columns.Add(TKSAUDOCSO_COLUMN_DANHBA, typeof(string));
+            table.Columns.Add(TKSAUDOCSO_COLUMN_TIEUTHUMOI, typeof(string));
+
+            try
+            {
+                queryStr = " select ToID,CodeMoi,dot,ky,nam,count(DanhBa) as DanhBa ,sum(TieuThuMoi) as TieuThuMoi  from DocSo d inner join MayDS m on d.May=m.May  where Nam='" + year + "' and Ky='" + month + "' and Dot='" + date + "'  and CodeMoi is not null and CodeMoi !=''  group by ToID,CodeMoi,dot,ky,nam  order by ToID,CodeMoi,dot,ky,nam";
+                query = serverContext.ExecuteQuery<TKSauDocSo>(queryStr).ToList();
+
+                foreach (var item in query)
+                {
+                    DataRow row = table.NewRow();
+                    row[TKSAUDOCSO_COLUMN_TOID] = item.ToID;
+                    row[TKSAUDOCSO_COLUMN_KY] = item.Ky;
+                    row[TKSAUDOCSO_COLUMN_DOT] = item.Dot;
+                    row[TKSAUDOCSO_COLUMN_MAY] = item.May;
+                    row[TKSAUDOCSO_COLUMN_CODEMOI] = item.CodeMoi;
+                    row[TKSAUDOCSO_COLUMN_DANHBA] = item.DanhBa;
+                    row[TKSAUDOCSO_COLUMN_TIEUTHUMOI] = item.TieuThuMoi;
+
+                    table.Rows.Add(row);
+                }
+            }
+            catch
+            {
+
+            }
+
+            return table;
+        }
 
         public DataTable GetThongKeSauDocSo(int year, string month, string date, int group, string machine)
         {
@@ -258,7 +305,7 @@ namespace ViewModel
             table.Columns.Add(TKSAUDOCSO_COLUMN_CODEMOI, typeof(string));
             table.Columns.Add(TKSAUDOCSO_COLUMN_DANHBA, typeof(string));
             table.Columns.Add(TKSAUDOCSO_COLUMN_TIEUTHUMOI, typeof(string));
-       
+
             try
             {
                 queryStr = "Select ds.May, m.ToID, Count(ds.DanhBa) as DanhBa, Case when ds.CodeMoi is null or ds.CodeMoi = ''" +
@@ -273,7 +320,7 @@ namespace ViewModel
                     queryStr += " and ToID = " + group + " and ds.May ='" + machine + "' Group by ds.May,m.ToID,ds.CodeMoi,ds.Ky,ds.Dot";
                 }
                 query = serverContext.ExecuteQuery<TKSauDocSo>(queryStr).ToList();
-              
+
                 foreach (var item in query)
                 {
                     DataRow row = table.NewRow();
@@ -284,7 +331,7 @@ namespace ViewModel
                     row[TKSAUDOCSO_COLUMN_CODEMOI] = item.CodeMoi;
                     row[TKSAUDOCSO_COLUMN_DANHBA] = item.DanhBa;
                     row[TKSAUDOCSO_COLUMN_TIEUTHUMOI] = item.TieuThuMoi;
-                   
+
                     table.Rows.Add(row);
                 }
             }

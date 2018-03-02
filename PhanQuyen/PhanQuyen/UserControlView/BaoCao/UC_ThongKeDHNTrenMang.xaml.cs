@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,12 +27,19 @@ namespace PhanQuyen.UserControlView.BaoCao
         public UC_ThongKeDHNTrenMang()
         {
             InitializeComponent();
+            System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
+            ps.Landscape = true;
+            //ps.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1170);
+            Margins margins = new Margins(70, 50, 50, 50);
+            ps.Margins = margins;
+            //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
+            _reportViewer.SetPageSettings(ps);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             DataTable dt = DataDBViewModel.Instance.GetDHNTrenMang();
-            _reportViewer.LocalReport.ReportPath = "../Debug/Report/rptInThongKeDHNTrenMang.rdlc";
+            _reportViewer.LocalReport.ReportPath = "../Report/rptInThongKeDHNTrenMang.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInThongKeDHNTrenMang", dt));
             this._reportViewer.RefreshReport();
