@@ -1,4 +1,5 @@
 ﻿using Model;
+using PhanQuyen.WindowView;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -78,7 +79,7 @@ namespace PhanQuyen
                 if (ckbLoadBienDong.IsChecked.Value)
                 {
 
-                    if (HandlingDataDBViewModel.Instance.CheckExistBienDong(year, month,date))
+                    if (HandlingDataDBViewModel.Instance.CheckExistBienDong(year, month, date))
                     {
                         if (System.Windows.Forms.MessageBox.Show("Đã xử lý biến động, bạn muốn load lại Biến động?", "Câu hỏi", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                             this.LoadFileBienDong(true);
@@ -88,8 +89,7 @@ namespace PhanQuyen
                 }
                 txtbStatus.Text = "";
 
-                int countBienDong1 = HandlingDataDBViewModel.Instance.CountBienDong(year, month, date);
-                if (countBienDong1 == 0)
+                if (!HandlingDataDBViewModel.Instance.CheckExistBienDong(year, month, date))
                 {
                     int num3 = (int)System.Windows.Forms.MessageBox.Show("Không có biến động Kỳ " + year + "/" + month + " * Đợt " + date, "Thông báo");
                 }
@@ -98,17 +98,18 @@ namespace PhanQuyen
                     int capNhatKH = HandlingDataDBViewModel.Instance.CapNhatKH(year, month, date);
                     txtbStatus.Text = "Cập nhật " + capNhatKH + " khách hàng";
                     Thread.Sleep(500);
-                    //string sqlStatement2 = "select count(*) from BienDong where DanhBa not in (select DanhBa from KhachHang) and Nam = '" + GV.Nam + "' and Ky = '" + this.cbbKy.Text + "' and Dot = '" + this.cbbDot.Text + "'";
-                    //if (pc.GetExecuteScalar(sqlStatement2) > 0)
-                    //{
-                    //    GV.Ky = this.cbbKy.Text;
-                    //    GV.Dot = this.cbbDot.Text;
-                    //    int num2 = (int)new frmKHGanMoi().ShowDialog();
-                    //}
-                    //string sqlstatement2 = "insert into KhachHang(DanhBa,May,HieuLuc,HopDong,MLT1,MLT2,Dot,TenKH,So,Duong,SoMoi,Phuong,Quan,GB,DM,SX,DV,HC,NgayGan,Hieu,Co,SoThan,GanMoi,TTBaoThay) select DanhBa,May,'1'    ,HopDong,MLT1,MLT1,Dot,TenKH,So,Duong,So   ,Phuong,Quan,GB,DM,SX,DV,HC,NgayGan,Hieu,Co,SoThan,'1','0' from BienDong B where " + UTIex.StrBNamKyDot(this.cbbNam.Text, this.cbbKy.Text, this.cbbDot.Text) + " and DanhBa not in (select DanhBa from KhachHang)";
-                    //this.toolStripStatusLabel.Text = "Gắn mới " + (object)pc.GetExecuteNonQuerry(sqlstatement2) + " khách hàng";
-                    //this.Refresh();
+                    if (HandlingDataDBViewModel.Instance.CheckExistBienDong_KiemTraDuLieu(year, month, date))
+                    {
+                        new KHGanMoi_HuyWindow(year, month, date,true).ShowDialog();
+                    }
+                    //int ganMoi = HandlingDataDBViewModel.Instance.InsertKhachHang(year, month, date);
+                    //txtbStatus.Text = "Gắn mới " + ganMoi + " khách hàng";
                     //Thread.Sleep(500);
+
+                    if (HandlingDataDBViewModel.Instance.CheckExistKHHuy(year, month, date))
+                    {
+                        new KHGanMoi_HuyWindow(year, month, date,false).ShowDialog();
+                    }
                     //"select count(*) from KhachHang where DanhBa not in (select DanhBa from BienDong where Nam = '" + GV.Nam + "' and Ky = '" + this.cbbKy.Text + "' and Dot = '" + this.cbbDot.Text + "'";
                     //if (pc.GetExecuteScalar(sqlStatement2) > 0)
                     //{

@@ -171,6 +171,9 @@
     <Compile Include="UserControlView\BaoCao\UC_ThongKeDHNTheoDotSo.xaml.cs">
       <DependentUpon>UC_ThongKeDHNTheoDotSo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowView\KHGanMoi_HuyWindow.xaml.cs">
+      <DependentUpon>KHGanMoi_HuyWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowView\XemGhiChuWindow.xaml.cs">
       <DependentUpon>XemGhiChuWindow.xaml</DependentUpon>
     </Compile>
@@ -187,6 +190,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowView\InPhieuKiemTraWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowView\KHGanMoi_HuyWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

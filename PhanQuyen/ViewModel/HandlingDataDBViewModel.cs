@@ -184,7 +184,6 @@ namespace ViewModel
                     return 0;
                 }
             }
-            return 0;
         }
         public void InsertHoaDon(ViewModel.HoaDon hoaDon)
         {
@@ -214,7 +213,7 @@ namespace ViewModel
                 }
                 catch
                 {
-                    
+
                 }
             }
         }
@@ -262,21 +261,25 @@ namespace ViewModel
         }
         public int CapNhatKH(int year, string month, string date)
         {
-
-            var query = (from B in serverContext.BienDongs
-                         where B.Nam == year && B.Ky == month && B.Dot == date
-                         select new { B.DanhBa, B.HopDong, B.MLT1, B.So, B.May, B.Duong, B.GB, B.DM, B.SX, B.SH, B.DV, B.HC, B.Dot })
-                         .ToList();
-            foreach (var item in query)
-            {
-                var KH = serverContext.KhachHangs.SingleOrDefault(row => row.DanhBa == item.DanhBa);
-                if (KH != null)
-                {
-                    //
-                    serverContext.SubmitChanges();
-                }
-            }
-            return query.Count;
+            var queryStr = "update KhachHang set HopDong=B.HopDong,MLT1 = B.MLT1,MLT2 = B.MLT1,So = B.So,May = B.May, Duong = B.Duong,GB = B.GB,DM = B.DM" +
+                ",SX = B.SX,SH = B.SH,DV = B.DV,HC = B.HC,HieuLuc = '1',Dot = B.Dot  from BienDong B inner join KhachHang K on K.DanhBa = B.DanhBa where biendongid like '" +
+                year + month + "%' and b.dot ='" + date + "'";
+            var update = serverContext.ExecuteQuery<object>(queryStr).ToList();
+            return update.Count;
+            //var query = (from B in serverContext.BienDongs
+            //             where B.Nam == year && B.Ky == month && B.Dot == date
+            //             select new { B.DanhBa, B.HopDong, B.MLT1, B.So, B.May, B.Duong, B.GB, B.DM, B.SX, B.SH, B.DV, B.HC, B.Dot })
+            //             .ToList();
+            //foreach (var item in query)
+            //{
+            //    var KH = serverContext.KhachHangs.SingleOrDefault(row => row.DanhBa == item.DanhBa);
+            //    if (KH != null)
+            //    {
+            //        //
+            //        serverContext.SubmitChanges();
+            //    }
+            //}
+            //return query.Count;
         }
 
         public List<Model.ChuyenBilling> GetBilling()
@@ -319,7 +322,54 @@ namespace ViewModel
             //            select new { x.Ky, x.Nam, danhBa, x.CodeMoi, x.TTDHNMoi, x.CSCu, x.CSMoi, x.TieuThuMoi, x.GhiChuDS, x.GhiChuKH, x.GhiChuTV }).ToList();
             return tmp;
         }
-
+        public List<MyBienDong> getKHHuy(int nam, string ky, string dot)
+        {
+            var query = "Select *  from KhachHang where dot = '" + dot + "' and DanhBa not in ( Select DanhBa from BienDong where  biendongid like '" + nam + ky + "%' and Dot ='" + dot + "')";
+            var data = serverContext.ExecuteQuery<KhachHang>(query).ToList();
+            List<MyBienDong> list = new List<MyBienDong>();
+            int stt = 0;
+            foreach (var item in data)
+            {
+                stt++;
+                list.Add(new MyBienDong()
+                {
+                    STT = stt,
+                    DanhBa = item.DanhBa,
+                    MLT1 = item.MLT1,
+                    TenKH = item.TenKH,
+                    So = item.So,
+                    Duong = item.Duong
+                });
+            }
+            //var data = (from x in serverContext.BienDongs
+            //            where x.BienDongID.StartsWith(nam + ky + "%") && x.Dot == dot
+            //            select new {x.DanhBa, x.MLT1, x.TenKH, x.So, x.Duong }).ToList();
+            return list;
+        }
+        public List<MyBienDong> getKHGanMoi(int nam, string ky, string dot)
+        {
+            var query = "Select * from BienDong where DanhBa not in ( Select DanhBa from KhachHang) and biendongid like '" + nam + ky + "%' and Dot ='" + dot + "'";
+            var data = serverContext.ExecuteQuery<BienDong>(query).ToList();
+            List<MyBienDong> list = new List<MyBienDong>();
+            int stt = 0;
+            foreach (var item in data)
+            {
+                stt++;
+                list.Add(new MyBienDong()
+                {
+                    STT = stt,
+                    DanhBa = item.DanhBa,
+                    MLT1 = item.MLT1,
+                    TenKH = item.TenKH,
+                    So = item.So,
+                    Duong = item.Duong
+                });
+            }
+            //var data = (from x in serverContext.BienDongs
+            //            where x.BienDongID.StartsWith(nam + ky + "%") && x.Dot == dot
+            //            select new {x.DanhBa, x.MLT1, x.TenKH, x.So, x.Duong }).ToList();
+            return list;
+        }
         public IEnumerable getNote(string danhBa)
         {
             var data = (from x in serverContext.DocSos
@@ -338,6 +388,27 @@ namespace ViewModel
         public bool CheckExistBienDong(int nam, string ky, string dot)
         {
             var value = serverContext.ExecuteQuery<string>("select top 1 biendongid from biendong where biendongid like '" + nam + ky + "%' and dot = '" + dot + "'").ToList();
+            if (value.Count > 0)
+                return true;
+            return false;
+        }
+        public bool CheckExistBienDong_KiemTraDuLieu(int nam, string ky, string dot)
+        {
+            var value = serverContext.ExecuteQuery<object>("select top 1 biendongid from BienDong where DanhBa not in (select DanhBa from KhachHang) and biendongid like '" + nam + ky + "%' and Dot = '" + dot + "'").ToList();
+            if (value.Count > 0)
+                return true;
+            return false;
+        }
+        public int InsertKhachHang(int nam, string ky, string dot)
+        {
+            string query = "insert into KhachHang(DanhBa,May,HieuLuc,HopDong,MLT1,MLT2,Dot,TenKH,So,Duong,SoMoi,Phuong,Quan,GB,DM,SX,DV,HC,NgayGan,Hieu,Co,SoThan,GanMoi,TTBaoThay) select DanhBa,May,'1'    ,HopDong,MLT1,MLT1,Dot,TenKH,So,Duong,So   ,Phuong,Quan,GB,DM,SX,DV,HC,NgayGan,Hieu,Co,SoThan,'1','0' from BienDong B where biendongid like '" + nam + ky + "%' and dot = '" + dot + "' and DanhBa not in (select DanhBa from KhachHang)";
+            var value = serverContext.ExecuteQuery<object>(query).ToList();
+            return value.Count;
+        }
+        public bool CheckExistKHHuy(int nam, string ky, string dot)
+        {
+            var query = "select top 1 danhba from KhachHang where DanhBa not in (select DanhBa from BienDong where biendongid like '" + nam + ky + "%' and Dot = '" + dot + "')";
+            var value = serverContext.ExecuteQuery<object>(query).ToList();
             if (value.Count > 0)
                 return true;
             return false;

@@ -114,6 +114,7 @@
     <Compile Include="CodeModel.cs" />
     <Compile Include="DocSo_1Ky.cs" />
     <Compile Include="HoaDon.cs" />
+    <Compile Include="MyBienDong.cs" />
     <Compile Include="MySoLenh.cs" />
     <Compile Include="ThongTinKH.cs" />
     <Compile Include="TKDHNTheoDotSo.cs" />
