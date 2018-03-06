@@ -69,7 +69,7 @@ namespace PhanQuyen
         {
             try
             {
-                int executeScalar = DataDBViewModel.Instance.CheckIzDS();
+                int executeScalar = HandlingDataDBViewModel.Instance.CheckIzDS();
                 if (executeScalar == 1 && (MyUser.Instance.UserGroup == "DS" || MyUser.Instance.UserGroup == "Admin"))
                 {
                     int num = (int)MessageBox.Show("Dữ liệu đã được chuyển lên thương vụ, bạn không thể điều chỉnh được thông tin.", "Thông báo");
@@ -134,7 +134,7 @@ namespace PhanQuyen
                 cbbMonth.SelectedValue = MyUser.Instance.Month;
             if (cbbMonth.SelectedValue != null)
                 month = cbbMonth.SelectedValue.ToString();
-            cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDateServer(year, month);
+            cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
             cbbDate.SelectedValue = MyUser.Instance.Date;
         }
 
@@ -175,7 +175,7 @@ namespace PhanQuyen
             {
                 try
                 {
-                    bool isUpdate = DataDBViewModel.Instance.Update(txtbCode.Text.Trim(), txtbCSM.Text.Trim(), txtbTieuThu.Text.Trim(), txtbGCDS.Text.Trim(),
+                    bool isUpdate = HandlingDataDBViewModel.Instance.Update(txtbCode.Text.Trim(), txtbCSM.Text.Trim(), txtbTieuThu.Text.Trim(), txtbGCDS.Text.Trim(),
                          txtbGCMH.Text.Trim(), txtbGCKH.Text.Trim(), cbbKHDS.SelectedValue.ToString(), DateTime.Now, year, month, date, txtbDanhBa.Text.Trim());
                     if (isUpdate)
                         MessageBox.Show("Cập nhật thành công !", "Thông báo");
@@ -256,7 +256,7 @@ namespace PhanQuyen
                 else if (Int16.TryParse(cbbGroup.SelectedValue.ToString(), out x))
                     group = Int16.Parse(cbbGroup.SelectedValue.ToString());
                 else group = x;
-                cbbMachine.ItemsSource = DataDBViewModel.Instance.getDistinctMachineServer(year, month, date, group);
+                cbbMachine.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMachineServer(year, month, date, group);
             }
         }
 
@@ -397,7 +397,7 @@ namespace PhanQuyen
             try
             {
                 string str = year + month + danhba;
-                XuLyCode8 xuLyCode8 = DataDBViewModel.Instance.GetXuLyCode8(danhba);
+                XuLyCode8 xuLyCode8 = HandlingDataDBViewModel.Instance.GetXuLyCode8(danhba);
                 if (xuLyCode8 != null)
                 {
                     int num1 = !(xuLyCode8.SoNgay.ToString() == "") &&
@@ -423,7 +423,7 @@ namespace PhanQuyen
                             }
                             if (num1 > 30)
                             {
-                                int executeScalar = DataDBViewModel.Instance.GetTieuThuMoi(danhba, str);
+                                int executeScalar = HandlingDataDBViewModel.Instance.GetTieuThuMoi(danhba, str);
                                 this.txtbTieuThu.Text = Math.Round((double)((int.Parse(csmoi) - num3) / num1 * 60 - executeScalar), 0).ToString();
                             }
                             if (num1 > 6 && num1 <= 30)
@@ -471,7 +471,7 @@ namespace PhanQuyen
 
         private void btnGetData_Click(object sender, RoutedEventArgs e)
         {
-            docSoList = DataDBViewModel.Instance.getAllDocSos(year, month, date, group, machine);
+            docSoList = HandlingDataDBViewModel.Instance.getAllDocSos(year, month, date, group, machine);
             dtgridMain.ItemsSource = null;
             dtgridMain.Items.Clear();
             dtgridMain.ItemsSource = docSoList;
@@ -725,7 +725,7 @@ namespace PhanQuyen
         {
             if (cbbYear.SelectedValue != null)
                 year = Int16.Parse(cbbYear.SelectedValue.ToString());
-            cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonthServer(year);
+            cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(year);
         }
 
 
@@ -734,7 +734,7 @@ namespace PhanQuyen
         {
             this.user = user;
             InitializeComponent();
-            cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
+            cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
             cbbYear.SelectedValue = MyUser.Instance.Year;
 
             cbbMonth.SelectedValue = MyUser.Instance.Month;
@@ -745,7 +745,7 @@ namespace PhanQuyen
             else
                 cbbGroup.Items.Add(MyUser.Instance.ToID);
 
-            cbbKHDS.ItemsSource = DataDBViewModel.Instance.getDistinctKHDS();
+            cbbKHDS.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctKHDS();
             cbbKHDS.DisplayMemberPath = "TTDHN1";
             cbbKHDS.SelectedValuePath = "CODE";
         }

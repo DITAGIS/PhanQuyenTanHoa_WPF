@@ -38,7 +38,7 @@ using System.Linq;
             ps.Margins = margins;
             //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
             _reportViewer.SetPageSettings(ps);
-            cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
+            cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
          }
  
          private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -46,7 +46,7 @@ using System.Linq;
              if (cbbYear.SelectedValue != null)
              {
                  year = Int16.Parse(cbbYear.SelectedValue.ToString());
-                 cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonthServer(year);
+                 cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(year);
              }
          }
  
@@ -55,7 +55,7 @@ using System.Linq;
              if (cbbMonth.SelectedValue != null)
              {
                  month = cbbMonth.SelectedValue.ToString();
-                 cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDateServer(year, month);
+                 cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
              }
          }
  
@@ -64,7 +64,7 @@ using System.Linq;
              if (cbbDate.SelectedValue != null)
              {
                  date = cbbDate.SelectedValue.ToString();
-                 cbbMachine.ItemsSource = DataDBViewModel.Instance.getDistinctMachineServer(year, month, date, 0);
+                 cbbMachine.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMachineServer(year, month, date, 0);
              }
          }
  
@@ -79,7 +79,7 @@ using System.Linq;
          {
              String danhBa = "";
              String str = "";
-             DataTable dt = DataDBViewModel.Instance.GetListCloseDoor(year, month, date, machine);
+             DataTable dt = HandlingDataDBViewModel.Instance.GetListCloseDoor(year, month, date, machine);
              _reportViewer.LocalReport.ReportPath = "../Report/rptInDongCua.rdlc";
              this._reportViewer.LocalReport.DataSources.Clear();
              this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInDongCua", dt));

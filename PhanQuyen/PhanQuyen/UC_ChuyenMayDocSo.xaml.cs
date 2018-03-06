@@ -26,9 +26,9 @@ namespace PhanQuyen
         {
             InitializeComponent();
             //txtbGroup.Text = "Tổ: " + 
-            cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDate();
-            cbbMachineLeft.ItemsSource = DataDBViewModel.Instance.getDistinctMachine();
-            cbbMachineRight.ItemsSource = DataDBViewModel.Instance.getDistinctMachine();
+            cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDate();
+            cbbMachineLeft.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMachine();
+            cbbMachineRight.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMachine();
         }
 
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -39,13 +39,13 @@ namespace PhanQuyen
         private void cbbMachineLeft_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             machineLeft = cbbMachineLeft.SelectedValue.ToString();
-            dtGridLeft.ItemsSource = DataDBViewModel.Instance.getKH_ChuyenMayDS(date, machineLeft);
+            dtGridLeft.ItemsSource = HandlingDataDBViewModel.Instance.getKH_ChuyenMayDS(date, machineLeft);
         }
 
         private void cbbMachineRight_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             machineRight = cbbMachineRight.SelectedValue.ToString();
-            dtGridRight.ItemsSource = DataDBViewModel.Instance.getKH_ChuyenMayDS(date, machineRight);
+            dtGridRight.ItemsSource = HandlingDataDBViewModel.Instance.getKH_ChuyenMayDS(date, machineRight);
         }
     }
 }

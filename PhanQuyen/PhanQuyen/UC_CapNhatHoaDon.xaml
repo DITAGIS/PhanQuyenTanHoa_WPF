@@ -38,18 +38,14 @@
                     Content="..." Width="30" Click="btnSelectFile_Click"  VerticalAlignment="Center"
                     ></Button>
                 <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Năm:"/></TextBlock>
-                <ComboBox x:Name="cbbYear" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
-                      SelectedValue="{Binding Year, Mode=TwoWay}" 
-                              
-                      ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbYear_SelectionChanged">
+                <ComboBox x:Name="cbbYear" SelectedIndex="-1" IsEditable="True" VerticalAlignment="Center" Width="50"
+                    SelectionChanged="cbbYear_SelectionChanged">
 
                 </ComboBox>
 
                 <TextBlock VerticalAlignment="Center" FontSize="13" Margin="50,0,10,0"><Run Text="Kỳ:"/></TextBlock>
-                <ComboBox x:Name="cbbMonth" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45"
-                      SelectedValue="{Binding Month, Mode=TwoWay}" 
-                              
-                      ItemsSource="{Binding ListMonth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbMonth_SelectionChanged" />
+                <ComboBox x:Name="cbbMonth" SelectedIndex="-1" IsEditable="True" VerticalAlignment="Center" Width="45"
+                       SelectionChanged="cbbMonth_SelectionChanged" />
 
             </StackPanel>
             <DataGrid    Grid.Row="1"    

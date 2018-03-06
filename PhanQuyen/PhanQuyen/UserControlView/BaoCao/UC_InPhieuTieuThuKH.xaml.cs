@@ -30,7 +30,7 @@ namespace PhanQuyen
         {
             InitializeComponent();
 
-            cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
+            cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
 
             System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
             ps.Landscape = true;
@@ -47,7 +47,7 @@ namespace PhanQuyen
         {
             InitializeComponent();
 
-            cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
+            cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
 
             System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
             ps.Landscape = true;
@@ -85,8 +85,8 @@ namespace PhanQuyen
             String nam = "";
             if (cbbYear.SelectedValue != null)
                 nam = cbbYear.SelectedValue.ToString();
-            DataTable dt = DataDBViewModel.Instance.GetInfoCheckCustomer1(str, danhBa);
-            dt.Merge(DataDBViewModel.Instance.GetInfoCheckCustomer2(dt.Rows.Count, str, danhBa));
+            DataTable dt = HandlingDataDBViewModel.Instance.GetInfoCheckCustomer1(str, danhBa);
+            dt.Merge(HandlingDataDBViewModel.Instance.GetInfoCheckCustomer2(dt.Rows.Count, str, danhBa));
 
             _reportViewer.LocalReport.ReportPath = "../Report/rptInPhieuKiemTra.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();

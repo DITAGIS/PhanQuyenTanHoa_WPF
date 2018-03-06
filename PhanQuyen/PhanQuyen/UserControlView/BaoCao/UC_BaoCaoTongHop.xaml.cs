@@ -29,9 +29,9 @@ namespace PhanQuyen
         public UC_BaoCaoTongHop()
         {
             InitializeComponent();
-            cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
+            cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
 
-            cbbBaoCao.ItemsSource = DataDBViewModel.Instance.getListBaoCaoTongHop();
+            cbbBaoCao.ItemsSource = HandlingDataDBViewModel.Instance.getListBaoCaoTongHop();
             cbbBaoCao.SelectedIndex = 0;
 
             //    new List<String>()
@@ -73,7 +73,7 @@ namespace PhanQuyen
         private void PrintTKSoLuongCoDungGieng()
         {
             SetPageSetting(true);
-            DataTable dt = DataDBViewModel.Instance.GetTKSoLuongCoDungGieng(year, month, date);
+            DataTable dt = HandlingDataDBViewModel.Instance.GetTKSoLuongCoDungGieng(year, month, date);
             _reportViewer.LocalReport.ReportPath = "../Report/rptSanLuongNhanVien.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsTableDocSo", dt));
@@ -82,7 +82,7 @@ namespace PhanQuyen
         private void PrintTKSoLuong_SanLuongDHN_Co_Hieu()
         {
             SetPageSetting(true);
-            DataTable dt = DataDBViewModel.Instance.GetTKSoLuong_SanLuongDHN_Co_Hieu(year, month, date);
+            DataTable dt = HandlingDataDBViewModel.Instance.GetTKSoLuong_SanLuongDHN_Co_Hieu(year, month, date);
             _reportViewer.LocalReport.ReportPath = "../Report/rptBaoCaoSoLuongSanLuongCoHieuDHN.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsTableDocSoKH", dt));
@@ -91,7 +91,7 @@ namespace PhanQuyen
         private void PrintTKSoLuong_SanLuongDHN_Phuong()
         {
             SetPageSetting(false);
-            DataTable dt = DataDBViewModel.Instance.GetTKSoLuong_SanLuongDHN_Phuong(year, month, date);
+            DataTable dt = HandlingDataDBViewModel.Instance.GetTKSoLuong_SanLuongDHN_Phuong(year, month, date);
             _reportViewer.LocalReport.ReportPath = "../Report/rptBaoCaoSoLuongVaSanLuongTungPhuongDC.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsTableDocSoKH", dt));
@@ -100,7 +100,7 @@ namespace PhanQuyen
         private void PrintTKSoLuong_SanLuongDHN_DMA()
         {
             SetPageSetting(false);
-            DataTable dt = DataDBViewModel.Instance.GetTKSoLuong_SanLuongDHN_DMA(year, month, date);
+            DataTable dt = HandlingDataDBViewModel.Instance.GetTKSoLuong_SanLuongDHN_DMA(year, month, date);
             _reportViewer.LocalReport.ReportPath = "../Report/rptBaoCaoSoLuongVaSanLuongTungPhuongDMA.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsTableDocSo", dt));
@@ -110,7 +110,7 @@ namespace PhanQuyen
         private void PrintTKDHNDocSo()
         {
             SetPageSetting(false);
-            DataTable dt = DataDBViewModel.Instance.GetThongKeDocSo(year, month, date);
+            DataTable dt = HandlingDataDBViewModel.Instance.GetThongKeDocSo(year, month, date);
             _reportViewer.LocalReport.ReportPath = "../Report/rptThongKeDHNDocSo.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsTableDocSo", dt));
@@ -139,7 +139,7 @@ namespace PhanQuyen
             if (cbbMonth.SelectedValue != null)
             {
                 month = cbbMonth.SelectedValue.ToString();
-                cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDateServer(year, month);
+                cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
             }
         }
 
@@ -150,7 +150,7 @@ namespace PhanQuyen
             if (cbbYear.SelectedValue != null)
             {
                 year = Int16.Parse(cbbYear.SelectedValue.ToString());
-                cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonthServer(year);
+                cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(year);
             }
         }
         #endregion

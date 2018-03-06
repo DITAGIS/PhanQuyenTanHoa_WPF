@@ -309,7 +309,7 @@ namespace PhanQuyen
                 return;
             try
             {
-                bool result = DataDBViewModel.Instance.HoanTatDocSo();
+                bool result = HandlingDataDBViewModel.Instance.HoanTatDocSo();
                 if (result)
                     System.Windows.Forms.MessageBox.Show("Hoàn tất đọc số thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
@@ -326,7 +326,7 @@ namespace PhanQuyen
                 return;
             try
             {
-                bool result = DataDBViewModel.Instance.HoanTatThuongVu();
+                bool result = HandlingDataDBViewModel.Instance.HoanTatThuongVu();
                 if (result)
                     System.Windows.Forms.MessageBox.Show("Hoàn tất đọc số thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 

@@ -12,11 +12,11 @@ using System.Windows.Controls;
 
 namespace ViewModel
 {
-    public class DataDBViewModel
+    public class HandlingDataDBViewModel
     {
 
 
-        private static DataDBViewModel _instance;
+        private static HandlingDataDBViewModel _instance;
         private DataClassesLocalDataContext localContext;
         private DataClassServerDataContext serverContext;
 
@@ -101,12 +101,12 @@ namespace ViewModel
         private const String BCTONGHOP_COLUMN_HIEU = "Hieu";
         private const String BCTONGHOP_COLUMN_NHANVIENID = "NhanVienID";
         string pattern = "dd/MM/yyyy";
-        public static DataDBViewModel Instance
+        public static HandlingDataDBViewModel Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new DataDBViewModel();
+                    _instance = new HandlingDataDBViewModel();
                 return _instance;
             }
         }
@@ -141,12 +141,81 @@ namespace ViewModel
             return serverContext.ExecuteQuery<int>("select count(*) from BillState where izDS = '1' and BillID ='" + MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date + "'").First();
         }
 
-        private DataDBViewModel()
+        private HandlingDataDBViewModel()
         {
             localContext = new DataClassesLocalDataContext();
             serverContext = new DataClassServerDataContext();
         }
+        public void DeleteBienDong(int nam, string ky, string dot)
+        {
+            try
+            {
+                var BienDongs = (from x in serverContext.BienDongs
+                                 where x.BienDongID.StartsWith(nam + ky + "%") && x.Dot == dot
+                                 select x).ToList();
+                foreach (var item in BienDongs)
+                {
+                    serverContext.BienDongs.DeleteOnSubmit(item);
+                }
+                serverContext.SubmitChanges();
+            }
+            catch
+            {
 
+            }
+        }
+        public int InsertBienDong(ViewModel.BienDong bienDong)
+        {
+            try
+            {
+                serverContext.BienDongs.InsertOnSubmit(bienDong);
+                serverContext.SubmitChanges();
+                return 1;
+            }
+            catch
+            {
+                try
+                {
+                    serverContext.SubmitChanges();
+                    return 1;
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+            return 0;
+        }
+        public void InsertHoaDon(ViewModel.HoaDon hoaDon)
+        {
+            try
+            {
+                serverContext.HoaDons.InsertOnSubmit(hoaDon);
+                serverContext.SubmitChanges();
+            }
+            catch
+            {
+                try
+                {
+                    serverContext.SubmitChanges();
+                }
+                catch
+                {
+                    UpdateHoaDon(hoaDon);
+                }
+            }
+        }
+        private void UpdateHoaDon(ViewModel.HoaDon hoaDon)
+        {
+            try
+            {
+
+            }
+            catch
+            {
+
+            }
+        }
         public List<String> getListBaoCaoTongHop()
         {
             var query = serverContext.ExecuteQuery<String>("select codedesc from ThamSo where CodeType='BC' order by code").ToList();
@@ -219,6 +288,20 @@ namespace ViewModel
                         orderby x.DocSoID descending
                         select new { x.Ky, x.Nam, danhBa, x.CodeMoi, x.TTDHNMoi, x.CSCu, x.CSMoi, x.TieuThuMoi, x.GhiChuDS, x.GhiChuKH, x.GhiChuTV }).ToList();
             return data;
+        }
+        public bool CheckExistHoaDon(int nam, string ky, string dot)
+        {
+            var value = serverContext.ExecuteQuery<string>("select top 1 hoadonid from hoadon where hoadonid like '" + nam + ky + "%' and dot = '" + dot + "'").ToList();
+            if (value.Count > 0)
+                return true;
+            return false;
+        }
+        public bool CheckExistBienDong(int nam, string ky, string dot)
+        {
+            var value = serverContext.ExecuteQuery<string>("select top 1 biendongid from biendong where biendongid like '" + nam + ky + "%' and dot = '" + dot + "'").ToList();
+            if (value.Count > 0)
+                return true;
+            return false;
         }
         public int CountHoaDon(int nam, string ky, string dot)
         {
@@ -333,7 +416,7 @@ namespace ViewModel
             try
             {
 
-                queryStr = " select Toid,k.Dot,ky,nam,Hieu ,cast(co as int) as co,  count(k.danhba) DanhBa, SUM(TieuThuMoi) TieuThuMoi  from DocSo d inner join MayDS m on d.May=m.May  \t\t\t  inner join KhachHang k on d.DanhBa=k.DanhBa  where k.dot='" +date + "' and Ky='" +month + "' and Nam='" + year + "'  and Hieu is not null and Co is not null  group by Toid,k.Dot,ky,nam,Hieu,co  order by Toid,k.Dot,ky,nam,Hieu, co asc ";
+                queryStr = " select Toid,k.Dot,ky,nam,Hieu ,cast(co as int) as co,  count(k.danhba) DanhBa, SUM(TieuThuMoi) TieuThuMoi  from DocSo d inner join MayDS m on d.May=m.May  \t\t\t  inner join KhachHang k on d.DanhBa=k.DanhBa  where k.dot='" + date + "' and Ky='" + month + "' and Nam='" + year + "'  and Hieu is not null and Co is not null  group by Toid,k.Dot,ky,nam,Hieu,co  order by Toid,k.Dot,ky,nam,Hieu, co asc ";
 
                 query = serverContext.ExecuteQuery<BCTongHop>(queryStr).ToList();
 

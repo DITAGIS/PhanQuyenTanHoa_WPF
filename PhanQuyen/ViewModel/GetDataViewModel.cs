@@ -38,7 +38,7 @@ namespace ViewModel
                 selectedSoDaNhan = value;
                 OnPropertyChanged("SelectedSoDaNhan");
                 if (selectedSoDaNhan != null)
-                    ListHoaDon = DataDBViewModel.Instance.getDistinctHoaDon(selectedSoDaNhan);
+                    ListHoaDon = HandlingDataDBViewModel.Instance.getDistinctHoaDon(selectedSoDaNhan);
             }
         }
         private int year;
@@ -48,20 +48,20 @@ namespace ViewModel
             set
             {
                 year = value; OnPropertyChanged("Year");
-                ListSoDaNhan = DataDBViewModel.Instance.getDistinctSoDaNhan(Year, Month, Date, Group);
+                ListSoDaNhan = HandlingDataDBViewModel.Instance.getDistinctSoDaNhan(Year, Month, Date, Group);
             }
         }
         private String month;
         public String Month
         {
             get { return month; }
-            set { month = value; OnPropertyChanged("Month"); ListSoDaNhan = DataDBViewModel.Instance.getDistinctSoDaNhan(Year, Month, Date, Group); }
+            set { month = value; OnPropertyChanged("Month"); ListSoDaNhan = HandlingDataDBViewModel.Instance.getDistinctSoDaNhan(Year, Month, Date, Group); }
         }
         private String date;
         public String Date
         {
             get { return date; }
-            set { date = value; OnPropertyChanged("Date"); ListSoDaNhan = DataDBViewModel.Instance.getDistinctSoDaNhan(Year, Month, Date, Group); }
+            set { date = value; OnPropertyChanged("Date"); ListSoDaNhan = HandlingDataDBViewModel.Instance.getDistinctSoDaNhan(Year, Month, Date, Group); }
         }
         private int group;
         public int Group
@@ -70,7 +70,7 @@ namespace ViewModel
             set
             {
                 group = value; OnPropertyChanged("Group");
-                ListSoDaNhan = DataDBViewModel.Instance.getDistinctSoDaNhan(Year, Month, Date, Group);
+                ListSoDaNhan = HandlingDataDBViewModel.Instance.getDistinctSoDaNhan(Year, Month, Date, Group);
             }
         }
         private ObservableCollection<int> listYear;
@@ -115,10 +115,10 @@ namespace ViewModel
         public GetDataViewModel()
         {
             Initialize();
-            ListYear = DataDBViewModel.Instance.getDistinctYear();
+            ListYear = HandlingDataDBViewModel.Instance.getDistinctYear();
             //ListMonth = DataDBViewModel.Instance.getDistinctMonth();
-            ListDate = DataDBViewModel.Instance.getDistinctDate();
-            ListGroup = DataDBViewModel.Instance.getDistinctGroup();
+            ListDate = HandlingDataDBViewModel.Instance.getDistinctDate();
+            ListGroup = HandlingDataDBViewModel.Instance.getDistinctGroup();
         }
         #endregion
     }

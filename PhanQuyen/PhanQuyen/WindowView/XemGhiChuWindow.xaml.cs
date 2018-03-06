@@ -29,7 +29,7 @@ namespace PhanQuyen
             InitializeComponent();
             this.WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
-            dtgridMain.ItemsSource = DataDBViewModel.Instance.getNote(_danhBa);
+            dtgridMain.ItemsSource = HandlingDataDBViewModel.Instance.getNote(_danhBa);
         }
         public XemGhiChuWindow()
         {
@@ -47,7 +47,7 @@ namespace PhanQuyen
 
         public void GetNote(String danhBa)
         {
-            dtgridMain.ItemsSource = DataDBViewModel.Instance.getNote(danhBa);
+            dtgridMain.ItemsSource = HandlingDataDBViewModel.Instance.getNote(danhBa);
         }
     }
 }

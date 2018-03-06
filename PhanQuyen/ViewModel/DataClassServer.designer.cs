@@ -6541,8 +6541,41 @@ namespace ViewModel
 		{
 			OnCreated();
 		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BienDongID", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+
+        public BienDong(string bienDongID, int? nam, string ky, string dot, string danhBa, string hopDong, string may, string tenKH, string so, string duong, string phuong, string quan, short? gB, int? dM, short? sH, short? sX, short? dV, short? hC, string hieu, short? co, string soThan, string code, int? chiSo, int? tieuThu, DateTime? ngayGan, int? sTT, string mLT1, DateTime? ngayCapNhat, string nVCapNhat)
+        {
+            BienDongID = bienDongID;
+            Nam = nam;
+            Ky = ky;
+            Dot = dot;
+            DanhBa = danhBa;
+            HopDong = hopDong;
+            May = may;
+            TenKH = tenKH;
+            So = so;
+            Duong = duong;
+            Phuong = phuong;
+            Quan = quan;
+            GB = gB;
+            DM = dM;
+            SH = sH;
+            SX = sX;
+            DV = dV;
+            HC = hC;
+            Hieu = hieu;
+            Co = co;
+            SoThan = soThan;
+            Code = code;
+            ChiSo = chiSo;
+            TieuThu = tieuThu;
+            NgayGan = ngayGan;
+            STT = sTT;
+            MLT1 = mLT1;
+            NgayCapNhat = ngayCapNhat;
+            NVCapNhat = nVCapNhat;
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BienDongID", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string BienDongID
 		{
 			get

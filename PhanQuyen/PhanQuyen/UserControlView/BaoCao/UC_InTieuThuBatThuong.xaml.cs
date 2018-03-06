@@ -38,14 +38,14 @@ namespace PhanQuyen.UserControl.BaoCao
             //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
             _reportViewer.SetPageSettings(ps);
 
-            cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
+            cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
         }
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbbYear.SelectedValue != null)
             {
                 year = Int16.Parse(cbbYear.SelectedValue.ToString());
-                cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonthServer(year);
+                cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(year);
             }
         }
 
@@ -54,7 +54,7 @@ namespace PhanQuyen.UserControl.BaoCao
             if (cbbMonth.SelectedValue != null)
             {
                 month = cbbMonth.SelectedValue.ToString();
-                cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDateServer(year, month);
+                cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
             }
         }
 
@@ -63,7 +63,7 @@ namespace PhanQuyen.UserControl.BaoCao
             if (cbbDate.SelectedValue != null)
             {
                 date = cbbDate.SelectedValue.ToString();
-                cbbMachine.ItemsSource = DataDBViewModel.Instance.getDistinctMachineServer(year, month, date, 0);
+                cbbMachine.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMachineServer(year, month, date, 0);
             }
         }
 
@@ -78,7 +78,7 @@ namespace PhanQuyen.UserControl.BaoCao
         {
             String danhBa = "";
             String str = "";
-            DataTable dt = DataDBViewModel.Instance.GetListTieuThuBatThuong(year, month, date, machine);
+            DataTable dt = HandlingDataDBViewModel.Instance.GetListTieuThuBatThuong(year, month, date, machine);
             _reportViewer.LocalReport.ReportPath = "../Report/rptInTieuThuBatThuong.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInTieuThuBatThuong", dt));

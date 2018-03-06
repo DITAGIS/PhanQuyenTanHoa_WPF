@@ -90,7 +90,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClassServer.dbml</DependentUpon>
     </Compile>
-    <Compile Include="GetDataDBViewModel.cs" />
+    <Compile Include="HandlingDataDBViewModel.cs" />
     <Compile Include="GetDataViewModel.cs" />
     <Compile Include="IconHelper.cs" />
     <Compile Include="UpdateHoaDonViewModel.cs" />

@@ -28,7 +28,7 @@ namespace PhanQuyen
         public LogInWindow()
         {
             InitializeComponent();
-            cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
+            cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
 
 
         }
@@ -67,7 +67,7 @@ namespace PhanQuyen
             try
             {
                 year = Int16.Parse(cbbYear.SelectedValue.ToString());
-                cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonthServer(year);
+                cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(year);
             }
             catch
             {
@@ -89,7 +89,7 @@ namespace PhanQuyen
             try
             {
                 month = cbbMonth.SelectedValue.ToString();
-                cbbDate.ItemsSource = DataDBViewModel.Instance.getDistinctDateServer(year, month);
+                cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
             }
             catch { }
         }

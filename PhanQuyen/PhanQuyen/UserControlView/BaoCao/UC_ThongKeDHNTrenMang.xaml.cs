@@ -38,7 +38,7 @@ namespace PhanQuyen.UserControlView.BaoCao
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            DataTable dt = DataDBViewModel.Instance.GetDHNTrenMang();
+            DataTable dt = HandlingDataDBViewModel.Instance.GetDHNTrenMang();
             _reportViewer.LocalReport.ReportPath = "../Report/rptInThongKeDHNTrenMang.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInThongKeDHNTrenMang", dt));

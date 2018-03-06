@@ -222,7 +222,7 @@ namespace ViewModel
                 Status = "Đang tính toán dữ liệu...";
                 //ListHoaDon.Clear();
                 SelectedHoaDon = null;
-                List<String> danhBas = DataDBViewModel.Instance.getDanhBasByCondition(Year, Month, Date, Int16.Parse(Group), Machine);
+                List<String> danhBas = HandlingDataDBViewModel.Instance.getDanhBasByCondition(Year, Month, Date, Int16.Parse(Group), Machine);
                 max = danhBas.Count;
                 value = 0;
 
@@ -233,7 +233,7 @@ namespace ViewModel
                     Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
                         value++;
-                        ListHoaDon.Add(DataDBViewModel.Instance.getDocSoByDanhBa(danhBa, Year, Month, Date, Int16.Parse(Group), Machine));
+                        ListHoaDon.Add(HandlingDataDBViewModel.Instance.getDocSoByDanhBa(danhBa, Year, Month, Date, Int16.Parse(Group), Machine));
                         if (value < max)
                             Status = String.Format("Đang tải {0}/{1}", value, max);
                         else
@@ -384,7 +384,7 @@ namespace ViewModel
                             //};
                             Status = "Đang tải hình ảnh";
 
-                            Image = DataDBViewModel.Instance.getImageByDanhBa(selectedHoaDon.DanhBa, selectedHoaDon.GIOGHI.GetValueOrDefault());
+                            Image = HandlingDataDBViewModel.Instance.getImageByDanhBa(selectedHoaDon.DanhBa, selectedHoaDon.GIOGHI.GetValueOrDefault());
 
                             Status = Status.Replace("Đang tải hình ảnh", "");
                         }
@@ -394,16 +394,16 @@ namespace ViewModel
                     //Task.Factory.StartNew(() =>
                     //{
                     Status += "         Đang tải thông tin 12 kỳ";
-                    ListDocSo_1Ky = DataDBViewModel.Instance.get12Months(Year, Month, selectedHoaDon.DanhBa);
+                    ListDocSo_1Ky = HandlingDataDBViewModel.Instance.get12Months(Year, Month, selectedHoaDon.DanhBa);
 
                     Status = Status.Replace("Đang tải thông tin 12 kỳ", "");
 
                     //});
-                    SoLenhBinding = DataDBViewModel.Instance.getSoLenh(selectedHoaDon.DanhBa);
-                    BaoThayBinding = DataDBViewModel.Instance.getBaoThay(selectedHoaDon.DanhBa);
+                    SoLenhBinding = HandlingDataDBViewModel.Instance.getSoLenh(selectedHoaDon.DanhBa);
+                    BaoThayBinding = HandlingDataDBViewModel.Instance.getBaoThay(selectedHoaDon.DanhBa);
 
 
-                    List<String> tenKH_HopDong = DataDBViewModel.Instance.getTenKH(selectedHoaDon.DanhBa);
+                    List<String> tenKH_HopDong = HandlingDataDBViewModel.Instance.getTenKH(selectedHoaDon.DanhBa);
                     TenKH = tenKH_HopDong.ElementAt(0);
                     HopDong = tenKH_HopDong.ElementAt(1);
 

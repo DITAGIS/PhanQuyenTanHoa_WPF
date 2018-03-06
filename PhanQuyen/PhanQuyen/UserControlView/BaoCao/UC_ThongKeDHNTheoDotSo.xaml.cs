@@ -29,7 +29,7 @@ namespace PhanQuyen
         {
             InitializeComponent();
 
-            cbbGroup.ItemsSource = DataDBViewModel.Instance.getDistinctGroupServer(Int16.Parse(MyUser.Instance.Year), MyUser.Instance.Month, MyUser.Instance.Date);
+            cbbGroup.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctGroupServer(Int16.Parse(MyUser.Instance.Year), MyUser.Instance.Month, MyUser.Instance.Date);
 
             System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
             ps.Landscape = true;
@@ -51,7 +51,7 @@ namespace PhanQuyen
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
-            DataTable dt = DataDBViewModel.Instance.GetListDate_Machine(cbbGroup.SelectedValue);
+            DataTable dt = HandlingDataDBViewModel.Instance.GetListDate_Machine(cbbGroup.SelectedValue);
             _reportViewer.LocalReport.ReportPath = "../Report/rptInThongKeDHNTheoDotSo.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInThongKeDHNTheoSo", dt));

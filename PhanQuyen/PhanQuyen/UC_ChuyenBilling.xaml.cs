@@ -29,7 +29,7 @@ namespace PhanQuyen
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            dtgridMain.ItemsSource = DataDBViewModel.Instance.GetBilling();
+            dtgridMain.ItemsSource = HandlingDataDBViewModel.Instance.GetBilling();
 
             int countDHN = 0;
             int tieuThu = 0;

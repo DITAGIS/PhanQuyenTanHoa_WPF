@@ -31,7 +31,7 @@ namespace PhanQuyen
         public UC_CapNhatHoaDon()
         {
             InitializeComponent();
-            cbbYear.ItemsSource = DataDBViewModel.Instance.getDistinctYearServer();
+            cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
             cbbYear.SelectedValue = MyUser.Instance.Year;
 
         }
@@ -130,7 +130,7 @@ namespace PhanQuyen
                              
                             };
                             result.Add(hoaDon);
-                            HoaDonDBViewModel.getInstance.InsertHoaDon(hoaDon);
+                            HandlingDataDBViewModel.Instance.InsertHoaDon(hoaDon);
                             txtbStatus.Text = ++current + "/" + count;
                         }
                     }), DispatcherPriority.Loaded);
@@ -144,7 +144,7 @@ namespace PhanQuyen
         {
             if (cbbYear.SelectedValue == null) return;
             year = Int16.Parse(cbbYear.SelectedValue.ToString());
-            cbbMonth.ItemsSource = DataDBViewModel.Instance.getDistinctMonthServer(year);
+            cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(year);
             cbbMonth.SelectedIndex = 0;
 
             LoadData();
@@ -167,7 +167,7 @@ namespace PhanQuyen
                 System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
 
-                    List<CapNhatHoaDon> listCNHD = DataDBViewModel.Instance.GetCapNhatHoaDon(month, year);
+                    List<CapNhatHoaDon> listCNHD = HandlingDataDBViewModel.Instance.GetCapNhatHoaDon(month, year);
 
                     int danhBa = 0;
                     int tieuThu = 0;

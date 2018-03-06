@@ -183,7 +183,14 @@ namespace ViewModel
         }
         private void UpdateHoaDon(ViewModel.HoaDon hoaDon)
         {
+            try
+            {
 
+            }
+            catch
+            {
+
+            }
         }
         public HoaDon getHoaDons1MonthByCondition(String year, String month, String danhba)
         {
