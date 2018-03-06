@@ -37,12 +37,16 @@ namespace ViewModel
         public static int MAX = 1;
         public static int VALUE = 0;
         private static HoaDonDBViewModel _instance;
+        private static DataClassServerDataContext _serverDataContext;
         public static HoaDonDBViewModel getInstance
         {
             get
             {
                 if (_instance == null)
+                {
                     _instance = new HoaDonDBViewModel();
+                    _serverDataContext = new DataClassServerDataContext();
+                }
                 return _instance;
             }
         }
@@ -157,6 +161,29 @@ namespace ViewModel
             //if (dataReader1 != null && !dataReader1.IsClosed)
             //    dataReader1.Close();
             return hoaDon;
+        }
+        public void InsertHoaDon(ViewModel.HoaDon hoaDon)
+        {
+            try
+            {
+                _serverDataContext.HoaDons.InsertOnSubmit(hoaDon);
+                _serverDataContext.SubmitChanges();
+            }
+            catch
+            {
+                try
+                {
+                    _serverDataContext.SubmitChanges();
+                }
+                catch
+                {
+                    UpdateHoaDon(hoaDon);
+                }
+            }
+        }
+        private void UpdateHoaDon(ViewModel.HoaDon hoaDon)
+        {
+
         }
         public HoaDon getHoaDons1MonthByCondition(String year, String month, String danhba)
         {

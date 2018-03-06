@@ -60,7 +60,7 @@ namespace PhanQuyen
                 openFileDialog.Filter = "File hóa đơn|*.dat";
                 if (DialogResult.OK != openFileDialog.ShowDialog())
                     return;
-                List<DocSo> result = new List<DocSo>();
+                List<ViewModel.HoaDon> result = new List<ViewModel.HoaDon>();
                 int count = 0;
                 using (var sr = new StreamReader(new FileStream(openFileDialog.FileName, FileMode.Open)))
                 {
@@ -83,88 +83,54 @@ namespace PhanQuyen
                         while ((s = sr1.ReadLine()) != null)
                         {
                             string[] line = s.Split(new[] { "\",\"" }, StringSplitOptions.None);
-                            var Khu = line[0].Replace("\"", "") != "" ? int.Parse(line[0].Replace("\"", "")) : 0;
+                            var Ky = line[18];
+                            var Nam = Int16.Parse(cbbYear.SelectedItem.ToString());
                             var Dot = line[1] != "" ? int.Parse(line[1]) : 0;
-                            var Culy = line[4] != "" ? int.Parse(line[4]) : 0;
-                            var GB = line[12] != "" ? int.Parse(line[12]) : 0;
-                            var SH = line[13].Replace(" ", "") != "" ? int.Parse(line[13].Replace(" ", "")) : 0;
-                            var HCSN = line[14].Replace(" ", "") != "" ? int.Parse(line[14].Replace(" ", "")) : 0;
-                            var SX = line[15].Replace(" ", "") != "" ? int.Parse(line[15].Replace(" ", "")) : 0;
-                            var DV = line[16].Replace(" ", "") != "" ? int.Parse(line[16].Replace(" ", "")) : 0;
-                            var TGDM = line[17].Replace(" ", "") != "" ? int.Parse(line[17].Replace(" ", "")) : 0;
-                            var Ky = line[18] != "" ? int.Parse(line[18]) : 0;
-                            var Nam = line[19] != "" ? int.Parse(line[19]) : 0;
-                            var CSCu = line[22] != "" ? int.Parse(line[22]) : 0;
-                            var CSMoi = line[23] != "" ? int.Parse(line[23]) : 0;
-                            var ChuKyDS = line[27] != "" ? int.Parse(line[27]) : 0;
-                            var LNCC = line[28] != "" ? int.Parse(line[28]) : 0;
-                            var LNCT = line[29] != "" ? int.Parse(line[29]) : 0;
-                            var LN_BU_TOITHIEU = line[30] != "" ? int.Parse(line[30]) : 0;
-                            var LN_SH = line[31] != "" ? int.Parse(line[31]) : 0;
-                            var LN_HCSN = line[32] != "" ? int.Parse(line[32]) : 0;
-                            var LN_SX = line[33] != "" ? int.Parse(line[33]) : 0;
-                            var LN_DV = line[34] != "" ? int.Parse(line[34]) : 0;
-                            var GiaBan = line[37] != "" ? long.Parse(line[37]) : 0;
-                            var ThueGTGT = line[38] != "" ? int.Parse(line[38]) : 0;
-                            var BVMT = line[39] != "" ? int.Parse(line[39]) : 0;
-                            var TongTien = line[40] != "" ? long.Parse(line[40]) : 0;
-                            var GIABAN_BU_TOITHIEU = line[41] != "" ? int.Parse(line[41]) : 0;
-                            var THUE_BU_TOITHIEU = line[42] != "" ? int.Parse(line[42]) : 0;
-                            var PHIBVMT_BU_TOITHIEU = line[43] != "" ? int.Parse(line[43]) : 0;
-                            var TONGCONG_BU_TOITHIEU = line[44] != "" ? int.Parse(line[44]) : 0;
-                            var STT = line[59] != "" ? int.Parse(line[59]) : 0;
                             var DanhBo = line[2];
-                            var CD = line[3];
-                            var MSTLK = line[5];
-                            var GiaoUoc = line[6];
-                            var HoTen = line[7];
+                            var TenKH = line[7];
                             var DC1 = line[8];
                             var DC2 = line[9];
-                            var MSKH = line[10];
-                            var MSCQ = line[11];
+                            var GB = line[12] != "" ? int.Parse(line[12]) : 0;
+                            var TGDM = line[17].Replace(" ", "") != "" ? int.Parse(line[17].Replace(" ", "")) : 0;
                             var Code = line[20];
                             var CodePhu = line[21];
-                            var RT = line[24];
-                            var VUNG_DMA = line[54];
-                            var TIEUVUNG_DMAZ = line[55];
-                            var FAX = line[56];
-                            var Email = line[57];
-                            var CUST_ID = line[58];
-                            var DCTruSo = line[60].Replace("\"", "");
-                            var Cuon_GCS = line[35];
-                            var Cuon_STT = line[36];
-                            var SO_PHATHANH = line[45];
+                            var CSCu = line[22] != "" ? int.Parse(line[22]) : 0;
+                            var CSMoi = line[23] != "" ? int.Parse(line[23]) : 0;
+                            var TieuThu = line[28] != "" ? int.Parse(line[28]) : 0;
+                            DateTime tuNgay = new DateTime(int.Parse(line[25].Substring(0, 4)), int.Parse(line[25].Substring(4, 2)), int.Parse(line[25].Substring(6)));
+                            DateTime denNgay = new DateTime(int.Parse(line[26].Substring(0, 4)), int.Parse(line[26].Substring(4, 2)), int.Parse(line[26].Substring(6)));
                             var SO_HOADON = line[46];
-                            var QUAN = line[48];
-                            var PHUONG = line[49];
-                            var SODHN = line[50];
-                            var MSTHUE = line[51];
-                            var TILE_TIEUTHU = line[52];
-                            var Ngay_DS_KT = this.formatStringToDate(line[25]);
-                            var Ngay_DS_KN = this.formatStringToDate(line[26]);
-                            var NGAY_PHATHANH = this.formatStringToDate(line[47]);
-                            var NGAY_GANDH = this.formatStringToDate(line[53]);
-                            var hdt = new DocSo()
+                            DateTime NgayCapNhat = DateTime.Now;
+                            string nvCapNhat = MyUser.Instance.UserID;
+                            var TongTien = line[40] != "" ? Int32.Parse(line[40]) : 0;
+
+                           
+                            var hoaDon = new ViewModel.HoaDon()
                             {
-                                //Khu = Khu,
+                                HoaDonID = Nam + Ky + DanhBo,
+                                Nam = Nam,
+                                Ky = Ky,
                                 Dot = Dot + "",
                                 DanhBa = DanhBo,
-                                TenKH = HoTen,
-                                SoNhaCu = DC1,
+                                TenKH = TenKH,
+                                So = DC1,
                                 Duong = DC2,
-                                GB = GB + "",
-
-                                DM = TGDM + "",
-                                CodeCu = Code + CodePhu,
-                                Ky = Ky + "",
-                                Nam = Nam,
+                                GB = GB,
+                                DM = TGDM,
+                                Code = Code + CodePhu,
                                 CSCu = CSCu,
                                 CSMoi = CSMoi,
-                                TieuThuCu = LNCC,
-
-
+                                TieuThu = TieuThu,
+                                TuNgay = tuNgay,
+                                DenNgay = denNgay,
+                                SoHoaDon = SO_HOADON,
+                                NgayCapNhat = NgayCapNhat,
+                                NVCapNhat = nvCapNhat,
+                                TienHD = TongTien
+                             
                             };
-                            result.Add(hdt);
+                            result.Add(hoaDon);
+                            HoaDonDBViewModel.getInstance.InsertHoaDon(hoaDon);
                             txtbStatus.Text = ++current + "/" + count;
                         }
                     }), DispatcherPriority.Loaded);
