@@ -70,7 +70,7 @@ namespace PhanQuyen
                         count++;
                     }
 
-                    txtbStatus.Text = "0/" + count;
+                    //txtbStatus.Text = "0/" + count;
                     sr.Close();
                     sr.Dispose();
                     var sr1 = (StreamReader)null;
@@ -78,62 +78,62 @@ namespace PhanQuyen
                     int current = 0;
                     sr1 = new StreamReader(new FileStream(openFileDialog.FileName, FileMode.Open));
                     string s = String.Empty;
-                    System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    //System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    //{
+                    while ((s = sr1.ReadLine()) != null)
                     {
-                        while ((s = sr1.ReadLine()) != null)
-                        {
-                            string[] line = s.Split(new[] { "\",\"" }, StringSplitOptions.None);
-                            var Ky = line[18];
-                            var Nam = Int16.Parse(cbbYear.SelectedItem.ToString());
-                            var Dot = line[1] != "" ? int.Parse(line[1]) : 0;
-                            var DanhBo = line[2];
-                            var TenKH = line[7];
-                            var DC1 = line[8];
-                            var DC2 = line[9];
-                            var GB = line[12] != "" ? int.Parse(line[12]) : 0;
-                            var TGDM = line[17].Replace(" ", "") != "" ? int.Parse(line[17].Replace(" ", "")) : 0;
-                            var Code = line[20];
-                            var CodePhu = line[21];
-                            var CSCu = line[22] != "" ? int.Parse(line[22]) : 0;
-                            var CSMoi = line[23] != "" ? int.Parse(line[23]) : 0;
-                            var TieuThu = line[28] != "" ? int.Parse(line[28]) : 0;
-                            DateTime tuNgay = new DateTime(int.Parse(line[25].Substring(0, 4)), int.Parse(line[25].Substring(4, 2)), int.Parse(line[25].Substring(6)));
-                            DateTime denNgay = new DateTime(int.Parse(line[26].Substring(0, 4)), int.Parse(line[26].Substring(4, 2)), int.Parse(line[26].Substring(6)));
-                            var SO_HOADON = line[46];
-                            DateTime NgayCapNhat = DateTime.Now;
-                            string nvCapNhat = MyUser.Instance.UserID;
-                            var TongTien = line[40] != "" ? Int32.Parse(line[40]) : 0;
+                        string[] line = s.Split(new[] { "\",\"" }, StringSplitOptions.None);
+                        var Ky = line[18];
+                        var Nam = Int16.Parse(cbbYear.SelectedItem.ToString());
+                        var Dot = line[1] != "" ? int.Parse(line[1]) : 0;
+                        var DanhBo = line[2];
+                        var TenKH = line[7];
+                        var DC1 = line[8];
+                        var DC2 = line[9];
+                        var GB = line[12] != "" ? int.Parse(line[12]) : 0;
+                        var TGDM = line[17].Replace(" ", "") != "" ? int.Parse(line[17].Replace(" ", "")) : 0;
+                        var Code = line[20];
+                        var CodePhu = line[21];
+                        var CSCu = line[22] != "" ? int.Parse(line[22]) : 0;
+                        var CSMoi = line[23] != "" ? int.Parse(line[23]) : 0;
+                        var TieuThu = line[28] != "" ? int.Parse(line[28]) : 0;
+                        DateTime tuNgay = new DateTime(int.Parse(line[25].Substring(0, 4)), int.Parse(line[25].Substring(4, 2)), int.Parse(line[25].Substring(6)));
+                        DateTime denNgay = new DateTime(int.Parse(line[26].Substring(0, 4)), int.Parse(line[26].Substring(4, 2)), int.Parse(line[26].Substring(6)));
+                        var SO_HOADON = line[46];
+                        DateTime NgayCapNhat = DateTime.Now;
+                        string nvCapNhat = MyUser.Instance.UserID;
+                        var TongTien = line[40] != "" ? Int32.Parse(line[40]) : 0;
 
-                           
-                            var hoaDon = new ViewModel.HoaDon()
-                            {
-                                HoaDonID = Nam + Ky + DanhBo,
-                                Nam = Nam,
-                                Ky = Ky,
-                                Dot = Dot + "",
-                                DanhBa = DanhBo,
-                                TenKH = TenKH,
-                                So = DC1,
-                                Duong = DC2,
-                                GB = GB,
-                                DM = TGDM,
-                                Code = Code + CodePhu,
-                                CSCu = CSCu,
-                                CSMoi = CSMoi,
-                                TieuThu = TieuThu,
-                                TuNgay = tuNgay,
-                                DenNgay = denNgay,
-                                SoHoaDon = SO_HOADON,
-                                NgayCapNhat = NgayCapNhat,
-                                NVCapNhat = nvCapNhat,
-                                TienHD = TongTien
-                             
-                            };
-                            result.Add(hoaDon);
-                            HandlingDataDBViewModel.Instance.InsertHoaDon(hoaDon);
-                            txtbStatus.Text = ++current + "/" + count;
-                        }
-                    }), DispatcherPriority.Loaded);
+
+                        var hoaDon = new ViewModel.HoaDon()
+                        {
+                            HoaDonID = Nam + Ky + DanhBo,
+                            Nam = Nam,
+                            Ky = Ky,
+                            Dot = Dot + "",
+                            DanhBa = DanhBo,
+                            TenKH = TenKH,
+                            So = DC1,
+                            Duong = DC2,
+                            GB = GB,
+                            DM = TGDM,
+                            Code = Code + CodePhu,
+                            CSCu = CSCu,
+                            CSMoi = CSMoi,
+                            TieuThu = TieuThu,
+                            TuNgay = tuNgay,
+                            DenNgay = denNgay,
+                            SoHoaDon = SO_HOADON,
+                            NgayCapNhat = NgayCapNhat,
+                            NVCapNhat = nvCapNhat,
+                            TienHD = TongTien
+
+                        };
+                        result.Add(hoaDon);
+                        HandlingDataDBViewModel.Instance.InsertHoaDon(hoaDon);
+                        txtbStatus.Text = ++current + "/" + count;
+                    }
+                    //}), DispatcherPriority.Loaded);
                 }
             }
             catch { }
@@ -145,16 +145,15 @@ namespace PhanQuyen
             if (cbbYear.SelectedValue == null) return;
             year = Int16.Parse(cbbYear.SelectedValue.ToString());
             cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(year);
-            cbbMonth.SelectedIndex = 0;
 
-            LoadData();
+            //LoadData();
         }
 
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbbMonth.SelectedValue == null) return;
             month = cbbMonth.SelectedValue.ToString();
-            LoadData();
+            //LoadData();
         }
 
         private void LoadData()
@@ -163,10 +162,11 @@ namespace PhanQuyen
             {
                 if (year < 0 || month == null)
                     return;
-                txtbStatus.Text = "Đang tải dữ liệu...";
+
                 System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
 
+                    txtbStatus.Text = "Đang tải dữ liệu...";
                     List<CapNhatHoaDon> listCNHD = HandlingDataDBViewModel.Instance.GetCapNhatHoaDon(month, year);
 
                     int danhBa = 0;
@@ -193,6 +193,11 @@ namespace PhanQuyen
                 int num = (int)System.Windows.MessageBox.Show(this.Name + ".LoadGriView:\n" + ex.Message, "Thông báo");
             }
 
+        }
+
+        private void btnGetData_Click(object sender, RoutedEventArgs e)
+        {
+            LoadData();
         }
     }
 }

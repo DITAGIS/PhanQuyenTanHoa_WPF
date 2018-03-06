@@ -162,36 +162,6 @@ namespace ViewModel
             //    dataReader1.Close();
             return hoaDon;
         }
-        public void InsertHoaDon(ViewModel.HoaDon hoaDon)
-        {
-            try
-            {
-                _serverDataContext.HoaDons.InsertOnSubmit(hoaDon);
-                _serverDataContext.SubmitChanges();
-            }
-            catch
-            {
-                try
-                {
-                    _serverDataContext.SubmitChanges();
-                }
-                catch
-                {
-                    UpdateHoaDon(hoaDon);
-                }
-            }
-        }
-        private void UpdateHoaDon(ViewModel.HoaDon hoaDon)
-        {
-            try
-            {
-
-            }
-            catch
-            {
-
-            }
-        }
         public HoaDon getHoaDons1MonthByCondition(String year, String month, String danhba)
         {
             HoaDon hoaDon = new HoaDon(); ;

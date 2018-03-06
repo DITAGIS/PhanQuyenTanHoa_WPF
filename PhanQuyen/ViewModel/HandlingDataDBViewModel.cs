@@ -190,8 +190,21 @@ namespace ViewModel
         {
             try
             {
-                serverContext.HoaDons.InsertOnSubmit(hoaDon);
-                serverContext.SubmitChanges();
+                //var query = "insert into HoaDon values('" + hoaDon.HoaDonID + "'," + hoaDon.Nam + ",'" + hoaDon.Ky + "','" + hoaDon.Dot + "','" + hoaDon.DanhBa + "','" + hoaDon.TenKH + "','" + hoaDon.So + "','" + hoaDon.Duong + "'," + hoaDon.GB + "," + hoaDon.DM
+                //    + ",'" + hoaDon.Code + "'," + hoaDon.CSCu + "," + hoaDon.CSMoi + "," + hoaDon.TieuThu + ",'" + hoaDon.TuNgay + "','" + hoaDon.DenNgay + "','" +
+                //    hoaDon.SoHoaDon + "','" + hoaDon.NgayCapNhat + "','" + hoaDon.NVCapNhat + "'";
+
+                //var insert = serverContext.ExecuteQuery<object>(query).ToList();
+                if (!serverContext.HoaDons.Contains(hoaDon))
+                {
+                    serverContext.HoaDons.InsertOnSubmit(hoaDon);
+
+                    serverContext.SubmitChanges();
+                }
+                else
+                {
+                    UpdateHoaDon(hoaDon);
+                }
             }
             catch
             {
@@ -201,7 +214,7 @@ namespace ViewModel
                 }
                 catch
                 {
-                    UpdateHoaDon(hoaDon);
+                    
                 }
             }
         }
@@ -209,9 +222,35 @@ namespace ViewModel
         {
             try
             {
+                //var query = "Update HoaDon set Nam ='" + hoaDon.Nam + "',Ky = '" + hoaDon.Ky + "',Dot = '" + hoaDon.Dot + "',DanhBa = '" + hoaDon.DanhBa + "',TenKH = '" + hoaDon.TenKH
+                //    + "',So = '" + hoaDon.So + "',Duong = '" + hoaDon.Duong + "',GB = '" + hoaDon.GB + "',DM = '" + hoaDon.DM + "',Code = '" + hoaDon.Code + "',CSCu ='" + hoaDon.CSCu +
+                //    "',CSMoi ='" + hoaDon.CSMoi + "',TieuThu ='" + hoaDon.TieuThu + "',TuNgay = '" + hoaDon.TuNgay + "',DenNgay = '" + hoaDon.DenNgay +
+                //    "',NgayCapNhat = '" + hoaDon.NgayCapNhat + "',NVCapNhat = '" + hoaDon.NVCapNhat + "' where HoaDonID = '" + hoaDon.HoaDonID + "'";
+                //var update = serverContext.ExecuteQuery<object>(query).ToList();
+                var hoaDonServer = (from x in serverContext.HoaDons
+                                    where x.HoaDonID == hoaDon.HoaDonID
+                                    select x).Single();
+                hoaDonServer.Nam = hoaDon.Nam;
+                hoaDonServer.Ky = hoaDon.Ky;
+                hoaDonServer.Dot = hoaDon.Dot;
+                hoaDonServer.DanhBa = hoaDon.DanhBa;
+                hoaDonServer.TenKH = hoaDon.TenKH;
+                hoaDonServer.So = hoaDon.So;
+                hoaDonServer.Duong = hoaDon.Duong;
+                hoaDonServer.GB = hoaDon.GB;
+                hoaDonServer.DM = hoaDon.DM;
+                hoaDonServer.Code = hoaDon.Code;
+                hoaDonServer.CSCu = hoaDon.CSCu;
+                hoaDonServer.CSMoi = hoaDon.CSMoi;
+                hoaDonServer.TieuThu = hoaDon.TieuThu;
+                hoaDonServer.TuNgay = hoaDon.TuNgay;
+                hoaDonServer.DenNgay = hoaDon.DenNgay;
+                hoaDonServer.NgayCapNhat = hoaDon.NgayCapNhat;
+                hoaDonServer.NVCapNhat = hoaDon.NVCapNhat;
 
+                serverContext.SubmitChanges();
             }
-            catch
+            catch (Exception e)
             {
 
             }
@@ -1359,98 +1398,133 @@ namespace ViewModel
         public ObservableCollection<int> getDistinctYearServer()
         {
             ObservableCollection<int> lstYear = new ObservableCollection<int>();
-            var items = (from x in serverContext.DocSos
-                         select x.Nam).Distinct().OrderByDescending(x => x).ToList();
-            foreach (int item in items)
-                lstYear.Add(item);
+            try
+            {
+                var items = (from x in serverContext.DocSos
+                             select x.Nam).Distinct().OrderByDescending(x => x).ToList();
+                foreach (int item in items)
+                    lstYear.Add(item);
+            }
+            catch
+            {
+
+            }
             return lstYear;
         }
         public ObservableCollection<String> getDistinctMonthServer(int year)
         {
             ObservableCollection<String> lstMonth = new ObservableCollection<String>();
-            var items = (from x in serverContext.DocSos
-                         where x.DocSoID.StartsWith(year + "")
-                         select x.Ky).Distinct().ToList();
-            foreach (String item in items)
-                lstMonth.Add(item);
+            try
+            {
+                var items = (from x in serverContext.DocSos
+                             where x.DocSoID.StartsWith(year + "")
+                             select x.Ky).Distinct().ToList();
+                foreach (String item in items)
+                    lstMonth.Add(item);
+            }
+            catch { }
             return lstMonth;
         }
         public ObservableCollection<String> getDistinctDate()
         {
             ObservableCollection<String> lstDate = new ObservableCollection<String>();
-            var items = (from x in localContext.DocSoLocals
-                         select x.Dot).Distinct().ToList();
-            foreach (String item in items)
-                lstDate.Add(item);
+            try
+            {
+                var items = (from x in localContext.DocSoLocals
+                             select x.Dot).Distinct().ToList();
+                foreach (String item in items)
+                    lstDate.Add(item);
+            }
+            catch { }
             return lstDate;
         }
         public ObservableCollection<String> getDistinctDateServer(int year, String month)
         {
             ObservableCollection<String> lstDate = new ObservableCollection<String>();
-            var items = (from x in serverContext.DocSos
-                         where x.DocSoID.StartsWith(year + month)
-                         select x.Dot).Distinct().ToList();
-            foreach (String item in items)
-                lstDate.Add(item);
+            try
+            {
+                var items = (from x in serverContext.DocSos
+                             where x.DocSoID.StartsWith(year + month)
+                             select x.Dot).Distinct().ToList();
+                foreach (String item in items)
+                    lstDate.Add(item);
+            }
+            catch { }
             return lstDate;
         }
         public ObservableCollection<int> getDistinctGroup()
         {
             ObservableCollection<int> lstGroup = new ObservableCollection<int>();
-
-            var items = (from x in localContext.DocSoLocals
-                         select x.TODS).Distinct().ToList();
-            foreach (int item in items)
-                lstGroup.Add(item);
-
+            try
+            {
+                var items = (from x in localContext.DocSoLocals
+                             select x.TODS).Distinct().ToList();
+                foreach (int item in items)
+                    lstGroup.Add(item);
+            }
+            catch { }
             return lstGroup;
         }
         public ObservableCollection<String> getDistinctMachine()
         {
             ObservableCollection<String> lstGroup = new ObservableCollection<String>();
-
-            var items = (from x in localContext.DocSoLocals
-                         select x.May).Distinct().ToList();
-            foreach (String item in items)
-                lstGroup.Add(item);
-
+            try
+            {
+                var items = (from x in localContext.DocSoLocals
+                             select x.May).Distinct().ToList();
+                foreach (String item in items)
+                    lstGroup.Add(item);
+            }
+            catch { }
             return lstGroup;
         }
         public ObservableCollection<int> getDistinctGroupServer(int year, String month, String date)
         {
             ObservableCollection<int> lstGroup = new ObservableCollection<int>();
-            var items = (from x in serverContext.DocSos
-                         where x.DocSoID.StartsWith(year + month) && x.Dot == date
-                         select x.TODS).Distinct().ToList();
-            foreach (int item in items)
-                lstGroup.Add(item);
+            try
+            {
+                var items = (from x in serverContext.DocSos
+                             where x.DocSoID.StartsWith(year + month) && x.Dot == date
+                             select x.TODS).Distinct().ToList();
+                foreach (int item in items)
+                    lstGroup.Add(item);
+            }
+            catch { }
             return lstGroup;
         }
         public ObservableCollection<String> getDistinctMachineServer(int year, String month, String date, int xGroup)
         {
             ObservableCollection<String> lstMachine = new ObservableCollection<String>();
-            List<String> items;
-            if (xGroup == 0)
-                items = (from x in serverContext.DocSos
-                         where x.DocSoID.StartsWith(year + month) && x.Dot == date
-                         select x.May).Distinct().ToList();
-            else
-                items = (from x in serverContext.DocSos
-                         where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup
-                         select x.May).Distinct().ToList();
-            lstMachine.Add(ALL);
-            foreach (String item in items)
-                lstMachine.Add(item);
+            try
+            {
+                List<String> items;
+                if (xGroup == 0)
+                    items = (from x in serverContext.DocSos
+                             where x.DocSoID.StartsWith(year + month) && x.Dot == date
+                             select x.May).Distinct().ToList();
+                else
+                    items = (from x in serverContext.DocSos
+                             where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup
+                             select x.May).Distinct().ToList();
+                lstMachine.Add(ALL);
+                foreach (String item in items)
+                    lstMachine.Add(item);
+            }
+            catch { }
             return lstMachine;
         }
         public ObservableCollection<SoDaNhan> getDistinctSoDaNhan(int year, String month, String date, int xGroup)
         {
             ObservableCollection<SoDaNhan> listSoDaNhan = new ObservableCollection<SoDaNhan>();
-            var soDaNhans = (from x in localContext.SoDaNhans
-                             where x.nam == year && x.ky == month && x.dot == date && x.ToDS == xGroup
-                             select x).ToList();
-            foreach (var item in soDaNhans)
-                listSoDaNhan.Add(item);
+            try
+            {
+                var soDaNhans = (from x in localContext.SoDaNhans
+                                 where x.nam == year && x.ky == month && x.dot == date && x.ToDS == xGroup
+                                 select x).ToList();
+                foreach (var item in soDaNhans)
+                    listSoDaNhan.Add(item);
+            }
+            catch { }
             return listSoDaNhan;
         }
 
