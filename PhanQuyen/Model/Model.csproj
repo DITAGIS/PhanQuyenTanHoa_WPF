@@ -119,6 +119,7 @@
     <Compile Include="ThongTinKH.cs" />
     <Compile Include="TKDHNTheoDotSo.cs" />
     <Compile Include="TKSauDocSo.cs" />
+    <Compile Include="TK_DHN_TrenMang.cs" />
     <Compile Include="ToID.cs" />
     <Compile Include="MyUser.cs" />
     <Compile Include="Volumn_GetData.cs" />

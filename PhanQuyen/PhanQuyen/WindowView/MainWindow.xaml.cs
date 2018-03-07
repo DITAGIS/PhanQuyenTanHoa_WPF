@@ -50,6 +50,7 @@ namespace PhanQuyen
         public MainWindow(MyUser user)
         {
             this.user = user; InitializeComponent();
+            this.Title += "             Nhân viên: " + user.UserName;
         }
 
         private void Window_Closed(object sender, EventArgs e)

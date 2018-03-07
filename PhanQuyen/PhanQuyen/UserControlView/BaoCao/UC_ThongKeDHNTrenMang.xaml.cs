@@ -34,15 +34,39 @@ namespace PhanQuyen.UserControlView.BaoCao
             ps.Margins = margins;
             //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
             _reportViewer.SetPageSettings(ps);
+
+            cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            DataTable dt = HandlingDataDBViewModel.Instance.GetDHNTrenMang();
+
+        }
+
+        private void btnViewReport_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable dt = HandlingDataDBViewModel.Instance.GetDHNTrenMang(Int16.Parse(cbbYear.SelectedItem.ToString()), Int16.Parse(cbbMonth.SelectedItem.ToString()));
             _reportViewer.LocalReport.ReportPath = "../Report/rptInThongKeDHNTrenMang.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();
             this._reportViewer.LocalReport.DataSources.Add(new ReportDataSource("dtsInThongKeDHNTrenMang", dt));
             this._reportViewer.RefreshReport();
         }
+        #region year,month
+    
+
+        private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
+
+
+        private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbbYear.SelectedValue != null)
+            {
+                cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(Int16.Parse(cbbYear.SelectedItem.ToString()));
+            }
+        }
+        #endregion
     }
 }

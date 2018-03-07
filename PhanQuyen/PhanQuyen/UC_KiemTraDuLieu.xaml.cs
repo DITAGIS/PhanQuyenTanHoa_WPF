@@ -253,7 +253,7 @@ namespace PhanQuyen
                             string str27 = strArray2[27].Trim('"');
                             string str28 = str4 + str10 + str7;
                             string str29 = str3 + str5 + danhBa;
-                            var bienDong = new BienDong(str29, Int16.Parse(str3), str5, str4, danhBa, str9, str10, str11, str12, str13, str15, str14, short.Parse(str17), Int16.Parse(str24), short.Parse(str20), short.Parse(str21), short.Parse(str22), short.Parse(str23), str18, short.Parse(str19), str16, str25, Int16.Parse(str26), Int16.Parse(str27), ngayGan, Int16.Parse(str8), str28, DateTime.Now, MyUser.Instance.UserID);
+                            var bienDong = new ViewModel.BienDong(str29, Int16.Parse(str3), str5, str4, danhBa, str9, str10, str11, str12, str13, str15, str14, short.Parse(str17), Int16.Parse(str24), short.Parse(str20), short.Parse(str21), short.Parse(str22), short.Parse(str23), str18, short.Parse(str19), str16, str25, Int16.Parse(str26), Int16.Parse(str27), ngayGan, Int16.Parse(str8), str28, DateTime.Now, MyUser.Instance.UserID);
                             num2 += HandlingDataDBViewModel.Instance.InsertBienDong(bienDong);
                         }
                         if (num2 < num1)

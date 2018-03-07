@@ -113,13 +113,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.83959in</Width>
+              <Width>0.48126in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.06667in</Width>
+              <Width>0.70834in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.98958in</Width>
+              <Width>2.03958in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -486,7 +486,7 @@
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
-                <Size>1in</Size>
+                <Size>0.65833in</Size>
                 <CellContents>
                   <Textbox Name="Dot">
                     <CanGrow>true</CanGrow>
@@ -537,7 +537,7 @@
             </TablixMember>
             <TablixMember>
               <TablixHeader>
-                <Size>1in</Size>
+                <Size>0.65833in</Size>
                 <CellContents>
                   <Textbox Name="Textbox11">
                     <CanGrow>true</CanGrow>
@@ -580,7 +580,7 @@
         <Top>2.06771in</Top>
         <Left>0.60417in</Left>
         <Height>0.88542in</Height>
-        <Width>4.89583in</Width>
+        <Width>3.88751in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>

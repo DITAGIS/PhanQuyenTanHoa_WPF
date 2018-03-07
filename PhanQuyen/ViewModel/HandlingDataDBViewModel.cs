@@ -427,8 +427,13 @@ namespace ViewModel
                          select x.BienDongID).ToList();
             return value.Count;
         }
-        public DataTable GetDHNTrenMang()
+        public DataTable GetDHNTrenMang(int nam, int ky)
         {
+            serverContext.ExecuteQuery<object>("DECLARE	@return_value int" +
+                    " EXEC	@return_value = [dbo].[THONGKEDHN] 	" +
+                    "	@to = N'1'" +
+                    " SELECT" +
+                    "	'Return Value' = @return_value").ToList();
             List<DHNTrenMang> query;
             query = serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(1)=(2) + (3)' AS TITLE1, N'Hiện có trên mạng' AS TITLE, HIEU, CO" +
                 ", 0 AS LOAI, COUNT(DANHBA) AS DANHBA FROM KHACHHANG WHERE HIEULUC =1 GROUP BY HIEU, CO").ToList();
