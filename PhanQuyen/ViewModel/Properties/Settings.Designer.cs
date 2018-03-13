@@ -26,8 +26,19 @@ namespace ViewModel.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\git\\TanHoa_PhanQuyen_WPF\\P" +
-            "hanQuyen\\Model\\LocalDatabase.mdf;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=103.74.117.51;Initial Catalog=DocSoTH;User ID=docsotanhoa;Password=Do" +
+            "cso111")]
+        public string DocSoTHConnectionString {
+            get {
+                return ((string)(this["DocSoTHConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\LocalDatabase" +
+            ".mdf;Integrated Security=True")]
         public string LocalDatabaseConnectionString {
             get {
                 return ((string)(this["LocalDatabaseConnectionString"]));
@@ -37,11 +48,22 @@ namespace ViewModel.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=103.74.117.51;Initial Catalog=DocSoTH;User ID=docsotanhoa;Password=Do" +
-            "cso111")]
-        public string DocSoTHConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=thanle;Initial Catalog=DocSoTH;Persist Security Info=True;User ID=sa;" +
+            "Password=123456")]
+        public string DocSoTHConnectionString1 {
             get {
-                return ((string)(this["DocSoTHConnectionString"]));
+                return ((string)(this["DocSoTHConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=103.74.117.51;Initial Catalog=DocSoTH;Persist Security Info=True;User" +
+            " ID=docsotanhoa;Password=Docso111")]
+        public string DocSoTHConnectionString2 {
+            get {
+                return ((string)(this["DocSoTHConnectionString2"]));
             }
         }
     }

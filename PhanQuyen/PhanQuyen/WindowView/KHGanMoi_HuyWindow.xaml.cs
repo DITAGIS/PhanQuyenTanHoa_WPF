@@ -33,11 +33,13 @@ namespace PhanQuyen.WindowView
         }
         private void LoadKHGanMoi(int nam, string ky, string dot)
         {
+            this.Title = "Khách hàng gắn mới";
             dtgridMain.ItemsSource = HandlingDataDBViewModel.Instance.getKHGanMoi(nam, ky, dot);
             txtbSoLuong.Text = "Số lượng: " + dtgridMain.Items.Count;
         }
         private void LoadKHHuy(int nam, string ky, string dot)
         {
+            this.Title = "Khách hàng hủy";
             dtgridMain.ItemsSource = HandlingDataDBViewModel.Instance.getKHHuy(nam, ky, dot);
             txtbSoLuong.Text = "Số lượng: " + dtgridMain.Items.Count;
         }

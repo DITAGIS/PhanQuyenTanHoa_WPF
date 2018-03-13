@@ -221,7 +221,7 @@
         <Top>1.96007in</Top>
         <Left>1.64077in</Left>
         <Height>0.25in</Height>
-        <Width>5.79152in</Width>
+        <Width>8.54985in</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -327,7 +327,7 @@
         <Top>2.26563in</Top>
         <Left>1.64077in</Left>
         <Height>0.25in</Height>
-        <Width>5.79152in</Width>
+        <Width>8.54985in</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -441,7 +441,7 @@
         <Top>2.58507in</Top>
         <Left>1.64077in</Left>
         <Height>0.25in</Height>
-        <Width>5.79152in</Width>
+        <Width>8.54985in</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -638,7 +638,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>THỐNG KÊ ĐỒNG HỒ NƯỚC TRÊN MẠNG</Value>
+                <Value>PHIẾU TIÊU THỤ VÀ THÔNG TIN KHÁCH HÀNG</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>16pt</FontSize>
@@ -1366,7 +1366,7 @@
     <Height>12.40484cm</Height>
     <Style />
   </Body>
-  <Width>27.17272cm</Width>
+  <Width>27.17273cm</Width>
   <Page>
     <PageHeight>21cm</PageHeight>
     <PageWidth>29.7cm</PageWidth>

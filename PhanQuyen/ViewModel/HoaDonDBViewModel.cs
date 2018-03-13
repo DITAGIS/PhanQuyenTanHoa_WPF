@@ -37,7 +37,7 @@ namespace ViewModel
         public static int MAX = 1;
         public static int VALUE = 0;
         private static HoaDonDBViewModel _instance;
-        private static DataClassServerDataContext _serverDataContext;
+        //private static DataClassServerDataContext _serverDataContext;
         public static HoaDonDBViewModel getInstance
         {
             get
@@ -45,7 +45,7 @@ namespace ViewModel
                 if (_instance == null)
                 {
                     _instance = new HoaDonDBViewModel();
-                    _serverDataContext = new DataClassServerDataContext();
+                    //_serverDataContext = new DataClassServerDataContext();
                 }
                 return _instance;
             }

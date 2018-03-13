@@ -9,7 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>GIÁM ĐỐC</Value>
+                <Value>PHÓ GIÁM ĐỐC KINH DOANH</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -25,9 +25,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>3.18229in</Top>
-        <Left>0.22917in</Left>
+        <Left>0.31459in</Left>
         <Height>0.22917in</Height>
-        <Width>8.18751in</Width>
+        <Width>9.32084in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -143,7 +143,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>3.4809in</Top>
-        <Left>0.35417in</Left>
+        <Left>0.43959in</Left>
         <Height>1.46875in</Height>
         <Width>3.44792in</Width>
         <ZIndex>1</ZIndex>
@@ -310,7 +310,7 @@
               <TablixHeader>
                 <Size>0.25in</Size>
                 <CellContents>
-                  <Textbox Name="LOAI">
+                  <Textbox Name="TITLE">
                     <CanGrow>true</CanGrow>
                     <KeepTogether>true</KeepTogether>
                     <Paragraphs>
@@ -328,22 +328,8 @@
                           <TextAlign>Center</TextAlign>
                         </Style>
                       </Paragraph>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>=Fields!TITLE1.Value</Value>
-                            <Style>
-                              <FontFamily>times New Roman</FontFamily>
-                              <FontSize>13pt</FontSize>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style>
-                          <TextAlign>Center</TextAlign>
-                        </Style>
-                      </Paragraph>
                     </Paragraphs>
-                    <rd:DefaultName>LOAI</rd:DefaultName>
+                    <rd:DefaultName>TITLE</rd:DefaultName>
                     <Style>
                       <Border>
                         <Style>Solid</Style>
@@ -391,7 +377,7 @@
                   <TablixHeader>
                     <Size>0.25in</Size>
                     <CellContents>
-                      <Textbox Name="Group1">
+                      <Textbox Name="Co">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
@@ -410,7 +396,7 @@
                             </Style>
                           </Paragraph>
                         </Paragraphs>
-                        <rd:DefaultName>Group1</rd:DefaultName>
+                        <rd:DefaultName>Co</rd:DefaultName>
                         <Style>
                           <Border>
                             <Style>Solid</Style>
@@ -540,7 +526,7 @@
         </TablixRowHierarchy>
         <DataSetName>dtsInThongKeDHNTrenMang</DataSetName>
         <Top>1.96354in</Top>
-        <Left>0.22917in</Left>
+        <Left>0.31459in</Left>
         <Height>1in</Height>
         <Width>2.05in</Width>
         <ZIndex>2</ZIndex>
@@ -550,6 +536,57 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="Textbox9">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>BẢNG THỐNG KÊ SỐ LIỆU ĐỒNG HỒ NƯỚC TRÊN MẠNG</Value>
+                <Style>
+                  <FontFamily>Times New Roman</FontFamily>
+                  <FontSize>16pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>16pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!KY.Value</Value>
+                <Style>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>16pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox8</rd:DefaultName>
+        <Top>1.43229in</Top>
+        <Height>0.33333in</Height>
+        <Width>10.69792in</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
       <Textbox Name="Textbox16">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
@@ -715,43 +752,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>0.125in</Top>
-        <Left>0.10417in</Left>
         <Height>1.26041in</Height>
-        <Width>10.42292in</Width>
-        <ZIndex>3</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox9">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>PHIẾU TIÊU THỤ VÀ THÔNG TIN KHÁCH HÀNG</Value>
-                <Style>
-                  <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>16pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox8</rd:DefaultName>
-        <Top>1.55729in</Top>
-        <Height>0.33333in</Height>
         <Width>10.69792in</Width>
         <ZIndex>4</ZIndex>
         <Style>
@@ -765,7 +766,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>15.10771cm</Height>
+    <Height>13.01221cm</Height>
     <Style />
   </Body>
   <Width>27.17272cm</Width>

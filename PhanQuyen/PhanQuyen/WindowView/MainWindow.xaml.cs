@@ -338,6 +338,12 @@ namespace PhanQuyen
             }
         }
 
+     
+
+        private void ribBtnXuatDuLieu_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
     public static class CustomCommands

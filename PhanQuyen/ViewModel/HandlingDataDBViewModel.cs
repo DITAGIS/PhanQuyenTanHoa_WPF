@@ -18,7 +18,7 @@ namespace ViewModel
 
         private static HandlingDataDBViewModel _instance;
         private DataClassesLocalDataContext localContext;
-        private DataClassServerDataContext serverContext;
+        private DataClasses_thanleDataContext serverContext;
 
         private const String ALL = "Tất cả";
 
@@ -144,7 +144,7 @@ namespace ViewModel
         private HandlingDataDBViewModel()
         {
             localContext = new DataClassesLocalDataContext();
-            serverContext = new DataClassServerDataContext();
+            serverContext = new DataClasses_thanleDataContext();
         }
         public void DeleteBienDong(int nam, string ky, string dot)
         {
@@ -429,11 +429,12 @@ namespace ViewModel
         }
         public DataTable GetDHNTrenMang(int nam, int ky)
         {
-            serverContext.ExecuteQuery<object>("DECLARE	@return_value int" +
-                    " EXEC	@return_value = [dbo].[THONGKEDHN] 	" +
-                    "	@to = N'1'" +
-                    " SELECT" +
-                    "	'Return Value' = @return_value").ToList();
+            //serverContext.THONGKEDHN_TrenMang(ky, nam);
+            //serverContext.ExecuteQuery<object>("DECLARE	@return_value int" +
+            //        " EXEC	@return_value = [dbo].[THONGKEDHN] 	" +
+            //        "	@to = N'1'" +
+            //        " SELECT" +
+            //        "	'Return Value' = @return_value").ToList();
             List<DHNTrenMang> query;
             query = serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(1)=(2) + (3)' AS TITLE1, N'Hiện có trên mạng' AS TITLE, HIEU, CO" +
                 ", 0 AS LOAI, COUNT(DANHBA) AS DANHBA FROM KHACHHANG WHERE HIEULUC =1 GROUP BY HIEU, CO").ToList();
@@ -452,7 +453,7 @@ namespace ViewModel
             foreach (var item in query)
             {
                 DataRow row = table.NewRow();
-                row[DHNTRENMANG_COLUMN_KY] = item.Ky;
+                row[DHNTRENMANG_COLUMN_KY] = ky + "." + nam;
                 row[DHNTRENMANG_COLUMN_NAM] = item.Nam;
                 row[DHNTRENMANG_COLUMN_TITLE] = item.Title;
                 row[DHNTRENMANG_COLUMN_TITLE1] = item.Title1;
@@ -1043,7 +1044,7 @@ namespace ViewModel
 
             bool result = false;
 
-            DataClassServerDataContext serverContext = new DataClassServerDataContext();
+            DataClasses_thanleDataContext serverContext = new DataClasses_thanleDataContext();
             var getData = (from x in serverContext.DocSos
                            where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup && x.DanhBa == danhBa && x.May == machine
                            select x).ToList();
@@ -1208,7 +1209,7 @@ namespace ViewModel
         public byte[] getImageByDanhBa(String danhBa, DateTime gioGhi)
         {
 
-            using (DataClassServerDataContext tempServer = new DataClassServerDataContext())
+            using (DataClasses_thanleDataContext tempServer = new DataClasses_thanleDataContext())
             {
                 var data = (from x in tempServer.HinhDHNs
                             where x.DanhBo == danhBa && x.CreateDate == gioGhi
@@ -1272,7 +1273,7 @@ namespace ViewModel
 
             bool result = false;
 
-            DataClassServerDataContext serverContext = new DataClassServerDataContext();
+            DataClasses_thanleDataContext serverContext = new DataClasses_thanleDataContext();
             var getData = (from x in serverContext.DocSos
                            where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup
                            select x).ToList();

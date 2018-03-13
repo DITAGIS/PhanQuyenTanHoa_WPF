@@ -74,13 +74,13 @@
                 </RibbonGroup>-->
 
             </RibbonTab>
-            <!--<RibbonTab Header="Giao tiếp" >
-                <RibbonGroup Header="Nhận dữ liệu">
-                    <RibbonButton Label="Nhận dữ liệu"  LargeImageSource="/PhanQuyen;component/Images/download.png" 
-                                  Click="ribBtnNhanDuLieu"></RibbonButton>
+            <RibbonTab Header="Giao tiếp" IsSelected="True">
+                <RibbonGroup >
+                    <RibbonButton Label="Xuất dữ liệu ra Smartphone"  LargeImageSource="/PhanQuyen;component/Images/smartphone.png" 
+                               Name="ribBtnXuatDuLieu"   Click="ribBtnXuatDuLieu_Click"></RibbonButton>
                 </RibbonGroup>
 
-            </RibbonTab>-->
+            </RibbonTab>
             <RibbonTab Header="Xử lý" IsSelected="True">
                 <RibbonGroup Header="Điều chỉnh" >
                     <RibbonButton Label="Điều chỉnh thông tin đọc số"  LargeImageSource="/PhanQuyen;component/Images/update_number.png" Name="ribBtnDieuChinhThongTinDocSo" Click="ribBtnDieuChinhThongTinDocSo_Click"></RibbonButton>

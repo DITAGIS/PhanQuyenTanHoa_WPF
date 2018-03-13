@@ -33,5 +33,16 @@ namespace PhanQuyen.Properties {
                 return ((string)(this["DocSoTHConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=thanle;Initial Catalog=DocSoTH;Persist Security Info=True;User ID=sa;" +
+            "Password=123456")]
+        public string DocSoTHConnectionString1_THANLE {
+            get {
+                return ((string)(this["DocSoTHConnectionString1_THANLE"]));
+            }
+        }
     }
 }
