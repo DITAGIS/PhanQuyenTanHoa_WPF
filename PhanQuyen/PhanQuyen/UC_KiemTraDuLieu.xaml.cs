@@ -183,6 +183,7 @@ namespace PhanQuyen
             string fileName = openFileDialog.FileName;
             String danhBa = "";
             int num2 = 0;
+
             try
             {
                 sr = new StreamReader(fileName);
@@ -191,7 +192,7 @@ namespace PhanQuyen
                     str2 = sr.ReadLine().Replace("'", "");
                     ++num1;
                 }
-                txtbStatus.Text = "0";
+
                 string[] strArray1 = str2.Split(new string[1]
                 {
           "\",\""
@@ -205,6 +206,7 @@ namespace PhanQuyen
                 }
                 else
                 {
+                    List<BienDong> bienDongList = new List<BienDong>();
                     sr.Close();
                     sr.Dispose();
                     sr = (StreamReader)null;
@@ -215,112 +217,137 @@ namespace PhanQuyen
                     }
                     while (!sr.EndOfStream)
                     {
-                        string str6 = sr.ReadLine().Replace("'", "");
-                        if (str6 != null && str6 != "")
+                        System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
                         {
-                            string[] strArray2 = str6.Split(new string[1]
-              {
+                            string str6 = sr.ReadLine().Replace("'", "");
+                            if (str6 != null && str6 != "")
+                            {
+                                string[] strArray2 = str6.Split(new string[1]
+                  {
                 "\",\""
-              }, StringSplitOptions.None);
-                            string[] strArray3 = strArray2[24].Split('/');
-                            int year = int.Parse(strArray3[2]);
-                            int month = int.Parse(strArray3[1]);
-                            int day = int.Parse(strArray3[0]);
-                            var ngayGan = new DateTime(year, month, day);
-                            string str7 = strArray2[6];
-                            string str8 = strArray2[0].Trim('"');
-                            if (str8 == "")
-                                str8 = "0";
-                            danhBa = strArray2[8];
-                            if (danhBa.Equals("13122060119"))
-                                danhBa = "13122060119";
-                            string str9 = strArray2[7];
-                            string str10 = strArray2[5];
-                            string str11 = strArray2[9].Trim(',', '\'', '\r');
-                            string str12 = strArray2[10];
-                            string str13 = strArray2[11];
-                            string str14 = strArray2[12];
-                            string str15 = strArray2[13];
-                            string str16 = strArray2[23];
-                            string str17 = strArray2[15];
-                            if (str17 == "")
-                                str17 = "11";
-                            string str18 = strArray2[22];
-                            string str19 = strArray2[21];
-                            if (str19 == "")
-                                str19 = "0";
-                            string str20 = strArray2[17];
-                            if (str20 == "")
-                                str20 = "0";
-                            string str21 = strArray2[19];
-                            if (str21 == "")
-                                str21 = "0";
-                            string str22 = strArray2[20];
-                            if (str22 == "")
-                                str22 = "0";
-                            string str23 = strArray2[18];
-                            if (str23 == "")
-                                str23 = "0";
-                            string str24 = strArray2[16];
-                            if (str24 == "")
-                                str24 = "0";
-                            string str25 = strArray2[25];
-                            if (str25 == "")
-                                str25 = "4";
-                            string str26 = strArray2[26];
-                            if (str26 == "")
-                                str26 = "0";
-                            string str27 = strArray2[27].Trim('"');
-                            if (str27 == "")
-                                str27 = "0";
-                            string str28 = str4 + str10 + str7;
-                            string str29 = str3 + str5 + danhBa;
-                            var bienDong = new ViewModel.BienDong()
-                            {
-                                BienDongID = str29,
-                                Nam = Int16.Parse(str3),
-                                Ky = str5,
-                                Dot = str4,
-                                DanhBa = danhBa,
-                                HopDong = str9,
-                                May = str10,
-                                TenKH = str11,
-                                So = str12,
-                                Duong = str13,
-                                Phuong = str15,
-                                Quan = str14,
-                                GB = short.Parse(str17),
-                                DM = Int16.Parse(str24),
-                                SH = short.Parse(str20),
-                                SX = short.Parse(str21),
-                                DV = short.Parse(str22),
-                                HC = short.Parse(str23),
-                                Hieu = str18,
-                                Co = short.Parse(str19),
-                                SoThan = str16,
-                                Code = str25,
-                                ChiSo = Int32.Parse(str26),
-                                TieuThu = Int32.Parse(str27),
-                                NgayGan = ngayGan,
-                                STT = Int32.Parse(str8),
-                                MLT1 = str28,
-                                NgayCapNhat = DateTime.Now,
-                                NVCapNhat = MyUser.Instance.UserID
-                            };
-                            num2 += HandlingDataDBViewModel.Instance.InsertBienDong(bienDong);
-                        }
-                        if (num2 < num1)
-                        {
-                            if (num2 % 200 == 0)
-                            {
-                                this.txtbStatus.Text = num2.ToString() + "/" + (object)num1;
+                  }, StringSplitOptions.None);
+                                string[] strArray3 = strArray2[24].Split('/');
+                                int year = int.Parse(strArray3[2]);
+                                int month = int.Parse(strArray3[1]);
+                                int day = int.Parse(strArray3[0]);
+                                var ngayGan = new DateTime(year, month, day);
+                                string str7 = strArray2[6];
+                                string str8 = strArray2[0].Trim('"');
+                                if (str8 == "")
+                                    str8 = "0";
+                                danhBa = strArray2[8];
+                                if (danhBa.Equals("13122060119"))
+                                    danhBa = "13122060119";
+                                string str9 = strArray2[7];
+                                string str10 = strArray2[5];
+                                string str11 = strArray2[9].Trim(',', '\'', '\r');
+                                string str12 = strArray2[10];
+                                string str13 = strArray2[11];
+                                string str14 = strArray2[12];
+                                string str15 = strArray2[13];
+                                string str16 = strArray2[23];
+                                string str17 = strArray2[15];
+                                if (str17 == "")
+                                    str17 = "11";
+                                string str18 = strArray2[22];
+                                string str19 = strArray2[21];
+                                if (str19 == "")
+                                    str19 = "0";
+                                string str20 = strArray2[17];
+                                if (str20 == "")
+                                    str20 = "0";
+                                string str21 = strArray2[19];
+                                if (str21 == "")
+                                    str21 = "0";
+                                string str22 = strArray2[20];
+                                if (str22 == "")
+                                    str22 = "0";
+                                string str23 = strArray2[18];
+                                if (str23 == "")
+                                    str23 = "0";
+                                string str24 = strArray2[16];
+                                if (str24 == "")
+                                    str24 = "0";
+                                string str25 = strArray2[25];
+                                if (str25 == "")
+                                    str25 = "4";
+                                string str26 = strArray2[26];
+                                if (str26 == "")
+                                    str26 = "0";
+                                string str27 = strArray2[27].Trim('"');
+                                if (str27 == "")
+                                    str27 = "0";
+                                string str28 = str4 + str10 + str7;
+                                string str29 = str3 + str5 + danhBa;
+                                var bienDong = new ViewModel.BienDong()
+                                {
+                                    BienDongID = str29,
+                                    Nam = Int16.Parse(str3),
+                                    Ky = str5,
+                                    Dot = str4,
+                                    DanhBa = danhBa,
+                                    HopDong = str9,
+                                    May = str10,
+                                    TenKH = str11,
+                                    So = str12,
+                                    Duong = str13,
+                                    Phuong = str15,
+                                    Quan = str14,
+                                    GB = short.Parse(str17),
+                                    DM = Int16.Parse(str24),
+                                    SH = short.Parse(str20),
+                                    SX = short.Parse(str21),
+                                    DV = short.Parse(str22),
+                                    HC = short.Parse(str23),
+                                    Hieu = str18,
+                                    Co = short.Parse(str19),
+                                    SoThan = str16,
+                                    Code = str25,
+                                    ChiSo = Int32.Parse(str26),
+                                    TieuThu = Int32.Parse(str27),
+                                    NgayGan = ngayGan,
+                                    STT = Int32.Parse(str8),
+                                    MLT1 = str28,
+                                    NgayCapNhat = DateTime.Now,
+                                    NVCapNhat = MyUser.Instance.UserID
+                                };
+                                bienDongList.Add(bienDong);
+                                num2 += 1;
                             }
-                        }
-                        else
-                        {
-                            this.txtbStatus.Text = num1.ToString() + "/" + (object)num1;
-                        }
+                            if (num2 < num1)
+                            {
+                                if (num2 % 200 == 0)
+                                {
+                                    this.txtbStatus.Text = "Load biến động: " + num2.ToString() + "/" + (object)num1;
+                                }
+                            }
+                            else
+                            {
+                                this.txtbStatus.Text = "Load biến động: " + num1.ToString() + "/" + (object)num1;
+                            }
+
+                        }), System.Windows.Threading.DispatcherPriority.Loaded);
                     }
+                    num2 = 0;
+                    num1 = bienDongList.Count;
+                    foreach (BienDong bienDong in bienDongList)
+                        System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                        {
+
+                            num2 += HandlingDataDBViewModel.Instance.InsertBienDong(bienDong);
+                            if (num2 < num1)
+                            {
+                                if (num2 % 20 == 0)
+                                {
+                                    this.txtbStatus.Text = "Thêm biến động: " + num2.ToString() + "/" + (object)num1;
+                                }
+                            }
+                            else
+                            {
+                                this.txtbStatus.Text = "Thêm biến động: " + num1.ToString() + "/" + (object)num1;
+                            }
+
+                        }), System.Windows.Threading.DispatcherPriority.Loaded);
                     if (trans != null)
                         trans.Commit();
                 }
