@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 using PhanQuyen.UserControl.BaoCao;
+using PhanQuyen.UserControlView;
 using PhanQuyen.UserControlView.BaoCao;
 using ViewModel;
 
@@ -38,6 +39,7 @@ namespace PhanQuyen
         UC_ChuyenBilling uc_ChuyenBilling;
         UC_KiemTraDuLieu uc_KiemTraDuLieu;
         UC_ThongKeDHNTheoDotSo uc_ThongKeDHNTheoDotSo;
+        UC_XuatDuLieuRaSmartPhone uc_XuatDuLieuRaSmartPhone;
         private MyUser user;
 
         public MainWindow()
@@ -157,6 +159,11 @@ namespace PhanQuyen
                 uc_ThongKeDHNTrenMang.Height = stkMain.ActualHeight;
                 uc_ThongKeDHNTrenMang.Width = stkMain.ActualWidth;
             }
+            if (uc_XuatDuLieuRaSmartPhone != null)
+            {
+                uc_XuatDuLieuRaSmartPhone.Height = stkMain.ActualHeight;
+                uc_XuatDuLieuRaSmartPhone.Width = stkMain.ActualWidth;
+            }
         }
 
 
@@ -267,7 +274,15 @@ namespace PhanQuyen
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_InDanhSachDongCua);
         }
-
+        private void ribBtnXuatDuLieu_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_XuatDuLieuRaSmartPhone == null)
+                uc_XuatDuLieuRaSmartPhone = new UC_XuatDuLieuRaSmartPhone();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_XuatDuLieuRaSmartPhone);
+        }
         private void ribBtnKiemTraDuLieu_Click(object sender, RoutedEventArgs e)
         {
             if (uc_KiemTraDuLieu == null)
@@ -340,10 +355,7 @@ namespace PhanQuyen
 
      
 
-        private void ribBtnXuatDuLieu_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+     
     }
 
     public static class CustomCommands

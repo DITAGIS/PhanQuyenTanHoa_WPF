@@ -738,12 +738,6 @@ namespace PhanQuyen
             cbbYear.SelectedValue = MyUser.Instance.Year;
 
             cbbMonth.SelectedValue = MyUser.Instance.Month;
-            if (MyUser.Instance.ToID == null || MyUser.Instance.ToID.Equals("")||MyUser.Instance.ToID.Trim().Equals(""))
-                cbbGroup.ItemsSource = ToID.GetToID();
-            //else if (MyUser.Instance.ToID.Equals(""))
-            //    cbbGroup.ItemsSource = ToID.GetToID();
-            else
-                cbbGroup.Items.Add(MyUser.Instance.ToID);
 
             cbbKHDS.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctKHDS();
             cbbKHDS.DisplayMemberPath = "TTDHN1";

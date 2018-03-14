@@ -316,7 +316,7 @@ namespace PhanQuyen
                             }
                             if (num2 < num1)
                             {
-                                if (num2 % 200 == 0)
+                                if (num2 % 1000 == 0)
                                 {
                                     this.txtbStatus.Text = "Load biến động: " + num2.ToString() + "/" + (object)num1;
                                 }
@@ -337,7 +337,7 @@ namespace PhanQuyen
                             num2 += HandlingDataDBViewModel.Instance.InsertBienDong(bienDong);
                             if (num2 < num1)
                             {
-                                if (num2 % 20 == 0)
+                                if (num2 % 100 == 0)
                                 {
                                     this.txtbStatus.Text = "Thêm biến động: " + num2.ToString() + "/" + (object)num1;
                                 }
