@@ -122,6 +122,7 @@
     <Compile Include="TK_DHN_TrenMang.cs" />
     <Compile Include="ToID.cs" />
     <Compile Include="MyUser.cs" />
+    <Compile Include="TruyenDuLieu.cs" />
     <Compile Include="Volumn_GetData.cs" />
     <Compile Include="XuLyCode8.cs" />
   </ItemGroup>

@@ -135,7 +135,10 @@ namespace ViewModel
         }
 
 
-
+        public int CheckIzCB()
+        {
+            return serverContext.ExecuteQuery<int>("select count(*) from BillState where izCB = '1' and BillID ='" + MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date + "'").First();
+        }
         public int CheckIzDS()
         {
             return serverContext.ExecuteQuery<int>("select count(*) from BillState where izDS = '1' and BillID ='" + MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date + "'").First();
@@ -254,6 +257,37 @@ namespace ViewModel
 
             }
         }
+
+        public List<TruyenDuLieu> GetDanhMucFileTheoTo(int year, string month, string date, int xGroup)
+        {
+            
+            List<TruyenDuLieu> items = new List<TruyenDuLieu>();
+            try
+            {
+                string query = "select distinct(b.May) as May,Count(b.DanhBa) as SoKH from khachhang b inner join MayDS1 m on b.May = m.May" +
+                    " where  b.Dot = " + date + " and m.ToID = " + xGroup + " and HieuLuc = '1' group by b.May  order by b.May";
+                var data = serverContext.ExecuteQuery<TruyenDuLieu>(query).ToList();
+                int stt = 0;
+                foreach (var item in data)
+                {
+                    items.Add(new TruyenDuLieu()
+                    {
+                        STT = ++stt,
+                        May = item.May,
+                        DanhMucFile = year + "_" + month + "_" + date + "_" + item.May,
+                        SoKH = item.SoKH,
+                        DaTao = ""
+
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return items;
+        }
+
         public List<String> getListBaoCaoTongHop()
         {
             var query = serverContext.ExecuteQuery<String>("select codedesc from ThamSo where CodeType='BC' order by code").ToList();

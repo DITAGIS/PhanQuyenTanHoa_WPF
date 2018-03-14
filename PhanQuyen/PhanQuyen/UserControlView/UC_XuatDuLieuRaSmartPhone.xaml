@@ -134,6 +134,7 @@
                 <DataGrid.RowStyle>
                     <Style TargetType="{x:Type DataGridRow}">
                         <Setter Property="FontSize"  Value="13" />
+                        <Setter Property="HorizontalAlignment"  Value="Center" />
                         <!--<Style.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
                                         <Setter Property="FontSize"  Value="20" />
@@ -143,11 +144,11 @@
                 </DataGrid.RowStyle>
                 <!--Header column-->
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="STT" Binding="{Binding MLT1, Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Máy"  Binding="{Binding DanhBa, Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Danh mục file"  Binding="{Binding TTDHNCu,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Số KH"  Binding="{Binding TTDHNMoi,Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Đã tạo" Binding="{Binding CodeCu,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn  Header="STT" Binding="{Binding STT, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Máy"  Binding="{Binding May, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Danh mục file"  Binding="{Binding DanhMucFile,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Số KH"  Binding="{Binding SoKH,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Đã tạo" Binding="{Binding DaTao,Mode=OneWay}"></DataGridTextColumn>
 
                 </DataGrid.Columns>
 
