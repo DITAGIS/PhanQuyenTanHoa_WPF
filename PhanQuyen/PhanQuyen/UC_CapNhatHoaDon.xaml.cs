@@ -92,9 +92,10 @@ namespace PhanQuyen
                         txtbStatus.Text = current + "/" + count;
                         sr1 = new StreamReader(new FileStream(openFileDialog.FileName, FileMode.Open));
                         string s = String.Empty;
-                        System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                        int i = 0;
+                        while ((s = sr1.ReadLine()) != null)
                         {
-                            while ((s = sr1.ReadLine()) != null)
+                            System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
                             {
                                 if (s != String.Empty)
                                 {
@@ -113,8 +114,24 @@ namespace PhanQuyen
                                     var CSCu = line[22] != "" ? int.Parse(line[22]) : 0;
                                     var CSMoi = line[23] != "" ? int.Parse(line[23]) : 0;
                                     var TieuThu = line[28] != "" ? int.Parse(line[28]) : 0;
-                                    DateTime tuNgay = new DateTime(int.Parse(line[25].Substring(0, 4)), int.Parse(line[25].Substring(4, 2)), int.Parse(line[25].Substring(6)));
-                                    DateTime denNgay = new DateTime(int.Parse(line[26].Substring(0, 4)), int.Parse(line[26].Substring(4, 2)), int.Parse(line[26].Substring(6)));
+                                    DateTime? tuNgay;
+                                    try
+                                    {
+                                        tuNgay = new DateTime(int.Parse(line[25].Substring(0, 4)), int.Parse(line[25].Substring(4, 2)), int.Parse(line[25].Substring(6)));
+                                    }
+                                    catch
+                                    {
+                                        tuNgay = result.ElementAt(result.Count - 2).TuNgay;
+                                    }
+                                    DateTime? denNgay;
+                                    try
+                                    {
+                                        denNgay = new DateTime(int.Parse(line[26].Substring(0, 4)), int.Parse(line[26].Substring(4, 2)), int.Parse(line[26].Substring(6)));
+                                    }
+                                    catch
+                                    {
+                                        denNgay = result.ElementAt(result.Count - 2).DenNgay;
+                                    }
                                     var SO_HOADON = line[46];
                                     DateTime NgayCapNhat = DateTime.Now;
                                     string nvCapNhat = MyUser.Instance.UserID;
@@ -146,15 +163,24 @@ namespace PhanQuyen
 
                                     };
                                     result.Add(hoaDon);
-                                    HandlingDataDBViewModel.Instance.InsertHoaDon(hoaDon);
-                                    txtbStatus.Text = ++current + "/" + count;
+                                    current += HandlingDataDBViewModel.Instance.InsertHoaDon(hoaDon);
+                                    if (current % 50 == 0)
+                                        txtbStatus.Text = current + "/" + count;
+                                    else if (count == current)
+                                    {
+                                        txtbStatus.Text = current + "/" + count;
+                                    }
                                 }
-                            }
-                        }), DispatcherPriority.Loaded);
+                            }), DispatcherPriority.Loaded);
+                        }
+
                     }
                 }
             }
-            catch { }
+            catch (Exception e1)
+            {
+                System.Windows.MessageBox.Show(e1.Message, "Lỗi");
+            }
 
         }
 

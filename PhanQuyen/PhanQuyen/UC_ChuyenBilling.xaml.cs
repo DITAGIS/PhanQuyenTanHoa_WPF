@@ -46,7 +46,7 @@ namespace PhanQuyen
         private void btnGetData_Click(object sender, RoutedEventArgs e)
         {
             ConnectionViewModel.getInstance.Connect();
-            ConnectionViewModel.getInstance.disConnect();
+            ConnectionViewModel.getInstance.DisConnect();
             C_chuyenBilling chuyenBilling = new C_chuyenBilling(MyUser.Instance.Month,
                 MyUser.Instance.Date, MyUser.Instance.Year,
                 MyUser.Instance.UserName,

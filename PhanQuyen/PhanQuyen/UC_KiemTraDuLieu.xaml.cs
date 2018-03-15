@@ -78,6 +78,7 @@ namespace PhanQuyen
             }
             else
             {
+
                 if (ckbLoadBienDong.IsChecked.Value)
                 {
 
@@ -100,7 +101,7 @@ namespace PhanQuyen
                     int capNhatKH = HandlingDataDBViewModel.Instance.CapNhatKH(year, month, date);
                     txtbStatus.Text = "Cập nhật " + capNhatKH + " khách hàng";
                     Thread.Sleep(500);
-                    if (HandlingDataDBViewModel.Instance.CheckExistBienDong_KiemTraDuLieu(year, month, date))
+                    if (HandlingDataDBViewModel.Instance.CheckExistBienDong_KiemTraGanMoi(year, month, date))
                     {
                         new KHGanMoi_HuyWindow(year, month, date, true).ShowDialog();
                     }
@@ -108,63 +109,38 @@ namespace PhanQuyen
                     txtbStatus.Text = "Gắn mới " + ganMoi + " khách hàng";
                     Thread.Sleep(500);
 
-                    if (HandlingDataDBViewModel.Instance.CheckExistKHHuy(year, month, date))
+                    //if (HandlingDataDBViewModel.Instance.CheckExistKHHuy(year, month, date))
+                    if (HandlingDataDBViewModel.Instance.CheckExistBienDong_KiemTraHuy(year, month, date))
                     {
                         new KHGanMoi_HuyWindow(year, month, date, false).ShowDialog();
                     }
-                    //"select count(*) from KhachHang where DanhBa not in (select DanhBa from BienDong where Nam = '" + GV.Nam + "' and Ky = '" + this.cbbKy.Text + "' and Dot = '" + this.cbbDot.Text + "'";
-                    //if (pc.GetExecuteScalar(sqlStatement2) > 0)
-                    //{
-                    //    int num4 = (int)new frmKHHuy().ShowDialog();
-                    //}
-                    //string sqlstatement3 = "update KhachHang set HieuLuc = '0',TTBaoThay = '0',GanMoi = '0' where KhachHang.Dot = '" + this.cbbDot.Text + "' and DanhBa not in (select DanhBa from BienDong B where " + UTIex.StrBNamKyDot(this.cbbNam.Text, this.cbbKy.Text, this.cbbDot.Text) + ")";
-                    //this.toolStripStatusLabel.Text = "Hủy " + (object)pc.GetExecuteNonQuerry(sqlstatement3) + " khách hàng cũ";
-                    //this.Refresh();
-                    //GC.Collect();
-                    //GC.WaitForPendingFinalizers();
-                    //Thread.Sleep(500);
-                    //int num5 = dateTime.Year;
-                    //string str3 = num5.ToString();
-                    //num5 = dateTime.Month;
-                    //string str4 = num5.ToString("00");
-                    //string sqlstatement4 = "update DocSo set TieuThuMoi = H.TieuThu, CSMoi = H.CSMoi, TuNgay = H.TuNgay, DenNgay = H.DenNgay from HoaDon H inner join DocSo D on D.DocSoID = H.HoaDonID where Left(H.Code,1) = '4' and D.CodeMoi in ('40','41','42','43','44','45') and H.Nam = '" + str3 + "' and H.Ky = '" + str4 + "' and H.Dot = '" + this.cbbDot.Text + "'";
-                    //this.toolStripStatusLabel.Text = "Cập nhật " + (object)pc.GetExecuteNonQuerry(sqlstatement4) + " code 4";
-                    //this.Refresh();
-                    //GC.Collect();
-                    //GC.WaitForPendingFinalizers();
-                    //Thread.Sleep(500);
-                    //string sqlstatement5 = "update DocSo set TieuThuMoi = H.TieuThu, CSMoi = H.CSMoi, TTDHNMoi = 'CSBT', CodeMoi = '40', TuNgay = H.TuNgay, DenNgay = H.DenNgay from HoaDon H inner join DocSo D on D.DocSoID = H.HoaDonID where Left(H.Code,1) = '4' and D.CodeMoi <> '4' and H.Nam = '" + str3 + "' and H.Ky = '" + str4 + "' and H.Dot = '" + this.cbbDot.Text + "'";
-                    //this.toolStripStatusLabel.Text = "Cập nhật " + (object)pc.GetExecuteNonQuerry(sqlstatement5) + " code 4";
-                    //this.Refresh();
-                    //GC.Collect();
-                    //GC.WaitForPendingFinalizers();
-                    //Thread.Sleep(500);
-                    //string sqlstatement6 = "update DocSo set CodeMoi = H.Code, TieuThuMoi = H.TieuThu, CSMoi = H.CSMoi, TTDHNMoi = T.TTDHN, TuNgay = H.TuNgay, DenNgay = H.DenNgay  from HoaDon H inner join DocSo D on D.DocSoID = H.HoaDonID inner join TTDHN T on H.Code = T.Code where Left(H.Code,1) in ('5','8','M') and H.Nam = '" + str3 + "' and H.Ky = '" + str4 + "' and H.Dot = '" + this.cbbDot.Text + "'";
-                    //this.toolStripStatusLabel.Text = "Cập nhật " + (object)pc.GetExecuteNonQuerry(sqlstatement6) + " code 5,8,M";
-                    //this.Refresh();
-                    //GC.Collect();
-                    //GC.WaitForPendingFinalizers();
-                    //Thread.Sleep(500);
-                    //string sqlstatement7 = "update DocSo set CSMoi = D.CSMoi, CodeMoi = H.Code, TTDHNMoi = T.TTDHN, TieuThuMoi = H.TieuThu, TuNgay = H.TuNgay, DenNgay = H.DenNgay from HoaDon H inner join DocSo D on D.DocSoID = H.HoaDonID inner join TTDHN T on H.Code = T.Code where Left(H.Code,1) in ('6','K','F','N') and H.Nam = '" + str3 + "' and H.Ky = '" + str4 + "' and H.Dot = '" + this.cbbDot.Text + "'";
-                    //this.toolStripStatusLabel.Text = "Cập nhật " + (object)pc.GetExecuteNonQuerry(sqlstatement7) + " code 6,K,F,N";
-                    //this.Refresh();
-                    //Thread.Sleep(500);
-                    //GC.Collect();
-                    //GC.WaitForPendingFinalizers();
-                    //try
-                    //{
-                    //    string sqlstatement8 = "update BillState set izCB ='1' where BillID ='" + this.cbbNam.Text + this.cbbKy.Text + this.cbbDot.Text + "'";
-                    //    pc.GetExecuteNonQuerry(sqlstatement8);
-                    //}
-                    //catch (SqlException ex)
-                    //{
-                    //    int num2 = (int)MessageBox.Show("Lỗi cập nhật trạng thái bill: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    //}
-                    //this.toolStripStatusLabel.Text = "Chuẩn bị hoàn tất";
-                    //int num6 = (int)MessageBox.Show("Chuẩn bị hoàn tất", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    //GC.Collect();
-                    //GC.WaitForPendingFinalizers();
-                    //Thread.Sleep(300);
+                    int huy = HandlingDataDBViewModel.Instance.HuyKhachHang(year, month, date);
+                    this.txtbStatus.Text = "Hủy " + huy + " khách hàng cũ";
+                    int num5 = dateTime.Year;
+                    num5 = dateTime.Month;
+                    string str4 = num5.ToString("00");
+
+
+                    int capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code4(dateTime.Year, str4, date);
+                    this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 4";
+
+                    capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code4_Lan2(dateTime.Year, str4, date);
+                    this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 4";
+
+                    capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code5_8_M(dateTime.Year, str4, date);
+                    this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 5,8,M";
+
+                    capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code6_K_F_N(dateTime.Year, str4, date);
+                    this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 6,K,F,N";
+                    try
+                    {
+                        HandlingDataDBViewModel.Instance.ChuanBiDocSo(year, month, date);
+                    }
+                    catch (SqlException ex)
+                    {
+                        int num2 = (int)System.Windows.Forms.MessageBox.Show("Lỗi cập nhật trạng thái bill: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    }
+                    this.txtbStatus.Text = "Chuẩn bị hoàn tất";
                 }
             }
         }

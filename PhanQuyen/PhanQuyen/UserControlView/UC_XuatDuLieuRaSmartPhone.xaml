@@ -42,7 +42,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal"  Name="stpCondition"  >
             <TextBlock  VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Năm:"/></TextBlock>
-            <ComboBox x:Name="cbbYear" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
+            <ComboBox x:Name="cbbYear" SelectedIndex="-1" IsEditable="True" VerticalAlignment="Center" Width="50"
                       SelectedValue="{Binding Year, Mode=TwoWay}" 
                               
                       ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbYear_SelectionChanged">
@@ -50,17 +50,17 @@
             </ComboBox>
 
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Kỳ:"/></TextBlock>
-            <ComboBox x:Name="cbbMonth" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45"
+            <ComboBox x:Name="cbbMonth" SelectedIndex="-1" IsEditable="True" VerticalAlignment="Center" Width="45"
                       SelectedValue="{Binding Month, Mode=TwoWay}" 
                               
                       ItemsSource="{Binding ListMonth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbMonth_SelectionChanged" />
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Đợt:"/></TextBlock>
-            <ComboBox x:Name="cbbDate" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
+            <ComboBox x:Name="cbbDate" SelectedIndex="-1" IsEditable="True"  VerticalAlignment="Center" Width="45"
                       SelectedValue="{Binding Date, Mode=OneWay}" 
                               
                       ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbDate_SelectionChanged"/>
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ:"/></TextBlock>
-            <ComboBox x:Name="cbbGroup" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="Auto"
+            <ComboBox x:Name="cbbGroup" SelectedIndex="-1" IsEditable="True"  VerticalAlignment="Center" Width="Auto"
                           SelectedValue="{Binding Group, Mode=OneWay}" 
                               
                       ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbGroup_SelectionChanged"/>
@@ -71,7 +71,7 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,10">
             <Button  Background="White" Name="btnCreateFile" 
-                        Click="btnGetData_Click"
+                        Click="btnTaoFile_Click"
                             >
                 <!--Command="{Binding UpdateCommand}" CommandParameter="{Binding Children, ElementName=stpCondition}">-->
                 <StackPanel Orientation="Horizontal">

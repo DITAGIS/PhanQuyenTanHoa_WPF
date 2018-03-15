@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -7,9 +8,26 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
-   public class ConnectionViewModel
+    public class ConnectionViewModel
     {
-        private SqlConnection conn;
+        private static SqlDataAdapter da = (SqlDataAdapter)null;
+        public static SqlDataAdapter PCAdapter
+        {
+            get
+            {
+                return da;
+            }
+        }
+
+        private static SqlCommand cmd = (SqlCommand)null;
+        public static SqlCommand PCCommand
+        {
+            get
+            {
+                return cmd;
+            }
+        }
+        private static SqlConnection conn;
         public SqlConnection getConnection
         {
             get
@@ -21,7 +39,7 @@ namespace ViewModel
         {
             get
             {
-                return "Data Source=103.74.117.51;Initial Catalog=DocSoTH;Integrated Security=False;User ID=docsotanhoa;Password=Docso111;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                return "Data Source=thanle;Initial Catalog=DocSoTH;Persist Security Info=True;User ID=sa;Password=123456";
             }
         }
         private ConnectionViewModel()
@@ -36,7 +54,12 @@ namespace ViewModel
             get
             {
                 if (_instance == null)
+                {
                     _instance = new ConnectionViewModel();
+                    cmd = new SqlCommand();
+                    cmd.Connection = conn;
+                    da = new SqlDataAdapter(cmd);
+                }
                 return _instance;
             }
         }
@@ -50,7 +73,7 @@ namespace ViewModel
             {
             }
         }
-        public void disConnect()
+        public void DisConnect()
         {
             try
             {
@@ -59,6 +82,42 @@ namespace ViewModel
             catch
             {
             }
+        }
+
+        public SqlDataReader GetExecuteReader(string sqlStatment)
+        {
+            if (cmd != null)
+                cmd.CommandText = sqlStatment;
+            else
+                cmd = new SqlCommand(sqlStatment, conn);
+            return cmd.ExecuteReader();
+        }
+
+        public DataTable GetDataTable(string sqlStatement)
+        {
+            DataTable dataTable = new DataTable();
+            da.SelectCommand.CommandText = sqlStatement;
+            da.FillSchema(dataTable, SchemaType.Mapped);
+            da.Fill(dataTable);
+            return dataTable;
+        }
+
+        public int GetExecuteScalar(string sqlStatement)
+        {
+            if (cmd == null)
+                cmd = new SqlCommand(sqlStatement, conn);
+            else
+                cmd.CommandText = sqlStatement;
+            return (int)cmd.ExecuteScalar();
+        }
+
+        public int GetExecuteNonQuerry(string sqlstatement)
+        {
+            if (cmd == null)
+                cmd = new SqlCommand(sqlstatement, conn);
+            else
+                cmd.CommandText = sqlstatement;
+            return cmd.ExecuteNonQuery();
         }
 
     }

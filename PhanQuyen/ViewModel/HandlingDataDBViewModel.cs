@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Forms;
 
 namespace ViewModel
 {
@@ -134,7 +135,11 @@ namespace ViewModel
 
         }
 
-
+        public int ChuanBiDocSo(int nam, string ky, string dot)
+        {
+            var query = "update BillState set izCB ='1' where BillID ='" + nam + ky + dot + "'";
+            return serverContext.ExecuteQuery<int>(query).ToList().Count;
+        }
         public int CheckIzCB()
         {
             return serverContext.ExecuteQuery<int>("select count(*) from BillState where izCB = '1' and BillID ='" + MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date + "'").First();
@@ -188,79 +193,106 @@ namespace ViewModel
                 }
             }
         }
-        public void InsertHoaDon(ViewModel.HoaDon hoaDon)
+        public int InsertHoaDon(ViewModel.HoaDon hoaDon)
         {
             try
             {
-                //var query = "insert into HoaDon values('" + hoaDon.HoaDonID + "'," + hoaDon.Nam + ",'" + hoaDon.Ky + "','" + hoaDon.Dot + "','" + hoaDon.DanhBa + "','" + hoaDon.TenKH + "','" + hoaDon.So + "','" + hoaDon.Duong + "'," + hoaDon.GB + "," + hoaDon.DM
-                //    + ",'" + hoaDon.Code + "'," + hoaDon.CSCu + "," + hoaDon.CSMoi + "," + hoaDon.TieuThu + ",'" + hoaDon.TuNgay + "','" + hoaDon.DenNgay + "','" +
-                //    hoaDon.SoHoaDon + "','" + hoaDon.NgayCapNhat + "','" + hoaDon.NVCapNhat + "'";
-
-                //var insert = serverContext.ExecuteQuery<object>(query).ToList();
-                if (!serverContext.HoaDons.Contains(hoaDon))
+                ConnectionViewModel.getInstance.Connect();
+                var querySearch = "select hoadonid from hoadon where hoadonid ='" + hoaDon.HoaDonID + "'";
+                SqlDataReader dtr = ConnectionViewModel.getInstance.GetExecuteReader(querySearch);
+                if (dtr.Read())
                 {
-                    serverContext.HoaDons.InsertOnSubmit(hoaDon);
 
-                    serverContext.SubmitChanges();
+                    if (!dtr.IsClosed)
+                    {
+                        dtr.Close();
+                        dtr.Dispose();
+                    }
+                    dtr = (SqlDataReader)null;
+                    return UpdateHoaDon(hoaDon);
                 }
                 else
-                {
-                    UpdateHoaDon(hoaDon);
-                }
-            }
-            catch
-            {
-                try
-                {
-                    serverContext.SubmitChanges();
-                }
-                catch
-                {
 
-                }
-            }
-        }
-        private void UpdateHoaDon(ViewModel.HoaDon hoaDon)
-        {
-            try
-            {
-                //var query = "Update HoaDon set Nam ='" + hoaDon.Nam + "',Ky = '" + hoaDon.Ky + "',Dot = '" + hoaDon.Dot + "',DanhBa = '" + hoaDon.DanhBa + "',TenKH = '" + hoaDon.TenKH
-                //    + "',So = '" + hoaDon.So + "',Duong = '" + hoaDon.Duong + "',GB = '" + hoaDon.GB + "',DM = '" + hoaDon.DM + "',Code = '" + hoaDon.Code + "',CSCu ='" + hoaDon.CSCu +
-                //    "',CSMoi ='" + hoaDon.CSMoi + "',TieuThu ='" + hoaDon.TieuThu + "',TuNgay = '" + hoaDon.TuNgay + "',DenNgay = '" + hoaDon.DenNgay +
-                //    "',NgayCapNhat = '" + hoaDon.NgayCapNhat + "',NVCapNhat = '" + hoaDon.NVCapNhat + "' where HoaDonID = '" + hoaDon.HoaDonID + "'";
-                //var update = serverContext.ExecuteQuery<object>(query).ToList();
-                var hoaDonServer = (from x in serverContext.HoaDons
-                                    where x.HoaDonID == hoaDon.HoaDonID
-                                    select x).Single();
-                hoaDonServer.Nam = hoaDon.Nam;
-                hoaDonServer.Ky = hoaDon.Ky;
-                hoaDonServer.Dot = hoaDon.Dot;
-                hoaDonServer.DanhBa = hoaDon.DanhBa;
-                hoaDonServer.TenKH = hoaDon.TenKH;
-                hoaDonServer.So = hoaDon.So;
-                hoaDonServer.Duong = hoaDon.Duong;
-                hoaDonServer.GB = hoaDon.GB;
-                hoaDonServer.DM = hoaDon.DM;
-                hoaDonServer.Code = hoaDon.Code;
-                hoaDonServer.CSCu = hoaDon.CSCu;
-                hoaDonServer.CSMoi = hoaDon.CSMoi;
-                hoaDonServer.TieuThu = hoaDon.TieuThu;
-                hoaDonServer.TuNgay = hoaDon.TuNgay;
-                hoaDonServer.DenNgay = hoaDon.DenNgay;
-                hoaDonServer.NgayCapNhat = hoaDon.NgayCapNhat;
-                hoaDonServer.NVCapNhat = hoaDon.NVCapNhat;
+                //var search = serverContext.ExecuteQuery<string>(querySearch).FirstOrDefault();
+                //if (search != null)
+                //    return UpdateHoaDon(hoaDon);
+                {
+                    if (dtr != null)
+                    {
+                        if (!dtr.IsClosed)
+                        {
+                            dtr.Close();
+                            dtr.Dispose();
+                        }
+                        dtr = (SqlDataReader)null;
+                    }
 
-                serverContext.SubmitChanges();
+                    //int before = serverContext.HoaDons.Count<HoaDon>();
+                    StringBuilder builder = new StringBuilder();
+                    builder.Append("insert into HoaDon values('");
+                    builder.Append(hoaDon.HoaDonID + "'," + hoaDon.Nam + ",'" + hoaDon.Ky + "','");
+                    builder.Append(int.Parse(hoaDon.Dot).ToString("00") + "','");
+                    builder.Append(hoaDon.DanhBa + "','");
+                    builder.Append(hoaDon.TenKH + "','");
+                    builder.Append(hoaDon.So + "','");
+                    builder.Append(hoaDon.Duong + "',");
+                    builder.Append(hoaDon.GB + ",");
+                    builder.Append(hoaDon.DM + ",'");
+                    builder.Append(hoaDon.Code + "',");
+                    builder.Append(hoaDon.CSCu + ",");
+                    builder.Append(hoaDon.CSMoi + ",");
+                    builder.Append(hoaDon.TieuThu + ",'");
+                    builder.Append(hoaDon.TuNgay + "','");
+                    builder.Append(hoaDon.DenNgay + "','");
+                    builder.Append(hoaDon.SoHoaDon + "','");
+                    builder.Append(hoaDon.NgayCapNhat + "','");
+                    builder.Append(hoaDon.NVCapNhat + "',");
+                    builder.Append(hoaDon.TienHD + ")");
+                    var value = ConnectionViewModel.getInstance.GetExecuteNonQuerry(builder.ToString());
+
+                    ConnectionViewModel.getInstance.DisConnect();
+                    //serverContext.ExecuteQuery<object>(query);
+
+                    //int after = serverContext.HoaDons.Count<HoaDon>();
+                    if (value != 1)
+                    {
+                        return UpdateHoaDon(hoaDon);
+                    }
+                    return value;
+                }
             }
             catch (Exception e)
             {
 
+                return UpdateHoaDon(hoaDon);
+            }
+        }
+        private int UpdateHoaDon(ViewModel.HoaDon hoaDon)
+        {
+            try
+            {
+                StringBuilder builder = new StringBuilder("Update HoaDon set Nam ='" + hoaDon.Nam + "',Ky = '" + hoaDon.Ky + "',Dot = '" + int.Parse(hoaDon.Dot).ToString("00") + "',DanhBa = '" + hoaDon.DanhBa + "',TenKH = '" + hoaDon.TenKH
+                       + "',So = '" + hoaDon.So + "',Duong = '" + hoaDon.Duong + "',GB = '" + hoaDon.GB + "',DM = '" + hoaDon.DM + "',Code = '" + hoaDon.Code + "',CSCu ='" + hoaDon.CSCu +
+                       "',CSMoi ='" + hoaDon.CSMoi + "',TieuThu ='" + hoaDon.TieuThu + "',TuNgay = '" + hoaDon.TuNgay + "',DenNgay = '" + hoaDon.DenNgay +
+                       "',NgayCapNhat = '" + hoaDon.NgayCapNhat + "',NVCapNhat = '" + hoaDon.NVCapNhat + "', tienhd =" + hoaDon.TienHD + " where HoaDonID = '" + hoaDon.HoaDonID + "'");
+                //serverContext.ExecuteQuery<object>(query);
+                int value = ConnectionViewModel.getInstance.GetExecuteNonQuerry(builder.ToString());
+                ConnectionViewModel.getInstance.DisConnect();
+
+                return value;
+
+            }
+            catch (Exception e)
+            {
+                ConnectionViewModel.getInstance.DisConnect();
+
+                return 0;
             }
         }
 
         public List<TruyenDuLieu> GetDanhMucFileTheoTo(int year, string month, string date, int xGroup)
         {
-            
+
             List<TruyenDuLieu> items = new List<TruyenDuLieu>();
             try
             {
@@ -272,7 +304,7 @@ namespace ViewModel
                 {
                     items.Add(new TruyenDuLieu()
                     {
-                        STT = ++stt,
+                        X = false,
                         May = item.May,
                         DanhMucFile = year + "_" + month + "_" + date + "_" + item.May,
                         SoKH = item.SoKH,
@@ -314,6 +346,13 @@ namespace ViewModel
             //    }
             //}
             //return query.Count;
+        }
+
+        public List<KhachHang> GetKhachHang_TaoFile(String may, String dot)
+        {
+            string sqlStatement3 = "select *, Convert(varchar,NgayGan,103) NgayGanCV from KhachHang k inner join MayDS m on k.May = m.May  where k.May = '" + may + "' and Dot ='" + dot + "' and HieuLuc ='1' order by MLT2";
+            var data = serverContext.ExecuteQuery<KhachHang>(sqlStatement3).ToList();
+            return data;
         }
 
         public List<Model.ChuyenBilling> GetBilling()
@@ -358,7 +397,7 @@ namespace ViewModel
         }
         public List<MyBienDong> getKHHuy(int nam, string ky, string dot)
         {
-            var query = "Select *  from KhachHang where dot = '" + dot + "' and DanhBa not in ( Select DanhBa from BienDong where  biendongid like '" + nam + ky + "%' and Dot ='" + dot + "')";
+            var query = "Select ROW_NUMBER() OVER(ORDER BY DanhBa) STT, DanhBa , MLT1 , TenKH , So,  Duong  from KhachHang k where dot = '" + dot + "' and not exists ( Select DanhBa from BienDong b where k.DanhBa = b.DanhBa and b.BienDongID like '" + nam + ky + "%' and b.Dot ='" + dot + "' )";
             var data = serverContext.ExecuteQuery<KhachHang>(query).ToList();
             List<MyBienDong> list = new List<MyBienDong>();
             int stt = 0;
@@ -382,7 +421,7 @@ namespace ViewModel
         }
         public List<MyBienDong> getKHGanMoi(int nam, string ky, string dot)
         {
-            var query = "Select * from BienDong where DanhBa not in ( Select DanhBa from KhachHang) and biendongid like '" + nam + ky + "%' and Dot ='" + dot + "'";
+            var query = "Select danhba, mlt1, tenkh, so, duong from BienDong where DanhBa not in ( Select DanhBa from KhachHang) and biendongid like '" + nam + ky + "%' and Dot ='" + dot + "'";
             var data = serverContext.ExecuteQuery<BienDong>(query).ToList();
             List<MyBienDong> list = new List<MyBienDong>();
             int stt = 0;
@@ -426,16 +465,70 @@ namespace ViewModel
                 return true;
             return false;
         }
-        public bool CheckExistBienDong_KiemTraDuLieu(int nam, string ky, string dot)
+        public bool CheckExistBienDong_KiemTraHuy(int nam, string ky, string dot)
         {
-            var value = serverContext.ExecuteQuery<object>("select top 1 biendongid from BienDong where DanhBa not in (select DanhBa from KhachHang) and biendongid like '" + nam + ky + "%' and Dot = '" + dot + "'").ToList();
-            if (value.Count > 0)
-                return true;
-            return false;
+            try
+            {
+                string query = "Select top 1 danhba from KhachHang k where dot = '" + dot + "' and not exists(Select DanhBa from BienDong b where k.DanhBa = b.DanhBa and b.BienDongID like '" + nam + ky + "%' and dot = '" + dot + "')";
+                var value = serverContext.ExecuteQuery<object>(query).ToList();
+                if (value.Count > 0)
+                    return true;
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool CheckExistBienDong_KiemTraGanMoi(int nam, string ky, string dot)
+        {
+            try
+            {
+                string query = "select top 1 biendongid from BienDong where biendongid like '" + nam + ky + "%' and dot = '" + dot + "' and not exists ( Select DanhBa from KhachHang where BienDong.DanhBa = KhachHang.DanhBa) ";
+                var value = serverContext.ExecuteQuery<object>(query).ToList();
+                if (value.Count > 0)
+                    return true;
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
         public int InsertKhachHang(int nam, string ky, string dot)
         {
-            string query = "insert into KhachHang(DanhBa,May,HieuLuc,HopDong,MLT1,MLT2,Dot,TenKH,So,Duong,SoMoi,Phuong,Quan,GB,DM,SX,DV,HC,NgayGan,Hieu,Co,SoThan,GanMoi,TTBaoThay) select DanhBa,May,'1'    ,HopDong,MLT1,MLT1,Dot,TenKH,So,Duong,So   ,Phuong,Quan,GB,DM,SX,DV,HC,NgayGan,Hieu,Co,SoThan,'1','0' from BienDong B where biendongid like '" + nam + ky + "%' and dot = '" + dot + "' and DanhBa not in (select DanhBa from KhachHang)";
+            string query = "insert into KhachHang(DanhBa,May,HieuLuc,HopDong,MLT1,MLT2,Dot,TenKH,So,Duong,SoMoi,Phuong,Quan,GB,DM,SX,DV,HC,NgayGan,Hieu,Co,SoThan,GanMoi,TTBaoThay) select DanhBa,May,'1'    ,HopDong,MLT1,MLT1,Dot,TenKH,So,Duong,So   ,Phuong,Quan,GB,DM,SX,DV,HC,NgayGan,Hieu,Co,SoThan,'1','0' from BienDong B where biendongid like '" + nam + ky + "%' and dot = '" + dot + "' and DanhBa not in (select DanhBa from KhachHang where BienDong.DanhBa = KhachHang.DanhBa)";
+            var value = serverContext.ExecuteQuery<object>(query).ToList();
+            return value.Count;
+        }
+        public int HuyKhachHang(int nam, string ky, string dot)
+        {
+            string query = "update KhachHang set HieuLuc = '0',TTBaoThay = '0',GanMoi = '0' where KhachHang.Dot = '" + dot + "' and DanhBa not in (select DanhBa from BienDong B where b.BienDongID like '" + nam + ky + "2%' and dot = '" + dot + "')";
+            var value = serverContext.ExecuteQuery<object>(query).ToList();
+            return value.Count;
+        }
+        public int Update_Docso_KiemTraDuLieu_Code4(int nam, string ky, string dot)
+        {
+            string query = "update DocSo set TieuThuMoi = H.TieuThu, CSMoi = H.CSMoi, TuNgay = H.TuNgay, DenNgay = H.DenNgay from HoaDon H inner join DocSo D on D.DocSoID = H.HoaDonID where Left(H.Code,1) = '4' and D.CodeMoi in ('40','41','42','43','44','45') and H.hoadonid like '" + nam + ky + "%' and H.Dot = '" + dot + "'";
+            var value = serverContext.ExecuteQuery<object>(query).ToList();
+            return value.Count;
+        }
+        public int Update_Docso_KiemTraDuLieu_Code4_Lan2(int nam, string ky, string dot)
+        {
+            string query = "update DocSo set TieuThuMoi = H.TieuThu, CSMoi = H.CSMoi, TTDHNMoi = 'CSBT', CodeMoi = '40', TuNgay = H.TuNgay, DenNgay = H.DenNgay from HoaDon H inner join DocSo D on D.DocSoID = H.HoaDonID where Left(H.Code,1) = '4' and D.CodeMoi <> '4' and H.hoadonid like '" + nam + ky + "%' and H.Dot = '" + dot + "'";
+            var value = serverContext.ExecuteQuery<object>(query).ToList();
+            return value.Count;
+        }
+        public int Update_Docso_KiemTraDuLieu_Code5_8_M(int nam, string ky, string dot)
+        {
+            string query = "update DocSo set CodeMoi = H.Code, TieuThuMoi = H.TieuThu, CSMoi = H.CSMoi, TTDHNMoi = T.TTDHN, TuNgay = H.TuNgay, DenNgay = H.DenNgay  from HoaDon H inner join DocSo D on D.DocSoID = H.HoaDonID inner join TTDHN T on H.Code = T.Code where Left(H.Code,1) in ('5','8','M') and H.hoadonid like '" + nam + ky + "%' and H.Dot = '" + dot + "'";
+            var value = serverContext.ExecuteQuery<object>(query).ToList();
+            return value.Count;
+
+        }
+        public int Update_Docso_KiemTraDuLieu_Code6_K_F_N(int nam, string ky, string dot)
+        {
+            string query = "update DocSo set CSMoi = D.CSMoi, CodeMoi = H.Code, TTDHNMoi = T.TTDHN, TieuThuMoi = H.TieuThu, TuNgay = H.TuNgay, DenNgay = H.DenNgay from HoaDon H inner join DocSo D on D.DocSoID = H.HoaDonID inner join TTDHN T on H.Code = T.Code where Left(H.Code,1) in ('6','K','F','N') and H.hoadonid like '" + nam + ky + "%' and H.Dot = '" + dot + "'";
             var value = serverContext.ExecuteQuery<object>(query).ToList();
             return value.Count;
         }
@@ -1516,9 +1609,9 @@ namespace ViewModel
                 foreach (int item in items)
                     lstYear.Add(item);
             }
-            catch
+            catch (Exception e)
             {
-
+                System.Windows.Forms.MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + e.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             return lstYear;
         }
@@ -1533,7 +1626,10 @@ namespace ViewModel
                 foreach (String item in items)
                     lstMonth.Add(item);
             }
-            catch { }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + e.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
             return lstMonth;
         }
         public ObservableCollection<String> getDistinctDate()
@@ -1546,7 +1642,10 @@ namespace ViewModel
                 foreach (String item in items)
                     lstDate.Add(item);
             }
-            catch { }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + e.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
             return lstDate;
         }
         public ObservableCollection<String> getDistinctDateServer(int year, String month)
@@ -1560,7 +1659,10 @@ namespace ViewModel
                 foreach (String item in items)
                     lstDate.Add(item);
             }
-            catch { }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + e.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
             return lstDate;
         }
         public ObservableCollection<int> getDistinctGroup()
@@ -1573,7 +1675,10 @@ namespace ViewModel
                 foreach (int item in items)
                     lstGroup.Add(item);
             }
-            catch { }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + e.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
             return lstGroup;
         }
         public ObservableCollection<String> getDistinctMachine()
@@ -1586,7 +1691,10 @@ namespace ViewModel
                 foreach (String item in items)
                     lstGroup.Add(item);
             }
-            catch { }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + e.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
             return lstGroup;
         }
         public ObservableCollection<int> getDistinctGroupServer(int year, String month, String date)
@@ -1600,7 +1708,10 @@ namespace ViewModel
                 foreach (int item in items)
                     lstGroup.Add(item);
             }
-            catch { }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + e.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
             return lstGroup;
         }
         public ObservableCollection<String> getDistinctMachineServer(int year, String month, String date, int xGroup)
@@ -1621,7 +1732,10 @@ namespace ViewModel
                 foreach (String item in items)
                     lstMachine.Add(item);
             }
-            catch { }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + e.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
             return lstMachine;
         }
         public ObservableCollection<SoDaNhan> getDistinctSoDaNhan(int year, String month, String date, int xGroup)
@@ -1635,7 +1749,10 @@ namespace ViewModel
                 foreach (var item in soDaNhans)
                     listSoDaNhan.Add(item);
             }
-            catch { }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + e.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
             return listSoDaNhan;
         }
 
