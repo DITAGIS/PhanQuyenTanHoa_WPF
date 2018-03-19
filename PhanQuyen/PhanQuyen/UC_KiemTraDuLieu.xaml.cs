@@ -19,6 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using ViewModel;
 
 namespace PhanQuyen
@@ -91,7 +92,6 @@ namespace PhanQuyen
                     else
                         this.LoadFileBienDong(false);
                 }
-                txtbStatus.Text = "";
 
                 if (!HandlingDataDBViewModel.Instance.CheckExistBienDong(year, month, date))
                 {
@@ -99,49 +99,50 @@ namespace PhanQuyen
                 }
                 else
                 {
-                    int capNhatKH = HandlingDataDBViewModel.Instance.CapNhatKH(year, month, date);
-                    txtbStatus.Text = "Cập nhật " + capNhatKH + " khách hàng";
-                    Thread.Sleep(500);
-                    if (HandlingDataDBViewModel.Instance.CheckExistBienDong_KiemTraGanMoi(year, month, date))
+                    System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
-                        new KHGanMoi_HuyWindow(year, month, date, true).ShowDialog();
-                    }
-                    int ganMoi = HandlingDataDBViewModel.Instance.InsertKhachHang(year, month, date);
-                    txtbStatus.Text = "Gắn mới " + ganMoi + " khách hàng";
-                    Thread.Sleep(500);
+                        int capNhatKH = HandlingDataDBViewModel.Instance.CapNhatKH(year, month, date);
+                        txtbStatus.Text = "Cập nhật " + capNhatKH + " khách hàng";
+                        if (HandlingDataDBViewModel.Instance.CheckExistBienDong_KiemTraGanMoi(year, month, date))
+                        {
+                            new KHGanMoi_HuyWindow(year, month, date, true).ShowDialog();
+                        }
+                        int ganMoi = HandlingDataDBViewModel.Instance.InsertKhachHang(year, month, date);
+                        txtbStatus.Text = "Gắn mới " + ganMoi + " khách hàng";
 
-                    //if (HandlingDataDBViewModel.Instance.CheckExistKHHuy(year, month, date))
-                    if (HandlingDataDBViewModel.Instance.CheckExistBienDong_KiemTraHuy(year, month, date))
-                    {
-                        new KHGanMoi_HuyWindow(year, month, date, false).ShowDialog();
-                    }
-                    int huy = HandlingDataDBViewModel.Instance.HuyKhachHang(year, month, date);
-                    this.txtbStatus.Text = "Hủy " + huy + " khách hàng cũ";
-                    int num5 = dateTime.Year;
-                    num5 = dateTime.Month;
-                    string str4 = num5.ToString("00");
+                        //if (HandlingDataDBViewModel.Instance.CheckExistKHHuy(year, month, date))
+                        if (HandlingDataDBViewModel.Instance.CheckExistBienDong_KiemTraHuy(year, month, date))
+                        {
+                            new KHGanMoi_HuyWindow(year, month, date, false).ShowDialog();
+                        }
+                        int huy = HandlingDataDBViewModel.Instance.HuyKhachHang(year, month, date);
+                        this.txtbStatus.Text = "Hủy " + huy + " khách hàng cũ";
+                        int num5 = dateTime.Year;
+                        num5 = dateTime.Month;
+                        string str4 = num5.ToString("00");
 
 
-                    int capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code4(dateTime.Year, str4, date);
-                    this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 4";
+                        int capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code4(dateTime.Year, str4, date);
+                        this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 4";
 
-                    capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code4_Lan2(dateTime.Year, str4, date);
-                    this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 4";
+                        capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code4_Lan2(dateTime.Year, str4, date);
+                        this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 4";
 
-                    capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code5_8_M(dateTime.Year, str4, date);
-                    this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 5,8,M";
+                        capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code5_8_M(dateTime.Year, str4, date);
+                        this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 5,8,M";
 
-                    capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code6_K_F_N(dateTime.Year, str4, date);
-                    this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 6,K,F,N";
-                    try
-                    {
-                        HandlingDataDBViewModel.Instance.ChuanBiDocSo(year, month, date);
-                    }
-                    catch (SqlException ex)
-                    {
-                        int num2 = (int)System.Windows.Forms.MessageBox.Show("Lỗi cập nhật trạng thái bill: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    }
-                    this.txtbStatus.Text = "Chuẩn bị hoàn tất";
+                        capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code6_K_F_N(dateTime.Year, str4, date);
+                        this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 6,K,F,N";
+                        try
+                        {
+                            HandlingDataDBViewModel.Instance.ChuanBiDocSo(year, month, date);
+                        }
+                        catch (SqlException ex)
+                        {
+                            int num2 = (int)System.Windows.Forms.MessageBox.Show("Lỗi cập nhật trạng thái bill: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        }
+                        this.txtbStatus.Text = "Chuẩn bị hoàn tất";
+                    }), DispatcherPriority.Loaded);
                 }
             }
         }
@@ -193,148 +194,328 @@ namespace PhanQuyen
                         HandlingDataDBViewModel.Instance.DeleteBienDong(Int16.Parse(cbbYear.SelectedIndex.ToString()), cbbMonth.SelectedIndex.ToString(), cbbDate.SelectedIndex.ToString());
                     }
                     DataTable tbl = new DataTable();
-                    for (int col = 0; col < 27; col++)
+                    int maxColumn = 28;
+                    for (int col = 0; col < maxColumn; col++)
                         tbl.Columns.Add(new DataColumn("Junk" + (col).ToString()));
                     string s = String.Empty;
                     while ((s = sr.ReadLine()) != null)
                     {
-                        tbl.Rows.Add(s.Split(new[] { "\",\"" }, StringSplitOptions.None));
+                        string str6 = s.Replace("'", "");
+                        if (str6 != null && str6 != "")
+                        {
+                            string[] strArray2 = str6.Split(new string[1] { "\",\"" }, StringSplitOptions.None);
+                            tbl.Rows.Add(s.Split(new[] { "\",\"" }, StringSplitOptions.None));
+                        }
                     }
 
+                    tbl.Columns.Add(new DataColumn("NgayCapNhat"));
+                    tbl.Columns.Add(new DataColumn("BienDongID"));
+                    tbl.Columns.Add(new DataColumn("NVCapNhat"));
+                    tbl.Columns.Add(new DataColumn("MLT1"));
 
-                    while (!sr.EndOfStream)
+                    tbl.Columns["NgayCapNhat"].Expression = "'" + DateTime.Now + "'";
+                    tbl.Columns["NVCapNhat"].Expression = "'" + MyUser.Instance.UserID + "'";
+
+                    Dictionary<int, string> colIndexNameDict = new Dictionary<int, string>()
                     {
-                        System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
-                        {
-                            string str6 = sr.ReadLine().Replace("'", "");
-                            if (str6 != null && str6 != "")
-                            {
-                                string[] strArray2 = str6.Split(new string[1]
-                  {
-                "\",\""
-                  }, StringSplitOptions.None);
-                                string[] strArray3 = strArray2[24].Split('/');
-                                int year = int.Parse(strArray3[2]);
-                                int month = int.Parse(strArray3[1]);
-                                int day = int.Parse(strArray3[0]);
-                                var ngayGan = new DateTime(year, month, day);
-                                string str7 = strArray2[6];
-                                string str8 = strArray2[0].Trim('"');
-                                if (str8 == "")
-                                    str8 = "0";
-                                danhBa = strArray2[8];
-                                if (danhBa.Equals("13122060119"))
-                                    danhBa = "13122060119";
-                                string str9 = strArray2[7];
-                                string str10 = strArray2[5];
-                                string str11 = strArray2[9].Trim(',', '\'', '\r');
-                                string str12 = strArray2[10];
-                                string str13 = strArray2[11];
-                                string str14 = strArray2[12];
-                                string str15 = strArray2[13];
-                                string str16 = strArray2[23];
-                                string str17 = strArray2[15];
-                                if (str17 == "")
-                                    str17 = "11";
-                                string str18 = strArray2[22];
-                                string str19 = strArray2[21];
-                                if (str19 == "")
-                                    str19 = "0";
-                                string str20 = strArray2[17];
-                                if (str20 == "")
-                                    str20 = "0";
-                                string str21 = strArray2[19];
-                                if (str21 == "")
-                                    str21 = "0";
-                                string str22 = strArray2[20];
-                                if (str22 == "")
-                                    str22 = "0";
-                                string str23 = strArray2[18];
-                                if (str23 == "")
-                                    str23 = "0";
-                                string str24 = strArray2[16];
-                                if (str24 == "")
-                                    str24 = "0";
-                                string str25 = strArray2[25];
-                                if (str25 == "")
-                                    str25 = "4";
-                                string str26 = strArray2[26];
-                                if (str26 == "")
-                                    str26 = "0";
-                                string str27 = strArray2[27].Trim('"');
-                                if (str27 == "")
-                                    str27 = "0";
-                                string str28 = str4 + str10 + str7;
-                                string str29 = str3 + str5 + danhBa;
-                                var bienDong = new ViewModel.BienDong()
-                                {
-                                    BienDongID = str29,
-                                    Nam = Int16.Parse(str3),
-                                    Ky = str5,
-                                    Dot = str4,
-                                    DanhBa = danhBa,
-                                    HopDong = str9,
-                                    May = str10,
-                                    TenKH = str11,
-                                    So = str12,
-                                    Duong = str13,
-                                    Phuong = str15,
-                                    Quan = str14,
-                                    GB = short.Parse(str17),
-                                    DM = Int16.Parse(str24),
-                                    SH = short.Parse(str20),
-                                    SX = short.Parse(str21),
-                                    DV = short.Parse(str22),
-                                    HC = short.Parse(str23),
-                                    Hieu = str18,
-                                    Co = short.Parse(str19),
-                                    SoThan = str16,
-                                    Code = str25,
-                                    ChiSo = Int32.Parse(str26),
-                                    TieuThu = Int32.Parse(str27),
-                                    NgayGan = ngayGan,
-                                    STT = Int32.Parse(str8),
-                                    MLT1 = str28,
-                                    NgayCapNhat = DateTime.Now,
-                                    NVCapNhat = MyUser.Instance.UserID
-                                };
-                                bienDongList.Add(bienDong);
-                                num2 += 1;
-                            }
-                            if (num2 < num1)
-                            {
-                                if (num2 % 1000 == 0)
-                                {
-                                    this.txtbStatus.Text = "Load biến động: " + num2.ToString() + "/" + (object)num1;
-                                }
-                            }
-                            else
-                            {
-                                this.txtbStatus.Text = "Load biến động: " + num1.ToString() + "/" + (object)num1;
-                            }
 
-                        }), System.Windows.Threading.DispatcherPriority.Loaded);
+                        {8, "DanhBa" },
+                        {7, "HopDong" },
+                        {5 ,"May" },
+                        {9, "TenKH" },
+                        {10, "So" },
+                        {11, "Duong" },
+                        {13, "Phuong" },
+                        {12, "Quan" },
+                        {15, "GB" },
+                        {16, "DM" },
+                        {17,"SH" },
+                        {18, "SX" },
+                        {19 ,"DV" },
+                        {20, "HC" },
+                        {22, "Hieu" },
+                        {21, "Co" },
+                        {23, "SoThan" },
+                        {25, "Code" },
+                        {26, "ChiSo" },
+                        {27, "TieuThu" },
+                        {24, "NgayGan" },
+                        {0, "STT" },
+                        {6, "MLT" }
+                    };
+                    foreach (var item in colIndexNameDict.Keys)
+                    {
+                        tbl.Columns[item].ColumnName = colIndexNameDict[item];
                     }
-                    num2 = 0;
-                    num1 = bienDongList.Count;
-                    foreach (BienDong bienDong in bienDongList)
-                        System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                    tbl.Columns["BienDongID"].Expression = "'" + year + month + "'+DanhBa";
+                    tbl.Columns["MLT1"].Expression = "'" + str4 + "'+ May + MLT";
+                    for (int i = 0; i < maxColumn;)
+                    {
+                        if (tbl.Columns[i].ColumnName.StartsWith("Junk"))
                         {
+                            tbl.Columns.RemoveAt(i);
+                            maxColumn--;
+                        }
+                        else
+                        {
+                            i++;
+                        }
+                    }
 
-                            num2 += HandlingDataDBViewModel.Instance.InsertBienDong(bienDong);
-                            if (num2 < num1)
-                            {
-                                if (num2 % 100 == 0)
-                                {
-                                    this.txtbStatus.Text = "Thêm biến động: " + num2.ToString() + "/" + (object)num1;
-                                }
-                            }
-                            else
-                            {
-                                this.txtbStatus.Text = "Thêm biến động: " + num1.ToString() + "/" + (object)num1;
-                            }
+                    //Create table biendong
 
-                        }), System.Windows.Threading.DispatcherPriority.Loaded);
+                    DataTable table = new DataTable();
+                    table.Columns.Add(new DataColumn("BienDongID"));
+                    table.Columns.Add(new DataColumn("Nam", typeof(Int32)));
+                    table.Columns.Add(new DataColumn("Ky"));
+                    table.Columns.Add(new DataColumn("Dot"));
+                    table.Columns.Add(new DataColumn("DanhBa"));
+                    table.Columns.Add(new DataColumn("HopDong"));
+                    table.Columns.Add(new DataColumn("May"));
+                    table.Columns.Add(new DataColumn("TenKH"));
+                    table.Columns.Add(new DataColumn("So"));
+                    table.Columns.Add(new DataColumn("Duong"));
+                    table.Columns.Add(new DataColumn("Phuong"));
+                    table.Columns.Add(new DataColumn("Quan"));
+                    table.Columns.Add(new DataColumn("GB", typeof(Int16)));
+                    table.Columns.Add(new DataColumn("DM", typeof(Int32)));
+                    table.Columns.Add(new DataColumn("SH", typeof(Int16)));
+                    table.Columns.Add(new DataColumn("SX", typeof(Int16)));
+                    table.Columns.Add(new DataColumn("DV", typeof(Int16)));
+                    table.Columns.Add(new DataColumn("HC", typeof(Int16)));
+                    table.Columns.Add(new DataColumn("Hieu"));
+                    table.Columns.Add(new DataColumn("Co", typeof(Int16)));
+                    table.Columns.Add(new DataColumn("SoThan"));
+                    table.Columns.Add(new DataColumn("Code"));
+                    table.Columns.Add(new DataColumn("ChiSo", typeof(Int32)));
+                    table.Columns.Add(new DataColumn("TieuThu", typeof(Int32)));
+                    table.Columns.Add(new DataColumn("NgayGan", typeof(DateTime)));
+                    table.Columns.Add(new DataColumn("STT", typeof(Int32)));
+                    table.Columns.Add(new DataColumn("MLT1"));
+                    table.Columns.Add(new DataColumn("NgayCapNhat", typeof(DateTime)));
+                    table.Columns.Add(new DataColumn("NVCapNhat"));
+
+
+                    //Chuyen du lieu table biendong
+                    foreach (DataRow row in tbl.Rows)
+                    {
+                        DataRow newRow = table.NewRow();
+                        newRow["BienDongID"] = row["BienDongID"];
+                        newRow["Nam"] = year;
+                        newRow["Ky"] = month;
+                        newRow["Dot"] = date;
+
+                        newRow["DanhBa"] = row["DanhBa"];
+                        newRow["HopDong"] = row["HopDong"];
+                        newRow["May"] = row["May"];
+                        newRow["TenKH"] = row["TenKH"].ToString().Trim(',', '\'', '\r');
+                        newRow["So"] = row["So"];
+                        newRow["Duong"] = row["Duong"];
+                        newRow["Phuong"] = row["Phuong"];
+                        newRow["Quan"] = row["Quan"];
+
+                        if (row["GB"].ToString() != "")
+                            newRow["GB"] = short.Parse(row["GB"].ToString());
+                        else
+                            newRow["GB"] = 0;
+
+                        if (row["DM"].ToString().Replace(" ", "") != "")
+                            newRow["DM"] = int.Parse(row["DM"].ToString().Replace(" ", ""));
+                        else
+                            newRow["DM"] = 0;
+
+                        if (row["SH"].ToString() != "")
+                            newRow["SH"] = short.Parse(row["SH"].ToString());
+                        else
+                            newRow["SH"] = 0;
+
+                        if (row["SX"].ToString() != "")
+                            newRow["SX"] = short.Parse(row["SX"].ToString());
+                        else
+                            newRow["SX"] = 0;
+
+                        if (row["DV"].ToString() != "")
+                            newRow["DV"] = short.Parse(row["DV"].ToString());
+                        else
+                            newRow["DV"] = 0;
+
+                        if (row["HC"].ToString() != "")
+                            newRow["HC"] = short.Parse(row["HC"].ToString());
+                        else
+                            newRow["HC"] = 0;
+
+                        newRow["Hieu"] = row["Hieu"];
+
+                        if (row["Co"].ToString() != "")
+                            newRow["Co"] = short.Parse(row["Co"].ToString());
+                        else
+                            newRow["Co"] = 0;
+
+                        newRow["SoThan"] = row["SoThan"];
+                        newRow["Code"] = row["Code"].ToString().Equals("") ? "4" : row["Code"];
+
+                        if (row["ChiSo"].ToString() != "")
+                            newRow["ChiSo"] = int.Parse(row["ChiSo"].ToString());
+                        else
+                            newRow["ChiSo"] = 0;
+
+                        if (row["TieuThu"].ToString().Replace("\"", "") != "")
+                            newRow["TieuThu"] = int.Parse(row["TieuThu"].ToString().Replace("\"", ""));
+                        else
+                            newRow["TieuThu"] = 0;
+
+                        newRow["NgayGan"] = new DateTime(year, int.Parse(month), int.Parse(date));
+
+                        if (row["STT"].ToString().Trim('"') != "")
+                            newRow["STT"] = int.Parse(row["STT"].ToString().Trim('"'));
+                        else
+                            newRow["STT"] = 0;
+
+                        newRow["MLT1"] = row["MLT1"];
+                        newRow["NgayCapNhat"] = row["NgayCapNhat"];
+                        newRow["NVCapNhat"] = row["NVCapNhat"];
+                        table.Rows.Add(newRow);
+
+                    }
+
+                    System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        HandlingDataDBViewModel.Instance.InsertBienDong(table);
+                        txtbStatus.Text = "Cập nhật hoàn tất";
+                    }), DispatcherPriority.Loaded);
+                    //    while (!sr.EndOfStream)
+                    //    {
+                    //        System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                    //        {
+                    //            string str6 = sr.ReadLine().Replace("'", "");
+                    //            if (str6 != null && str6 != "")
+                    //            {
+                    //                string[] strArray2 = str6.Split(new string[1]
+                    //  {
+                    //"\",\""
+                    //  }, StringSplitOptions.None);
+                    //                string[] strArray3 = strArray2[24].Split('/');
+                    //                int year = int.Parse(strArray3[2]);
+                    //                int month = int.Parse(strArray3[1]);
+                    //                int day = int.Parse(strArray3[0]);
+                    //                var ngayGan = new DateTime(year, month, day);
+                    //                string str7 = strArray2[6];
+                    //                string str8 = strArray2[0].Trim('"');
+                    //                if (str8 == "")
+                    //                    str8 = "0";
+                    //                danhBa = strArray2[8];
+                    //                if (danhBa.Equals("13122060119"))
+                    //                    danhBa = "13122060119";
+                    //                string str9 = strArray2[7];
+                    //                string str10 = strArray2[5];
+                    //                string str11 = strArray2[9].Trim(',', '\'', '\r');
+                    //                string str12 = strArray2[10];
+                    //                string str13 = strArray2[11];
+                    //                string str14 = strArray2[12];
+                    //                string str15 = strArray2[13];
+                    //                string str16 = strArray2[23];
+                    //                string str17 = strArray2[15];
+                    //                if (str17 == "")
+                    //                    str17 = "11";
+                    //                string str18 = strArray2[22];
+                    //                string str19 = strArray2[21];
+                    //                if (str19 == "")
+                    //                    str19 = "0";
+                    //                string str20 = strArray2[17];
+                    //                if (str20 == "")
+                    //                    str20 = "0";
+                    //                string str21 = strArray2[19];
+                    //                if (str21 == "")
+                    //                    str21 = "0";
+                    //                string str22 = strArray2[20];
+                    //                if (str22 == "")
+                    //                    str22 = "0";
+                    //                string str23 = strArray2[18];
+                    //                if (str23 == "")
+                    //                    str23 = "0";
+                    //                string str24 = strArray2[16];
+                    //                if (str24 == "")
+                    //                    str24 = "0";
+                    //                string str25 = strArray2[25];
+                    //                if (str25 == "")
+                    //                    str25 = "4";
+                    //                string str26 = strArray2[26];
+                    //                if (str26 == "")
+                    //                    str26 = "0";
+                    //                string str27 = strArray2[27].Trim('"');
+                    //                if (str27 == "")
+                    //                    str27 = "0";
+                    //                string str28 = str4 + str10 + str7;
+                    //                string str29 = str3 + str5 + danhBa;
+                    //                var bienDong = new ViewModel.BienDong()
+                    //                {
+                    //                    BienDongID = str29,
+                    //                    Nam = Int16.Parse(str3),
+                    //                    Ky = str5,
+                    //                    Dot = str4,
+                    //                    DanhBa = danhBa,
+                    //                    HopDong = str9,
+                    //                    May = str10,
+                    //                    TenKH = str11,
+                    //                    So = str12,
+                    //                    Duong = str13,
+                    //                    Phuong = str15,
+                    //                    Quan = str14,
+                    //                    GB = short.Parse(str17),
+                    //                    DM = Int16.Parse(str24),
+                    //                    SH = short.Parse(str20),
+                    //                    SX = short.Parse(str21),
+                    //                    DV = short.Parse(str22),
+                    //                    HC = short.Parse(str23),
+                    //                    Hieu = str18,
+                    //                    Co = short.Parse(str19),
+                    //                    SoThan = str16,
+                    //                    Code = str25,
+                    //                    ChiSo = Int32.Parse(str26),
+                    //                    TieuThu = Int32.Parse(str27),
+                    //                    NgayGan = ngayGan,
+                    //                    STT = Int32.Parse(str8),
+                    //                    MLT1 = str28,
+                    //                    NgayCapNhat = DateTime.Now,
+                    //                    NVCapNhat = MyUser.Instance.UserID
+                    //                };
+                    //                bienDongList.Add(bienDong);
+                    //                num2 += 1;
+                    //            }
+                    //            if (num2 < num1)
+                    //            {
+                    //                if (num2 % 1000 == 0)
+                    //                {
+                    //                    this.txtbStatus.Text = "Load biến động: " + num2.ToString() + "/" + (object)num1;
+                    //                }
+                    //            }
+                    //            else
+                    //            {
+                    //                this.txtbStatus.Text = "Load biến động: " + num1.ToString() + "/" + (object)num1;
+                    //            }
+
+                    //        }), System.Windows.Threading.DispatcherPriority.Loaded);
+                    //    }
+                    //    num2 = 0;
+                    //    num1 = bienDongList.Count;
+                    //    foreach (BienDong bienDong in bienDongList)
+                    //        System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                    //        {
+
+                    //            num2 += HandlingDataDBViewModel.Instance.InsertBienDong(bienDong);
+                    //            if (num2 < num1)
+                    //            {
+                    //                if (num2 % 100 == 0)
+                    //                {
+                    //                    this.txtbStatus.Text = "Thêm biến động: " + num2.ToString() + "/" + (object)num1;
+                    //                }
+                    //            }
+                    //            else
+                    //            {
+                    //                this.txtbStatus.Text = "Thêm biến động: " + num1.ToString() + "/" + (object)num1;
+                    //            }
+
+                    //        }), System.Windows.Threading.DispatcherPriority.Loaded);
                     if (trans != null)
                         trans.Commit();
                 }

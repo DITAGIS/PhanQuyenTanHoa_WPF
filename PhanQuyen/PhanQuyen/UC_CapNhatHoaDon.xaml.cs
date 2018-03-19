@@ -185,7 +185,7 @@ namespace PhanQuyen
                         DataRow newRow = table.NewRow();
                         newRow["HoaDonID"] = row["HoaDonID"];
                         newRow["Nam"] = year;
-                        newRow["Ky"] = row["Ky"];
+                        newRow["Ky"] = month;
 
                         if (row["Dot"].ToString() != "")
                             newRow["Dot"] = int.Parse(row["Dot"].ToString());

@@ -192,6 +192,23 @@ namespace ViewModel
                 }
             }
         }
+        public void InsertBienDong(DataTable table)
+        {
+            ConnectionViewModel.getInstance.Connect();
+            SqlBulkCopy bulkCopy = new SqlBulkCopy(ConnectionViewModel.getInstance.getConnection);
+            bulkCopy.DestinationTableName =
+                   "BienDong";
+            try
+            {
+                bulkCopy.WriteToServer(table);
+            }
+            catch (Exception e1)
+            {
+                System.Windows.MessageBox.Show(e1.Message, "Lỗi");
+            }
+
+            ConnectionViewModel.getInstance.DisConnect();
+        }
         public void InsertHoaDon(DataTable table)
         {
             ConnectionViewModel.getInstance.Connect();
@@ -500,7 +517,9 @@ namespace ViewModel
         {
             try
             {
-                string query = "select top 1 biendongid from BienDong where biendongid like '" + nam + ky + "%' and dot = '" + dot + "' and not exists ( Select DanhBa from KhachHang where BienDong.DanhBa = KhachHang.DanhBa) ";
+                string query = "select top 1 biendongid from BienDong where biendongid like '" + nam + ky + "%' " +
+                    "and dot = '" + dot + "' and not exists (" +
+                    " Select DanhBa from KhachHang where BienDong.DanhBa = KhachHang.DanhBa and dot = '" + dot + "')";
                 var value = serverContext.ExecuteQuery<object>(query).ToList();
                 if (value.Count > 0)
                     return true;
@@ -513,7 +532,7 @@ namespace ViewModel
         }
         public int InsertKhachHang(int nam, string ky, string dot)
         {
-            string query = "insert into KhachHang(DanhBa,May,HieuLuc,HopDong,MLT1,MLT2,Dot,TenKH,So,Duong,SoMoi,Phuong,Quan,GB,DM,SX,DV,HC,NgayGan,Hieu,Co,SoThan,GanMoi,TTBaoThay) select DanhBa,May,'1'    ,HopDong,MLT1,MLT1,Dot,TenKH,So,Duong,So   ,Phuong,Quan,GB,DM,SX,DV,HC,NgayGan,Hieu,Co,SoThan,'1','0' from BienDong B where biendongid like '" + nam + ky + "%' and dot = '" + dot + "' and DanhBa not in (select DanhBa from KhachHang where BienDong.DanhBa = KhachHang.DanhBa)";
+            string query = "insert into KhachHang(DanhBa,May,HieuLuc,HopDong,MLT1,MLT2,Dot,TenKH,So,Duong,SoMoi,Phuong,Quan,GB,DM,SX,DV,HC,NgayGan,Hieu,Co,SoThan,GanMoi,TTBaoThay) select DanhBa,May,'1'    ,HopDong,MLT1,MLT1,Dot,TenKH,So,Duong,So   ,Phuong,Quan,GB,DM,SX,DV,HC,NgayGan,Hieu,Co,SoThan,'1','0' from BienDong B where biendongid like '" + nam + ky + "%' and dot = '" + dot + "' and  not exists ( Select DanhBa from KhachHang where B.DanhBa = KhachHang.DanhBa and dot = '" + dot + "')";
             var value = serverContext.ExecuteQuery<object>(query).ToList();
             return value.Count;
         }
