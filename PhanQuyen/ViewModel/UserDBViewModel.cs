@@ -32,7 +32,7 @@ namespace ViewModel
 
             try
             {
-                DataClasses_thanleDataContext serverDataContext = new DataClasses_thanleDataContext();
+                DataClassesServerDataContext serverDataContext = new DataClassesServerDataContext();
                 //SqlCommand command = new SqlCommand(SQL_SELECT_LOGIN, ConnectionViewModel.getInstance.getConnection);
                 ////ConnectionViewModel.getInstance.Connect();
                 //command.Parameters.AddWithValue("@userid", userID);

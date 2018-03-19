@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -207,26 +208,28 @@ namespace PhanQuyen
                 if (year < 0 || month == null)
                     return;
 
-                System.Windows.Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
                 {
 
                     txtbStatus.Text = "Đang tải dữ liệu...";
-                    List<CapNhatHoaDon> listCNHD = HandlingDataDBViewModel.Instance.GetCapNhatHoaDon(month, year);
+                    DataTable table = HandlingDataDBViewModel.Instance.GetCapNhatHoaDon(month, year);
 
                     int danhBa = 0;
                     int tieuThu = 0;
-                    for (int index = 0; index < listCNHD.Count; ++index)
+                    foreach (DataRow row in table.Rows)
                     {
-                        danhBa += int.Parse(listCNHD.ElementAt(index).SoDanhBa.ToString());
-                        tieuThu += int.Parse(listCNHD.ElementAt(index).TieuThu.ToString());
+                        danhBa += int.Parse(row[1].ToString());
+                        tieuThu += int.Parse(row[2].ToString());
                     }
-                    listCNHD.Add(new CapNhatHoaDon()
+                    DataRow newRow = table.NewRow();
+                    newRow.ItemArray = new object[3]
                     {
-                        Dot = "Tổng cộng",
-                        SoDanhBa = danhBa,
-                        TieuThu = tieuThu
-                    });
-                    dtgridMain.ItemsSource = listCNHD;
+                         "Tổng cộng",
+                        danhBa,
+                         tieuThu
+                    };
+                    table.Rows.InsertAt(newRow, table.Rows.Count);
+                    dtgridMain.ItemsSource = table.DefaultView;
                     dtgridMain.Items.Refresh();
 
                     txtbStatus.Text = "";

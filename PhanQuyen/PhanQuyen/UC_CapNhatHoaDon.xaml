@@ -102,7 +102,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Đợt" Binding="{Binding Dot, Mode=OneWay}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Số danh bạ"  Binding="{Binding SoDanhBa, Mode=OneWay}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tiêu thụ"  Binding="{Binding TieuThu,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Tiêu thụ"  Binding="{Binding SoTieuThu,Mode=OneWay}"></DataGridTextColumn>
 
                 </DataGrid.Columns>
 

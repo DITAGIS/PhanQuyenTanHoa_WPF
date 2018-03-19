@@ -19,7 +19,7 @@ namespace ViewModel
 
         private static HandlingDataDBViewModel _instance;
         private DataClassesLocalDataContext localContext;
-        private DataClasses_thanleDataContext serverContext;
+        private DataClassesServerDataContext serverContext;
 
         private const String ALL = "Tất cả";
 
@@ -113,25 +113,24 @@ namespace ViewModel
         }
 
 
-        public List<CapNhatHoaDon> GetCapNhatHoaDon(string month, int year)
+        public DataTable GetCapNhatHoaDon(string month, int year)
         {
-            List<CapNhatHoaDon> data = new List<CapNhatHoaDon>(); ;
+           
             try
             {
-                data = serverContext.ExecuteQuery<CapNhatHoaDon>("SELECT Dot , COUNT(DANHBA) as SoDanhBa, SUM(TieuThu) as TieuThu FROM HoaDon WHERE KY = " + month + " and NAM = '" + year + "' GROUP BY DOT ORDER BY DOT")
-                    //.Select(x => new CapNhatHoaDon()
-                    //{
-                    //    Dot = x.Dot,
-                    //    SoDanhBa = x.SoDanhBa,
-                    //    TieuThu = x.TieuThu
-                    //})
-                    .ToList();
+                ConnectionViewModel.getInstance.Connect();
+
+                string query = "SELECT Dot , COUNT(DANHBA) as SoDanhBa, SUM(TieuThu) as SoTieuThu FROM HoaDon WHERE hoadonid like '" + year + month + "%' GROUP BY DOT ORDER BY DOT";
+                //data = serverContext.ExecuteQuery<CapNhatHoaDon>(query).ToList();
+                DataTable table = ConnectionViewModel.getInstance.GetDataTable(query);
+              
+                ConnectionViewModel.getInstance.DisConnect();
+                return table;
             }
             catch (Exception e)
             {
-
+                return new DataTable();
             }
-            return data;
 
         }
 
@@ -152,7 +151,7 @@ namespace ViewModel
         private HandlingDataDBViewModel()
         {
             localContext = new DataClassesLocalDataContext();
-            serverContext = new DataClasses_thanleDataContext();
+            serverContext = new DataClassesServerDataContext();
         }
         public void DeleteBienDong(int nam, string ky, string dot)
         {
@@ -1171,7 +1170,7 @@ namespace ViewModel
 
             bool result = false;
 
-            DataClasses_thanleDataContext serverContext = new DataClasses_thanleDataContext();
+            DataClassesServerDataContext serverContext = new DataClassesServerDataContext();
             var getData = (from x in serverContext.DocSos
                            where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup && x.DanhBa == danhBa && x.May == machine
                            select x).ToList();
@@ -1336,7 +1335,7 @@ namespace ViewModel
         public byte[] getImageByDanhBa(String danhBa, DateTime gioGhi)
         {
 
-            using (DataClasses_thanleDataContext tempServer = new DataClasses_thanleDataContext())
+            using (DataClassesServerDataContext tempServer = new DataClassesServerDataContext())
             {
                 var data = (from x in tempServer.HinhDHNs
                             where x.DanhBo == danhBa && x.CreateDate == gioGhi
@@ -1400,7 +1399,7 @@ namespace ViewModel
 
             bool result = false;
 
-            DataClasses_thanleDataContext serverContext = new DataClasses_thanleDataContext();
+            DataClassesServerDataContext serverContext = new DataClassesServerDataContext();
             var getData = (from x in serverContext.DocSos
                            where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup
                            select x).ToList();
