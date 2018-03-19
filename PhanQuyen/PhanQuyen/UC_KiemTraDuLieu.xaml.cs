@@ -2,6 +2,7 @@
 using PhanQuyen.WindowView;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -191,6 +192,16 @@ namespace PhanQuyen
                     {
                         HandlingDataDBViewModel.Instance.DeleteBienDong(Int16.Parse(cbbYear.SelectedIndex.ToString()), cbbMonth.SelectedIndex.ToString(), cbbDate.SelectedIndex.ToString());
                     }
+                    DataTable tbl = new DataTable();
+                    for (int col = 0; col < 27; col++)
+                        tbl.Columns.Add(new DataColumn("Junk" + (col).ToString()));
+                    string s = String.Empty;
+                    while ((s = sr.ReadLine()) != null)
+                    {
+                        tbl.Rows.Add(s.Split(new[] { "\",\"" }, StringSplitOptions.None));
+                    }
+
+
                     while (!sr.EndOfStream)
                     {
                         System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>

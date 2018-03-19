@@ -469,14 +469,14 @@ namespace ViewModel
         }
         public bool CheckExistHoaDon(int nam, string ky, string dot)
         {
-            var value = serverContext.ExecuteQuery<string>("select top 1 hoadonid from hoadon where hoadonid like '" + nam + ky + "%' and dot = '" + dot + "'").ToList();
+            var value = serverContext.ExecuteQuery<string>("select top 1 hoadonid from hoadon where hoadonid like '" + nam + ky + "%' and dot = " + dot + "").ToList();
             if (value.Count > 0)
                 return true;
             return false;
         }
         public bool CheckExistBienDong(int nam, string ky, string dot)
         {
-            var value = serverContext.ExecuteQuery<string>("select top 1 biendongid from biendong where biendongid like '" + nam + ky + "%' and dot = '" + dot + "'").ToList();
+            var value = serverContext.ExecuteQuery<string>("select top 1 biendongid from biendong where biendongid like '" + nam + ky + "%' and dot = " + dot + "").ToList();
             if (value.Count > 0)
                 return true;
             return false;

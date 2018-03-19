@@ -109,15 +109,25 @@ namespace PhanQuyen
                     tbl.Columns["NgayCapNhat"].Expression = "'" + DateTime.Now + "'";
                     tbl.Columns["NVCapNhat"].Expression = "'" + MyUser.Instance.UserID + "'";
 
-                    List<string> columnNames = new List<string>()
-                        {
-                          "Dot","DanhBa","TenKH","So","Duong","GB","DM","Ky","CSCu","CSMoi","TuNgay","DenNgay","TieuThu","TienHD","SoHoaDon"
-
-                        };
-                    List<int> columnIndexes = new List<int>()
-                        {
-                            1,2,7,8,9,12,17,18,22,23,25,26,28,40,46
-                        };
+                
+                    Dictionary<int, string> colIndexNameDict = new Dictionary<int, string>()
+                    {
+                        {1,"Dot" },
+                        {2, "DanhBa" },
+                        {7, "TenKH" },
+                        {8 ,"So" },
+                        {9, "Duong" },
+                        {12, "GB" },
+                        {17, "DM" },
+                        {18, "Ky" },
+                        {22, "CSCu" },
+                        {23, "CSMoi" },
+                        {25, "TuNgay" },
+                        {26,"DenNgay" },
+                        {28, "TieuThu" },
+                        {40 ,"TienHD" },
+                        {46, "SoHoaDon" }
+                    };
                     foreach (DataRow row in tbl.Rows)
                     {
                         row["Code"] = row[20].ToString() + row[21].ToString();
@@ -125,11 +135,11 @@ namespace PhanQuyen
                     }
 
                     int maxColumn = 56;
-                    for (int i = 0; i < columnIndexes.Count; i++)
-                    {
-                        tbl.Columns[columnIndexes.ElementAt(i)].ColumnName = columnNames.ElementAt(i);
-                    }
 
+                    foreach(var item in colIndexNameDict.Keys)
+                    {
+                        tbl.Columns[item].ColumnName = colIndexNameDict[item];
+                    }
                     for (int i = 0; i < maxColumn;)
                     {
                         if (tbl.Columns[i].ColumnName.StartsWith("Junk"))
