@@ -80,10 +80,10 @@
     </ApplicationDefinition>
     <Compile Include="ChuyenBilling_\C_chuyenBilling.cs" />
     <Compile Include="ChuyenBilling_\C_connOracle.cs" />
-    <Compile Include="DataClassesServer.designer.cs">
+    <Compile Include="DataClasses_thanle.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataClassesServer.dbml</DependentUpon>
+      <DependentUpon>DataClasses_thanle.dbml</DependentUpon>
     </Compile>
     <Compile Include="DataClassLocal.designer.cs">
       <AutoGen>True</AutoGen>
@@ -124,13 +124,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="DataClassesServer.dbml">
+    <None Include="DataClasses_thanle.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DataClassesServer.designer.cs</LastGenOutput>
+      <LastGenOutput>DataClasses_thanle.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataClassesServer.dbml.layout">
-      <DependentUpon>DataClassesServer.dbml</DependentUpon>
+    <None Include="DataClasses_thanle.dbml.layout">
+      <DependentUpon>DataClasses_thanle.dbml</DependentUpon>
     </None>
     <None Include="DataClassLocal.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

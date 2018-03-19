@@ -19,7 +19,7 @@ namespace ViewModel
 
         private static HandlingDataDBViewModel _instance;
         private DataClassesLocalDataContext localContext;
-        private DataClassesServerDataContext serverContext;
+        private DataClasses_thanleDataContext serverContext;
 
         private const String ALL = "Tất cả";
 
@@ -115,7 +115,7 @@ namespace ViewModel
 
         public DataTable GetCapNhatHoaDon(string month, int year)
         {
-           
+
             try
             {
                 ConnectionViewModel.getInstance.Connect();
@@ -123,7 +123,7 @@ namespace ViewModel
                 string query = "SELECT Dot , COUNT(DANHBA) as SoDanhBa, SUM(TieuThu) as SoTieuThu FROM HoaDon WHERE hoadonid like '" + year + month + "%' GROUP BY DOT ORDER BY DOT";
                 //data = serverContext.ExecuteQuery<CapNhatHoaDon>(query).ToList();
                 DataTable table = ConnectionViewModel.getInstance.GetDataTable(query);
-              
+
                 ConnectionViewModel.getInstance.DisConnect();
                 return table;
             }
@@ -151,7 +151,7 @@ namespace ViewModel
         private HandlingDataDBViewModel()
         {
             localContext = new DataClassesLocalDataContext();
-            serverContext = new DataClassesServerDataContext();
+            serverContext = new DataClasses_thanleDataContext();
         }
         public void DeleteBienDong(int nam, string ky, string dot)
         {
@@ -191,6 +191,23 @@ namespace ViewModel
                     return 0;
                 }
             }
+        }
+        public void InsertHoaDon(DataTable table)
+        {
+            ConnectionViewModel.getInstance.Connect();
+            SqlBulkCopy bulkCopy = new SqlBulkCopy(ConnectionViewModel.getInstance.getConnection);
+            bulkCopy.DestinationTableName =
+                   "HoaDon";
+            try
+            {
+                bulkCopy.WriteToServer(table);
+            }
+            catch (Exception e1)
+            {
+                System.Windows.MessageBox.Show(e1.Message, "Lỗi");
+            }
+
+            ConnectionViewModel.getInstance.DisConnect();
         }
         public int InsertHoaDon(ViewModel.HoaDon hoaDon)
         {
@@ -1170,7 +1187,7 @@ namespace ViewModel
 
             bool result = false;
 
-            DataClassesServerDataContext serverContext = new DataClassesServerDataContext();
+            DataClasses_thanleDataContext serverContext = new DataClasses_thanleDataContext();
             var getData = (from x in serverContext.DocSos
                            where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup && x.DanhBa == danhBa && x.May == machine
                            select x).ToList();
@@ -1335,7 +1352,7 @@ namespace ViewModel
         public byte[] getImageByDanhBa(String danhBa, DateTime gioGhi)
         {
 
-            using (DataClassesServerDataContext tempServer = new DataClassesServerDataContext())
+            using (DataClasses_thanleDataContext tempServer = new DataClasses_thanleDataContext())
             {
                 var data = (from x in tempServer.HinhDHNs
                             where x.DanhBo == danhBa && x.CreateDate == gioGhi
@@ -1399,7 +1416,7 @@ namespace ViewModel
 
             bool result = false;
 
-            DataClassesServerDataContext serverContext = new DataClassesServerDataContext();
+            DataClasses_thanleDataContext serverContext = new DataClasses_thanleDataContext();
             var getData = (from x in serverContext.DocSos
                            where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup
                            select x).ToList();
