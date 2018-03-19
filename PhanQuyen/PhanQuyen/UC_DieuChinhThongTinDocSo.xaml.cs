@@ -19,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Model;
+using PhanQuyen.WindowView;
 using ViewModel;
 namespace PhanQuyen
 {
@@ -722,6 +723,12 @@ namespace PhanQuyen
                 CanhBaoBatThuong();
                 Refresh();
             }
+        }
+
+        private void border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //ViewImageWindow viewImageWindow = new ViewImageWindow();
+            //viewImageWindow.Show();
         }
 
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)

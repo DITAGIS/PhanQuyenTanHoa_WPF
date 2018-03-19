@@ -330,12 +330,14 @@
                         <Border BorderThickness="1" Grid.Column="1" Background="White" Name="border"
                                  ClipToBounds="True"
                                   Height="Auto"
-                                   Width="Auto">
+                                   Width="Auto" MouseDown="border_MouseDown"
+                                >
                             <Image Name="image" 
                                    Height="Auto"
                                    Width="Auto"
                                    Source="{Binding Path=Image, 
-                        Converter={StaticResource ResourceKey=ImageConvert}}" Stretch="UniformToFill"  >
+                        Converter={StaticResource ResourceKey=ImageConvert}}" Stretch="UniformToFill"  
+                                 >
 
                             </Image>
                         </Border>
