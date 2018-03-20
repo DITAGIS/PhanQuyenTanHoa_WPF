@@ -67,7 +67,7 @@
                                   Click="ribBtnCapNhatHoaDon"></RibbonButton>
                     <RibbonButton Name="ribBtnKiemTraDuLieu" Label="Kiểm tra dữ liệu"  LargeImageSource="/PhanQuyen;component/Images/check_data.png"
                                   Click="ribBtnKiemTraDuLieu_Click"></RibbonButton>
-                    <RibbonButton Label="Cập nhật số thân"  LargeImageSource="/PhanQuyen;component/Images/update_number.png"></RibbonButton>
+                    <RibbonButton Visibility="Hidden" Label="Cập nhật số thân"  LargeImageSource="/PhanQuyen;component/Images/update_number.png"></RibbonButton>
                 </RibbonGroup>
                 <!--<RibbonGroup Header="Hoàn tất">
                     <RibbonButton Label="Chuyển File"  LargeImageSource="/PhanQuyen;component/Images/file_transfer.png"></RibbonButton>

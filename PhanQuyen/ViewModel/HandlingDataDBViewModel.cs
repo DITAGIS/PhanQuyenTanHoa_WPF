@@ -430,7 +430,7 @@ namespace ViewModel
         }
         public List<MyBienDong> getKHHuy(int nam, string ky, string dot)
         {
-            var query = "Select ROW_NUMBER() OVER(ORDER BY DanhBa) STT, DanhBa , MLT1 , TenKH , So,  Duong  from KhachHang k where dot = '" + dot + "' and not exists ( Select DanhBa from BienDong b where k.DanhBa = b.DanhBa and b.BienDongID like '" + nam + ky + "%' and b.Dot ='" + dot + "' )";
+            var query = "Select ROW_NUMBER() OVER(ORDER BY DanhBa) STT, DanhBa , MLT1 , TenKH , So,  Duong  from KhachHang k where dot = '" + dot + "' and hieuluc ='1' and not exists ( Select DanhBa from BienDong b where k.DanhBa = b.DanhBa and b.BienDongID like '" + nam + ky + "%' and b.Dot ='" + dot + "' )";
             var data = serverContext.ExecuteQuery<KhachHang>(query).ToList();
             List<MyBienDong> list = new List<MyBienDong>();
             int stt = 0;
@@ -502,7 +502,7 @@ namespace ViewModel
         {
             try
             {
-                string query = "Select top 1 danhba from KhachHang k where dot = '" + dot + "' and not exists(Select DanhBa from BienDong b where k.DanhBa = b.DanhBa and b.BienDongID like '" + nam + ky + "%' and dot = '" + dot + "')";
+                string query = "Select top 1 danhba from KhachHang k where dot = '" + dot + "' and hieuluc = '1' and not exists(Select DanhBa from BienDong b where k.DanhBa = b.DanhBa and b.BienDongID like '" + nam + ky + "%' and dot = '" + dot + "')";
                 var value = serverContext.ExecuteQuery<object>(query).ToList();
                 if (value.Count > 0)
                     return true;
@@ -538,7 +538,7 @@ namespace ViewModel
         }
         public int HuyKhachHang(int nam, string ky, string dot)
         {
-            string query = "update KhachHang set HieuLuc = '0',TTBaoThay = '0',GanMoi = '0' where KhachHang.Dot = '" + dot + "' and DanhBa not in (select DanhBa from BienDong B where b.BienDongID like '" + nam + ky + "2%' and dot = '" + dot + "')";
+            string query = "update KhachHang set HieuLuc = '0',TTBaoThay = '0',GanMoi = '0' where KhachHang.Dot = '" + dot + "' and hieuluc = '1' and not exists (select DanhBa from BienDong B where b.DanhBa = KhachHang.DanhBa and b.BienDongID like'" + nam + ky + "%' and dot = '" + dot + "')";
             var value = serverContext.ExecuteQuery<object>(query).ToList();
             return value.Count;
         }

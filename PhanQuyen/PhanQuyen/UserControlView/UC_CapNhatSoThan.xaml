@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="PhanQuyen.UserControlView.UC_CapNhatSoThan"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PhanQuyen.UserControlView"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    Margin="10">
+            <Button Margin="10,0,0,0" Background="White" Name="btnLoadData" 
+                            Click="btnLoadData_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/up-arrow.png" Width="20" Height="20"></Image>
+                    <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Load dữ liệu</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Margin="10,0,0,0" Background="White" Name="btnUpdate" 
+                            Click="btnUpdate_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/up-arrow.png" Width="20" Height="20"></Image>
+                    <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Thực hiện</TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
