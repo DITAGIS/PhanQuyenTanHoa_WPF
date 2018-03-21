@@ -41,6 +41,7 @@ namespace PhanQuyen
         private List<DocSo> docSoList = new List<DocSo>();
         private DocSo _selectedDocSo;
         private XemGhiChuWindow _xemGhiChuWindow;
+        private bool chuyenMaHoa = false;
 
         private const int COLUMN_MLT = 0;
         private const int COLUMN_DANHBA = 1;
@@ -66,42 +67,42 @@ namespace PhanQuyen
                 cbbGroup.ItemsSource = ToID.GetToID();
             else
                 cbbGroup.Items.Add(MyUser.Instance.ToID);
-            CheckIzDS();
+            //CheckIzDS();
         }
 
-        private void CheckIzDS()
+        private void CheckIzDS(int nam, string ky, string dot)
         {
             try
             {
-                int executeScalar = HandlingDataDBViewModel.Instance.CheckIzDS();
+                int executeScalar = HandlingDataDBViewModel.Instance.CheckIzDS(nam, ky, dot);
                 if (executeScalar == 1 && (MyUser.Instance.UserGroup == "DS" || MyUser.Instance.UserGroup == "Admin"))
                 {
                     int num = (int)MessageBox.Show("Dữ liệu đã được chuyển lên thương vụ, bạn không thể điều chỉnh được thông tin.", "Thông báo");
                     this.cbbKHDS.IsEnabled = false;
                     this.txtbCSM.IsEnabled = false;
-                    //this.chuyenMaHoa = true;
+                    this.chuyenMaHoa = true;
                 }
                 else
                 {
                     this.cbbKHDS.IsEnabled = true;
                     this.txtbCSM.IsEnabled = true;
-                    //this.chuyenMaHoa = false;
+                    this.chuyenMaHoa = false;
                 }
-                //if (executeScalar == 0 && GV.UserGroup == "TV")
-                //{
-                //    this.cbbNam.Enabled = false;
-                //    this.cbbKy.Enabled = false;
-                //    this.cbbDot.Enabled = false;
-                //    this.cbbToDS.Enabled = false;
-                //    this.cbbMay.Enabled = false;
-                //    this.cbbCodeMoi.Enabled = false;
-                //    this.btnCapNhat.Enabled = false;
-                //}
-                //if (executeScalar == 1 && GV.UserGroup == "TV")
-                //    this.btnCapNhat.Enabled = true;
-                //if (!(GV.UserGroup == "VP"))
-                //    return;
-                //this.btnCapNhat.Enabled = false;
+                if (executeScalar == 0 && MyUser.Instance.UserGroup == "TV")
+                {
+                    this.cbbYear.IsEnabled = false;
+                    this.cbbMonth.IsEnabled = false;
+                    this.cbbDate.IsEnabled = false;
+                    this.cbbGroup.IsEnabled = false;
+                    this.cbbMachine.IsEnabled = false;
+                    this.cbbCode.IsEnabled = false;
+                    this.btnUpdate.IsEnabled = false;
+                }
+                if (executeScalar == 1 && MyUser.Instance.UserGroup == "TV")
+                    this.btnUpdate.IsEnabled = true;
+                if (!(MyUser.Instance.UserGroup == "VP"))
+                    return;
+                this.btnUpdate.IsEnabled = false;
             }
             catch (SqlException ex)
             {
@@ -146,6 +147,7 @@ namespace PhanQuyen
         {
             try
             {
+                this.CheckIzDS(year, month, date);
                 Update();
             }
             catch
@@ -240,7 +242,10 @@ namespace PhanQuyen
             if (date == null)
                 cbbDate.SelectedValue = MyUser.Instance.Date;
             if (cbbDate.SelectedValue != null)
+            {
                 date = cbbDate.SelectedValue.ToString();
+                this.CheckIzDS(year, month, date);
+            }
         }
 
         private void Refresh()
@@ -729,6 +734,20 @@ namespace PhanQuyen
         {
             //ViewImageWindow viewImageWindow = new ViewImageWindow();
             //viewImageWindow.Show();
+        }
+
+        private void txtbGCDS_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Return)
+                return;
+            try
+            {
+                this.CheckIzDS(year, month, date);
+                Update();
+            }
+            catch
+            {
+            }
         }
 
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)

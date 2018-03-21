@@ -272,7 +272,7 @@ namespace PhanQuyen.UserControlView
                 {
                     int num1 = (int)System.Windows.Forms.MessageBox.Show("Vui lòng chuẩn bị dữ liệu trước khi tạo file đọc số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
-                else if (HandlingDataDBViewModel.Instance.CheckIzDS() != 1)
+                else if (HandlingDataDBViewModel.Instance.CheckIzDS(year, month, date) != 1)
                 {
                     //DataTable tbl = new DataTable();
                     //int maxColumn = 80;

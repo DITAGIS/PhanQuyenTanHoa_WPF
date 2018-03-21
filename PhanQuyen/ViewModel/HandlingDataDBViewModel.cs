@@ -144,9 +144,9 @@ namespace ViewModel
             var query = "select count(*) from BillState where izCB = '1' and BillID ='" + MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date + "'";
             return serverContext.ExecuteQuery<int>(query).First();
         }
-        public int CheckIzDS()
+        public int CheckIzDS(int nam, string ky, string dot)
         {
-            var query = "select count(*) from BillState where izDS = '1' and BillID ='" + MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date + "'";
+            var query = "select count(*) from BillState where izDS = '1' and BillID ='" +nam +ky+ dot+ "'";
             return serverContext.ExecuteQuery<int>(query).First();
         }
 

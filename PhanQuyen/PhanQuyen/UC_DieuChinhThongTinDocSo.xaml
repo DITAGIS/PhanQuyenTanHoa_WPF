@@ -207,6 +207,7 @@
                         <!--Ghi chú đọc số-->
                         <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Ghi chú ĐS:"/></TextBlock>
                         <TextBox  FontSize="15" Height="30" Width="200" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbGCDS"
+                                  KeyDown="txtbGCDS_KeyDown"
                       Text="{Binding SelectedHoaDon.GhiChuDS, Mode=TwoWay}"/>
                         <!--Ghi chú đọc số-->
                         <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Ghi chú KH:"/></TextBlock>
