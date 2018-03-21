@@ -29,7 +29,10 @@ namespace PhanQuyen
         {
             InitializeComponent();
             cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
-
+            for (int i = 1; i <= 20; i++)
+                cbbDate.Items.Add(i.ToString("00"));
+            for (int i = 1; i <= 12; i++)
+                cbbMonth.Items.Add(i.ToString("00"));
 
         }
 
@@ -50,9 +53,23 @@ namespace PhanQuyen
         }
         private void HandleLoginSuccess()
         {
+
+
             user.Year = cbbYear.SelectedValue.ToString();
             user.Month = cbbMonth.SelectedValue.ToString();
             user.Date = cbbDate.SelectedValue.ToString();
+            string sqlstatement = "Insert into BillState(BillID) values('" + user.Year + user.Month + user.Date + "')";
+            try
+            {
+                ConnectionViewModel.getInstance.Connect();
+                ConnectionViewModel.getInstance.GetExecuteNonQuerry(sqlstatement);
+                ConnectionViewModel.getInstance.DisConnect();
+            }
+            catch
+            {
+                ConnectionViewModel.getInstance.DisConnect();
+            }
+
             MainWindow mainWindow = new MainWindow(user);
             mainWindow.Show();
             this.Close();
@@ -67,7 +84,7 @@ namespace PhanQuyen
             try
             {
                 year = Int16.Parse(cbbYear.SelectedValue.ToString());
-                cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(year);
+                //cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(year);
             }
             catch
             {
@@ -89,17 +106,10 @@ namespace PhanQuyen
             try
             {
                 month = cbbMonth.SelectedValue.ToString();
-                cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
+                //cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
             }
             catch { }
         }
 
-        //private void txtbPassword_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (e.Key == Key.Enter)
-        //    {
-        //        login();
-        //    }
-        //}
     }
 }

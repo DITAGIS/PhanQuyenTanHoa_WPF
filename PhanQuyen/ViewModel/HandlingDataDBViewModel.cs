@@ -175,10 +175,11 @@ namespace ViewModel
         }
         public int UpdateDocSo(DocSo docSo)
         {
+            ConnectionViewModel.getInstance.Connect();
             StringBuilder builder = new StringBuilder();
-            builder.Append("Update DocSo set DanhBa = '" + docSo.DanhBa + "',MLT1 = '" + docSo.MLT1 + "',MLT2 = '" + docSo.MLT2 + "','");
+            builder.Append("Update DocSo set DanhBa = '" + docSo.DanhBa + "',MLT1 = '" + docSo.MLT1 + "',MLT2 = '" + docSo.MLT2);
             builder.Append("',SoNhaCu = '" + docSo.SoNhaCu + "',SoNhaMoi = '" + docSo.SoNhaMoi + "',Duong = '" + docSo.Duong + "',SDT = '" + docSo.SDT);
-            builder.Append("',GB = '" + docSo.GB + "',DM = '" + docSo.DM + "',Nam = '" + docSo.Nam + "','" + "',Ky = '" + docSo.Ky + "',Dot = '" + docSo.Dot);
+            builder.Append("',GB = '" + docSo.GB + "',DM = '" + docSo.DM + "',Nam = '" + docSo.Nam+ "',Ky = '" + docSo.Ky + "',Dot = '" + docSo.Dot);
             builder.Append("',May = '" + docSo.May + "',ToDS = '" + docSo.TODS + "',CSCu = '" + docSo.CSCu + "',CodeCu = '" + docSo.CodeCu + "',TTDHNCu = '" + docSo.TTDHNCu);
             builder.Append("',TieuThuCu = '" + docSo.TieuThuCu + "',SoThanCu = '" + docSo.SoThanCu + "',SoThanMoi = '" + docSo.SoThanMoi + "',HieuCu = '" + docSo.HieuCu);
             builder.Append("',HieuMoi = '" + docSo.HieuMoi + "',CoCu = '" + docSo.CoCu + "',CoMoi = '" + docSo.CoMoi + "',GiengCu = '" + docSo.GiengCu);
@@ -187,8 +188,11 @@ namespace ViewModel
             builder.Append("',ChiCoCu = '" + docSo.ChiCoCu + "',ChiCoMoi = '" + docSo.ChiCoMoi + "',CapDoCu = '" + docSo.CapDoCu + "',CapDoMoi = '" + docSo.CapDoMoi);
             builder.Append("',CongDungCu = '" + docSo.CongDungCu + "',CongDungMoi = '" + docSo.CongDungMoi + "',DMACu = '" + docSo.DMACu + "',  DMAMoi = '" + docSo.DMAMoi);
             builder.Append("', StaCapNhat = '' where DocSoID = '" + docSo.DocSoID + "'");
-            var value = serverContext.ExecuteQuery<int>(builder.ToString()).ToList();
-            return value.Count;
+
+            int value = ConnectionViewModel.getInstance.GetExecuteNonQuerry(builder.ToString());
+            ConnectionViewModel.getInstance.DisConnect();
+            //var value = serverContext.ExecuteQuery<int>(builder.ToString()).ToList();
+            return value;
         }
         public int InsertDocSo(DocSo docSo)
         {

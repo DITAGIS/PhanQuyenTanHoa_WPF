@@ -34,7 +34,7 @@ namespace PhanQuyen
         public UC_KiemTraDuLieu()
         {
             InitializeComponent();
-           
+
             cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
             cbbYear.SelectedValue = MyUser.Instance.Year;
             for (int i = 1; i <= 20; i++)
@@ -105,8 +105,14 @@ namespace PhanQuyen
                 {
                     System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
                     {
+
+
+
                         int capNhatKH = HandlingDataDBViewModel.Instance.CapNhatKH(year, month, date);
                         txtbStatus.Text = "Cập nhật " + capNhatKH + " khách hàng";
+                    }), DispatcherPriority.Loaded);
+                    System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
                         if (HandlingDataDBViewModel.Instance.CheckExistBienDong_KiemTraGanMoi(year, month, date))
                         {
                             new KHGanMoi_HuyWindow(year, month, date, true).ShowDialog();
@@ -115,30 +121,48 @@ namespace PhanQuyen
                         }
                         else
                             txtbStatus.Text = "Gắn mới 0 khách hàng";
-
-                        //if (HandlingDataDBViewModel.Instance.CheckExistKHHuy(year, month, date))
+                        Thread.Sleep(500);
+                    }), DispatcherPriority.Loaded);
+                    System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
                         if (HandlingDataDBViewModel.Instance.CheckExistBienDong_KiemTraHuy(year, month, date))
                         {
                             new KHGanMoi_HuyWindow(year, month, date, false).ShowDialog();
                         }
                         int huy = HandlingDataDBViewModel.Instance.HuyKhachHang(year, month, date);
                         this.txtbStatus.Text = "Hủy " + huy + " khách hàng cũ";
-                        int num5 = dateTime.Year;
-                        num5 = dateTime.Month;
-                        string str4 = num5.ToString("00");
-
+                        Thread.Sleep(500);
+                    }), DispatcherPriority.Loaded);
+                    int num5 = dateTime.Year;
+                    num5 = dateTime.Month;
+                    string str4 = num5.ToString("00");
+                    System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
 
                         int capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code4(dateTime.Year, str4, date);
                         this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 4";
-
-                        capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code4_Lan2(dateTime.Year, str4, date);
+                        Thread.Sleep(500);
+                    }), DispatcherPriority.Loaded);
+                    System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        int capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code4_Lan2(dateTime.Year, str4, date);
                         this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 4";
-
-                        capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code5_8_M(dateTime.Year, str4, date);
+                        Thread.Sleep(500);
+                    }), DispatcherPriority.Loaded);
+                    System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        int capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code5_8_M(dateTime.Year, str4, date);
                         this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 5,8,M";
-
-                        capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code6_K_F_N(dateTime.Year, str4, date);
+                        Thread.Sleep(500);
+                    }), DispatcherPriority.Loaded);
+                    System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
+                        int capNhatCode = HandlingDataDBViewModel.Instance.Update_Docso_KiemTraDuLieu_Code6_K_F_N(dateTime.Year, str4, date);
                         this.txtbStatus.Text = "Cập nhật " + capNhatCode + " code 6,K,F,N";
+                        Thread.Sleep(500);
+                    }), DispatcherPriority.Loaded);
+                    System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                    {
                         try
                         {
                             HandlingDataDBViewModel.Instance.ChuanBiDocSo(year, month, date);
@@ -149,6 +173,8 @@ namespace PhanQuyen
                         }
                         this.txtbStatus.Text = "Chuẩn bị hoàn tất";
                     }), DispatcherPriority.Loaded);
+
+
                 }
             }
         }

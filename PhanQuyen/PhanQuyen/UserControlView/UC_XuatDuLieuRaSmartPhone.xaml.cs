@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using ViewModel;
 
 namespace PhanQuyen.UserControlView
@@ -291,124 +292,99 @@ namespace PhanQuyen.UserControlView
                             {
                                 List<MyKhachHang> lst = HandlingDataDBViewModel.Instance.GetKhachHang_TaoFile(str2, date);
 
-                                for (int index2 = 0; index2 < lst.Count; ++index2)
+                                for (int index2 = 0; index2 < lst.Count; )
                                 {
-                                    MyKhachHang khachHang = lst.ElementAt(index2);
-                                    string[] strArray = this.ChuanBiKH(khachHang.DanhBa, year.ToString(), month);
-                                    DocSo docSo = new DocSo()
-                                    {
-                                        DocSoID = year + month + khachHang.DanhBa,
-                                        DanhBa = khachHang.DanhBa,
-                                        MLT1 = khachHang.MLT1,
-                                        MLT2 = khachHang.MLT2,
-                                        TenKH = khachHang.TenKH.Replace("\r\n", "").Replace("'", "").Replace("\n", "").Replace("|", "/"),
-                                        SoNhaCu = khachHang.So.Replace("|", ""),
-                                        SoNhaMoi = khachHang.SoMoi == null ? "" : khachHang.SoMoi,
-                                        Duong = khachHang.Duong,
-                                        SDT = khachHang.SDT == null ? "" : khachHang.SDT,
-                                        GB = khachHang.GB.ToString(),
-                                        DM = khachHang.DM.ToString(),
-                                        Nam = year,
-                                        Ky = month,
-                                        Dot = date,
-                                        May = str2,
-                                        TBTT = int.Parse(strArray[2]),
-                                        TamTinh = int.Parse(strArray[14]),
-                                        CSCu = int.Parse(strArray[0]),
-                                        //CSMoi = "",
-                                        CodeCu = strArray[3],
-                                        CodeMoi = "",
-                                        TTDHNCu = strArray[1].Trim(),
-                                        TTDHNMoi = "",
-                                        TieuThuCu = int.Parse(strArray[4]),
-                                        TieuThuMoi = 0,
-                                        DenNgay = dpkDenNgay.SelectedDate,
-                                        TienNuoc = 0,
-                                        BVMT = 0,
-                                        Thue = 0,
-                                        TongTien = 0,
-                                        SoThanCu = khachHang.SoThan == null ? "" : khachHang.SoThan,
-                                        SoThanMoi = "",
-                                        HieuCu = khachHang.Hieu == null ? "" : khachHang.Hieu,
-                                        HieuMoi = "",
-                                        CoCu = khachHang.Co == null ? "" : khachHang.Co,
-                                        CoMoi = "",
-                                        GiengCu = khachHang.Gieng == null ? "" : khachHang.Gieng,
-                                        GiengMoi = "",
-                                        Van1Cu = khachHang.Van1 == null ? "" : khachHang.Van1,
-                                        Van1Moi = "",
-                                        MVCu = khachHang.MaVach == null ? "" : khachHang.MaVach,
-                                        MVMoi = "",
-                                        ViTriCu = khachHang.ViTri == null ? "" : khachHang.ViTri,
-                                        ViTriMoi = "",
-                                        ChiThanCu = khachHang.ChiThan == null ? "" : khachHang.ChiThan,
-                                        ChiThanMoi = "",
-                                        ChiCoCu = khachHang.ChiCo == null ? "" : khachHang.ChiCo,
-                                        ChiCoMoi = "",
-                                        CapDoCu = khachHang.CapDo == null ? "" : khachHang.CapDo,
-                                        CapDoMoi = "",
-                                        CongDungCu = khachHang.CongDung == null ? "" : khachHang.CongDung,
-                                        CongDungMoi = "",
-                                        DMACu = khachHang.DMA == null ? "" : khachHang.DMA,
-                                        DMAMoi = "",
-                                        GhiChuKH = khachHang.GhiChuKH == null ? "" : khachHang.GhiChuKH,
-                                        GhiChuDS = "",
-                                        TODS = int.Parse(khachHang.ToID)
-                                    };
-                                    if (!strArray[5].Equals(""))
-                                        docSo.TuNgay = DateTime.ParseExact(strArray[5], "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                                    else if (!khachHang.NgayGanCV.Equals(""))
-                                        docSo.TuNgay = DateTime.ParseExact(khachHang.NgayGanCV, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                                    else
-                                    {
-                                        docSo.TuNgay = dpkTuNgay.SelectedDate;
-                                    }
-                                    int insert = HandlingDataDBViewModel.Instance.InsertDocSo(docSo);
-                                    if(insert == 0)
-                                    {
+                                    System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                                      {
+                                          MyKhachHang khachHang = lst.ElementAt(index2);
+                                          string[] strArray = this.ChuanBiKH(khachHang.DanhBa, year.ToString(), month);
+                                          DocSo docSo = new DocSo()
+                                          {
+                                              DocSoID = year + month + khachHang.DanhBa,
+                                              DanhBa = khachHang.DanhBa,
+                                              MLT1 = khachHang.MLT1,
+                                              MLT2 = khachHang.MLT2,
+                                              TenKH = khachHang.TenKH.Replace("\r\n", "").Replace("'", "").Replace("\n", "").Replace("|", "/"),
+                                              SoNhaCu = khachHang.So.Replace("|", ""),
+                                              SoNhaMoi = khachHang.SoMoi == null ? "" : khachHang.SoMoi,
+                                              Duong = khachHang.Duong,
+                                              SDT = khachHang.SDT == null ? "" : khachHang.SDT,
+                                              GB = khachHang.GB.ToString(),
+                                              DM = khachHang.DM.ToString(),
+                                              Nam = year,
+                                              Ky = month,
+                                              Dot = date,
+                                              May = str2,
+                                              TBTT = int.Parse(strArray[2]),
+                                              TamTinh = int.Parse(strArray[14]),
+                                              CSCu = int.Parse(strArray[0]),
+                                            //CSMoi = "",
+                                            CodeCu = strArray[3],
+                                              CodeMoi = "",
+                                              TTDHNCu = strArray[1].Trim(),
+                                              TTDHNMoi = "",
+                                              TieuThuCu = int.Parse(strArray[4]),
+                                              TieuThuMoi = 0,
+                                              DenNgay = dpkDenNgay.SelectedDate,
+                                              TienNuoc = 0,
+                                              BVMT = 0,
+                                              Thue = 0,
+                                              TongTien = 0,
+                                              SoThanCu = khachHang.SoThan == null ? "" : khachHang.SoThan,
+                                              SoThanMoi = "",
+                                              HieuCu = khachHang.Hieu == null ? "" : khachHang.Hieu,
+                                              HieuMoi = "",
+                                              CoCu = khachHang.Co == null ? "" : khachHang.Co,
+                                              CoMoi = "",
+                                              GiengCu = khachHang.Gieng == null ? "" : khachHang.Gieng,
+                                              GiengMoi = "",
+                                              Van1Cu = khachHang.Van1 == null ? "" : khachHang.Van1,
+                                              Van1Moi = "",
+                                              MVCu = khachHang.MaVach == null ? "" : khachHang.MaVach,
+                                              MVMoi = "",
+                                              ViTriCu = khachHang.ViTri == null ? "" : khachHang.ViTri,
+                                              ViTriMoi = "",
+                                              ChiThanCu = khachHang.ChiThan == null ? "" : khachHang.ChiThan,
+                                              ChiThanMoi = "",
+                                              ChiCoCu = khachHang.ChiCo == null ? "" : khachHang.ChiCo,
+                                              ChiCoMoi = "",
+                                              CapDoCu = khachHang.CapDo == null ? "" : khachHang.CapDo,
+                                              CapDoMoi = "",
+                                              CongDungCu = khachHang.CongDung == null ? "" : khachHang.CongDung,
+                                              CongDungMoi = "",
+                                              DMACu = khachHang.DMA == null ? "" : khachHang.DMA,
+                                              DMAMoi = "",
+                                              GhiChuKH = khachHang.GhiChuKH == null ? "" : khachHang.GhiChuKH,
+                                              GhiChuDS = "",
+                                              TODS = int.Parse(khachHang.ToID)
+                                          };
+                                          if (!strArray[5].Equals(""))
+                                              docSo.TuNgay = DateTime.ParseExact(strArray[5], "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                                          else if (!khachHang.NgayGanCV.Equals(""))
+                                              docSo.TuNgay = DateTime.ParseExact(khachHang.NgayGanCV, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                                          else
+                                          {
+                                              docSo.TuNgay = dpkTuNgay.SelectedDate;
+                                          }
 
-                                    }
-                                    //                    this.rowdtKH["NgayGan"] = dataRow["NgayGanCV"];
-                                    //                    this.rowdtKH["Ky0"] = (object)strArray[15];
-                                    //                    this.rowdtKH["Ky1"] = (object)strArray[6];
-                                    //                    this.rowdtKH["CodeCu1"] = (object)strArray[7];
-                                    //                    this.rowdtKH["ChiSoCu1"] = (object)strArray[8];
-                                    //                    this.rowdtKH["TieuThuCu1"] = (object)strArray[9];
-                                    //                    this.rowdtKH["Ky2"] = (object)strArray[10];
-                                    //                    this.rowdtKH["CodeCu2"] = (object)strArray[11];
-                                    //                    this.rowdtKH["ChiSoCu2"] = (object)strArray[12];
-                                    //                    this.rowdtKH["TieuThuCu2"] = (object)strArray[13];
-                                    //                    string str6 = dataRow["ToID"].ToString();
-                                    //                    this.dtKH.Rows.Add(this.rowdtKH);
-                                    //                    try
-                                    //                    {
-                                    //                        string sqlstatement = "insert into DocSo values('" + this.rowdtKH["Nam"] + this.rowdtKH["Ky"] + this.rowdtKH["DanhBa"] + "','" + this.rowdtKH["DanhBa"] + "','" + this.rowdtKH["MLT1"] + "','" + this.rowdtKH["MLT2"] + "','" + this.rowdtKH["SoNhaCu"] + "','" + this.rowdtKH["SoNhaMoi"] + "','" + this.rowdtKH["Duong"] + "','" + this.rowdtKH["SDT"] + "','" + this.rowdtKH["GB"] + "','" + this.rowdtKH["DM"] + "','" + this.rowdtKH["Nam"] + "','" + this.rowdtKH["Ky"] + "','" + this.rowdtKH["Dot"] + "','" + this.rowdtKH[GV.May] + "','" + this.rowdtKH["TBTT"] + "','" + this.rowdtKH["TamTinh"] + "','" + this.rowdtKH["CSCu"] + "','" + this.rowdtKH["CSMoi"] + "','" + this.rowdtKH["CodeCu"] + "','" + this.rowdtKH["CodeMoi"] + "','" + this.rowdtKH["TTDHNCu"] + "','" + this.rowdtKH["TTDHNMoi"] + "','" + this.rowdtKH["TieuThuCu"] + "','" + this.rowdtKH["TieuThuMoi"] + "',@TuNgay,@DenNgay,'" + this.rowdtKH["TienNuoc"] + "','" + this.rowdtKH["BVMT"] + "','" + this.rowdtKH["Thue"] + "','" + this.rowdtKH["TongTien"] + "','" + this.rowdtKH["SoThanCu"] + "','" + this.rowdtKH["SoThanMoi"] + "','" + this.rowdtKH["HieuCu"] + "','" + this.rowdtKH["HieuMoi"] + "','" + this.rowdtKH["CoCu"] + "','" + this.rowdtKH["CoMoi"] + "','" + this.rowdtKH["GiengCu"] + "','" + this.rowdtKH["GiengMoi"] + "','" + this.rowdtKH["Van1Cu"] + "','" + this.rowdtKH["Van1Moi"] + "','" + this.rowdtKH["MVCu"] + "','" + this.rowdtKH["MVMoi"] + "','" + this.rowdtKH["ViTriCu"] + "','" + this.rowdtKH["ViTriMoi"] + "','" + this.rowdtKH["ChiThanCu"] + "','" + this.rowdtKH["ChiThanMoi"] + "','" + this.rowdtKH["ChiCoCu"] + "','" + this.rowdtKH["ChiCoMoi"] + "','" + this.rowdtKH["CapDoCu"] + "','" + this.rowdtKH["CapDoMoi"] + "','" + this.rowdtKH["CongDungCu"] + "','" + this.rowdtKH["CongDungMoi"] + "','" + this.rowdtKH["DMACu"] + "','" + this.rowdtKH["DMAMoi"] + "','" + this.rowdtKH["GhiChuKH"].ToString().Replace('|', ' ') + "','" + this.rowdtKH["GhiChuDS"].ToString().Replace('|', ' ') + "',@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,'" + str6 + "')";
-                                    //                        pcData2.GetExecuteNonQuerry(sqlstatement);
-                                    //                    }
-                                    //                    catch (SqlException ex)
-                                    //                    {
-                                    //                        string sqlstatement = "Update DocSo set DanhBa = '" + this.rowdtKH["DanhBa"] + "',MLT1 = '" + this.rowdtKH["MLT1"] + "',MLT2 = '" + this.rowdtKH["MLT2"] + "',SoNhaCu = '" + this.rowdtKH["SoNhaCu"] + "',SoNhaMoi = '" + this.rowdtKH["SoNhaMoi"] + "',Duong = '" + this.rowdtKH["Duong"] + "',SDT = '" + this.rowdtKH["SDT"] + "',GB = '" + this.rowdtKH["GB"] + "',DM = '" + this.rowdtKH["DM"] + "',Nam = '" + this.rowdtKH["Nam"] + "',Ky = '" + this.rowdtKH["Ky"] + "',Dot = '" + this.rowdtKH["Dot"] + "',May = '" + this.rowdtKH[GV.May] + "',ToDS = '" + str6 + "',CSCu = '" + this.rowdtKH["CSCu"] + "',CodeCu = '" + this.rowdtKH["CodeCu"] + "',TTDHNCu = '" + this.rowdtKH["TTDHNCu"] + "',TieuThuCu = '" + this.rowdtKH["TieuThuCu"] + "',SoThanCu = '" + this.rowdtKH["SoThanCu"] + "',SoThanMoi = '" + this.rowdtKH["SoThanMoi"] + "',HieuCu = '" + this.rowdtKH["HieuCu"] + "',HieuMoi = '" + this.rowdtKH["HieuMoi"] + "',CoCu = '" + this.rowdtKH["CoCu"] + "',CoMoi = '" + this.rowdtKH["CoMoi"] + "',GiengCu = '" + this.rowdtKH["GiengCu"] + "',GiengMoi = '" + this.rowdtKH["GiengMoi"] + "',Van1Cu = '" + this.rowdtKH["Van1Cu"] + "',Van1Moi = '" + this.rowdtKH["Van1Moi"] + "',MVCu = '" + this.rowdtKH["MVCu"] + "',MVMoi = '" + this.rowdtKH["MVMoi"] + "',ViTriCu = '" + this.rowdtKH["ViTriCu"] + "',ViTriMoi = '" + this.rowdtKH["ViTriMoi"] + "',ChiThanCu = '" + this.rowdtKH["ChiThanCu"] + "',ChiThanMoi = '" + this.rowdtKH["ChiThanMoi"] + "',ChiCoCu = '" + this.rowdtKH["ChiCoCu"] + "',ChiCoMoi = '" + this.rowdtKH["ChiCoMoi"] + "',CapDoCu = '" + this.rowdtKH["CapDoCu"] + "',CapDoMoi = '" + this.rowdtKH["CapDoMoi"] + "',CongDungCu = '" + this.rowdtKH["CongDungCu"] + "',CongDungMoi = '" + this.rowdtKH["CongDungMoi"] + "',DMACu = '" + this.rowdtKH["DMACu"] + "',  DMAMoi = '" + this.rowdtKH["DMAMoi"] + "', StaCapNhat = @EmptyValue where DocSoID = '" + this.rowdtKH["Nam"] + this.rowdtKH["Ky"] + this.rowdtKH["DanhBa"] + "'";
-                                    //                        pcData2.GetExecuteNonQuerry(sqlstatement);
-                                    //                    }
-                                    //                    if (index2 < count - 1)
-                                    //                    {
-                                    //                        if (index2 % 10 == 0)
-                                    //                        {
-                                    //                            this.toolStripProgressBar.Value = index2;
-                                    //                            this.toolStripStatusLabel.Text = str3 + ": " + (object)index2 + "/" + (object)count;
-                                    //                            GC.Collect();
-                                    //                            GC.WaitForPendingFinalizers();
-                                    //                            this.Refresh();
-                                    //                        }
-                                    //                    }
-                                    //                    else
-                                    //                    {
-                                    //                        this.toolStripProgressBar.Value = count;
-                                    //                        this.toolStripStatusLabel.Text = str3 + ": " + (object)count + "/" + (object)count;
-                                    //                        GC.Collect();
-                                    //                        GC.WaitForPendingFinalizers();
-                                    //                        this.Refresh();
-                                    //                    }
+                                          int insert = HandlingDataDBViewModel.Instance.InsertDocSo(docSo);
+                                          if (insert == 0)
+                                          {
+                                              HandlingDataDBViewModel.Instance.UpdateDocSo(docSo);
+                                          }
+                                          if (index2 < lst.Count - 1)
+                                          {
+                                              if (index2 % 10 == 0)
+                                              {
+                                                  txtbStatus.Text = str3 + ": " + (object)index2 + "/" + (object)lst.Count;
+                                              }
+                                          }
+                                          else
+                                          {
+                                              txtbStatus.Text = str3 + ": " + (object)lst.Count + "/" + (object)lst.Count;
+                                          }
+                                          ++index2;
+                                      }), DispatcherPriority.Loaded);
                                 }
                             }
                             catch (Exception ex)
