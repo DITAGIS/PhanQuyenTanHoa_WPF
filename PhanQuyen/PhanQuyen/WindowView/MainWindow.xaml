@@ -57,7 +57,8 @@
                 </RibbonGroup>
                 <RibbonGroup Header="Cài đặt">
                     <RibbonButton Label="Cấu hình hệ thống"  LargeImageSource="/PhanQuyen;component/Images/settings.png"></RibbonButton>
-                    <RibbonButton Label="Đổi mật khẩu"  LargeImageSource="/PhanQuyen;component/Images/password.png"></RibbonButton>
+                    <RibbonButton Label="Đổi mật khẩu"  LargeImageSource="/PhanQuyen;component/Images/password.png"
+                                  Name="ribBtnChangePassword" Click="ribBtnChangePassword_Click"></RibbonButton>
                 </RibbonGroup>
 
             </RibbonTab>

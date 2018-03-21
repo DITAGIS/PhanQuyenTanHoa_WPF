@@ -85,11 +85,9 @@ namespace PhanQuyen.UserControlView
 
         private void GetDanhMucFileDaTao()
         {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            string empty2 = string.Empty;
-            if (DialogResult.OK != folderBrowserDialog.ShowDialog())
+            if (txtDirectory.Text.Length < 5)
                 return;
-            string path = folderBrowserDialog.SelectedPath;
+            string path = txtDirectory.Text;
             List<TruyenDuLieu> tmp = new List<TruyenDuLieu>();
             foreach (FileSystemInfo file in new DirectoryInfo(path).GetFiles())
             {
@@ -260,6 +258,8 @@ namespace PhanQuyen.UserControlView
         }
         private void btnTaoFile_Click(object sender, RoutedEventArgs e)
         {
+            if (txtDirectory.Text.Length < 5)
+                return;
             if (!CheckDot(cbbDate.Text, cbbDate.Items))
             {
                 cbbDate.Text = int.Parse(cbbDate.Text).ToString("00");
@@ -393,12 +393,8 @@ namespace PhanQuyen.UserControlView
                                 int num2 = (int)System.Windows.Forms.MessageBox.Show("btnTaoFile_Click: " + ex.Message + docsoList.ElementAt(0).ToString());
                                 docsoList.Clear();
                             }
-                            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-                            string empty2 = string.Empty;
-                            if (DialogResult.OK != folderBrowserDialog.ShowDialog())
-                                return;
-                            string path = folderBrowserDialog.SelectedPath + "\\" + str3;
-                            StreamWriter sw = new StreamWriter(path, false);
+                            string path = txtDirectory.Text + "\\" + str3;
+                            TextWriter tw = new StreamWriter(new FileStream(path, FileMode.Create), Encoding.UTF8);
                             if (docsoList.Count == 0)
                             {
                                 File.Delete(path);
@@ -421,12 +417,17 @@ namespace PhanQuyen.UserControlView
                                     {
                                         str4 += '|' + value.ToString();
                                     }
-                                    sw.WriteLine(str4);
+                                    tw.WriteLine(str4);
 
 
                                 }
                             }
                             this.GetDanhMucFileDaTao();
+                            if (tw == null)
+                                return;
+                            tw.Close();
+                            tw.Dispose();
+
                         }
                     }
                 }
@@ -464,6 +465,19 @@ namespace PhanQuyen.UserControlView
         private void columnHeader_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnSelectFolder_Click(object sender, RoutedEventArgs e)
+        {
+            SelectFolder();
+        }
+        private void SelectFolder()
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            string empty2 = string.Empty;
+            if (DialogResult.OK != folderBrowserDialog.ShowDialog())
+                return;
+            txtDirectory.Text = folderBrowserDialog.SelectedPath;
         }
         #region year, month, date
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)

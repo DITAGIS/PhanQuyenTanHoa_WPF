@@ -40,6 +40,7 @@ namespace PhanQuyen
         UC_KiemTraDuLieu uc_KiemTraDuLieu;
         UC_ThongKeDHNTheoDotSo uc_ThongKeDHNTheoDotSo;
         UC_XuatDuLieuRaSmartPhone uc_XuatDuLieuRaSmartPhone;
+        UC_DoiMatkhau uc_DoiMatKhau;
         private MyUser user;
         private String title = "Phần mềm kết nối ứng dụng đọc số trên Smartphone            Nhân viên: ";
         public MainWindow()
@@ -165,6 +166,11 @@ namespace PhanQuyen
                 uc_XuatDuLieuRaSmartPhone.Height = stkMain.ActualHeight;
                 uc_XuatDuLieuRaSmartPhone.Width = stkMain.ActualWidth;
             }
+            if (uc_DoiMatKhau != null)
+            {
+                uc_DoiMatKhau.Height = stkMain.ActualHeight;
+                uc_DoiMatKhau.Width = stkMain.ActualWidth;
+            }
         }
 
 
@@ -176,7 +182,7 @@ namespace PhanQuyen
             if (stkMain.Children.Count == 1)
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_DieuChinhThonTinDocSo);
-            this.Title = this.title  + "            Điều chỉnh thông tin đọc số";
+            this.Title = this.title + "            Điều chỉnh thông tin đọc số";
         }
 
         private void ribBtnInPhieuTieuThuKH_Click(object sender, RoutedEventArgs e)
@@ -334,6 +340,17 @@ namespace PhanQuyen
             stkMain.Children.Add(uc_ThongKeDHNTrenMang);
             this.Title = this.title + "             Thống kê ĐHN trên mạng";
         }
+
+        private void ribBtnChangePassword_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_DoiMatKhau == null)
+                uc_DoiMatKhau = new UC_DoiMatkhau();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_DoiMatKhau);
+            this.Title = this.title + "             Đổi mật khẩu";
+        }
         private void ribBtnHoanTatDocSo_Click(object sender, RoutedEventArgs e)
         {
             if (System.Windows.Forms.MessageBox.Show("Bạn có chắc chắn hoàn tất dữ liệu đọc số không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != System.Windows.Forms.DialogResult.Yes)
@@ -367,8 +384,6 @@ namespace PhanQuyen
                 System.Windows.Forms.MessageBox.Show("Lỗi khi hoàn tất đọc số: " + ex.Message);
             }
         }
-
-
 
 
     }
