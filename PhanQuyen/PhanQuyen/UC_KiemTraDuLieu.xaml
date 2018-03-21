@@ -29,101 +29,100 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <DockPanel LastChildFill="True" Background="White">
-        <!--<StackPanel DockPanel.Dock="Top" Orientation="Horizontal"  Background="WhiteSmoke" >-->
-        <!--<TextBlock DockPanel.Dock="Top" HorizontalAlignment="Right" FontSize="15" Margin="0,0,10,0" Text="{Binding Status, Mode=OneWay}" VerticalAlignment="Center"/>-->
-        <!--</StackPanel>-->
-        <!--<StatusBar DockPanel.Dock="Bottom">
+
+    <DockPanel LastChildFill="True">
+        <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem Margin="10,0,0,0">
 
                 <TextBlock FontSize="15" Text="{Binding Status, Mode=OneWay}"
-                               Margin="10,0"
-                           VerticalAlignment="Center"  HorizontalAlignment="Left" />
-
-            </StatusBarItem>
-        </StatusBar>-->
-        <ScrollViewer Name="scrollMain">
-            <DockPanel LastChildFill="True">
-                <StatusBar DockPanel.Dock="Bottom">
-                    <StatusBarItem Margin="10,0,0,0">
-
-                        <TextBlock FontSize="15" Text="{Binding Status, Mode=OneWay}"
                                    Name="txtbStatus"
                                Margin="10,0"
                            VerticalAlignment="Center"  HorizontalAlignment="Left" />
 
-                    </StatusBarItem>
-                </StatusBar>
+            </StatusBarItem>
+        </StatusBar>
 
-                <Grid Margin="10">
-                    <Grid.Resources>
-                        <Style TargetType="{x:Type TextBlock}" x:Key="styleTxbl">
-                            <Style.Triggers>
-                                <EventTrigger RoutedEvent="UIElement.MouseEnter">
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="20"></DoubleAnimation>
+        <Grid Background="Azure"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Top"
+              Margin="100">
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBlock}" x:Key="styleTxbl">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="UIElement.MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="20"></DoubleAnimation>
 
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                                <EventTrigger RoutedEvent="UIElement.MouseLeave">
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="13"></DoubleAnimation>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                            </Style.Triggers>
-                        </Style>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="UIElement.MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="13"></DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
 
-                    </Grid.Resources>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition ></RowDefinition>
+                <RowDefinition ></RowDefinition>
 
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal"  Name="stpCondition"  >
-                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Năm:"/></TextBlock>
-                        <ComboBox x:Name="cbbYear" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="50"
+            </Grid.RowDefinitions>
+         
+            <StackPanel Grid.Row="0" 
+                        Margin="50"
+                        VerticalAlignment="Center" Orientation="Horizontal"  Name="stpCondition"  >
+                <TextBlock VerticalAlignment="Center" FontSize="15" Margin="0,0,10,0"><Run Text="Năm:"/></TextBlock>
+                <ComboBox x:Name="cbbYear" 
+                          FontSize="15"
+                          SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" 
                       SelectedValue="{Binding Year, Mode=TwoWay}" 
                               
                       ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
                               SelectionChanged="cbbYear_SelectionChanged">
 
-                        </ComboBox>
+                </ComboBox>
 
-                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Kỳ:"/></TextBlock>
-                        <ComboBox x:Name="cbbMonth" SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" Width="45"
+                <TextBlock VerticalAlignment="Center" FontSize="15" Margin="50,0,10,0"><Run Text="Kỳ:"/></TextBlock>
+                <ComboBox x:Name="cbbMonth" FontSize="15"
+                          SelectedIndex="0" IsEditable="True" VerticalAlignment="Center" 
                       SelectedValue="{Binding Month, Mode=TwoWay}" 
                               
                       ItemsSource="{Binding ListMonth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
                               SelectionChanged="cbbMonth_SelectionChanged" />
-                        <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Đợt:"/></TextBlock>
-                        <ComboBox x:Name="cbbDate" SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center" Width="45"
+                <TextBlock VerticalAlignment="Center" FontSize="15" Margin="50,0,10,0"><Run Text="Đợt:"/></TextBlock>
+                <ComboBox x:Name="cbbDate" FontSize="15"
+                          SelectedIndex="0" IsEditable="True"  VerticalAlignment="Center"
                       SelectedValue="{Binding Date, Mode=OneWay}" 
                               
                       ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
                               SelectionChanged="cbbDate_SelectionChanged"/>
 
+            </StackPanel>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" 
+                            Margin="50,0,50,50">
+                <CheckBox Content="Load biến động" 
+                          FontSize="15"
+                          VerticalAlignment="Center"
+                          Name="ckbLoadBienDong"/>
+                <Button Margin="100,0,0,0" Background="White" Name="btnUpdate" 
+                         VerticalAlignment="Center"
+                            Click="btnUpdate_Click"                       >
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <Image Source="/PhanQuyen;component/Images/up-arrow.png" Width="20" Height="20"></Image>
+                        <TextBlock  FontSize="15"
+                                    VerticalAlignment="Center" Margin="10" >Thực hiện</TextBlock>
                     </StackPanel>
-                    <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" 
-                            Margin="0,50,0,0">
-                        <CheckBox Content="Load biến động" Name="ckbLoadBienDong"/>
-                        <Button Margin="10,0,0,0" Background="White" Name="btnUpdate" 
-                            Click="btnUpdate_Click">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="/PhanQuyen;component/Images/up-arrow.png" Width="20" Height="20"></Image>
-                                <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Thực hiện</TextBlock>
-                            </StackPanel>
-                        </Button>
-                    </StackPanel>
+                </Button>
+            </StackPanel>
 
-                </Grid>
-            </DockPanel>
-        </ScrollViewer>
+        </Grid>
     </DockPanel>
+
 </UserControl>

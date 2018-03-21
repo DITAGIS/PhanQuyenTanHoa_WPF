@@ -17,7 +17,10 @@
 
             </StatusBarItem>
         </StatusBar>
-        <Grid Margin="5">
+        <Grid Margin="5"
+              Background="Azure"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center">
             <Grid.Resources>
                 <Style TargetType="{x:Type TextBlock}" x:Key="styleTxbl">
                     <Style.Triggers>
@@ -51,7 +54,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal"  Name="stpCondition"  >
+            <StackPanel Grid.Row="0" 
+                        Margin="20" VerticalAlignment="Center" Orientation="Horizontal"  Name="stpCondition"  >
                 <TextBlock  VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Năm:"/></TextBlock>
                 <ComboBox x:Name="cbbYear" SelectedIndex="-1" IsEditable="True" VerticalAlignment="Center" Width="50"
                       SelectedValue="{Binding Year, Mode=TwoWay}" 
@@ -60,17 +64,17 @@
 
                 </ComboBox>
 
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Kỳ:"/></TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="50,0,10,0"><Run Text="Kỳ:"/></TextBlock>
                 <ComboBox x:Name="cbbMonth" SelectedIndex="-1" IsEditable="True" VerticalAlignment="Center" Width="45"
                       SelectedValue="{Binding Month, Mode=TwoWay}" 
                               
                       ItemsSource="{Binding ListMonth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbMonth_SelectionChanged" />
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Đợt:"/></TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="50,0,10,0"><Run Text="Đợt:"/></TextBlock>
                 <ComboBox x:Name="cbbDate" SelectedIndex="-1" IsEditable="True"  VerticalAlignment="Center" Width="45"
                       SelectedValue="{Binding Date, Mode=OneWay}" 
                               
                       ItemsSource="{Binding ListDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbDate_SelectionChanged"/>
-                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ:"/></TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="13" Margin="50,0,10,0"><Run Text="Tổ:"/></TextBlock>
                 <ComboBox x:Name="cbbGroup" SelectedIndex="-1" IsEditable="True"  VerticalAlignment="Center" Width="Auto"
                           SelectedValue="{Binding Group, Mode=OneWay}" 
                       ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -78,7 +82,7 @@
                       />
 
             </StackPanel>
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,10">
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20">
                 <Button  Background="White" Name="btnCreateFile" 
                         Click="btnTaoFile_Click"
                             >
@@ -112,19 +116,20 @@
                 </Button>
 
             </StackPanel>
-            <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="20">
                 <DatePicker FontSize="13" Name="dpkTuNgay"></DatePicker>
-                <DatePicker FontSize="13" Name="dpkDenNgay"></DatePicker>
+                <DatePicker FontSize="13" Name="dpkDenNgay"
+                            Margin="50,0,0,0"></DatePicker>
             </StackPanel>
-            <Grid Grid.Row="3" Height="250" ShowGridLines="False" Background="White"
-                  Margin="0,10,0,0"                  >
 
-                <DataGrid                        Grid.Column="0"
+
+            <DataGrid     Grid.Row="3"   
+                        Margin="20"  
                         SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                           AutoGenerateColumns="False" Name="dtgridMain" 
                                                      
-                          HorizontalAlignment="Left" VerticalAlignment="Top" 
-                          Width="Auto" Margin="-2,0,2.2,-0.4" Height="250" 
+                          HorizontalAlignment="Center" VerticalAlignment="Top" 
+                          Width="Auto" Height="300" 
                               SelectionChanged="dtgridMain_SelectionChanged"
                         
                           RowHeight="20"
@@ -139,106 +144,47 @@
                           Background="White" SelectionMode="Single"
                           
                           FontSize="12">
-                    <!--Font Color / Style of Column Heading-->
-                    <DataGrid.Resources>
-                        <Style  TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="Background" Value="SkyBlue"></Setter>
-                            <Setter Property="FontSize" Value="14"></Setter>
-                            <Setter Property="FontWeight" Value="SemiBold"></Setter>
-                            <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
-                            <Setter Property="BorderBrush" Value="Black"></Setter>
-                            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-                            <EventSetter Event="Click" Handler="columnHeader_Click" />
-                        </Style>
+                <!--Font Color / Style of Column Heading-->
+                <DataGrid.Resources>
+                    <Style  TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="SkyBlue"></Setter>
+                        <Setter Property="FontSize" Value="14"></Setter>
+                        
+                        <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                        <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
+                        <Setter Property="BorderBrush" Value="Black"></Setter>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                        <EventSetter Event="Click" Handler="columnHeader_Click" />
+                    </Style>
 
-                    </DataGrid.Resources>
-                    <DataGrid.RowStyle>
-                        <Style TargetType="{x:Type DataGridRow}">
-                            <Setter Property="FontSize"  Value="13" />
-                            <Setter Property="HorizontalAlignment"  Value="Center" />
-                            <!--<Style.Triggers>
+                </DataGrid.Resources>
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Setter Property="FontSize"  Value="13" />
+                        <Setter Property="HorizontalAlignment"  Value="Center" />
+                        <Setter Property="HorizontalContentAlignment"  Value="Center" />
+                        <!--<Style.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
                                         <Setter Property="FontSize"  Value="20" />
                                     </Trigger>
                                 </Style.Triggers>-->
-                        </Style>
-                    </DataGrid.RowStyle>
-                    <!--Header column-->
-                    <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Binding="{Binding X, Mode=TwoWay}"></DataGridCheckBoxColumn>
-                        <DataGridTextColumn Header="Máy"  Binding="{Binding May, Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Danh mục file"  Binding="{Binding DanhMucFile,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Số KH"  Binding="{Binding SoKH,Mode=OneWay}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Đã tạo" Binding="{Binding DaTao,Mode=OneWay}"></DataGridTextColumn>
+                    </Style>
+                </DataGrid.RowStyle>
+                <!--Header column-->
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Binding="{Binding X, Mode=TwoWay}"></DataGridCheckBoxColumn>
+                    <DataGridTextColumn Header="Máy" FontSize="13" Binding="{Binding May, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Danh mục file" FontSize="13" Binding="{Binding DanhMucFile,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Số KH" FontSize="13" Binding="{Binding SoKH,Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Đã tạo" FontSize="13" Binding="{Binding DaTao,Mode=OneWay}"></DataGridTextColumn>
 
-                    </DataGrid.Columns>
+                </DataGrid.Columns>
 
-                    <!--handle item click event-->
+                <!--handle item click event-->
 
-                </DataGrid>
-                <!--<Grid Grid.Column="1" Name="stkImage" Margin="10,0,10,0">
+            </DataGrid>
 
-                        <Border BorderThickness="1" Grid.Column="1" Background="White" Name="border"
-                                 ClipToBounds="True"
-                                  Height="Auto"
-                                   Width="Auto">
-                            <Image Name="image" 
-                                   Height="Auto"
-                                   Width="Auto"
-                                   Source="{Binding Path=Image, 
-                        Converter={StaticResource ResourceKey=ImageConvert}}" Stretch="UniformToFill"  >
 
-                            </Image>
-                        </Border>
-                        -->
-                <!--<Popup Placement="Right" IsOpen="True">-->
-
-                <!--</Popup>-->
-                <!--
-
-                    </Grid>
-                    <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Text="Chưa có hình ảnh">
-                        <TextBlock.Style>
-                            <Style>
-                                <Setter Property="TextBlock.Visibility" Value="Hidden" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding HasImage}" Value="false">
-                                        <Setter Property="TextBlock.Visibility" Value="Visible" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                    <StackPanel Grid.Column="2"
-                                        Width="30"
-                                Background="White" Orientation="Vertical">
-                        <Button Background="AliceBlue" Click="btnRotate_Click"
-                                Name="btnRotate"
-                                    Height="30"
-                                    Width="30">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="/PhanQuyen;component/Images/rotate.png" Width="20" Height="20"></Image>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="AliceBlue" Click="btnZoomIn_Click"
-                                Name="btnZoomIn"
-                                    Height="30"
-                                    Width="30"
-                                        Margin="0,10,0,10">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="/PhanQuyen;component/Images/zoom-in.png" Width="20" Height="20"></Image>
-                            </StackPanel>
-                        </Button>
-                        <Button Background="AliceBlue" Click="btnZoomOut_Click"
-                                Name="btnZoomOut"
-                                    Height="30"
-                                    Width="30">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="/PhanQuyen;component/Images/zoom-out.png" Width="20" Height="20"></Image>
-                            </StackPanel>
-                        </Button>
-                    </StackPanel>-->
-            </Grid>
 
 
         </Grid>
