@@ -292,7 +292,7 @@ namespace PhanQuyen.UserControlView
                             {
                                 List<MyKhachHang> lst = HandlingDataDBViewModel.Instance.GetKhachHang_TaoFile(str2, date);
 
-                                for (int index2 = 0; index2 < lst.Count; )
+                                for (int index2 = 0; index2 < lst.Count;)
                                 {
                                     System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
                                       {
@@ -318,8 +318,8 @@ namespace PhanQuyen.UserControlView
                                               TBTT = int.Parse(strArray[2]),
                                               TamTinh = int.Parse(strArray[14]),
                                               CSCu = int.Parse(strArray[0]),
-                                            //CSMoi = "",
-                                            CodeCu = strArray[3],
+                                              //CSMoi = "",
+                                              CodeCu = strArray[3],
                                               CodeMoi = "",
                                               TTDHNCu = strArray[1].Trim(),
                                               TTDHNMoi = "",
@@ -384,6 +384,7 @@ namespace PhanQuyen.UserControlView
                                               txtbStatus.Text = str3 + ": " + (object)lst.Count + "/" + (object)lst.Count;
                                           }
                                           ++index2;
+                                          docsoList.Add(docSo);
                                       }), DispatcherPriority.Loaded);
                                 }
                             }
@@ -392,35 +393,41 @@ namespace PhanQuyen.UserControlView
                                 int num2 = (int)System.Windows.Forms.MessageBox.Show("btnTaoFile_Click: " + ex.Message + docsoList.ElementAt(0).ToString());
                                 docsoList.Clear();
                             }
-                            //            this.Refresh();
-                            //            string path = GV.ToHH + "\\" + str3;
-                            //            StreamWriter sw = new StreamWriter(path, false);
-                            //            if (this.dtKH.Rows.Count == 0)
-                            //            {
-                            //                File.Delete(path);
-                            //                break;
-                            //            }
-                            //            for (int index2 = 0; index2 < this.dtKH.Rows.Count; ++index2)
-                            //            {
-                            //                object[] itemArray = this.dtKH.Rows[index2].ItemArray;
-                            //                string str4 = itemArray[0].ToString();
-                            //                for (int index3 = 1; index3 < itemArray.Length; ++index3)
-                            //                    str4 = str4 + (object)'|' + itemArray[index3].ToString();
-                            //                sw.WriteLine(str4);
-                            //            }
-                            //            UTIex.ReleaseSW(ref sw);
-                            //            GC.Collect();
-                            //            GC.WaitForPendingFinalizers();
-                            //            this.toolStripProgressBar.Visible = false;
-                            //            this.toolStripProgressBar.Value = 0;
-                            //            this.toolStripStatusLabel.Visible = false;
-                            //            this.toolStripStatusLabel.Text = "";
-                            //            this.GetDanhMucFileDaTao();
-                            //            Thread.Sleep(300);
+                            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+                            string empty2 = string.Empty;
+                            if (DialogResult.OK != folderBrowserDialog.ShowDialog())
+                                return;
+                            string path = folderBrowserDialog.SelectedPath + "\\" + str3;
+                            StreamWriter sw = new StreamWriter(path, false);
+                            if (docsoList.Count == 0)
+                            {
+                                File.Delete(path);
+                                break;
+                            }
+                            var items = typeof(DocSo).GetProperties();
+                            foreach (DocSo docSo in docsoList)
+                            {
+                                string str4 = "";
+                                foreach (var att in items)
+                                {
+                                    var value = att.GetValue(docSo, null);
+                                    if (value == null)
+                                        continue;
+                                    if (att.Name.Equals("DocSoID"))
+                                    {
+                                        str4 = value.ToString();
+                                    }
+                                    else
+                                    {
+                                        str4 += '|' + value.ToString();
+                                    }
+                                    sw.WriteLine(str4);
+
+
+                                }
+                            }
+                            this.GetDanhMucFileDaTao();
                         }
-                        //        this.Refresh();
-                        //        GC.Collect();
-                        //        GC.WaitForPendingFinalizers();
                     }
                 }
                 else
@@ -432,7 +439,21 @@ namespace PhanQuyen.UserControlView
 
         private void btnUnSelect_Click(object sender, RoutedEventArgs e)
         {
-
+            List<TruyenDuLieu> temp = dtgridMain.ItemsSource as List<TruyenDuLieu>;
+            if (this.txtbBtnSelect.Text == "Chọn hết")
+            {
+                this.txtbBtnSelect.Text = "Bỏ chọn";
+                for (int index = 0; index < DanhMucFile.Count; ++index)
+                    temp.ElementAt(index).X = true;
+            }
+            else
+            {
+                this.txtbBtnSelect.Text = "Chọn hết";
+                for (int index = 0; index < DanhMucFile.Count; ++index)
+                    temp.ElementAt(index).X = false;
+            }
+            dtgridMain.ItemsSource = null;
+            dtgridMain.ItemsSource = temp;
         }
 
         private void dtgridMain_SelectionChanged(object sender, SelectionChangedEventArgs e)

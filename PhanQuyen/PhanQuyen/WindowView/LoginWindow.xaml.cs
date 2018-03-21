@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,14 +59,23 @@ namespace PhanQuyen
             user.Year = cbbYear.SelectedValue.ToString();
             user.Month = cbbMonth.SelectedValue.ToString();
             user.Date = cbbDate.SelectedValue.ToString();
+            string querySelect = "select * from BillState where billid = '" + user.Year + user.Month + user.Date + "'";
             string sqlstatement = "Insert into BillState(BillID) values('" + user.Year + user.Month + user.Date + "')";
             try
             {
                 ConnectionViewModel.getInstance.Connect();
-                ConnectionViewModel.getInstance.GetExecuteNonQuerry(sqlstatement);
+                SqlDataReader reader = ConnectionViewModel.getInstance.GetExecuteReader(querySelect);
+
+                if (!reader.HasRows)
+                {
+                    ConnectionViewModel.getInstance.DisConnect();
+                    ConnectionViewModel.getInstance.Connect();
+                    ConnectionViewModel.getInstance.GetExecuteNonQuerry(sqlstatement);
+                    ConnectionViewModel.getInstance.DisConnect();
+                }
                 ConnectionViewModel.getInstance.DisConnect();
             }
-            catch
+            catch (Exception e)
             {
                 ConnectionViewModel.getInstance.DisConnect();
             }
