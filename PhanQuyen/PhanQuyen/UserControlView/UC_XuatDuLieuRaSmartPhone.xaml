@@ -62,11 +62,9 @@
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tổ:"/></TextBlock>
             <ComboBox x:Name="cbbGroup" SelectedIndex="-1" IsEditable="True"  VerticalAlignment="Center" Width="Auto"
                           SelectedValue="{Binding Group, Mode=OneWay}" 
-                              
-                      ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="cbbGroup_SelectionChanged"/>
-
-
-
+                      ItemsSource="{Binding ListGroup, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                      SelectionChanged="cbbGroup_SelectionChanged"
+                      />
 
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,10">
@@ -144,7 +142,7 @@
                 </DataGrid.RowStyle>
                 <!--Header column-->
                 <DataGrid.Columns>
-                    <DataGridTextColumn  Header="STT" Binding="{Binding STT, Mode=OneWay}"></DataGridTextColumn>
+                    <DataGridCheckBoxColumn Binding="{Binding X, Mode=TwoWay}"></DataGridCheckBoxColumn>
                     <DataGridTextColumn Header="Máy"  Binding="{Binding May, Mode=OneWay}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Danh mục file"  Binding="{Binding DanhMucFile,Mode=OneWay}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Số KH"  Binding="{Binding SoKH,Mode=OneWay}"></DataGridTextColumn>

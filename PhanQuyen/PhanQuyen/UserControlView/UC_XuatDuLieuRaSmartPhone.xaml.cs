@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace PhanQuyen.UserControlView
     {
         private int year, group;
         private String month, date, machine;
-        private ItemCollection DanhMucFileTheoTo
+        private ItemCollection DanhMucFile
         {
             get { return dtgridMain.Items; }
 
@@ -42,6 +43,10 @@ namespace PhanQuyen.UserControlView
             //    cbbGroup.ItemsSource = ToID.GetToID();
             else
                 cbbGroup.Items.Add(MyUser.Instance.ToID);
+            for (int i = 1; i <= 20; i++)
+                cbbDate.Items.Add(i.ToString("00"));
+            for (int i = 1; i <= 12; i++)
+                cbbMonth.Items.Add(i.ToString("00"));
         }
 
 
@@ -67,18 +72,19 @@ namespace PhanQuyen.UserControlView
         }
         private void GetFileCheck()
         {
-            //for (int index = 0; index < this.dgv.Rows.Count; ++index)
-            //{
-            //    if (this.dgv.Rows[index].Cells[4].Value.ToString() == "")
-            //        this.dgv.Rows[index].Cells[0].Value = (object)true;
-            //}
+            List<TruyenDuLieu> lst = this.dtgridMain.ItemsSource as List<TruyenDuLieu>;
+            for (int index = 0; index < lst.Count; ++index)
+            {
+                if (lst.ElementAt(index).DaTao.Equals(""))
+                    lst.ElementAt(index).X = true;
+            }
+            this.dtgridMain.ItemsSource = null;
+            dtgridMain.ItemsSource = lst;
         }
 
         private void GetDanhMucFileDaTao()
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            //folderBrowserDialog.DefaultExt = "dat";
-            //folderBrowserDialog.Filter = "File đã tạo|*.dat";
             string empty2 = string.Empty;
             if (DialogResult.OK != folderBrowserDialog.ShowDialog())
                 return;
@@ -87,7 +93,7 @@ namespace PhanQuyen.UserControlView
             foreach (FileSystemInfo file in new DirectoryInfo(path).GetFiles())
             {
                 object obj = (object)file.Name.Replace(".txt", "");
-                foreach (var item in DanhMucFileTheoTo)
+                foreach (var item in DanhMucFile)
                 {
                     TruyenDuLieu t = item as TruyenDuLieu;
                     if (t.DanhMucFile.Equals(obj))
@@ -100,135 +106,143 @@ namespace PhanQuyen.UserControlView
                             SoKH = t.SoKH,
                             DaTao = obj.ToString()
                         });
-                        //            this.dgv.Rows[index].Cells[4].Value = obj;
-                        //            this.dgv.Rows[index].Cells[0].Value = (object)false;
                         break;
                     }
                 }
             }
             dtgridMain.ItemsSource = tmp;
         }
-
-        //private string[] ChuanBiKH(object danhba, string nam, string ky)
-        //{
-        //    string str1 = nam + ky + danhba;
-        //    string[] strArray = new string[16];
-        //    int num1 = 0;
-        //    string sqlStatement = "select top 13 Nam, Ky, Convert(varchar,DenNgay,103) DenNgay, CSMoi, CodeMoi, TieuThuMoi, TTDHNMOI,TBTT from DocSo where DanhBa = '" + danhba + "' and DocSoID < '" + str1 + "' order by DocSoID desc";
-        //    DataTable dataTable = pc.GetDataTable(sqlStatement);
-        //    int count = dataTable.Rows.Count;
-        //    if (count == 0)
-        //    {
-        //        strArray[3] = "M0";
-        //        strArray[0] = "0";
-        //        strArray[4] = "0";
-        //        strArray[2] = "0";
-        //        strArray[1] = "GAN MOI";
-        //        strArray[5] = "";
-        //        strArray[14] = "0";
-        //        strArray[15] = "";
-        //    }
-        //    else if (count >= 1)
-        //    {
-        //        string str2 = dataTable.Rows[0]["CodeMoi"].ToString();
-        //        string str3 = this.ChuyenCode4(dataTable.Rows[0]["TTDHNMoi"].ToString());
-        //        strArray[3] = !(str3 == "") ? str3 : dataTable.Rows[0]["CodeMoi"].ToString();
-        //        switch (str2)
-        //        {
-        //            case "60":
-        //            case "61":
-        //            case "62":
-        //            case "63":
-        //            case "64":
-        //            case "65":
-        //            case "66":
-        //            case "F1":
-        //            case "F2":
-        //            case "F3":
-        //            case "F4":
-        //            case "N":
-        //                num1 = int.Parse(dataTable.Rows[0]["TBTT"].ToString());
-        //                int num2 = int.Parse(dataTable.Rows[0]["TieuThuMoi"].ToString());
-        //                for (int index = 1; index < dataTable.Rows.Count; ++index)
-        //                {
-        //                    string str4 = dataTable.Rows[index]["CodeMoi"].ToString().Substring(0, 1);
-        //                    if (!(str4 == "4") && !(str4 == "5") && !(str4 == "8") && !(str4 == "M"))
-        //                        num2 += int.Parse(dataTable.Rows[index]["TieuThuMoi"].ToString());
-        //                    else
-        //                        break;
-        //                }
-        //                strArray[14] = num2.ToString();
-        //                strArray[0] = (int.Parse(dataTable.Rows[0]["CSMoi"].ToString()) + int.Parse(num2.ToString())).ToString();
-        //                break;
-        //            case "K":
-        //                int num3 = int.Parse(dataTable.Rows[0]["TieuThuMoi"].ToString());
-        //                for (int index = 1; index < dataTable.Rows.Count; ++index)
-        //                {
-        //                    string str4 = dataTable.Rows[index]["CodeMoi"].ToString().Substring(0, 1);
-        //                    if (!(str4 == "4") && !(str4 == "5") && !(str4 == "8") && !(str4 == "M"))
-        //                        num3 += int.Parse(dataTable.Rows[index]["TieuThuMoi"].ToString());
-        //                    else
-        //                        break;
-        //                }
-        //                strArray[14] = num3.ToString();
-        //                strArray[0] = int.Parse(dataTable.Rows[0]["CSMoi"].ToString()).ToString();
-        //                break;
-        //            default:
-        //                strArray[14] = "0";
-        //                strArray[0] = dataTable.Rows[0]["CSMoi"].ToString();
-        //                break;
-        //        }
-        //        strArray[0] = dataTable.Rows[0]["CSMoi"].ToString();
-        //        strArray[4] = dataTable.Rows[0]["TieuThuMoi"].ToString();
-        //        strArray[1] = dataTable.Rows[0]["TTDHNMoi"].ToString();
-        //        double num4 = 0.0;
-        //        if (str2 == "60" || str2 == "61" || (str2 == "62" || str2 == "63") || (str2 == "64" || str2 == "65" || (str2 == "66" || str2 == "F1")) || (str2 == "F2" || str2 == "F3" || (str2 == "F4" || str2 == "80")) || str2 == "N")
-        //        {
-        //            double num5 = (double)num1;
-        //            strArray[2] = num5.ToString();
-        //        }
-        //        else
-        //        {
-        //            int index;
-        //            for (index = 0; index < count && index < 3; ++index)
-        //            {
-        //                string s1 = dataTable.Rows[index]["TieuThuMoi"].ToString();
-        //                if (s1 == null || s1 == "")
-        //                {
-        //                    string s2 = "0";
-        //                    num4 += double.Parse(s2);
-        //                }
-        //                else
-        //                    num4 += double.Parse(s1);
-        //            }
-        //            double num5 = Math.Round(num4 / (double)index);
-        //            strArray[2] = num5.ToString();
-        //        }
-        //        strArray[5] = dataTable.Rows[0]["DenNgay"].ToString();
-        //        strArray[15] = dataTable.Rows[0]["Ky"].ToString() + "/" + dataTable.Rows[0]["Nam"].ToString().Substring(2);
-        //        if (count >= 2)
-        //        {
-        //            strArray[6] = dataTable.Rows[1]["Ky"].ToString() + "/" + dataTable.Rows[1]["Nam"].ToString().Substring(2);
-        //            strArray[8] = dataTable.Rows[1]["CSMoi"].ToString();
-        //            strArray[9] = dataTable.Rows[1]["TieuThuMoi"].ToString();
-        //            string str4 = this.ChuyenCode4(dataTable.Rows[1]["TTDHNMoi"].ToString());
-        //            strArray[7] = !(str4 == "") ? str4 : dataTable.Rows[1]["CodeMoi"].ToString();
-        //            if (count >= 3)
-        //            {
-        //                strArray[10] = dataTable.Rows[2]["Ky"].ToString() + "/" + dataTable.Rows[2]["Nam"].ToString().Substring(2);
-        //                strArray[11] = dataTable.Rows[2]["CodeMoi"].ToString();
-        //                strArray[12] = dataTable.Rows[2]["CSMoi"].ToString();
-        //                strArray[13] = dataTable.Rows[2]["TieuThuMoi"].ToString();
-        //                string str5 = this.ChuyenCode4(dataTable.Rows[2]["TTDHNMoi"].ToString());
-        //                strArray[11] = !(str5 == "") ? str5 : dataTable.Rows[2]["CodeMoi"].ToString();
-        //            }
-        //        }
-        //    }
-        //    UTIex.ReleasePCDATA(ref pc);
-        //    GC.Collect();
-        //    GC.WaitForPendingFinalizers();
-        //    return strArray;
-        //}
+        private string ChuyenCode4(string TTDHN)
+        {
+            string str = "";
+            if (TTDHN.Trim() == "CSBT(4.0)")
+                str = "40";
+            else if (TTDHN.Trim() == "CSBT(4.1)")
+                str = "41";
+            else if (TTDHN.Trim() == "CSBT(4.2)")
+                str = "42";
+            else if (TTDHN.Trim() == "BOT-IX")
+                str = "43";
+            else if (TTDHN.Trim() == "CSBT(4.4)")
+                str = "44";
+            return str;
+        }
+        private string[] ChuanBiKH(string danhba, string nam, string ky)
+        {
+            string str1 = nam + ky + danhba;
+            string[] strArray = new string[16];
+            int num1 = 0;
+            List<ChuanBiKH> lst = HandlingDataDBViewModel.Instance.GetDocSo_ChuanBiKH(danhba, str1);
+            int count = lst.Count;
+            if (count == 0)
+            {
+                strArray[3] = "M0";
+                strArray[0] = "0";
+                strArray[4] = "0";
+                strArray[2] = "0";
+                strArray[1] = "GAN MOI";
+                strArray[5] = "";
+                strArray[14] = "0";
+                strArray[15] = "";
+            }
+            else if (count >= 1)
+            {
+                string str2 = lst.ElementAt(0).CodeMoi.ToString();
+                string str3 = this.ChuyenCode4(lst.ElementAt(0).TTDHNMoi.ToString());
+                strArray[3] = !(str3 == "") ? str3 : lst.ElementAt(0).CodeMoi.ToString();
+                switch (str2)
+                {
+                    case "60":
+                    case "61":
+                    case "62":
+                    case "63":
+                    case "64":
+                    case "65":
+                    case "66":
+                    case "F1":
+                    case "F2":
+                    case "F3":
+                    case "F4":
+                    case "N":
+                        num1 = int.Parse(lst.ElementAt(0).TBTT.ToString());
+                        int num2 = int.Parse(lst.ElementAt(0).TieuThuMoi.ToString());
+                        for (int index = 1; index < lst.Count; ++index)
+                        {
+                            string str4 = lst.ElementAt(index).CodeMoi.ToString().Substring(0, 1);
+                            if (!(str4 == "4") && !(str4 == "5") && !(str4 == "8") && !(str4 == "M"))
+                                num2 += int.Parse(lst.ElementAt(index).TieuThuMoi.ToString());
+                            else
+                                break;
+                        }
+                        strArray[14] = num2.ToString();
+                        strArray[0] = (int.Parse(lst.ElementAt(0).CSMoi.ToString()) + int.Parse(num2.ToString())).ToString();
+                        break;
+                    case "K":
+                        int num3 = int.Parse(lst.ElementAt(0).TieuThuMoi.ToString());
+                        for (int index = 1; index < lst.Count; ++index)
+                        {
+                            string str4 = lst.ElementAt(index).CodeMoi.ToString().Substring(0, 1);
+                            if (!(str4 == "4") && !(str4 == "5") && !(str4 == "8") && !(str4 == "M"))
+                                num3 += int.Parse(lst.ElementAt(index).TieuThuMoi.ToString());
+                            else
+                                break;
+                        }
+                        strArray[14] = num3.ToString();
+                        strArray[0] = int.Parse(lst.ElementAt(0).CSMoi.ToString()).ToString();
+                        break;
+                    default:
+                        strArray[14] = "0";
+                        strArray[0] = lst.ElementAt(0).CSMoi.ToString();
+                        break;
+                }
+                strArray[0] = lst.ElementAt(0).CSMoi.ToString();
+                strArray[4] = lst.ElementAt(0).TieuThuMoi.ToString();
+                strArray[1] = lst.ElementAt(0).TTDHNMoi.ToString();
+                double num4 = 0.0;
+                if (str2 == "60" || str2 == "61" || (str2 == "62" || str2 == "63") || (str2 == "64" || str2 == "65" || (str2 == "66" || str2 == "F1")) || (str2 == "F2" || str2 == "F3" || (str2 == "F4" || str2 == "80")) || str2 == "N")
+                {
+                    double num5 = (double)num1;
+                    strArray[2] = num5.ToString();
+                }
+                else
+                {
+                    int index;
+                    for (index = 0; index < count && index < 3; ++index)
+                    {
+                        string s1 = lst.ElementAt(index).TieuThuMoi.ToString();
+                        if (s1 == null || s1 == "")
+                        {
+                            string s2 = "0";
+                            num4 += double.Parse(s2);
+                        }
+                        else
+                            num4 += double.Parse(s1);
+                    }
+                    double num5 = Math.Round(num4 / (double)index);
+                    strArray[2] = num5.ToString();
+                }
+                strArray[5] = lst.ElementAt(0).DenNgay.ToString();
+                strArray[15] = lst.ElementAt(0).Ky.ToString() + "/" + lst.ElementAt(0).Nam.ToString().Substring(2);
+                if (count >= 2)
+                {
+                    strArray[6] = lst.ElementAt(1).Ky.ToString() + "/" + lst.ElementAt(1).Nam.ToString().Substring(2);
+                    strArray[8] = lst.ElementAt(1).CSMoi.ToString();
+                    strArray[9] = lst.ElementAt(1).TieuThuMoi.ToString();
+                    string str4 = this.ChuyenCode4(lst.ElementAt(1).TTDHNMoi.ToString());
+                    strArray[7] = !(str4 == "") ? str4 : lst.ElementAt(1).CodeMoi.ToString();
+                    if (count >= 3)
+                    {
+                        strArray[10] = lst.ElementAt(2).Ky.ToString() + "/" + lst.ElementAt(2).Nam.ToString().Substring(2);
+                        strArray[11] = lst.ElementAt(2).CodeMoi.ToString();
+                        strArray[12] = lst.ElementAt(2).CodeMoi.ToString();
+                        strArray[13] = lst.ElementAt(2).TieuThuMoi.ToString();
+                        string str5 = this.ChuyenCode4(lst.ElementAt(2).TTDHNMoi.ToString());
+                        strArray[11] = !(str5 == "") ? str5 : lst.ElementAt(2).CodeMoi.ToString();
+                    }
+                }
+            }
+            return strArray;
+        }
         public static bool CheckDot(string text, ItemCollection items)
         {
             try
@@ -259,8 +273,12 @@ namespace PhanQuyen.UserControlView
                 }
                 else if (HandlingDataDBViewModel.Instance.CheckIzDS() != 1)
                 {
+                    //DataTable tbl = new DataTable();
+                    //int maxColumn = 80;
+                    //for (int col = 0; col < maxColumn; col++)
+                    //    tbl.Columns.Add(new DataColumn("Junk" + (col).ToString()));
                     List<DocSo> docsoList = new List<DocSo>();
-                    foreach (var item in DanhMucFileTheoTo)
+                    foreach (var item in DanhMucFile)
                     {
                         docsoList.Clear();
                         TruyenDuLieu t = item as TruyenDuLieu;
@@ -271,145 +289,127 @@ namespace PhanQuyen.UserControlView
                             string str3 = str1 + ".txt";
                             try
                             {
-                                HandlingDataDBViewModel.Instance.GetKhachHang_TaoFile(str2, date);
+                                List<MyKhachHang> lst = HandlingDataDBViewModel.Instance.GetKhachHang_TaoFile(str2, date);
 
-                                //                int count = dataTable.Rows.Count;
-                                //                this.toolStripProgressBar.Visible = true;
-                                //                this.toolStripProgressBar.Maximum = count;
-                                //                this.toolStripProgressBar.Minimum = 0;
-                                //                this.toolStripStatusLabel.Visible = true;
-                                //                this.Refresh();
-                                //                DateTime today = DateTime.Today;
-                                //                string str4 = today.ToString("dd/MM/yyyy");
-                                //                for (int index2 = 0; index2 < dataTable.Rows.Count; ++index2)
-                                //                {
-                                //                    this.rowdtKH = this.dtKH.NewRow();
-                                //                    dataRow = dataTable.Rows[index2];
-                                //                    string[] strArray = this.ChuanBiKH(dataRow["DanhBa"], this.cbbNam.Text, this.cbbKy.Text);
-                                //                    this.rowdtKH["DanhBa"] = dataRow["DanhBa"];
-                                //                    this.rowdtKH["MLT1"] = dataRow["MLT1"];
-                                //                    this.rowdtKH["MLT2"] = dataRow["MLT2"];
-                                //                    this.rowdtKH["TenKH"] = dataRow["TenKH"];
-                                //                    this.rowdtKH["SoNhaCu"] = dataRow["So"];
-                                //                    this.rowdtKH["SoNhaMoi"] = dataRow["SoMoi"];
-                                //                    this.rowdtKH["Duong"] = dataRow["Duong"];
-                                //                    this.rowdtKH["SDT"] = dataRow["SDT"];
-                                //                    this.rowdtKH["GB"] = dataRow["GB"];
-                                //                    this.rowdtKH["DM"] = dataRow["DM"];
-                                //                    this.rowdtKH["SH"] = dataRow["SH"];
-                                //                    this.rowdtKH["SX"] = dataRow["SX"];
-                                //                    this.rowdtKH["DV"] = dataRow["DV"];
-                                //                    this.rowdtKH["HC"] = dataRow["HC"];
-                                //                    this.rowdtKH["Nam"] = (object)this.cbbNam.Text;
-                                //                    this.rowdtKH["Ky"] = (object)this.cbbKy.Text;
-                                //                    this.rowdtKH["Dot"] = (object)this.cbbDot.Text;
-                                //                    this.rowdtKH[GV.May] = (object)str2;
-                                //                    this.rowdtKH["TBTT"] = (object)strArray[2];
-                                //                    this.rowdtKH["TamTinh"] = (object)strArray[14];
-                                //                    this.rowdtKH["CSCu"] = (object)strArray[0];
-                                //                    this.rowdtKH["CSMoi"] = (object)"";
-                                //                    this.rowdtKH["CodeCu"] = (object)strArray[3];
-                                //                    this.rowdtKH["CodeMoi"] = (object)"";
-                                //                    this.rowdtKH["TTDHNCu"] = (object)strArray[1].Trim();
-                                //                    this.rowdtKH["TTDHNMoi"] = (object)"";
-                                //                    this.rowdtKH["TieuThuCu"] = (object)strArray[4];
-                                //                    this.rowdtKH["TieuThuMoi"] = (object)"";
-                                //                    if (!strArray[5].Equals(""))
-                                //                    {
-                                //                        this.rowdtKH["TuNgay"] = (object)strArray[5];
-                                //                        string str5 = this.rowdtKH["TuNgay"].ToString();
-                                //                        sqlParameter1.Value = (object)new DateTime(int.Parse(str5.Substring(6)), int.Parse(str5.Substring(3, 2)), int.Parse(str5.Substring(0, 2)));
-                                //                    }
-                                //                    else if (!dataRow["NgayGanCV"].ToString().Equals(""))
-                                //                    {
-                                //                        this.rowdtKH["TuNgay"] = dataRow["NgayGanCV"];
-                                //                        string str5 = this.rowdtKH["TuNgay"].ToString();
-                                //                        sqlParameter1.Value = (object)new DateTime(int.Parse(str5.Substring(6)), int.Parse(str5.Substring(3, 2)), int.Parse(str5.Substring(0, 2)));
-                                //                    }
-                                //                    else
-                                //                    {
-                                //                        DataRow rowdtKh = this.rowdtKH;
-                                //                        string index3 = "TuNgay";
-                                //                        today = this.dtpTuNgay.Value;
-                                //                        string str5 = today.ToString("dd/MM/yyyy");
-                                //                        rowdtKh[index3] = (object)str5;
-                                //                        sqlParameter1.Value = (object)this.dtpTuNgay.Value;
-                                //                    }
-                                //                    this.rowdtKH["DenNgay"] = (object)str4;
-                                //                    this.rowdtKH["TienNuoc"] = (object)"";
-                                //                    this.rowdtKH["BVMT"] = (object)"";
-                                //                    this.rowdtKH["Thue"] = (object)"";
-                                //                    this.rowdtKH["TongTien"] = (object)"";
-                                //                    this.rowdtKH["NgayGan"] = dataRow["NgayGanCV"];
-                                //                    this.rowdtKH["SoThanCu"] = dataRow["SoThan"];
-                                //                    this.rowdtKH["SoThanMoi"] = (object)"";
-                                //                    this.rowdtKH["HieuCu"] = dataRow["Hieu"];
-                                //                    this.rowdtKH["HieuMoi"] = (object)"";
-                                //                    this.rowdtKH["CoCu"] = dataRow["Co"];
-                                //                    this.rowdtKH["CoMoi"] = (object)"";
-                                //                    this.rowdtKH["GiengCu"] = dataRow["Gieng"];
-                                //                    this.rowdtKH["GiengMoi"] = (object)"";
-                                //                    this.rowdtKH["Van1Cu"] = dataRow["Van1"];
-                                //                    this.rowdtKH["Van1Moi"] = (object)"";
-                                //                    this.rowdtKH["MVCu"] = dataRow["MaVach"];
-                                //                    this.rowdtKH["MVMoi"] = (object)"";
-                                //                    this.rowdtKH["ViTriCu"] = (object)dataRow["ViTri"].ToString().Trim();
-                                //                    this.rowdtKH["ViTriMoi"] = (object)"";
-                                //                    this.rowdtKH["ChiThanCu"] = dataRow["ChiThan"];
-                                //                    this.rowdtKH["ChiThanMoi"] = (object)"";
-                                //                    this.rowdtKH["ChiCoCu"] = dataRow["ChiCo"];
-                                //                    this.rowdtKH["ChiCoMoi"] = (object)"";
-                                //                    this.rowdtKH["CapDoCu"] = dataRow["CapDo"];
-                                //                    this.rowdtKH["CapDoMoi"] = (object)"";
-                                //                    this.rowdtKH["CongDungCu"] = (object)dataRow["CongDung"].ToString().Trim();
-                                //                    this.rowdtKH["CongDungMoi"] = (object)"";
-                                //                    this.rowdtKH["DMACu"] = dataRow["DMA"];
-                                //                    this.rowdtKH["DMAMoi"] = (object)"";
-                                //                    this.rowdtKH["GhiChuKH"] = (object)dataRow["GhiChuKH"].ToString().Replace('|', ' ');
-                                //                    this.rowdtKH["GhiChuDS"] = (object)"";
-                                //                    this.rowdtKH["Ky0"] = (object)strArray[15];
-                                //                    this.rowdtKH["Ky1"] = (object)strArray[6];
-                                //                    this.rowdtKH["CodeCu1"] = (object)strArray[7];
-                                //                    this.rowdtKH["ChiSoCu1"] = (object)strArray[8];
-                                //                    this.rowdtKH["TieuThuCu1"] = (object)strArray[9];
-                                //                    this.rowdtKH["Ky2"] = (object)strArray[10];
-                                //                    this.rowdtKH["CodeCu2"] = (object)strArray[11];
-                                //                    this.rowdtKH["ChiSoCu2"] = (object)strArray[12];
-                                //                    this.rowdtKH["TieuThuCu2"] = (object)strArray[13];
-                                //                    string str6 = dataRow["ToID"].ToString();
-                                //                    this.dtKH.Rows.Add(this.rowdtKH);
-                                //                    try
-                                //                    {
-                                //                        string sqlstatement = "insert into DocSo values('" + this.rowdtKH["Nam"] + this.rowdtKH["Ky"] + this.rowdtKH["DanhBa"] + "','" + this.rowdtKH["DanhBa"] + "','" + this.rowdtKH["MLT1"] + "','" + this.rowdtKH["MLT2"] + "','" + this.rowdtKH["SoNhaCu"] + "','" + this.rowdtKH["SoNhaMoi"] + "','" + this.rowdtKH["Duong"] + "','" + this.rowdtKH["SDT"] + "','" + this.rowdtKH["GB"] + "','" + this.rowdtKH["DM"] + "','" + this.rowdtKH["Nam"] + "','" + this.rowdtKH["Ky"] + "','" + this.rowdtKH["Dot"] + "','" + this.rowdtKH[GV.May] + "','" + this.rowdtKH["TBTT"] + "','" + this.rowdtKH["TamTinh"] + "','" + this.rowdtKH["CSCu"] + "','" + this.rowdtKH["CSMoi"] + "','" + this.rowdtKH["CodeCu"] + "','" + this.rowdtKH["CodeMoi"] + "','" + this.rowdtKH["TTDHNCu"] + "','" + this.rowdtKH["TTDHNMoi"] + "','" + this.rowdtKH["TieuThuCu"] + "','" + this.rowdtKH["TieuThuMoi"] + "',@TuNgay,@DenNgay,'" + this.rowdtKH["TienNuoc"] + "','" + this.rowdtKH["BVMT"] + "','" + this.rowdtKH["Thue"] + "','" + this.rowdtKH["TongTien"] + "','" + this.rowdtKH["SoThanCu"] + "','" + this.rowdtKH["SoThanMoi"] + "','" + this.rowdtKH["HieuCu"] + "','" + this.rowdtKH["HieuMoi"] + "','" + this.rowdtKH["CoCu"] + "','" + this.rowdtKH["CoMoi"] + "','" + this.rowdtKH["GiengCu"] + "','" + this.rowdtKH["GiengMoi"] + "','" + this.rowdtKH["Van1Cu"] + "','" + this.rowdtKH["Van1Moi"] + "','" + this.rowdtKH["MVCu"] + "','" + this.rowdtKH["MVMoi"] + "','" + this.rowdtKH["ViTriCu"] + "','" + this.rowdtKH["ViTriMoi"] + "','" + this.rowdtKH["ChiThanCu"] + "','" + this.rowdtKH["ChiThanMoi"] + "','" + this.rowdtKH["ChiCoCu"] + "','" + this.rowdtKH["ChiCoMoi"] + "','" + this.rowdtKH["CapDoCu"] + "','" + this.rowdtKH["CapDoMoi"] + "','" + this.rowdtKH["CongDungCu"] + "','" + this.rowdtKH["CongDungMoi"] + "','" + this.rowdtKH["DMACu"] + "','" + this.rowdtKH["DMAMoi"] + "','" + this.rowdtKH["GhiChuKH"].ToString().Replace('|', ' ') + "','" + this.rowdtKH["GhiChuDS"].ToString().Replace('|', ' ') + "',@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,'" + str6 + "')";
-                                //                        pcData2.GetExecuteNonQuerry(sqlstatement);
-                                //                    }
-                                //                    catch (SqlException ex)
-                                //                    {
-                                //                        string sqlstatement = "Update DocSo set DanhBa = '" + this.rowdtKH["DanhBa"] + "',MLT1 = '" + this.rowdtKH["MLT1"] + "',MLT2 = '" + this.rowdtKH["MLT2"] + "',SoNhaCu = '" + this.rowdtKH["SoNhaCu"] + "',SoNhaMoi = '" + this.rowdtKH["SoNhaMoi"] + "',Duong = '" + this.rowdtKH["Duong"] + "',SDT = '" + this.rowdtKH["SDT"] + "',GB = '" + this.rowdtKH["GB"] + "',DM = '" + this.rowdtKH["DM"] + "',Nam = '" + this.rowdtKH["Nam"] + "',Ky = '" + this.rowdtKH["Ky"] + "',Dot = '" + this.rowdtKH["Dot"] + "',May = '" + this.rowdtKH[GV.May] + "',ToDS = '" + str6 + "',CSCu = '" + this.rowdtKH["CSCu"] + "',CodeCu = '" + this.rowdtKH["CodeCu"] + "',TTDHNCu = '" + this.rowdtKH["TTDHNCu"] + "',TieuThuCu = '" + this.rowdtKH["TieuThuCu"] + "',SoThanCu = '" + this.rowdtKH["SoThanCu"] + "',SoThanMoi = '" + this.rowdtKH["SoThanMoi"] + "',HieuCu = '" + this.rowdtKH["HieuCu"] + "',HieuMoi = '" + this.rowdtKH["HieuMoi"] + "',CoCu = '" + this.rowdtKH["CoCu"] + "',CoMoi = '" + this.rowdtKH["CoMoi"] + "',GiengCu = '" + this.rowdtKH["GiengCu"] + "',GiengMoi = '" + this.rowdtKH["GiengMoi"] + "',Van1Cu = '" + this.rowdtKH["Van1Cu"] + "',Van1Moi = '" + this.rowdtKH["Van1Moi"] + "',MVCu = '" + this.rowdtKH["MVCu"] + "',MVMoi = '" + this.rowdtKH["MVMoi"] + "',ViTriCu = '" + this.rowdtKH["ViTriCu"] + "',ViTriMoi = '" + this.rowdtKH["ViTriMoi"] + "',ChiThanCu = '" + this.rowdtKH["ChiThanCu"] + "',ChiThanMoi = '" + this.rowdtKH["ChiThanMoi"] + "',ChiCoCu = '" + this.rowdtKH["ChiCoCu"] + "',ChiCoMoi = '" + this.rowdtKH["ChiCoMoi"] + "',CapDoCu = '" + this.rowdtKH["CapDoCu"] + "',CapDoMoi = '" + this.rowdtKH["CapDoMoi"] + "',CongDungCu = '" + this.rowdtKH["CongDungCu"] + "',CongDungMoi = '" + this.rowdtKH["CongDungMoi"] + "',DMACu = '" + this.rowdtKH["DMACu"] + "',  DMAMoi = '" + this.rowdtKH["DMAMoi"] + "', StaCapNhat = @EmptyValue where DocSoID = '" + this.rowdtKH["Nam"] + this.rowdtKH["Ky"] + this.rowdtKH["DanhBa"] + "'";
-                                //                        pcData2.GetExecuteNonQuerry(sqlstatement);
-                                //                    }
-                                //                    if (index2 < count - 1)
-                                //                    {
-                                //                        if (index2 % 10 == 0)
-                                //                        {
-                                //                            this.toolStripProgressBar.Value = index2;
-                                //                            this.toolStripStatusLabel.Text = str3 + ": " + (object)index2 + "/" + (object)count;
-                                //                            GC.Collect();
-                                //                            GC.WaitForPendingFinalizers();
-                                //                            this.Refresh();
-                                //                        }
-                                //                    }
-                                //                    else
-                                //                    {
-                                //                        this.toolStripProgressBar.Value = count;
-                                //                        this.toolStripStatusLabel.Text = str3 + ": " + (object)count + "/" + (object)count;
-                                //                        GC.Collect();
-                                //                        GC.WaitForPendingFinalizers();
-                                //                        this.Refresh();
-                                //                    }
-                                //                }
-                                //                GC.Collect();
-                                //                GC.WaitForPendingFinalizers();
+                                for (int index2 = 0; index2 < lst.Count; ++index2)
+                                {
+                                    MyKhachHang khachHang = lst.ElementAt(index2);
+                                    string[] strArray = this.ChuanBiKH(khachHang.DanhBa, year.ToString(), month);
+                                    DocSo docSo = new DocSo()
+                                    {
+                                        DocSoID = year + month + khachHang.DanhBa,
+                                        DanhBa = khachHang.DanhBa,
+                                        MLT1 = khachHang.MLT1,
+                                        MLT2 = khachHang.MLT2,
+                                        TenKH = khachHang.TenKH.Replace("\r\n", "").Replace("'", "").Replace("\n", "").Replace("|", "/"),
+                                        SoNhaCu = khachHang.So.Replace("|", ""),
+                                        SoNhaMoi = khachHang.SoMoi == null ? "" : khachHang.SoMoi,
+                                        Duong = khachHang.Duong,
+                                        SDT = khachHang.SDT == null ? "" : khachHang.SDT,
+                                        GB = khachHang.GB.ToString(),
+                                        DM = khachHang.DM.ToString(),
+                                        Nam = year,
+                                        Ky = month,
+                                        Dot = date,
+                                        May = str2,
+                                        TBTT = int.Parse(strArray[2]),
+                                        TamTinh = int.Parse(strArray[14]),
+                                        CSCu = int.Parse(strArray[0]),
+                                        //CSMoi = "",
+                                        CodeCu = strArray[3],
+                                        CodeMoi = "",
+                                        TTDHNCu = strArray[1].Trim(),
+                                        TTDHNMoi = "",
+                                        TieuThuCu = int.Parse(strArray[4]),
+                                        TieuThuMoi = 0,
+                                        DenNgay = dpkDenNgay.SelectedDate,
+                                        TienNuoc = 0,
+                                        BVMT = 0,
+                                        Thue = 0,
+                                        TongTien = 0,
+                                        SoThanCu = khachHang.SoThan == null ? "" : khachHang.SoThan,
+                                        SoThanMoi = "",
+                                        HieuCu = khachHang.Hieu == null ? "" : khachHang.Hieu,
+                                        HieuMoi = "",
+                                        CoCu = khachHang.Co == null ? "" : khachHang.Co,
+                                        CoMoi = "",
+                                        GiengCu = khachHang.Gieng == null ? "" : khachHang.Gieng,
+                                        GiengMoi = "",
+                                        Van1Cu = khachHang.Van1 == null ? "" : khachHang.Van1,
+                                        Van1Moi = "",
+                                        MVCu = khachHang.MaVach == null ? "" : khachHang.MaVach,
+                                        MVMoi = "",
+                                        ViTriCu = khachHang.ViTri == null ? "" : khachHang.ViTri,
+                                        ViTriMoi = "",
+                                        ChiThanCu = khachHang.ChiThan == null ? "" : khachHang.ChiThan,
+                                        ChiThanMoi = "",
+                                        ChiCoCu = khachHang.ChiCo == null ? "" : khachHang.ChiCo,
+                                        ChiCoMoi = "",
+                                        CapDoCu = khachHang.CapDo == null ? "" : khachHang.CapDo,
+                                        CapDoMoi = "",
+                                        CongDungCu = khachHang.CongDung == null ? "" : khachHang.CongDung,
+                                        CongDungMoi = "",
+                                        DMACu = khachHang.DMA == null ? "" : khachHang.DMA,
+                                        DMAMoi = "",
+                                        GhiChuKH = khachHang.GhiChuKH == null ? "" : khachHang.GhiChuKH,
+                                        GhiChuDS = "",
+                                        TODS = int.Parse(khachHang.ToID)
+                                    };
+                                    if (!strArray[5].Equals(""))
+                                        docSo.TuNgay = DateTime.ParseExact(strArray[5], "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                                    else if (!khachHang.NgayGanCV.Equals(""))
+                                        docSo.TuNgay = DateTime.ParseExact(khachHang.NgayGanCV, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                                    else
+                                    {
+                                        docSo.TuNgay = dpkTuNgay.SelectedDate;
+                                    }
+                                    int insert = HandlingDataDBViewModel.Instance.InsertDocSo(docSo);
+                                    if(insert == 0)
+                                    {
+
+                                    }
+                                    //                    this.rowdtKH["NgayGan"] = dataRow["NgayGanCV"];
+                                    //                    this.rowdtKH["Ky0"] = (object)strArray[15];
+                                    //                    this.rowdtKH["Ky1"] = (object)strArray[6];
+                                    //                    this.rowdtKH["CodeCu1"] = (object)strArray[7];
+                                    //                    this.rowdtKH["ChiSoCu1"] = (object)strArray[8];
+                                    //                    this.rowdtKH["TieuThuCu1"] = (object)strArray[9];
+                                    //                    this.rowdtKH["Ky2"] = (object)strArray[10];
+                                    //                    this.rowdtKH["CodeCu2"] = (object)strArray[11];
+                                    //                    this.rowdtKH["ChiSoCu2"] = (object)strArray[12];
+                                    //                    this.rowdtKH["TieuThuCu2"] = (object)strArray[13];
+                                    //                    string str6 = dataRow["ToID"].ToString();
+                                    //                    this.dtKH.Rows.Add(this.rowdtKH);
+                                    //                    try
+                                    //                    {
+                                    //                        string sqlstatement = "insert into DocSo values('" + this.rowdtKH["Nam"] + this.rowdtKH["Ky"] + this.rowdtKH["DanhBa"] + "','" + this.rowdtKH["DanhBa"] + "','" + this.rowdtKH["MLT1"] + "','" + this.rowdtKH["MLT2"] + "','" + this.rowdtKH["SoNhaCu"] + "','" + this.rowdtKH["SoNhaMoi"] + "','" + this.rowdtKH["Duong"] + "','" + this.rowdtKH["SDT"] + "','" + this.rowdtKH["GB"] + "','" + this.rowdtKH["DM"] + "','" + this.rowdtKH["Nam"] + "','" + this.rowdtKH["Ky"] + "','" + this.rowdtKH["Dot"] + "','" + this.rowdtKH[GV.May] + "','" + this.rowdtKH["TBTT"] + "','" + this.rowdtKH["TamTinh"] + "','" + this.rowdtKH["CSCu"] + "','" + this.rowdtKH["CSMoi"] + "','" + this.rowdtKH["CodeCu"] + "','" + this.rowdtKH["CodeMoi"] + "','" + this.rowdtKH["TTDHNCu"] + "','" + this.rowdtKH["TTDHNMoi"] + "','" + this.rowdtKH["TieuThuCu"] + "','" + this.rowdtKH["TieuThuMoi"] + "',@TuNgay,@DenNgay,'" + this.rowdtKH["TienNuoc"] + "','" + this.rowdtKH["BVMT"] + "','" + this.rowdtKH["Thue"] + "','" + this.rowdtKH["TongTien"] + "','" + this.rowdtKH["SoThanCu"] + "','" + this.rowdtKH["SoThanMoi"] + "','" + this.rowdtKH["HieuCu"] + "','" + this.rowdtKH["HieuMoi"] + "','" + this.rowdtKH["CoCu"] + "','" + this.rowdtKH["CoMoi"] + "','" + this.rowdtKH["GiengCu"] + "','" + this.rowdtKH["GiengMoi"] + "','" + this.rowdtKH["Van1Cu"] + "','" + this.rowdtKH["Van1Moi"] + "','" + this.rowdtKH["MVCu"] + "','" + this.rowdtKH["MVMoi"] + "','" + this.rowdtKH["ViTriCu"] + "','" + this.rowdtKH["ViTriMoi"] + "','" + this.rowdtKH["ChiThanCu"] + "','" + this.rowdtKH["ChiThanMoi"] + "','" + this.rowdtKH["ChiCoCu"] + "','" + this.rowdtKH["ChiCoMoi"] + "','" + this.rowdtKH["CapDoCu"] + "','" + this.rowdtKH["CapDoMoi"] + "','" + this.rowdtKH["CongDungCu"] + "','" + this.rowdtKH["CongDungMoi"] + "','" + this.rowdtKH["DMACu"] + "','" + this.rowdtKH["DMAMoi"] + "','" + this.rowdtKH["GhiChuKH"].ToString().Replace('|', ' ') + "','" + this.rowdtKH["GhiChuDS"].ToString().Replace('|', ' ') + "',@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,@EmptyValue,'" + str6 + "')";
+                                    //                        pcData2.GetExecuteNonQuerry(sqlstatement);
+                                    //                    }
+                                    //                    catch (SqlException ex)
+                                    //                    {
+                                    //                        string sqlstatement = "Update DocSo set DanhBa = '" + this.rowdtKH["DanhBa"] + "',MLT1 = '" + this.rowdtKH["MLT1"] + "',MLT2 = '" + this.rowdtKH["MLT2"] + "',SoNhaCu = '" + this.rowdtKH["SoNhaCu"] + "',SoNhaMoi = '" + this.rowdtKH["SoNhaMoi"] + "',Duong = '" + this.rowdtKH["Duong"] + "',SDT = '" + this.rowdtKH["SDT"] + "',GB = '" + this.rowdtKH["GB"] + "',DM = '" + this.rowdtKH["DM"] + "',Nam = '" + this.rowdtKH["Nam"] + "',Ky = '" + this.rowdtKH["Ky"] + "',Dot = '" + this.rowdtKH["Dot"] + "',May = '" + this.rowdtKH[GV.May] + "',ToDS = '" + str6 + "',CSCu = '" + this.rowdtKH["CSCu"] + "',CodeCu = '" + this.rowdtKH["CodeCu"] + "',TTDHNCu = '" + this.rowdtKH["TTDHNCu"] + "',TieuThuCu = '" + this.rowdtKH["TieuThuCu"] + "',SoThanCu = '" + this.rowdtKH["SoThanCu"] + "',SoThanMoi = '" + this.rowdtKH["SoThanMoi"] + "',HieuCu = '" + this.rowdtKH["HieuCu"] + "',HieuMoi = '" + this.rowdtKH["HieuMoi"] + "',CoCu = '" + this.rowdtKH["CoCu"] + "',CoMoi = '" + this.rowdtKH["CoMoi"] + "',GiengCu = '" + this.rowdtKH["GiengCu"] + "',GiengMoi = '" + this.rowdtKH["GiengMoi"] + "',Van1Cu = '" + this.rowdtKH["Van1Cu"] + "',Van1Moi = '" + this.rowdtKH["Van1Moi"] + "',MVCu = '" + this.rowdtKH["MVCu"] + "',MVMoi = '" + this.rowdtKH["MVMoi"] + "',ViTriCu = '" + this.rowdtKH["ViTriCu"] + "',ViTriMoi = '" + this.rowdtKH["ViTriMoi"] + "',ChiThanCu = '" + this.rowdtKH["ChiThanCu"] + "',ChiThanMoi = '" + this.rowdtKH["ChiThanMoi"] + "',ChiCoCu = '" + this.rowdtKH["ChiCoCu"] + "',ChiCoMoi = '" + this.rowdtKH["ChiCoMoi"] + "',CapDoCu = '" + this.rowdtKH["CapDoCu"] + "',CapDoMoi = '" + this.rowdtKH["CapDoMoi"] + "',CongDungCu = '" + this.rowdtKH["CongDungCu"] + "',CongDungMoi = '" + this.rowdtKH["CongDungMoi"] + "',DMACu = '" + this.rowdtKH["DMACu"] + "',  DMAMoi = '" + this.rowdtKH["DMAMoi"] + "', StaCapNhat = @EmptyValue where DocSoID = '" + this.rowdtKH["Nam"] + this.rowdtKH["Ky"] + this.rowdtKH["DanhBa"] + "'";
+                                    //                        pcData2.GetExecuteNonQuerry(sqlstatement);
+                                    //                    }
+                                    //                    if (index2 < count - 1)
+                                    //                    {
+                                    //                        if (index2 % 10 == 0)
+                                    //                        {
+                                    //                            this.toolStripProgressBar.Value = index2;
+                                    //                            this.toolStripStatusLabel.Text = str3 + ": " + (object)index2 + "/" + (object)count;
+                                    //                            GC.Collect();
+                                    //                            GC.WaitForPendingFinalizers();
+                                    //                            this.Refresh();
+                                    //                        }
+                                    //                    }
+                                    //                    else
+                                    //                    {
+                                    //                        this.toolStripProgressBar.Value = count;
+                                    //                        this.toolStripStatusLabel.Text = str3 + ": " + (object)count + "/" + (object)count;
+                                    //                        GC.Collect();
+                                    //                        GC.WaitForPendingFinalizers();
+                                    //                        this.Refresh();
+                                    //                    }
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -468,11 +468,14 @@ namespace PhanQuyen.UserControlView
         {
 
         }
-        #region year,month,date
+        #region year, month, date
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbbDate.SelectedValue != null)
+            {
                 date = cbbDate.SelectedValue.ToString();
+                //dpkTuNgay.SelectedDate = HandlingDataDBViewModel.Instance.GetNgayDocSo()
+            }
         }
 
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -480,7 +483,7 @@ namespace PhanQuyen.UserControlView
             if (cbbMonth.SelectedValue != null)
             {
                 month = cbbMonth.SelectedValue.ToString();
-                cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
+                //cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
             }
         }
 
@@ -489,7 +492,7 @@ namespace PhanQuyen.UserControlView
             if (cbbYear.SelectedValue != null)
             {
                 year = Int16.Parse(cbbYear.SelectedValue.ToString());
-                cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(year);
+                //cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(year);
             }
         }
         #endregion

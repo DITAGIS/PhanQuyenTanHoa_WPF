@@ -34,8 +34,13 @@ namespace PhanQuyen
         public UC_KiemTraDuLieu()
         {
             InitializeComponent();
+           
             cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
             cbbYear.SelectedValue = MyUser.Instance.Year;
+            for (int i = 1; i <= 20; i++)
+                cbbDate.Items.Add(i.ToString("00"));
+            for (int i = 1; i <= 12; i++)
+                cbbMonth.Items.Add(i.ToString("00"));
         }
 
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -43,7 +48,7 @@ namespace PhanQuyen
             if (cbbYear.SelectedValue != null)
             {
                 year = Int16.Parse(cbbYear.SelectedValue.ToString());
-                cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(year);
+                //cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(year);
             }
         }
 
@@ -52,7 +57,7 @@ namespace PhanQuyen
             if (cbbMonth.SelectedValue != null)
             {
                 month = cbbMonth.SelectedValue.ToString();
-                cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
+                //cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
             }
         }
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)

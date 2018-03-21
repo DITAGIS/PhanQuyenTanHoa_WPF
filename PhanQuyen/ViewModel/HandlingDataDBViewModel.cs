@@ -141,11 +141,13 @@ namespace ViewModel
         }
         public int CheckIzCB()
         {
-            return serverContext.ExecuteQuery<int>("select count(*) from BillState where izCB = '1' and BillID ='" + MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date + "'").First();
+            var query = "select count(*) from BillState where izCB = '1' and BillID ='" + MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date + "'";
+            return serverContext.ExecuteQuery<int>(query).First();
         }
         public int CheckIzDS()
         {
-            return serverContext.ExecuteQuery<int>("select count(*) from BillState where izDS = '1' and BillID ='" + MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date + "'").First();
+            var query = "select count(*) from BillState where izDS = '1' and BillID ='" + MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date + "'";
+            return serverContext.ExecuteQuery<int>(query).First();
         }
 
         private HandlingDataDBViewModel()
@@ -170,6 +172,41 @@ namespace ViewModel
             {
 
             }
+        }
+        public int UpdateDocSo(DocSo docSo)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("Update DocSo set DanhBa = '" + docSo.DanhBa + "',MLT1 = '" + docSo.MLT1 + "',MLT2 = '" + docSo.MLT2 + "','");
+            builder.Append("',SoNhaCu = '" + docSo.SoNhaCu + "',SoNhaMoi = '" + docSo.SoNhaMoi + "',Duong = '" + docSo.Duong + "',SDT = '" + docSo.SDT);
+            builder.Append("',GB = '" + docSo.GB + "',DM = '" + docSo.DM + "',Nam = '" + docSo.Nam + "','" + "',Ky = '" + docSo.Ky + "',Dot = '" + docSo.Dot);
+            builder.Append("',May = '" + docSo.May + "',ToDS = '" + docSo.TODS + "',CSCu = '" + docSo.CSCu + "',CodeCu = '" + docSo.CodeCu + "',TTDHNCu = '" + docSo.TTDHNCu);
+            builder.Append("',TieuThuCu = '" + docSo.TieuThuCu + "',SoThanCu = '" + docSo.SoThanCu + "',SoThanMoi = '" + docSo.SoThanMoi + "',HieuCu = '" + docSo.HieuCu);
+            builder.Append("',HieuMoi = '" + docSo.HieuMoi + "',CoCu = '" + docSo.CoCu + "',CoMoi = '" + docSo.CoMoi + "',GiengCu = '" + docSo.GiengCu);
+            builder.Append("',GiengMoi = '" + docSo.GiengMoi + "',Van1Cu = '" + docSo.Van1Cu + "',Van1Moi = '" + docSo.Van1Moi + "',MVCu = '" + docSo.MVCu + "',MVMoi = '" + docSo.MVMoi);
+            builder.Append("',ViTriCu = '" + docSo.ViTriCu + "',ViTriMoi = '" + docSo.ViTriMoi + "',ChiThanCu = '" + docSo.ChiThanCu + "',ChiThanMoi = '" + docSo.ChiThanMoi);
+            builder.Append("',ChiCoCu = '" + docSo.ChiCoCu + "',ChiCoMoi = '" + docSo.ChiCoMoi + "',CapDoCu = '" + docSo.CapDoCu + "',CapDoMoi = '" + docSo.CapDoMoi);
+            builder.Append("',CongDungCu = '" + docSo.CongDungCu + "',CongDungMoi = '" + docSo.CongDungMoi + "',DMACu = '" + docSo.DMACu + "',  DMAMoi = '" + docSo.DMAMoi);
+            builder.Append("', StaCapNhat = '' where DocSoID = '" + docSo.DocSoID + "'");
+            var value = serverContext.ExecuteQuery<int>(builder.ToString()).ToList();
+            return value.Count;
+        }
+        public int InsertDocSo(DocSo docSo)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append("insert into DocSo values('" + docSo.DocSoID + "','" + docSo.DanhBa + "','" + docSo.MLT1 + "','" + docSo.MLT2 + "','");
+            builder.Append(docSo.SoNhaCu + "','" + docSo.SoNhaMoi + "','" + docSo.Duong + "','" + docSo.SDT + "','" + docSo.GB + "','" + docSo.DM + "','" + docSo.Nam + "','");
+            builder.Append(docSo.Ky + "','" + docSo.Dot + "','" + docSo.May + "','" + docSo.TBTT + "','" + docSo.TamTinh + "','" + docSo.CSCu + "','" + /*docSo.CSMoi +*/ "','");
+            builder.Append(docSo.CodeCu + "','" + /*docSo.CodeMoi +*/ "','" + docSo.TTDHNCu + "','" + /*docSo.TTDHNMoi +*/ "','" + docSo.TieuThuCu + "','" + /*docSo.TieuThuMoi +*/ "','");
+            builder.Append(docSo.TuNgay + "','" + docSo.DenNgay + "','" + docSo.TienNuoc + "','" + docSo.BVMT + "','" + docSo.Thue + "','" + docSo.TongTien + "','");
+            builder.Append(docSo.SoThanCu + "','" + docSo.SoThanMoi + "','" + docSo.HieuCu + "','" + docSo.HieuMoi + "','" + docSo.CoCu + "','" + docSo.CoMoi + "','");
+            builder.Append(docSo.GiengCu + "','" + docSo.GiengMoi + "','" + docSo.Van1Cu + "','" + docSo.Van1Moi + "','" + docSo.MVCu + "','" + docSo.MVMoi + "','");
+            builder.Append(docSo.ChiCoCu + "','" + docSo.ChiCoMoi + "','" + docSo.ChiThanCu + "','" + docSo.ChiThanMoi + "','" + docSo.ViTriCu + "','" + docSo.ViTriMoi + "','");
+            builder.Append(docSo.CapDoCu + "','" + docSo.CapDoMoi + "','" + docSo.CongDungCu + "','" + docSo.CongDungMoi + "','" + docSo.DMACu + "','" + docSo.DMAMoi + "','");
+            builder.Append(docSo.GhiChuKH.Replace('|', ' ') + "','" + docSo.GhiChuDS.Replace('|', ' ') + "','','','','','','','','','','");
+            builder.Append(docSo.TODS + "', '','','','','','','','','','','','','','')");
+
+            var value = serverContext.ExecuteQuery<int>(builder.ToString()).ToList();
+            return value.Count;
         }
         public int InsertBienDong(ViewModel.BienDong bienDong)
         {
@@ -380,11 +417,16 @@ namespace ViewModel
             //}
             //return query.Count;
         }
-
-        public List<KhachHang> GetKhachHang_TaoFile(String may, String dot)
+        public List<ChuanBiKH> GetDocSo_ChuanBiKH(string danhBa, string docSoID)
+        {
+            string sqlStatement3 = "select top 13 Nam, Ky, Convert(varchar,DenNgay,103) DenNgay, CSMoi, CodeMoi, TieuThuMoi, TTDHNMOI,TBTT from DocSo where DanhBa = '" + danhBa + "' and DocSoID < '" + docSoID + "' order by DocSoID desc";
+            var data = serverContext.ExecuteQuery<ChuanBiKH>(sqlStatement3).ToList();
+            return data;
+        }
+        public List<MyKhachHang> GetKhachHang_TaoFile(String may, String dot)
         {
             string sqlStatement3 = "select *, Convert(varchar,NgayGan,103) NgayGanCV from KhachHang k inner join MayDS m on k.May = m.May  where k.May = '" + may + "' and Dot ='" + dot + "' and HieuLuc ='1' order by MLT2";
-            var data = serverContext.ExecuteQuery<KhachHang>(sqlStatement3).ToList();
+            var data = serverContext.ExecuteQuery<MyKhachHang>(sqlStatement3).ToList();
             return data;
         }
 
