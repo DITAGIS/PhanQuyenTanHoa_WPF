@@ -70,6 +70,9 @@ namespace PhanQuyen.UserControlView
         {
             this.dtgridMain.ItemsSource = null;
             dtgridMain.ItemsSource = HandlingDataDBViewModel.Instance.GetDanhMucFileTheoTo(year, month, date, group);
+
+           
+
         }
         private void GetFileCheck()
         {
@@ -483,7 +486,7 @@ namespace PhanQuyen.UserControlView
             if (cbbDate.SelectedValue != null)
             {
                 date = cbbDate.SelectedValue.ToString();
-                //dpkTuNgay.SelectedDate = HandlingDataDBViewModel.Instance.GetNgayDocSo()
+                dpkTuNgay.SelectedDate = HandlingDataDBViewModel.Instance.GetNgayDocSoKyTruoc(year, month, date);
             }
         }
 

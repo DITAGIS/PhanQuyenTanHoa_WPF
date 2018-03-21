@@ -373,6 +373,22 @@ namespace ViewModel
                 return 0;
             }
         }
+        public DateTime GetNgayDocSoKyTruoc(int year, string month, string date)
+        {
+            try
+            {
+                DateTime dateTime = new DateTime(year, int.Parse(month), int.Parse(date));
+                dateTime = dateTime.AddMonths(-1);
+                string query = "select distinct denngay from hoadon where hoadonid like '" + dateTime.Year + dateTime.Month.ToString("00") + "%' and dot = " + date + "";
+                var data = serverContext.ExecuteQuery<DateTime>(query).ToList();
+                return data.ElementAt(0);
+            }
+            catch (Exception e)
+            {
+
+            }
+            return DateTime.Now;
+        }
 
         public List<TruyenDuLieu> GetDanhMucFileTheoTo(int year, string month, string date, int xGroup)
         {
