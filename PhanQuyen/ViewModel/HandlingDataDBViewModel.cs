@@ -146,7 +146,7 @@ namespace ViewModel
         }
         public int CheckIzDS(int nam, string ky, string dot)
         {
-            var query = "select count(*) from BillState where izDS = '1' and BillID ='" +nam +ky+ dot+ "'";
+            var query = "select count(*) from BillState where izDS = '1' and BillID ='" + nam + ky + dot + "'";
             return serverContext.ExecuteQuery<int>(query).First();
         }
 
@@ -179,7 +179,7 @@ namespace ViewModel
             StringBuilder builder = new StringBuilder();
             builder.Append("Update DocSo set DanhBa = '" + docSo.DanhBa + "',MLT1 = '" + docSo.MLT1 + "',MLT2 = '" + docSo.MLT2);
             builder.Append("',SoNhaCu = '" + docSo.SoNhaCu + "',SoNhaMoi = '" + docSo.SoNhaMoi + "',Duong = '" + docSo.Duong + "',SDT = '" + docSo.SDT);
-            builder.Append("',GB = '" + docSo.GB + "',DM = '" + docSo.DM + "',Nam = '" + docSo.Nam+ "',Ky = '" + docSo.Ky + "',Dot = '" + docSo.Dot);
+            builder.Append("',GB = '" + docSo.GB + "',DM = '" + docSo.DM + "',Nam = '" + docSo.Nam + "',Ky = '" + docSo.Ky + "',Dot = '" + docSo.Dot);
             builder.Append("',May = '" + docSo.May + "',ToDS = '" + docSo.TODS + "',CSCu = '" + docSo.CSCu + "',CodeCu = '" + docSo.CodeCu + "',TTDHNCu = '" + docSo.TTDHNCu);
             builder.Append("',TieuThuCu = '" + docSo.TieuThuCu + "',SoThanCu = '" + docSo.SoThanCu + "',SoThanMoi = '" + docSo.SoThanMoi + "',HieuCu = '" + docSo.HieuCu);
             builder.Append("',HieuMoi = '" + docSo.HieuMoi + "',CoCu = '" + docSo.CoCu + "',CoMoi = '" + docSo.CoMoi + "',GiengCu = '" + docSo.GiengCu);
@@ -208,9 +208,19 @@ namespace ViewModel
             builder.Append(docSo.CapDoCu + "','" + docSo.CapDoMoi + "','" + docSo.CongDungCu + "','" + docSo.CongDungMoi + "','" + docSo.DMACu + "','" + docSo.DMAMoi + "','");
             builder.Append(docSo.GhiChuKH.Replace('|', ' ') + "','" + docSo.GhiChuDS.Replace('|', ' ') + "','','','','','','','','','','");
             builder.Append(docSo.TODS + "', '','','','','','','','','','','','','','')");
-
-            var value = serverContext.ExecuteQuery<int>(builder.ToString()).ToList();
-            return value.Count;
+            ConnectionViewModel.getInstance.Connect();
+            var query = "select docsoid from docso where docsoid ='" + docSo.DocSoID + "'";
+            var find = ConnectionViewModel.getInstance.GetExecuteReader(query);
+            var insert = 0;
+            if (!find.HasRows)
+            {
+                ConnectionViewModel.getInstance.DisConnect();
+                ConnectionViewModel.getInstance.Connect();
+                ConnectionViewModel.getInstance.GetExecuteNonQuerry(builder.ToString());
+                insert = 1;
+            }
+            ConnectionViewModel.getInstance.DisConnect();
+            return insert;
         }
         public int InsertBienDong(ViewModel.BienDong bienDong)
         {
@@ -370,8 +380,13 @@ namespace ViewModel
             List<TruyenDuLieu> items = new List<TruyenDuLieu>();
             try
             {
-                string query = "select distinct(b.May) as May,Count(b.DanhBa) as SoKH from khachhang b inner join MayDS1 m on b.May = m.May" +
-                    " where  b.Dot = " + date + " and m.ToID = " + xGroup + " and HieuLuc = '1' group by b.May  order by b.May";
+                string query = "";
+                if (xGroup == 0)
+                    query = "select (b.May) as May,Count(distinct b.DanhBa) as SoKH from khachhang b inner join MayDS1 m on b.May = m.May" +
+                        " where  b.Dot = " + date + " and HieuLuc = '1' group by b.May  order by b.May";
+                else
+                    query = "select (b.May) as May,Count(distinct b.DanhBa) as SoKH from khachhang b inner join MayDS1 m on b.May = m.May" +
+                        " where  b.Dot = " + date + " and m.ToID = " + xGroup + " and HieuLuc = '1' group by b.May  order by b.May";
                 var data = serverContext.ExecuteQuery<TruyenDuLieu>(query).ToList();
                 int stt = 0;
                 foreach (var item in data)
@@ -429,7 +444,7 @@ namespace ViewModel
         }
         public List<MyKhachHang> GetKhachHang_TaoFile(String may, String dot)
         {
-            string sqlStatement3 = "select *, Convert(varchar,NgayGan,103) NgayGanCV from KhachHang k inner join MayDS m on k.May = m.May  where k.May = '" + may + "' and Dot ='" + dot + "' and HieuLuc ='1' order by MLT2";
+            string sqlStatement3 = "select distinct *, Convert(varchar,NgayGan,103) NgayGanCV from KhachHang k inner join MayDS m on k.May = m.May  where k.May = '" + may + "' and Dot ='" + dot + "' and HieuLuc ='1' order by MLT2";
             var data = serverContext.ExecuteQuery<MyKhachHang>(sqlStatement3).ToList();
             return data;
         }
@@ -1795,29 +1810,32 @@ namespace ViewModel
             }
             return lstGroup;
         }
-        public ObservableCollection<String> getDistinctMachineServer(int year, String month, String date, int xGroup)
+        public List<String> getDistinctMachineServer(int year, String month, String date, int xGroup)
         {
-            ObservableCollection<String> lstMachine = new ObservableCollection<String>();
             try
             {
                 List<String> items;
+                string query = "";
                 if (xGroup == 0)
-                    items = (from x in serverContext.DocSos
-                             where x.DocSoID.StartsWith(year + month) && x.Dot == date
-                             select x.May).Distinct().ToList();
+                    query = "select distinct may from docso where docsoid like '" + year + month + "%' and dot = '" + date + "'";
+                //items = (from x in serverContext.DocSos
+                //         where x.DocSoID.StartsWith(year + month) && x.Dot == date
+                //         select x.May).Distinct().ToList();
                 else
-                    items = (from x in serverContext.DocSos
-                             where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup
-                             select x.May).Distinct().ToList();
-                lstMachine.Add(ALL);
-                foreach (String item in items)
-                    lstMachine.Add(item);
+                    query = "select distinct may from docso where docsoid like '" + year + month + "%' and dot = '" + date + "' and tods =" + xGroup;
+                //items = (from x in serverContext.DocSos
+                //             where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup
+                //             select x.May).Distinct().ToList();
+                var mayList = serverContext.ExecuteQuery<string>(query).ToList();
+                mayList.Add(ALL);
+                return mayList;
+
             }
             catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + e.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
-            return lstMachine;
+            return new List<string>();
         }
         public ObservableCollection<SoDaNhan> getDistinctSoDaNhan(int year, String month, String date, int xGroup)
         {

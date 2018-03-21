@@ -131,7 +131,7 @@
                           HorizontalAlignment="Center" VerticalAlignment="Top" 
                           Width="Auto" Height="300" 
                               SelectionChanged="dtgridMain_SelectionChanged"
-                        
+                    
                           RowHeight="20"
                           AlternatingRowBackground="Beige"
                           RowBackground="White"
@@ -142,7 +142,7 @@
                           BorderBrush="Black"
                               CanUserAddRows="False"
                           Background="White" SelectionMode="Single"
-                          
+                              SelectionUnit="CellOrRowHeader"
                           FontSize="12">
                 <!--Font Color / Style of Column Heading-->
                 <DataGrid.Resources>

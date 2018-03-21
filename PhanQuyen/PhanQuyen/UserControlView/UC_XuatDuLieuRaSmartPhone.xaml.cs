@@ -374,7 +374,7 @@ namespace PhanQuyen.UserControlView
                                           }
                                           if (index2 < lst.Count - 1)
                                           {
-                                              if (index2 % 10 == 0)
+                                              if (index2 % 20 == 0)
                                               {
                                                   txtbStatus.Text = str3 + ": " + (object)index2 + "/" + (object)lst.Count;
                                               }
@@ -417,10 +417,8 @@ namespace PhanQuyen.UserControlView
                                     {
                                         str4 += '|' + value.ToString();
                                     }
-                                    tw.WriteLine(str4);
-
-
                                 }
+                                tw.WriteLine(str4);
                             }
                             this.GetDanhMucFileDaTao();
                             if (tw == null)
