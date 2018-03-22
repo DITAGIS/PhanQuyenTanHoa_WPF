@@ -30,7 +30,12 @@ namespace PhanQuyen
         public LogInWindow()
         {
             InitializeComponent();
-            cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
+            DateTime time = DateTime.Now;
+            cbbYear.Items.Add(time.Year);
+            cbbYear.Items.Add(time.AddYears(-1).Year);
+            cbbYear.Items.Add(time.AddYears(-2).Year);
+
+            //cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
             for (int i = 1; i <= 20; i++)
                 cbbDate.Items.Add(i.ToString("00"));
             for (int i = 1; i <= 12; i++)

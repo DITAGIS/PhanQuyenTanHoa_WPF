@@ -1433,14 +1433,14 @@ namespace ViewModel
             {
                 var data = (from x in serverContext.DocSos
                             where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup
-                            select x).ToList();
+                            select x).OrderBy(x=>x.MLT1).ToList();
                 return data;
             }
             else
             {
                 var data = (from x in serverContext.DocSos
                             where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.May == machine
-                            select x).ToList();
+                            select x).OrderBy(x => x.MLT1).ToList();
                 return data;
             }
         }
