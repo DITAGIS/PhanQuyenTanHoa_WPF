@@ -45,14 +45,14 @@ namespace PhanQuyen
 
         private void btnGetData_Click(object sender, RoutedEventArgs e)
         {
-            ConnectionViewModel.getInstance.Connect();
-            ConnectionViewModel.getInstance.DisConnect();
+            ConnectionViewModel.Instance.Connect();
+            ConnectionViewModel.Instance.DisConnect();
             C_chuyenBilling chuyenBilling = new C_chuyenBilling(MyUser.Instance.Month,
                 MyUser.Instance.Date, MyUser.Instance.Year,
                 MyUser.Instance.UserName,
                 MyUser.Instance.Password,
                 "TH",
-               ConnectionViewModel.getInstance.getConnection);
+               ConnectionViewModel.Instance.getConnection);
 
             
             chuyenBilling.CapNhatDuLieuBilling(datePicker.SelectedDate.Value,new System.Windows.Forms.ToolStripProgressBar());

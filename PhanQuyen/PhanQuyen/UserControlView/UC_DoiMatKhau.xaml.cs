@@ -43,18 +43,18 @@ namespace PhanQuyen.UserControlView
             bool flag = true;
             try
             {
-                ConnectionViewModel.getInstance.Connect();
+                ConnectionViewModel.Instance.Connect();
                 string query = "Select Password from Users where UserID ='" + MyUser.Instance.UserID + "'";
-                System.Data.SqlClient.SqlDataReader reader = ConnectionViewModel.getInstance.GetExecuteReader(query);
+                System.Data.SqlClient.SqlDataReader reader = ConnectionViewModel.Instance.GetExecuteReader(query);
                 if (reader.Read())
                     if (!reader.GetString(0).Trim().Equals(txtOldPassword.Password.Trim()))
                         flag = false;
-                ConnectionViewModel.getInstance.DisConnect();
+                ConnectionViewModel.Instance.DisConnect();
             }
             catch (Exception ex)
             {
                 int num = (int)System.Windows.MessageBox.Show("Lỗi KiemTraMKCu: " + ex.Message);
-                ConnectionViewModel.getInstance.DisConnect();
+                ConnectionViewModel.Instance.DisConnect();
             }
             return flag;
         }
@@ -84,11 +84,11 @@ namespace PhanQuyen.UserControlView
             {
                 try
                 {
-                    ConnectionViewModel.getInstance.Connect();
+                    ConnectionViewModel.Instance.Connect();
                     string sqlstatement = "Update Users set Password = '" + this.txtNewPasswordConfirm.Password.Trim() + "' where UserID ='" + MyUser.Instance.UserID + "'";
-                    int value = ConnectionViewModel.getInstance.GetExecuteNonQuerry(sqlstatement);
+                    int value = ConnectionViewModel.Instance.GetExecuteNonQuerry(sqlstatement);
                     int num = (int)System.Windows.Forms.MessageBox.Show("Đổi mật khẩu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    ConnectionViewModel.getInstance.DisConnect();
+                    ConnectionViewModel.Instance.DisConnect();
                     Clear();
                 }
                 catch (Exception ex)

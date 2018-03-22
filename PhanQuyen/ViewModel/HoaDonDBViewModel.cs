@@ -198,7 +198,7 @@ namespace ViewModel
         public List<String> getDanhBasByCondition(int year, String month, String date, int xGroup, String machine)
         {
             List<String> danhBas = new List<String>();
-            SqlCommand command = new SqlCommand(SQL_SELECT_DANH_BA_CONDITION, ConnectionViewModel.getInstance.getConnection);
+            SqlCommand command = new SqlCommand(SQL_SELECT_DANH_BA_CONDITION, ConnectionViewModel.Instance.getConnection);
             SqlDataReader dataReader = null;
             try
             {
@@ -232,7 +232,7 @@ namespace ViewModel
             List<String> listYear = new List<String>();
             try
             {
-                SqlCommand command = new SqlCommand(SQL_SELECT_DISTINCT_YEAR, ConnectionViewModel.getInstance.getConnection);
+                SqlCommand command = new SqlCommand(SQL_SELECT_DISTINCT_YEAR, ConnectionViewModel.Instance.getConnection);
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                     listYear.Add(dataReader["nam"].ToString());
@@ -249,7 +249,7 @@ namespace ViewModel
             List<String> listMonth = new List<String>();
             try
             {
-                SqlCommand command = new SqlCommand(SQL_SELECT_DISTINCT_MONTH, ConnectionViewModel.getInstance.getConnection);
+                SqlCommand command = new SqlCommand(SQL_SELECT_DISTINCT_MONTH, ConnectionViewModel.Instance.getConnection);
                 command.Parameters.AddWithValue("@year", year);
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
@@ -267,7 +267,7 @@ namespace ViewModel
             List<String> listDate = new List<String>();
             try
             {
-                SqlCommand command = new SqlCommand(SQL_SELECT_DISTINCT_DATE, ConnectionViewModel.getInstance.getConnection);
+                SqlCommand command = new SqlCommand(SQL_SELECT_DISTINCT_DATE, ConnectionViewModel.Instance.getConnection);
                 command.Parameters.AddWithValue("@year", year);
                 command.Parameters.AddWithValue("@month", month);
                 SqlDataReader dataReader = command.ExecuteReader();
@@ -286,7 +286,7 @@ namespace ViewModel
             List<String> listGroup = new List<String>();
             try
             {
-                SqlCommand command = new SqlCommand(SQL_SELECT_DISTINCT_GROUP, ConnectionViewModel.getInstance.getConnection);
+                SqlCommand command = new SqlCommand(SQL_SELECT_DISTINCT_GROUP, ConnectionViewModel.Instance.getConnection);
 
                 SqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
@@ -304,7 +304,7 @@ namespace ViewModel
             List<String> listMachine = new List<String>();
             try
             {
-                SqlCommand command = new SqlCommand(SQL_SELECT_DISTINCT_MACHINE, ConnectionViewModel.getInstance.getConnection);
+                SqlCommand command = new SqlCommand(SQL_SELECT_DISTINCT_MACHINE, ConnectionViewModel.Instance.getConnection);
 
                 command.Parameters.AddWithValue("@group", group);
                 SqlDataReader dataReader = command.ExecuteReader();

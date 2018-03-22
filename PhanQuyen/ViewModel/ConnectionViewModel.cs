@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -35,11 +36,13 @@ namespace ViewModel
                 return conn;
             }
         }
-        private String ConnectionString
+        public String ConnectionString
         {
             get
             {
-                return "Data Source=thanle;Initial Catalog=DocSoTH;Persist Security Info=True;User ID=sa;Password=123456";
+                string key = "PhanQuyen.Properties.Settings.DocSoTHConnectionString1_THANLE";
+                string connectionString = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None).ConnectionStrings.ConnectionStrings[key].ConnectionString;
+                return connectionString;
             }
         }
         private ConnectionViewModel()
@@ -49,7 +52,7 @@ namespace ViewModel
 
         }
         private static ConnectionViewModel _instance;
-        public static ConnectionViewModel getInstance
+        public static ConnectionViewModel Instance
         {
             get
             {

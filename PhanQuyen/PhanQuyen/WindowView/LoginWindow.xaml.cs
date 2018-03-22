@@ -1,4 +1,5 @@
 ﻿using Model;
+using PhanQuyen.WindowView;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -63,21 +64,21 @@ namespace PhanQuyen
             string sqlstatement = "Insert into BillState(BillID) values('" + user.Year + user.Month + user.Date + "')";
             try
             {
-                ConnectionViewModel.getInstance.Connect();
-                SqlDataReader reader = ConnectionViewModel.getInstance.GetExecuteReader(querySelect);
+                ConnectionViewModel.Instance.Connect();
+                SqlDataReader reader = ConnectionViewModel.Instance.GetExecuteReader(querySelect);
 
                 if (!reader.HasRows)
                 {
-                    ConnectionViewModel.getInstance.DisConnect();
-                    ConnectionViewModel.getInstance.Connect();
-                    ConnectionViewModel.getInstance.GetExecuteNonQuerry(sqlstatement);
-                    ConnectionViewModel.getInstance.DisConnect();
+                    ConnectionViewModel.Instance.DisConnect();
+                    ConnectionViewModel.Instance.Connect();
+                    ConnectionViewModel.Instance.GetExecuteNonQuerry(sqlstatement);
+                    ConnectionViewModel.Instance.DisConnect();
                 }
-                ConnectionViewModel.getInstance.DisConnect();
+                ConnectionViewModel.Instance.DisConnect();
             }
             catch (Exception e)
             {
-                ConnectionViewModel.getInstance.DisConnect();
+                ConnectionViewModel.Instance.DisConnect();
             }
 
             MainWindow mainWindow = new MainWindow(user);
@@ -109,6 +110,12 @@ namespace PhanQuyen
                 date = cbbDate.SelectedValue.ToString();
             }
             catch { }
+        }
+
+        private void btnConfig_Click(object sender, RoutedEventArgs e)
+        {
+            ConfigWindow configWindow = new ConfigWindow();
+            configWindow.ShowDialog();
         }
 
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)

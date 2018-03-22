@@ -88,6 +88,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Controls.Ribbon" />
@@ -141,6 +142,9 @@
     </Compile>
     <Compile Include="UserControlView\UC_XuatDuLieuRaSmartPhone.xaml.cs">
       <DependentUpon>UC_XuatDuLieuRaSmartPhone.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowView\ConfigWindow.xaml.cs">
+      <DependentUpon>ConfigWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowView\GetDaTaWindow.xaml.cs">
       <DependentUpon>GetDaTaWindow.xaml</DependentUpon>
@@ -211,6 +215,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlView\UC_XuatDuLieuRaSmartPhone.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowView\ConfigWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -527,6 +535,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\directory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\connection.png" />
+    <Resource Include="Images\save.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

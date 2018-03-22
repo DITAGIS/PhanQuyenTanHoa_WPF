@@ -118,13 +118,13 @@ namespace ViewModel
 
             try
             {
-                ConnectionViewModel.getInstance.Connect();
+                ConnectionViewModel.Instance.Connect();
 
                 string query = "SELECT Dot , COUNT(DANHBA) as SoDanhBa, SUM(TieuThu) as SoTieuThu FROM HoaDon WHERE hoadonid like '" + year + month + "%' GROUP BY DOT ORDER BY DOT";
                 //data = serverContext.ExecuteQuery<CapNhatHoaDon>(query).ToList();
-                DataTable table = ConnectionViewModel.getInstance.GetDataTable(query);
+                DataTable table = ConnectionViewModel.Instance.GetDataTable(query);
 
-                ConnectionViewModel.getInstance.DisConnect();
+                ConnectionViewModel.Instance.DisConnect();
                 return table;
             }
             catch (Exception e)
@@ -153,7 +153,7 @@ namespace ViewModel
         private HandlingDataDBViewModel()
         {
             localContext = new DataClassesLocalDataContext();
-            serverContext = new DataClasses_thanleDataContext();
+            serverContext = new DataClasses_thanleDataContext(ConnectionViewModel.Instance.ConnectionString);
         }
         public void DeleteBienDong(int nam, string ky, string dot)
         {
@@ -175,7 +175,7 @@ namespace ViewModel
         }
         public int UpdateDocSo(DocSo docSo)
         {
-            ConnectionViewModel.getInstance.Connect();
+            ConnectionViewModel.Instance.Connect();
             StringBuilder builder = new StringBuilder();
             builder.Append("Update DocSo set DanhBa = '" + docSo.DanhBa + "',MLT1 = '" + docSo.MLT1 + "',MLT2 = '" + docSo.MLT2);
             builder.Append("',SoNhaCu = '" + docSo.SoNhaCu + "',SoNhaMoi = '" + docSo.SoNhaMoi + "',Duong = '" + docSo.Duong + "',SDT = '" + docSo.SDT);
@@ -189,8 +189,8 @@ namespace ViewModel
             builder.Append("',CongDungCu = '" + docSo.CongDungCu + "',CongDungMoi = '" + docSo.CongDungMoi + "',DMACu = '" + docSo.DMACu + "',  DMAMoi = '" + docSo.DMAMoi);
             builder.Append("', StaCapNhat = '' where DocSoID = '" + docSo.DocSoID + "'");
 
-            int value = ConnectionViewModel.getInstance.GetExecuteNonQuerry(builder.ToString());
-            ConnectionViewModel.getInstance.DisConnect();
+            int value = ConnectionViewModel.Instance.GetExecuteNonQuerry(builder.ToString());
+            ConnectionViewModel.Instance.DisConnect();
             //var value = serverContext.ExecuteQuery<int>(builder.ToString()).ToList();
             return value;
         }
@@ -208,18 +208,18 @@ namespace ViewModel
             builder.Append(docSo.CapDoCu + "','" + docSo.CapDoMoi + "','" + docSo.CongDungCu + "','" + docSo.CongDungMoi + "','" + docSo.DMACu + "','" + docSo.DMAMoi + "','");
             builder.Append(docSo.GhiChuKH.Replace('|', ' ') + "','" + docSo.GhiChuDS.Replace('|', ' ') + "','','','','','','','','','','");
             builder.Append(docSo.TODS + "', '','','','','','','','','','','','','','')");
-            ConnectionViewModel.getInstance.Connect();
+            ConnectionViewModel.Instance.Connect();
             var query = "select docsoid from docso where docsoid ='" + docSo.DocSoID + "'";
-            var find = ConnectionViewModel.getInstance.GetExecuteReader(query);
+            var find = ConnectionViewModel.Instance.GetExecuteReader(query);
             var insert = 0;
             if (!find.HasRows)
             {
-                ConnectionViewModel.getInstance.DisConnect();
-                ConnectionViewModel.getInstance.Connect();
-                ConnectionViewModel.getInstance.GetExecuteNonQuerry(builder.ToString());
+                ConnectionViewModel.Instance.DisConnect();
+                ConnectionViewModel.Instance.Connect();
+                ConnectionViewModel.Instance.GetExecuteNonQuerry(builder.ToString());
                 insert = 1;
             }
-            ConnectionViewModel.getInstance.DisConnect();
+            ConnectionViewModel.Instance.DisConnect();
             return insert;
         }
         public int InsertBienDong(ViewModel.BienDong bienDong)
@@ -245,8 +245,8 @@ namespace ViewModel
         }
         public void InsertBienDong(DataTable table)
         {
-            ConnectionViewModel.getInstance.Connect();
-            SqlBulkCopy bulkCopy = new SqlBulkCopy(ConnectionViewModel.getInstance.getConnection);
+            ConnectionViewModel.Instance.Connect();
+            SqlBulkCopy bulkCopy = new SqlBulkCopy(ConnectionViewModel.Instance.getConnection);
             bulkCopy.DestinationTableName =
                    "BienDong";
             try
@@ -258,12 +258,12 @@ namespace ViewModel
                 System.Windows.MessageBox.Show(e1.Message, "Lỗi");
             }
 
-            ConnectionViewModel.getInstance.DisConnect();
+            ConnectionViewModel.Instance.DisConnect();
         }
         public void InsertHoaDon(DataTable table)
         {
-            ConnectionViewModel.getInstance.Connect();
-            SqlBulkCopy bulkCopy = new SqlBulkCopy(ConnectionViewModel.getInstance.getConnection);
+            ConnectionViewModel.Instance.Connect();
+            SqlBulkCopy bulkCopy = new SqlBulkCopy(ConnectionViewModel.Instance.getConnection);
             bulkCopy.DestinationTableName =
                    "HoaDon";
             try
@@ -275,15 +275,15 @@ namespace ViewModel
                 System.Windows.MessageBox.Show(e1.Message, "Lỗi");
             }
 
-            ConnectionViewModel.getInstance.DisConnect();
+            ConnectionViewModel.Instance.DisConnect();
         }
         public int InsertHoaDon(ViewModel.HoaDon hoaDon)
         {
             try
             {
-                ConnectionViewModel.getInstance.Connect();
+                ConnectionViewModel.Instance.Connect();
                 var querySearch = "select hoadonid from hoadon where hoadonid ='" + hoaDon.HoaDonID + "'";
-                SqlDataReader dtr = ConnectionViewModel.getInstance.GetExecuteReader(querySearch);
+                SqlDataReader dtr = ConnectionViewModel.Instance.GetExecuteReader(querySearch);
                 if (dtr.Read())
                 {
 
@@ -332,9 +332,9 @@ namespace ViewModel
                     builder.Append(hoaDon.NgayCapNhat + "','");
                     builder.Append(hoaDon.NVCapNhat + "',");
                     builder.Append(hoaDon.TienHD + ")");
-                    var value = ConnectionViewModel.getInstance.GetExecuteNonQuerry(builder.ToString());
+                    var value = ConnectionViewModel.Instance.GetExecuteNonQuerry(builder.ToString());
 
-                    ConnectionViewModel.getInstance.DisConnect();
+                    ConnectionViewModel.Instance.DisConnect();
                     //serverContext.ExecuteQuery<object>(query);
 
                     //int after = serverContext.HoaDons.Count<HoaDon>();
@@ -360,15 +360,15 @@ namespace ViewModel
                        "',CSMoi ='" + hoaDon.CSMoi + "',TieuThu ='" + hoaDon.TieuThu + "',TuNgay = '" + hoaDon.TuNgay + "',DenNgay = '" + hoaDon.DenNgay +
                        "',NgayCapNhat = '" + hoaDon.NgayCapNhat + "',NVCapNhat = '" + hoaDon.NVCapNhat + "', tienhd =" + hoaDon.TienHD + " where HoaDonID = '" + hoaDon.HoaDonID + "'");
                 //serverContext.ExecuteQuery<object>(query);
-                int value = ConnectionViewModel.getInstance.GetExecuteNonQuerry(builder.ToString());
-                ConnectionViewModel.getInstance.DisConnect();
+                int value = ConnectionViewModel.Instance.GetExecuteNonQuerry(builder.ToString());
+                ConnectionViewModel.Instance.DisConnect();
 
                 return value;
 
             }
             catch (Exception e)
             {
-                ConnectionViewModel.getInstance.DisConnect();
+                ConnectionViewModel.Instance.DisConnect();
 
                 return 0;
             }
@@ -1283,7 +1283,7 @@ namespace ViewModel
 
             bool result = false;
 
-            DataClasses_thanleDataContext serverContext = new DataClasses_thanleDataContext();
+            DataClasses_thanleDataContext serverContext = new DataClasses_thanleDataContext(ConnectionViewModel.Instance.ConnectionString);
             var getData = (from x in serverContext.DocSos
                            where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup && x.DanhBa == danhBa && x.May == machine
                            select x).ToList();
@@ -1448,7 +1448,7 @@ namespace ViewModel
         public byte[] getImageByDanhBa(String danhBa, DateTime gioGhi)
         {
 
-            using (DataClasses_thanleDataContext tempServer = new DataClasses_thanleDataContext())
+            using (DataClasses_thanleDataContext tempServer = new DataClasses_thanleDataContext(ConnectionViewModel.Instance.ConnectionString))
             {
                 var data = (from x in tempServer.HinhDHNs
                             where x.DanhBo == danhBa && x.CreateDate == gioGhi
@@ -1512,7 +1512,7 @@ namespace ViewModel
 
             bool result = false;
 
-            DataClasses_thanleDataContext serverContext = new DataClasses_thanleDataContext();
+            DataClasses_thanleDataContext serverContext = new DataClasses_thanleDataContext(ConnectionViewModel.Instance.ConnectionString);
             var getData = (from x in serverContext.DocSos
                            where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup
                            select x).ToList();
@@ -1667,46 +1667,34 @@ namespace ViewModel
         }
         public ObservableCollection<DocSo_1Ky> get12Months(int year, string Month, string danhBa)
         {
-
-
-
             int count = 0;
             int month = Int16.Parse(Month);
             List<Item> r = new List<Item>();
             String kyString;
             month++;
-            while (count <= 12)
+            DateTime dateTime = new DateTime(year, month, 1);
+               while (count < 13)
             {
-                month--;
-                if (month == 0)
-                {
-                    year--;
-                    month = 12;
-                }
-                kyString = month + "";
-                if (month < 10)
-                    kyString = "0" + month;
+                dateTime = dateTime.AddMonths(-1);
+
                 r.Add(new Item()
                 {
-                    Year = year,
-                    Month = month
+                    Year = dateTime.Year,
+                    Month = dateTime.Month
                 });
-                //var data = (from x in serverContext.DocSos
-                //            where x.DanhBa == danhBa && x.Nam == year && x.Ky == kyString
-                //            select new { x.Ky, x.GIOGHI, x.CodeMoi, x.CSMoi, x.TieuThuMoi }).FirstOrDefault();
-                //if (data != null)
-                //    listDocSo.Add(new DocSo_1Ky(data.Ky + "/" + year, data.GIOGHI.GetValueOrDefault().ToString(pattern), data.CodeMoi, data.CSMoi + "", data.TieuThuMoi + ""));
                 count++;
             }
-            var whereStr = "and (";
+            var whereStr = " (";
             foreach (var s in r)
             {
-                whereStr += String.Format(" docsoid like '{0}%' or", s.Year + "" + s.Month.ToString().PadLeft(2, '0'));
+                whereStr += String.Format(" '{0}' ,", s.Year + "" + s.Month.ToString("00") + danhBa);
             }
             whereStr = whereStr.Substring(0, whereStr.Length - 3);
-            whereStr += ")";
-            List<DocSo_1Ky> datas = serverContext.ExecuteQuery<DocSo>(String.Format("select docsoID, denngay, codemoi, csmoi, tieuthumoi from Docso where danhba = '" + danhBa + "' {0} " +
-                "order by nam desc, ky desc", whereStr)).Select(data => new DocSo_1Ky(data.DocSoID.Substring(4, 2) + "/" + data.DocSoID.Substring(0, 4), data.DenNgay.GetValueOrDefault().ToString(pattern), data.CodeMoi, data.CSMoi + "", data.TieuThuMoi + "")).ToList();
+            whereStr += "')";
+
+            String query = String.Format("select docsoID, denngay, codemoi, csmoi, tieuthumoi from Docso where docsoid in " + " {0} " +
+                "order by nam desc, ky desc", whereStr);
+            List<DocSo_1Ky> datas = serverContext.ExecuteQuery<DocSo>(query).Select(data => new DocSo_1Ky(data.DocSoID.Substring(4, 2) + "/" + data.DocSoID.Substring(0, 4), data.DenNgay.GetValueOrDefault().ToString(pattern), data.CodeMoi, data.CSMoi + "", data.TieuThuMoi + "")).ToList();
             ObservableCollection<DocSo_1Ky> listDocSo = new ObservableCollection<DocSo_1Ky>(datas);
             return listDocSo;
         }
