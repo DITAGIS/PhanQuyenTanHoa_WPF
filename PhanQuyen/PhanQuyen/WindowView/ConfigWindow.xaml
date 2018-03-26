@@ -3,118 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PhanQuyen.WindowView"
+        xmlns:local="clr-namespace:PhanQuyen.UserControlView"
         mc:Ignorable="d"
         ResizeMode="NoResize"
          WindowState="Normal"
          WindowStartupLocation="CenterScreen"
         Title="Cấu hình kết nối" Height="300" Width="400">
-    <StackPanel Orientation="Vertical"
-                Background="CadetBlue">
-        <Grid Margin="0,50,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+    <local:UC_Config>
 
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-            <TextBlock Grid.Row="0" Grid.Column="0"
-                   Margin="10"
-                   FontSize="15"
-                   Foreground="White"
-                   VerticalAlignment="Center"
-                   Text="Server IP/Name"></TextBlock>
-            <PasswordBox Grid.Row="0" Grid.Column="1"
-                 Margin="10"
-                         Height="30"
-                         Name="passIPName"
-                 VerticalAlignment="Center"
-                    FontSize="15"
-                 ></PasswordBox>
-
-            <TextBlock Grid.Row="1" Grid.Column="0"
-                   Margin="10"
-                        FontSize="15"
-                   Foreground="White"
-                   VerticalAlignment="Center"
-                   Text="Database"></TextBlock>
-            <TextBox Grid.Row="1" Grid.Column="1"
-                 Margin="10"
-                     Height="30"
-                     Name="txtDatabase"
-                 VerticalAlignment="Center"
-                    FontSize="15"
-                 ></TextBox>
-
-            <TextBlock Grid.Row="2" Grid.Column="0"
-                   Margin="10"
-                        FontSize="15"
-                   Foreground="White"
-                   VerticalAlignment="Center"
-                   Text="User/pass"></TextBlock>
-
-            <Grid Grid.Row="2" Grid.Column="1"
-              Margin="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <PasswordBox  Grid.Column="0"
-                          Margin="0,0,10,0"
-                              Height="30"
-                              Name="passUser"
-                                 FontSize="15"
-                 VerticalAlignment="Center"
-                 ></PasswordBox>
-                <PasswordBox  Grid.Column="1"
-                 VerticalAlignment="Center"
-                              Height="30"
-                              Name="passPassword"
-                                 FontSize="15"
-                 ></PasswordBox>
-            </Grid>
-
-
-        </Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" 
-                    Margin="10"
-                    Background="White" Name="btnTestConnection" 
-                    Click="btnTestConnection_Click"
-                            >
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="/PhanQuyen;component/Images/connection.png" Width="20" Height="20"></Image>
-                    <TextBlock  VerticalAlignment="Center"    FontSize="15"
-                                Margin="2,0,0,0" >
-                        Test kết nối</TextBlock>
-                </StackPanel>
-            </Button>
-            <Button Grid.Column="2" 
-                    Margin="10"
-                    Background="White" Name="btnSave" 
-                     Click="btnSave_Click"   
-                            >
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="/PhanQuyen;component/Images/save.png" Width="20" Height="20"></Image>
-                    <TextBlock  VerticalAlignment="Center"    FontSize="15"
-                                Margin="2,0,0,0" >
-                        Lưu</TextBlock>
-                </StackPanel>
-            </Button>
-          
-        </Grid>
-    </StackPanel>
+    </local:UC_Config>
 </Window>

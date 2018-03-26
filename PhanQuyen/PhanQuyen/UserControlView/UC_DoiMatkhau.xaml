@@ -9,7 +9,7 @@
     <Grid >
         <Grid HorizontalAlignment="Center"
              VerticalAlignment="Center"
-              Background="AliceBlue"
+              Background="PowderBlue"
               >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" ></RowDefinition>

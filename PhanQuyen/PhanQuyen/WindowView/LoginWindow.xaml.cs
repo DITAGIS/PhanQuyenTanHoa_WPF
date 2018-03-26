@@ -30,12 +30,12 @@ namespace PhanQuyen
         public LogInWindow()
         {
             InitializeComponent();
-            DateTime time = DateTime.Now;
-            cbbYear.Items.Add(time.Year);
-            cbbYear.Items.Add(time.AddYears(-1).Year);
-            cbbYear.Items.Add(time.AddYears(-2).Year);
+            //DateTime time = DateTime.Now;
+            //cbbYear.Items.Add(time.Year);
+            //cbbYear.Items.Add(time.AddYears(-1).Year);
+            //cbbYear.Items.Add(time.AddYears(-2).Year);
 
-            //cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
+            cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
             for (int i = 1; i <= 20; i++)
                 cbbDate.Items.Add(i.ToString("00"));
             for (int i = 1; i <= 12; i++)
@@ -60,9 +60,7 @@ namespace PhanQuyen
         }
         private void HandleLoginSuccess()
         {
-
-
-            user.Year = cbbYear.SelectedValue.ToString();
+            user.Year = cbbYear.Text.ToString();
             user.Month = cbbMonth.SelectedValue.ToString();
             user.Date = cbbDate.SelectedValue.ToString();
             string querySelect = "select * from BillState where billid = '" + user.Year + user.Month + user.Date + "'";
@@ -122,6 +120,8 @@ namespace PhanQuyen
             ConfigWindow configWindow = new ConfigWindow();
             configWindow.ShowDialog();
         }
+
+       
 
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

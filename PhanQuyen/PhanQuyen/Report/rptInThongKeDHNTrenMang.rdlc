@@ -24,7 +24,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>3.18229in</Top>
+        <Top>3.43229in</Top>
         <Left>0.31459in</Left>
         <Height>0.22917in</Height>
         <Width>9.32084in</Width>
@@ -142,7 +142,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>3.4809in</Top>
+        <Top>3.7309in</Top>
         <Left>0.43959in</Left>
         <Height>1.46875in</Height>
         <Width>3.44792in</Width>
@@ -173,7 +173,7 @@
                             <Value>Hiệu</Value>
                             <Style>
                               <FontFamily>times New Roman</FontFamily>
-                              <FontSize>13pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -206,7 +206,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.86667in</Width>
+              <Width>0.53334in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -225,8 +225,7 @@
                               <Value>=Fields!DANHBA.Value</Value>
                               <Style>
                                 <FontFamily>times New Roman</FontFamily>
-                                <FontSize>13pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
+                                <FontWeight>Normal</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
                             </TextRun>
@@ -266,7 +265,6 @@
                               <Value>=Sum(CInt(Fields!DANHBA.Value))</Value>
                               <Style>
                                 <FontFamily>times New Roman</FontFamily>
-                                <FontSize>13pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Format>0;(0)</Format>
                               </Style>
@@ -297,9 +295,9 @@
         <TablixColumnHierarchy>
           <TablixMembers>
             <TablixMember>
-              <Group Name="LOAI">
+              <Group Name="TITLE">
                 <GroupExpressions>
-                  <GroupExpression>=Fields!LOAI.Value</GroupExpression>
+                  <GroupExpression>=Fields!TITLE.Value</GroupExpression>
                 </GroupExpressions>
               </Group>
               <SortExpressions>
@@ -308,7 +306,7 @@
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
-                <Size>0.25in</Size>
+                <Size>0.18333in</Size>
                 <CellContents>
                   <Textbox Name="TITLE">
                     <CanGrow>true</CanGrow>
@@ -320,7 +318,21 @@
                             <Value>=Fields!TITLE.Value</Value>
                             <Style>
                               <FontFamily>times New Roman</FontFamily>
-                              <FontSize>13pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                          <TextRun>
+                            <Value xml:space="preserve"> </Value>
+                            <Style>
+                              <FontFamily>times New Roman</FontFamily>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                          <TextRun>
+                            <Value>=Fields!TITLE1.Value</Value>
+                            <Style>
+                              <FontFamily>times New Roman</FontFamily>
+                              <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -375,7 +387,7 @@
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>0.25in</Size>
+                    <Size>0.23333in</Size>
                     <CellContents>
                       <Textbox Name="Co">
                         <CanGrow>true</CanGrow>
@@ -387,7 +399,7 @@
                                 <Value>=Fields!Co.Value</Value>
                                 <Style>
                                   <FontFamily>times New Roman</FontFamily>
-                                  <FontSize>13pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -429,6 +441,9 @@
                       </Textbox>
                     </CellContents>
                   </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
                 </TablixMember>
               </TablixMembers>
             </TablixMember>
@@ -460,7 +475,6 @@
                             <Value>=Fields!Hieu.Value</Value>
                             <Style>
                               <FontFamily>times New Roman</FontFamily>
-                              <FontSize>13pt</FontSize>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -497,7 +511,6 @@
                             <Value>Tổng</Value>
                             <Style>
                               <FontFamily>times New Roman</FontFamily>
-                              <FontSize>13pt</FontSize>
                               <FontWeight>Bold</FontWeight>
                             </Style>
                           </TextRun>
@@ -526,9 +539,9 @@
         </TablixRowHierarchy>
         <DataSetName>dtsInThongKeDHNTrenMang</DataSetName>
         <Top>1.96354in</Top>
-        <Left>0.31459in</Left>
-        <Height>1in</Height>
-        <Width>2.05in</Width>
+        <Left>0.06459in</Left>
+        <Height>0.91666in</Height>
+        <Width>1.71667in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -766,7 +779,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>13.01221cm</Height>
+    <Height>13.20711cm</Height>
     <Style />
   </Body>
   <Width>27.17272cm</Width>

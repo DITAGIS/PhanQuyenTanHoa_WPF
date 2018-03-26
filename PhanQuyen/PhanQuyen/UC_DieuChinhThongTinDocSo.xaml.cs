@@ -133,13 +133,19 @@ namespace PhanQuyen
             //ScaleTransform scaleTransform = new ScaleTransform(scaleX, scaleY);
             //image.LayoutTransform = scaleTransform;
         }
+        private void cbbMonth_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                month = cbbMonth.Text.ToString();
+                cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
+                cbbDate.SelectedValue = MyUser.Instance.Date;
+            }
+        }
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (month == null)
-                cbbMonth.SelectedValue = MyUser.Instance.Month;
-            if (cbbMonth.SelectedValue != null)
-                month = cbbMonth.SelectedValue.ToString();
-            cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
+                cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
             cbbDate.SelectedValue = MyUser.Instance.Date;
         }
 
@@ -237,6 +243,16 @@ namespace PhanQuyen
             return row;
 
         }
+
+        private void cbbDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                date = cbbDate.Text.ToString();
+                this.CheckIzDS(year, month, date);
+            }
+        }
+
         private void cbbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (date == null)
@@ -254,7 +270,19 @@ namespace PhanQuyen
                 dtgridMain.SelectedIndex = 0;
 
         }
-
+        private void cbbGroup_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                short x;
+                if (cbbGroup.Text == null)
+                    group = -1;
+                else if (Int16.TryParse(cbbGroup.Text.ToString(), out x))
+                    group = Int16.Parse(cbbGroup.Text.ToString());
+                else group = x;
+                cbbMachine.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMachineServer(year, month, date, group);
+            }
+        }
         private void cbbGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbbGroup.SelectedValue != null)
@@ -480,7 +508,7 @@ namespace PhanQuyen
 
         private void btnGetData_Click(object sender, RoutedEventArgs e)
         {
-            docSoList = HandlingDataDBViewModel.Instance.getAllDocSos(year, month, date, group, machine);
+            docSoList = HandlingDataDBViewModel.Instance.getAllDocSos(Int16.Parse(cbbYear.Text.ToString()), month, date, group, machine);
             dtgridMain.ItemsSource = null;
             dtgridMain.Items.Clear();
             dtgridMain.ItemsSource = docSoList;
@@ -607,6 +635,13 @@ namespace PhanQuyen
 
             System.Windows.Forms.ColumnClickEventArgs args = new System.Windows.Forms.ColumnClickEventArgs(0);
 
+        }
+        private void cbbMachine_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                machine = cbbMachine.Text.ToString();
+            }
         }
         private void cbbMachine_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -749,6 +784,17 @@ namespace PhanQuyen
             {
             }
         }
+
+        private void cbbYear_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                year = Int16.Parse(cbbYear.Text.ToString());
+                cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(year);
+            }
+        }
+
+     
 
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -56,10 +56,8 @@ namespace PhanQuyen.UserControlView.BaoCao
 
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
         }
-
-
-
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbbYear.SelectedValue != null)

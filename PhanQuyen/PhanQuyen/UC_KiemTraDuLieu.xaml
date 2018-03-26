@@ -42,7 +42,7 @@
             </StatusBarItem>
         </StatusBar>
 
-        <Grid Background="Azure"
+        <Grid Background="PowderBlue"
               HorizontalAlignment="Center"
               VerticalAlignment="Top"
               Margin="100">

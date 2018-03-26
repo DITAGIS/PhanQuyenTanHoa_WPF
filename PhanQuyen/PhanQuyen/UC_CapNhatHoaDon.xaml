@@ -17,7 +17,7 @@
 
             </StatusBarItem>
         </StatusBar>
-        <Grid Background="AliceBlue"
+        <Grid Background="PowderBlue"
             HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
