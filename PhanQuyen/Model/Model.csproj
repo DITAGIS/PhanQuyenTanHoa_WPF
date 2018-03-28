@@ -118,6 +118,7 @@
     <Compile Include="MyBienDong.cs" />
     <Compile Include="MyKhachHang.cs" />
     <Compile Include="MySoLenh.cs" />
+    <Compile Include="QuanLyNVDocSo.cs" />
     <Compile Include="ThongTinKH.cs" />
     <Compile Include="TKDHNTheoDotSo.cs" />
     <Compile Include="TKSauDocSo.cs" />

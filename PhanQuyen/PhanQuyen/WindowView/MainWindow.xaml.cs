@@ -42,6 +42,7 @@ namespace PhanQuyen
         UC_XuatDuLieuRaSmartPhone uc_XuatDuLieuRaSmartPhone;
         UC_DoiMatkhau uc_DoiMatKhau;
         UC_Config uc_Config;
+        UC_QuanLyNhanVienDocSo uc_QuanLyNhanVienDocSo;
         private MyUser user;
         private String title = "Phần mềm kết nối ứng dụng đọc số trên Smartphone            Nhân viên: ";
         public MainWindow()
@@ -176,6 +177,11 @@ namespace PhanQuyen
             {
                 uc_Config.Height = stkMain.ActualHeight;
                 uc_Config.Width = stkMain.ActualWidth;
+            }
+            if (uc_QuanLyNhanVienDocSo != null)
+            {
+                uc_QuanLyNhanVienDocSo.Height = stkMain.ActualHeight;
+                uc_QuanLyNhanVienDocSo.Width = stkMain.ActualWidth;
             }
         }
 
@@ -365,6 +371,16 @@ namespace PhanQuyen
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_DoiMatKhau);
             this.Title = this.title + "             Đổi mật khẩu";
+        }
+        private void ribBtnQuanLyNhanVienDocSo_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_QuanLyNhanVienDocSo == null)
+                uc_QuanLyNhanVienDocSo = new UC_QuanLyNhanVienDocSo();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_QuanLyNhanVienDocSo);
+            this.Title = this.title + "             Quản lý nhân viên đọc số";
         }
         private void ribBtnHoanTatDocSo_Click(object sender, RoutedEventArgs e)
         {

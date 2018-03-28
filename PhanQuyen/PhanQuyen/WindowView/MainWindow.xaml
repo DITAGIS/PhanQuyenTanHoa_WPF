@@ -29,7 +29,7 @@
     </Window.CommandBindings>
 
     <DockPanel LastChildFill="True">
-        <Ribbon DockPanel.Dock="Top"  Name="RibbonMain" >
+        <Ribbon DockPanel.Dock="Top"  Name="RibbonMain" Height="138" Margin="0,0,-0.4,0" >
             <Ribbon.HelpPaneContent>
                 <RibbonButton SmallImageSource="/PhanQuyen;component/Images/up.png" Margin="0,0,20,00" Name="btnExpandRibbon" Click="btnExpandRibbon_Click"/>
             </Ribbon.HelpPaneContent>
@@ -52,8 +52,11 @@
             <RibbonTab FontSize="13" KeyTip="H" Header="Hệ thống" IsSelected="True" >
 
                 <RibbonGroup Header="Quản lý">
-                    <RibbonButton Label="Quản lý nhân viên đọc số" LargeImageSource="/PhanQuyen;component/Images/nhanviendocso.png"></RibbonButton>
+                    <RibbonButton Label="Quản lý nhân viên đọc số" LargeImageSource="/PhanQuyen;component/Images/nhanviendocso.png"
+                                  Name="ribBtnQuanLyNhanVienDocSo" Click="ribBtnQuanLyNhanVienDocSo_Click"></RibbonButton>
                     <RibbonButton Label="Quản lý user"  LargeImageSource="/PhanQuyen;component/Images/quanlynhanvien.png"></RibbonButton>
+                    <RibbonButton Label="Chuyển máy đọc số"  LargeImageSource="/PhanQuyen;component/Images/file.png"
+                                  Visibility="Collapsed"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Cài đặt">
                     <RibbonButton Label="Cấu hình hệ thống"  LargeImageSource="/PhanQuyen;component/Images/settings.png"
@@ -83,7 +86,7 @@
                 </RibbonGroup>
 
             </RibbonTab>
-            <RibbonTab FontSize="13" Header="Xử lý" IsSelected="True">
+            <RibbonTab FontSize="13" Header="Xử lý" >
                 <RibbonGroup Header="Điều chỉnh" >
                     <RibbonButton Label="Điều chỉnh thông tin đọc số"  LargeImageSource="/PhanQuyen;component/Images/update_number.png" Name="ribBtnDieuChinhThongTinDocSo" Click="ribBtnDieuChinhThongTinDocSo_Click"></RibbonButton>
                     <RibbonButton Label="In phiếu tiêu thụ khách hàng"  LargeImageSource="/PhanQuyen;component/Images/printer.png" Name="ribBtnInPhieuTieuThuKH" Click="ribBtnInPhieuTieuThuKH_Click"></RibbonButton>

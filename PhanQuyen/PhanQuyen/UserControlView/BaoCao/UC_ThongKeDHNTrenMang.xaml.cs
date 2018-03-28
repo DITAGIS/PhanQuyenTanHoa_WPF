@@ -62,7 +62,7 @@ namespace PhanQuyen.UserControlView.BaoCao
         {
             if (cbbYear.SelectedValue != null)
             {
-                cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(Int16.Parse(cbbYear.SelectedItem.ToString()));
+                cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(Int16.Parse(cbbYear.SelectedValue.ToString()));
             }
         }
         #endregion

@@ -29,6 +29,8 @@ namespace ViewModel
         private const String TTKH_COLUMN_SDT = "SDT";
         private const String TTKH_COLUMN_DUONG = "Duong";
 
+
+
         private const String TTKH_COLUMN_SOTHAN = "SoThan";
         private const String TTKH_COLUMN_MLT1 = "MLT1";
 
@@ -372,6 +374,31 @@ namespace ViewModel
 
                 return 0;
             }
+        }
+        public List<QuanLyNVDocSo> GetNhanVienDocSo(string nam, string ky, string dot, string to)
+        {
+            List<QuanLyNVDocSo> items = new List<QuanLyNVDocSo>();
+            try
+            {
+                string query = "";
+                if (to.Equals(ALL))
+                {
+                    query = "select distinct m.ToID , m.May, m.NhanVienID as TenNV, m.DienThoai as SDT, count(d.docsoid) as SoKH,count(case when d.CodeMoi <> '' then 1 else null end) as DongBo, sum(d.TieuThuMoi) as SanLuong " +
+                   "from MayDS1 m inner join DocSo d on m.May = d.May where m.NhanVienID is not null and d.DocSoID like '" + nam + ky + "%' and d.Dot = '" + dot +
+                   "' group by m.ToID, m.May, m.NhanVienID, m.DienThoai";
+                }
+                else
+                    query = "select distinct m.ToID , m.May, m.NhanVienID as TenNV, m.DienThoai as SDT, count(d.docsoid) as SoKH,count(case when d.CodeMoi <> '' then 1 else null end) as DongBo, sum(d.TieuThuMoi) as SanLuong " +
+                    "from MayDS1 m inner join DocSo d on m.May = d.May where m.NhanVienID is not null and d.DocSoID like '" + nam + ky + "%' and d.Dot = '" + dot +
+                    "' and m.ToID = " + to + " group by m.ToID, m.May, m.NhanVienID, m.DienThoai";
+                var data = serverContext.ExecuteQuery<QuanLyNVDocSo>(query).ToList();
+                return data;
+            }
+            catch (Exception e)
+            {
+
+            }
+            return items;
         }
         public DateTime GetNgayDocSoKyTruoc(int year, string month, string date)
         {

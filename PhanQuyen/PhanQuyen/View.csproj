@@ -143,6 +143,9 @@
     <Compile Include="UserControlView\UC_DoiMatKhau.xaml.cs">
       <DependentUpon>UC_DoiMatKhau.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlView\UC_QuanLyNhanVienDocSo.xaml.cs">
+      <DependentUpon>UC_QuanLyNhanVienDocSo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlView\UC_XuatDuLieuRaSmartPhone.xaml.cs">
       <DependentUpon>UC_XuatDuLieuRaSmartPhone.xaml</DependentUpon>
     </Compile>
@@ -218,6 +221,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlView\UC_DoiMatKhau.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\UC_QuanLyNhanVienDocSo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
