@@ -31,11 +31,6 @@ namespace PhanQuyen
         private MyUser user;
         private int year, group;
         private String month, date, machine;
-        private Point origin;  // Original Offset of image
-        private Point start;   // Original Position of the mouse
-        private int rotate;
-        private double scaleX, scaleY;
-        private double delta = 0.1;
         private DataGridRow row;
         private DataGridCell gridCell;
         private List<DocSo> docSoList = new List<DocSo>();
@@ -59,8 +54,6 @@ namespace PhanQuyen
         public UC_DieuChinhThongTinDocSo()
         {
             InitializeComponent();
-            rotate = 0;
-            scaleX = scaleY = 1.1;
 
             _xemGhiChuWindow = new XemGhiChuWindow();
             if (MyUser.Instance.ToID == null || MyUser.Instance.ToID.Equals("") || MyUser.Instance.ToID.Trim().Equals(""))
@@ -114,25 +107,7 @@ namespace PhanQuyen
         {
             get { return scrollMain; }
         }
-        private void btnRotate_Click(object sender, RoutedEventArgs e)
-        {
-            rotate += 90;
-            RotateTransform rotateTransform = new RotateTransform(rotate);
-            //image.LayoutTransform = rotateTransform;
-        }
-        private void btnZoomIn_Click(object sender, RoutedEventArgs e)
-        {
-            ////scaleX += delta; scaleY += delta;
-            //ScaleTransform scaleTransform = new ScaleTransform(scaleX, scaleY, 0.5, 0.5);
-            //image.LayoutTransform = scaleTransform;
-        }
 
-        private void btnZoomOut_Click(object sender, RoutedEventArgs e)
-        {
-            //scaleX -= delta; scaleY -= delta;
-            //ScaleTransform scaleTransform = new ScaleTransform(scaleX, scaleY);
-            //image.LayoutTransform = scaleTransform;
-        }
         private void cbbMonth_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -148,7 +123,7 @@ namespace PhanQuyen
             if (month == null)
                 cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
             DataView dv = new DataView(_tableNamKyDot);
-            dv.RowFilter =String.Format("nam = {0} and ky = {1}",year,month);
+            dv.RowFilter = String.Format("nam = {0} and ky = {1}", year, month);
             HashSet<string> dotSet = new HashSet<string>();
             foreach (DataRowView row in dv)
                 dotSet.Add(row[2].ToString());
@@ -775,7 +750,8 @@ namespace PhanQuyen
 
         private void border_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            ViewImageWindow.Instance.SetImage(image.Source);
+            _selectedDocSo.TenKH = txtbTenKH.Text.ToString();
+            ViewImageWindow.Instance.SetImage(_selectedDocSo, image.Source);
             ViewImageWindow.Instance.ShowDialog();
         }
 

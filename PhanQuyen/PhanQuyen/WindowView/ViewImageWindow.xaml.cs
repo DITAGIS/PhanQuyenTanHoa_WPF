@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ViewModel;
 
 namespace PhanQuyen.WindowView
 {
@@ -33,6 +34,7 @@ namespace PhanQuyen.WindowView
         private Point origin;
         private Point start;
         private int rotate;
+        private DocSo _docSo;
         private static ViewImageWindow _instance = null;
         public static ViewImageWindow Instance
         {
@@ -52,8 +54,9 @@ namespace PhanQuyen.WindowView
             image.MouseLeftButtonUp += image_MouseLeftButtonUp;
             image.MouseMove += image_MouseMove;
         }
-        public void SetImage(ImageSource imageByteArray)
+        public void SetImage(DocSo docso, ImageSource imageByteArray)
         {
+            _docSo = docso;
             image.Source = imageByteArray;
             rotate = 0;
             Rotate();
@@ -108,18 +111,34 @@ namespace PhanQuyen.WindowView
             (sender as Window).Hide();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void RotateRight_Click(object sender, RoutedEventArgs e)
         {
             rotate += 90;
             Rotate();
         }
         private void Rotate()
         {
-            RotateTransform rotateTransform = new RotateTransform(rotate);
-            rotateTransform.CenterX = image.Source.Width / 4;
-            rotateTransform.CenterY = image.Source.Height / 4;
-            image.RenderTransform = rotateTransform;
+            try
+            {
+                RotateTransform rotateTransform = new RotateTransform(rotate);
+                rotateTransform.CenterX = image.Source.Width / 4;
+                rotateTransform.CenterY = image.Source.Height / 4;
+                image.RenderTransform = rotateTransform;
+            }
+            catch { }
+        }
 
+        private void RotateLeft_Click(object sender, RoutedEventArgs e)
+        {
+            rotate -= 90;
+            Rotate();
+        }
+
+        private void Print_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            PrintImageWindow.Instance.SetImage(_docSo, image.Source);
+            PrintImageWindow.Instance.ShowDialog();
         }
     }
 

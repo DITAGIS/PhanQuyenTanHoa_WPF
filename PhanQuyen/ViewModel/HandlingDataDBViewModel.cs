@@ -657,6 +657,8 @@ namespace ViewModel
         public DataTable GetDHNTrenMang(int nam, int ky)
         {
             List<DHNTrenMang> query = new List<DHNTrenMang>();
+
+
             query = serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(1); (1)=(2) + (3)' AS TITLE1, N'Hiện có trên mạng' AS TITLE, HIEU, CO" +
                 ", 0 AS LOAI, COUNT(DANHBA) AS DANHBA FROM KHACHHANG WHERE HIEULUC =1 GROUP BY HIEU, CO order by abs(co) asc").ToList();
             query.AddRange(serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(2)' AS TITLE1,N'Sử dụng < 5 năm' AS TITLE, HIEU, CO, 1 AS LOAI, COUNT(DANHBA) AS DANHBA" +
@@ -1701,7 +1703,13 @@ namespace ViewModel
             return new MySoLenh(danhBa, data.CodeDesc, data.ChiSo + "", data.NgayKiem.Value.ToString(pattern),
                 data.NoiDung, data.Hieu, data.Co + "", data.NgayCapNhat.Value.ToString(pattern));
         }
-
+        public string GetNVGHI(int? nam, string ky, string dot, string may)
+        {
+            var data = (from l in serverContext.LichSuDs
+                        where l.Nam == nam && l.Ky == ky && l.Dot == dot && l.May == may
+                        select l.NhanVienDS).FirstOrDefault();
+            return data;
+        }
         public MyBaoThay getBaoThay(string danhBa)
         {
             var data = (from b in serverContext.BaoThays

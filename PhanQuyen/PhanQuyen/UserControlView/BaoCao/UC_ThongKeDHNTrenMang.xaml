@@ -34,7 +34,7 @@
         <StackPanel Margin="10,10,0,0" Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal"  Name="stpCondition"  >
            
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="0,0,10,0"><Run Text="Năm:"/></TextBlock>
-            <ComboBox x:Name="cbbYear"  IsEditable="True" VerticalAlignment="Center" Width="50"
+            <ComboBox x:Name="cbbYear"  IsEditable="True" SelectedIndex="-1" VerticalAlignment="Center" Width="50"
                       SelectedValue="{Binding Year, Mode=TwoWay}" 
                               SelectionChanged="cbbYear_SelectionChanged"
                       ItemsSource="{Binding ListYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" >

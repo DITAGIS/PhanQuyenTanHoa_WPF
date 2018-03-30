@@ -195,6 +195,9 @@
     <Compile Include="WindowView\KHGanMoi_HuyWindow.xaml.cs">
       <DependentUpon>KHGanMoi_HuyWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowView\PrintImageWindow.xaml.cs">
+      <DependentUpon>PrintImageWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowView\ViewImageWindow.xaml.cs">
       <DependentUpon>ViewImageWindow.xaml</DependentUpon>
     </Compile>
@@ -305,6 +308,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowView\PrintImageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowView\ViewImageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -335,6 +342,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\rptInHinhAnh.rdlc" />
     <EmbeddedResource Include="Report\rptBaoCaoSoLuongSanLuongCoHieuDHN.rdlc" />
     <EmbeddedResource Include="Report\rptBaoCaoSoLuongVaSanLuongTungPhuongDC.rdlc" />
     <EmbeddedResource Include="Report\rptBaoCaoSoLuongVaSanLuongTungPhuongDMA.rdlc" />
@@ -469,9 +477,6 @@
     <Resource Include="Images\file_transfer.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\rotate.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\exit.png" />
   </ItemGroup>
   <ItemGroup>
@@ -486,10 +491,6 @@
   <ItemGroup>
     <Resource Include="Images\next.png" />
     <Resource Include="Images\previous.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\zoom-in.png" />
-    <Resource Include="Images\zoom-out.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -546,6 +547,10 @@
   <ItemGroup>
     <Resource Include="Images\connection.png" />
     <Resource Include="Images\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\rotateLeft.png" />
+    <Resource Include="Images\rotateRight.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
