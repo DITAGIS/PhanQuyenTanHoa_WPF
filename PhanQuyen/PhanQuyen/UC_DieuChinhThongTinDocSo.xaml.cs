@@ -42,7 +42,7 @@ namespace PhanQuyen
         private DocSo _selectedDocSo;
         private XemGhiChuWindow _xemGhiChuWindow;
         private bool chuyenMaHoa = false;
-
+        private DataTable _tableNamKyDot;
         private const int COLUMN_MLT = 0;
         private const int COLUMN_DANHBA = 1;
         private const int COLUMN_TTDHNCu = 2;
@@ -144,9 +144,17 @@ namespace PhanQuyen
         }
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            month = cbbMonth.SelectedItem.ToString();
             if (month == null)
                 cbbDate.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctDateServer(year, month);
-            cbbDate.SelectedValue = MyUser.Instance.Date;
+            DataView dv = new DataView(_tableNamKyDot);
+            dv.RowFilter =String.Format("nam = {0} and ky = {1}",year,month);
+            HashSet<string> dotSet = new HashSet<string>();
+            foreach (DataRowView row in dv)
+                dotSet.Add(row[2].ToString());
+            List<string> dotList = new List<string>(dotSet);
+            dotList.Sort();
+            cbbDate.ItemsSource = dotList;
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -800,7 +808,14 @@ namespace PhanQuyen
         {
             if (cbbYear.SelectedValue != null)
                 year = Int16.Parse(cbbYear.SelectedValue.ToString());
-            cbbMonth.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctMonthServer(year);
+            DataView dv = new DataView(_tableNamKyDot);
+            dv.RowFilter = "nam = " + year;
+            HashSet<string> kySet = new HashSet<string>();
+            foreach (DataRowView row in dv)
+                kySet.Add(row[1].ToString());
+            List<string> kyList = new List<string>(kySet);
+            kyList.Sort();
+            cbbMonth.ItemsSource = kyList;
         }
 
 
@@ -809,7 +824,14 @@ namespace PhanQuyen
         {
             this.user = user;
             InitializeComponent();
-            cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
+            _tableNamKyDot = HandlingDataDBViewModel.Instance.getDistinctYearMonthDateServer();
+
+            HashSet<int> namSet = new HashSet<int>();
+            foreach (DataRow row in _tableNamKyDot.Rows)
+                namSet.Add((int)row[0]);
+            List<int> namList = new List<int>(namSet);
+            namList.Sort();
+            cbbYear.ItemsSource = namList;
             cbbYear.SelectedValue = MyUser.Instance.Year;
 
             cbbMonth.SelectedValue = MyUser.Instance.Month;

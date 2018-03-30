@@ -32,6 +32,7 @@ namespace PhanQuyen.WindowView
 
         private Point origin;
         private Point start;
+        private int rotate;
         private static ViewImageWindow _instance = null;
         public static ViewImageWindow Instance
         {
@@ -54,6 +55,8 @@ namespace PhanQuyen.WindowView
         public void SetImage(ImageSource imageByteArray)
         {
             image.Source = imageByteArray;
+            rotate = 0;
+            Rotate();
         }
 
         private void image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -98,11 +101,25 @@ namespace PhanQuyen.WindowView
 
         private void WPFWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            (typeof(Window)).GetField("_isClosing",  BindingFlags.Instance | BindingFlags.NonPublic).SetValue(sender, false);
+            (typeof(Window)).GetField("_isClosing", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(sender, false);
 
             e.Cancel = true;
 
             (sender as Window).Hide();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            rotate += 90;
+            Rotate();
+        }
+        private void Rotate()
+        {
+            RotateTransform rotateTransform = new RotateTransform(rotate);
+            rotateTransform.CenterX = image.Source.Width / 4;
+            rotateTransform.CenterY = image.Source.Height / 4;
+            image.RenderTransform = rotateTransform;
+
         }
     }
 

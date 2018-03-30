@@ -1499,7 +1499,7 @@ namespace ViewModel
                 ConnectionViewModel.Instance.Connect();
 
 
-                string query = "select [image] from DocSoTH_Hinh..HinhDHN  where HinhDHNID = '" + nam +ky.PadLeft(2,'0') + danhBa + "'";
+                string query = "select [image] from DocSoTH_Hinh..HinhDHN  where HinhDHNID = '" + nam + ky.PadLeft(2, '0') + danhBa + "'";
 
                 SqlDataReader reader = ConnectionViewModel.Instance.GetExecuteReader(query);
                 //var data = tempServer.ExecuteQuery<byte[]>(query).FirstOrDefault();
@@ -1770,7 +1770,26 @@ namespace ViewModel
             ObservableCollection<DocSo_1Ky> listDocSo = new ObservableCollection<DocSo_1Ky>(datas);
             return listDocSo;
         }
+        public DataTable getDistinctYearMonthDateServer()
+        {
+            try
+            {
+                var query = "select distinct nam,ky, dot from docso";
+                ConnectionViewModel.Instance.Connect();
+                DataTable table = ConnectionViewModel.Instance.GetDataTable(query);
+                return table;
+            }
+            catch (Exception e)
+            {
 
+                System.Windows.Forms.MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + e.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            finally
+            {
+                ConnectionViewModel.Instance.DisConnect();
+            }
+            return null;
+        }
         public ObservableCollection<int> getDistinctYearServer()
         {
             ObservableCollection<int> lstYear = new ObservableCollection<int>();
