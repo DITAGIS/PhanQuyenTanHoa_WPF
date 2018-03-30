@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ViewModel;
 
-namespace PhanQuyen.UserControlView
+namespace PhanQuyen.UserControlView.HeThong
 {
     /// <summary>
     /// Interaction logic for UC_QuanLyNhanVienDocSo.xaml
@@ -41,7 +41,7 @@ namespace PhanQuyen.UserControlView
                 row.Background = white;
                 if (item.DongBo == 0)
                 {
-                  
+
                     cell.Background = red;
                 }
                 else if (item.DongBo < item.SoKH)

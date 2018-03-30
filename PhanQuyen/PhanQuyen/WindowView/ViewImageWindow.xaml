@@ -3,51 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-              xmlns:viewModel="clr-namespace:ViewModel;assembly=ViewModel"
+           
         xmlns:local="clr-namespace:PhanQuyen.WindowView"
         mc:Ignorable="d"
-        Title="ViewImageWindow" Height="500" Width="500">
-    <Window.DataContext>
-        <viewModel:HoaDonViewModel>
-
-        </viewModel:HoaDonViewModel>
-    </Window.DataContext>
-    <Window.Resources>
-        <local:ByteArrayImageConverter x:Key="ImageConvert"></local:ByteArrayImageConverter>
-    </Window.Resources>
-    <Grid>
-        <Grid Grid.Column="1" Name="stkImage" Margin="10,0,10,0">
-
-            <Border BorderThickness="1" Grid.Column="1" Background="White" Name="border"
-                                 ClipToBounds="True"
-                                  Height="Auto"
-                                   Width="Auto">
-                <Image Name="image" 
-                                   Height="Auto"
-                                   Width="Auto"
-                                   Source="{Binding Path=Image, 
-                        Converter={StaticResource ResourceKey=ImageConvert}}" Stretch="UniformToFill"  >
-
-                </Image>
-            </Border>
-
-            <Popup Placement="Right" IsOpen="True">
-
-            </Popup>
+        Name="WPFWindow"
+        ResizeMode="NoResize"
+WindowStartupLocation="CenterScreen"
+        Title="Xem hình" Height="700" Width="700" Closing="WPFWindow_Closing">
 
 
-        </Grid>
-        <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Text="Chưa có hình ảnh">
-            <TextBlock.Style>
-                <Style>
-                    <Setter Property="TextBlock.Visibility" Value="Hidden" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding HasImage}" Value="false">
-                            <Setter Property="TextBlock.Visibility" Value="Visible" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
+    <Grid x:Name="LayoutRoot" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52.92"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="1" Name="border" ClipToBounds="True">
+            <Image Name="image" Opacity="1" />
+        </Border>
+
+   
     </Grid>
 </Window>

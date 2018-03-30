@@ -336,7 +336,7 @@
                         <Border BorderThickness="1" Grid.Column="1" Background="White" Name="border"
                                  ClipToBounds="True"
                                   Height="Auto"
-                                   Width="Auto" MouseDown="border_MouseDown"
+                                   Width="Auto" MouseUp="border_MouseUp"
                                 >
                             <Image Name="image" 
                                    Height="Auto"

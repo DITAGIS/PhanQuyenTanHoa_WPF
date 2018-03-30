@@ -45,6 +45,7 @@ namespace ViewModel
                 return connectionString;
             }
         }
+     
         private ConnectionViewModel()
         {
             conn = new SqlConnection(ConnectionString);

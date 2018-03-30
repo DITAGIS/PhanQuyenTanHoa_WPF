@@ -17,6 +17,7 @@ using Model;
 using PhanQuyen.UserControl.BaoCao;
 using PhanQuyen.UserControlView;
 using PhanQuyen.UserControlView.BaoCao;
+using PhanQuyen.UserControlView.HeThong;
 using ViewModel;
 
 namespace PhanQuyen
@@ -36,7 +37,6 @@ namespace PhanQuyen
         UC_ThongKeDHNSauDocSo uc_ThongKeDHNSauDocSo;
         UC_ThongKeDHNTrenMang uc_ThongKeDHNTrenMang;
         UC_BaoCaoTongHop uc_BaoCaoTongHop;
-        UC_ChuyenBilling uc_ChuyenBilling;
         UC_KiemTraDuLieu uc_KiemTraDuLieu;
         UC_ThongKeDHNTheoDotSo uc_ThongKeDHNTheoDotSo;
         UC_XuatDuLieuRaSmartPhone uc_XuatDuLieuRaSmartPhone;
@@ -132,11 +132,6 @@ namespace PhanQuyen
             {
                 uc_BaoCaoTongHop.Height = stkMain.ActualHeight;
                 uc_BaoCaoTongHop.Width = stkMain.ActualWidth;
-            }
-            if (uc_ChuyenBilling != null)
-            {
-                uc_ChuyenBilling.Height = stkMain.ActualHeight;
-                uc_ChuyenBilling.Width = stkMain.ActualWidth;
             }
             if (uc_InDanhSachDongCua != null)
             {
@@ -283,12 +278,6 @@ namespace PhanQuyen
 
         private void ribBtnChuyenBilling_Click(object sender, RoutedEventArgs e)
         {
-            if (uc_ChuyenBilling == null)
-                uc_ChuyenBilling = new UC_ChuyenBilling();
-            resizeUC();
-            if (stkMain.Children.Count == 1)
-                stkMain.Children.RemoveAt(0);
-            stkMain.Children.Add(uc_ChuyenBilling);
             this.Title = this.title + "             Chuyển billing";
         }
 

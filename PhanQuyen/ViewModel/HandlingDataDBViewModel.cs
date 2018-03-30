@@ -492,46 +492,7 @@ namespace ViewModel
             return data;
         }
 
-        public List<Model.ChuyenBilling> GetBilling()
-        {
-            var tmp = serverContext.ExecuteQuery<Model.ChuyenBilling>("SELECT May, COUNT(DanhBa) as DHN, SUM(TieuThuMoi) as TieuThu FROM DocSo " +
-                "WHERE Ky = '" + MyUser.Instance.Month + "' AND Dot = '" + MyUser.Instance.Date + "' AND Nam = " + MyUser.Instance.Year + " GROUP BY May ORDER BY May").ToList();
-            //int year = Int16.Parse(MyUser.Instance.Year);
-            //var query = (from x in serverContext.DocSos
-            //            where x.Nam == year && x.Ky == MyUser.Instance.Month && x.Dot == MyUser.Instance.Date
-            //            select new { x.May, x.DanhBa, x.TieuThuMoi }).ToList();
 
-            //List<ChuyenBilling> data = new List<ChuyenBilling>();
-            //int countDanhBa = 0;
-            //int tieuthu = 0;
-            //string may = query.ElementAt(0).May ;
-            //for(int i = 0; i < query.Count; i++)
-            //{
-            //    var item = query.ElementAt(i);
-            //    if (may.Equals(item.May))
-            //    {
-            //        countDanhBa++;
-            //        tieuthu += item.TieuThuMoi.Value;
-            //    }
-            //    else
-            //    {
-            //        may = item.May;
-            //        countDanhBa = 0;
-            //        tieuthu = 0;
-            //        data.Add(new ChuyenBilling()
-            //        {
-            //            May = may,
-            //            DHN = countDanhBa,
-            //            TieuThu = tieuthu
-            //        });
-            //    }
-            //}
-            //(from x in serverContext.DocSos
-            //            where x.DanhBa == danhBa
-            //            orderby x.DocSoID descending
-            //            select new { x.Ky, x.Nam, danhBa, x.CodeMoi, x.TTDHNMoi, x.CSCu, x.CSMoi, x.TieuThuMoi, x.GhiChuDS, x.GhiChuKH, x.GhiChuTV }).ToList();
-            return tmp;
-        }
         public List<MyBienDong> getKHHuy(int nam, string ky, string dot)
         {
             var query = "Select ROW_NUMBER() OVER(ORDER BY DanhBa) STT, DanhBa , MLT1 , TenKH , So,  Duong  from KhachHang k where dot = '" + dot + "' and hieuluc ='1' and not exists ( Select DanhBa from BienDong b where k.DanhBa = b.DanhBa and b.BienDongID like '" + nam + ky + "%' and b.Dot ='" + dot + "' )";
@@ -1530,20 +1491,46 @@ namespace ViewModel
             }
         }
 
-        public byte[] getImageByDanhBa(String danhBa, DateTime gioGhi)
+        public byte[] getImageByDanhBa(string danhBa, string ky, int? nam)
         {
-
-            using (DataClasses_thanleDataContext tempServer = new DataClasses_thanleDataContext(ConnectionViewModel.Instance.ConnectionString))
+            //SqlConnection cnn = null;
+            try
             {
-                var data = (from x in tempServer.HinhDHNs
-                            where x.DanhBo == danhBa && x.CreateDate == gioGhi
-                            orderby x.CreateDate
-                            select x.Image).FirstOrDefault();
-                if (data == null)
-                    return null;
+                ConnectionViewModel.Instance.Connect();
 
-                return ((System.Data.Linq.Binary)data).ToArray();
+
+                string query = "select [image] from DocSoTH_Hinh..HinhDHN  where HinhDHNID = '" + nam +ky.PadLeft(2,'0') + danhBa + "'";
+
+                SqlDataReader reader = ConnectionViewModel.Instance.GetExecuteReader(query);
+                //var data = tempServer.ExecuteQuery<byte[]>(query).FirstOrDefault();
+                //(from x in tempServer.HinhDHNs
+                // where x.DanhBo == danhBa && x.CreateDate == gioGhi
+                // orderby x.CreateDate
+                // select x.Image).FirstOrDefault();
+                //if (data == null)
+                //    return null;
+
+                //return ((System.Data.Linq.Binary)data).ToArray();
+                byte[] data = null;
+                if (reader.Read())
+                {
+                    data = (byte[])reader[0];
+                }
+                ConnectionViewModel.Instance.DisConnect();
+                return data;
+
             }
+            catch (Exception e)
+            {
+                ConnectionViewModel.Instance.DisConnect();
+            }
+            try
+            {
+                ConnectionViewModel.Instance.DisConnect();
+            }
+            catch { }
+            return null;
+
         }
         public ObservableCollection<DocSoLocal> getDistinctHoaDon(SoDaNhan selectedSoDaNhan)
         {

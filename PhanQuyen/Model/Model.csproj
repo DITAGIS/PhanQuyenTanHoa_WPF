@@ -106,7 +106,6 @@
     <Compile Include="BCTongHop.cs" />
     <Compile Include="CapNhatHoaDon.cs" />
     <Compile Include="ChuanBiKH.cs" />
-    <Compile Include="ChuyenBilling.cs" />
     <Compile Include="ChuyenMayDS.cs" />
     <Compile Include="DHNTrenMang.cs" />
     <Compile Include="KHDongCua.cs" />

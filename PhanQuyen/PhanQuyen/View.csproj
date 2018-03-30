@@ -134,6 +134,9 @@
     <Compile Include="UserControlView\BaoCao\UC_ThongKeDHNTrenMang.xaml.cs">
       <DependentUpon>UC_ThongKeDHNTrenMang.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlView\HeThong\UC_QuanLyNhanVienDocSo.xaml.cs">
+      <DependentUpon>UC_QuanLyNhanVienDocSo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlView\UC_CapNhatSoThan.xaml.cs">
       <DependentUpon>UC_CapNhatSoThan.xaml</DependentUpon>
     </Compile>
@@ -142,9 +145,6 @@
     </Compile>
     <Compile Include="UserControlView\UC_DoiMatKhau.xaml.cs">
       <DependentUpon>UC_DoiMatKhau.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControlView\UC_QuanLyNhanVienDocSo.xaml.cs">
-      <DependentUpon>UC_QuanLyNhanVienDocSo.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControlView\UC_XuatDuLieuRaSmartPhone.xaml.cs">
       <DependentUpon>UC_XuatDuLieuRaSmartPhone.xaml</DependentUpon>
@@ -166,9 +166,6 @@
     </Compile>
     <Compile Include="UC_CapNhatSoThan.xaml.cs">
       <DependentUpon>UC_CapNhatSoThan.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UC_ChuyenBilling.xaml.cs">
-      <DependentUpon>UC_ChuyenBilling.xaml</DependentUpon>
     </Compile>
     <Compile Include="UC_ChuyenMayDocSo.xaml.cs">
       <DependentUpon>UC_ChuyenMayDocSo.xaml</DependentUpon>
@@ -212,6 +209,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControlView\HeThong\UC_QuanLyNhanVienDocSo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControlView\UC_CapNhatSoThan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -221,10 +222,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlView\UC_DoiMatKhau.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControlView\UC_QuanLyNhanVienDocSo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -273,10 +270,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UC_CapNhatSoThan.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UC_ChuyenBilling.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

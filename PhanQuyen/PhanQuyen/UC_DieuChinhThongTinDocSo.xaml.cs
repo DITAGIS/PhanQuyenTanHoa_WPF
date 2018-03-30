@@ -638,7 +638,7 @@ namespace PhanQuyen
         }
         private void cbbMachine_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 machine = cbbMachine.Text.ToString();
             }
@@ -765,10 +765,10 @@ namespace PhanQuyen
             }
         }
 
-        private void border_MouseDown(object sender, MouseButtonEventArgs e)
+        private void border_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            //ViewImageWindow viewImageWindow = new ViewImageWindow();
-            //viewImageWindow.Show();
+            ViewImageWindow.Instance.SetImage(image.Source);
+            ViewImageWindow.Instance.ShowDialog();
         }
 
         private void txtbGCDS_KeyDown(object sender, KeyEventArgs e)
@@ -794,7 +794,7 @@ namespace PhanQuyen
             }
         }
 
-     
+
 
         private void cbbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

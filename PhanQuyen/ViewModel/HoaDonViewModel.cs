@@ -384,7 +384,7 @@ namespace ViewModel
                             //};
                             Status = "Đang tải hình ảnh";
 
-                            Image = HandlingDataDBViewModel.Instance.getImageByDanhBa(selectedHoaDon.DanhBa, selectedHoaDon.GIOGHI.GetValueOrDefault());
+                            Image = HandlingDataDBViewModel.Instance.getImageByDanhBa(selectedHoaDon.DanhBa,selectedHoaDon.Ky, selectedHoaDon.Nam);
 
                             Status = Status.Replace("Đang tải hình ảnh", "");
                         }
