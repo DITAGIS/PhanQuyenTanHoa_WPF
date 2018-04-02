@@ -79,7 +79,7 @@ namespace ViewModel
         private const String DHNTRENMANG_COLUMN_CO = "Co";
         private const String DHNTRENMANG_COLUMN_DANHBA = "DANHBA";
 
-        private const String TKSAUDOCSO_COLUMN_TOID = "ToDS";
+        private const String TKSAUDOCSO_COLUMN_TOID = "TOID";
         private const String TKSAUDOCSO_COLUMN_KY = "Ky";
         private const String TKSAUDOCSO_COLUMN_DOT = "Dot";
         private const String TKSAUDOCSO_COLUMN_MAY = "May";
@@ -909,14 +909,12 @@ namespace ViewModel
                 queryStr = "Select ds.May, m.ToID, Count(ds.DanhBa) as DanhBa, Case when ds.CodeMoi is null or ds.CodeMoi = ''" +
                    " then N'Chưa đọc' else ds.CodeMoi end as CodeMoi, Sum(ds.TieuThuMoi) as TieuThuMoi, ds.Ky, ds.Dot " +
                    "from DocSo ds Inner Join MayDS m on ds.May = m.may where ds.Ky = '" + month + "' and ds.Dot = '" + date + "' and ds.Nam = " + year;
-                if (machine.Equals(ALL) || group == 0)
-                {
+                if (machine.Equals(ALL) && group != 0)
+                    queryStr += " and ToID = " + group + " Group by ds.May,m.ToID,ds.CodeMoi,ds.Ky,ds.Dot";
+                else if (group == 0)
                     queryStr += " Group by ds.May,m.ToID,ds.CodeMoi,ds.Ky,ds.Dot";
-                }
                 else
-                {
                     queryStr += " and ToID = " + group + " and ds.May ='" + machine + "' Group by ds.May,m.ToID,ds.CodeMoi,ds.Ky,ds.Dot";
-                }
                 query = serverContext.ExecuteQuery<TKSauDocSo>(queryStr).ToList();
 
                 foreach (var item in query)
@@ -980,8 +978,7 @@ namespace ViewModel
             {
                 double num1 = item.TieuThuMoi;
                 double num2 = item.TBTT;
-                if (num1 < 0.0 ||
-                    (num1 == 0.0 && num2 > 3.0) ||
+                if (num1 < 0.0 || (num1 == 0.0 && num2 > 3.0) ||
                     (num1 >= 1.0 && num1 <= 10.0 && (num1 < num2 * 0.4 || num1 > num2 * 4.0)) ||
                     (num1 > 10.0 && num1 <= 20.0 && (num1 < num2 * 0.55 || num1 > num2 * 4.0)) ||
                     (num1 > 20.0 && num1 <= 40.0 && (num1 < num2 * 0.65 || num1 > num2 * 2.0)) ||
@@ -994,7 +991,8 @@ namespace ViewModel
                     (num1 > 5000.0 && (num1 < num2 * 0.8 || num1 > num2 * 1.3)))
                 {
                     DataRow row = table.NewRow();
-                    row[DC_COLUMN_MyUserNAME] = item.NVGHI;
+                    if (!machine.Equals(ALL))
+                        row[DC_COLUMN_MyUserNAME] = item.NVGHI;
                     row[DC_COLUMN_TODS] = item.ToID;
                     row[DC_COLUMN_KY] = month;
                     row[DC_COLUMN_DOT] = date;
@@ -1051,7 +1049,8 @@ namespace ViewModel
             foreach (var item in query)
             {
                 DataRow row = table.NewRow();
-                row[DC_COLUMN_MyUserNAME] = item.MyUsername;
+                if (!machine.Equals(ALL))
+                    row[DC_COLUMN_MyUserNAME] = item.MyUsername;
                 row[DC_COLUMN_TODS] = item.ToDS;
                 row[DC_COLUMN_KY] = month;
                 row[DC_COLUMN_DOT] = date;

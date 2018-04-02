@@ -34,21 +34,9 @@ namespace PhanQuyen
             cbbBaoCao.ItemsSource = HandlingDataDBViewModel.Instance.getListBaoCaoTongHop();
             cbbBaoCao.SelectedIndex = 0;
 
-            //    new List<String>()
-            //{
-            //    "Thống Kê Đồng Hồ Nước Đọc Số",
-            //    "Báo Cáo Số Lượng Và Sản Lượng DHN Theo DMA",
-            //    "Báo Cáo Số Lượng Và Sản Lượng DHN Theo Phường",
-            //    "Báo Cáo Số Lượng Và Sản Lượng Theo Cỡ Hiệu",
-            //    "Báo cáo số lượng có dùng giếng"
-            //};
         }
 
-        private void cbbBaoCao_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
+      
         private void btnViewReport_Click(object sender, RoutedEventArgs e)
         {
             switch (cbbBaoCao.SelectedIndex)

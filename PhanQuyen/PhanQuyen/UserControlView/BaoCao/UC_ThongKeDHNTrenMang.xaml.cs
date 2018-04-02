@@ -29,7 +29,7 @@ namespace PhanQuyen.UserControlView.BaoCao
             InitializeComponent();
             System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
             ps.Landscape = true;
-            ps.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1170);
+            ps.PaperSize = new System.Drawing.Printing.PaperSize("A3",1170,1654);
             Margins margins = new Margins(70, 50, 50, 50);
             ps.Margins = margins;
             //ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
