@@ -37,9 +37,9 @@ namespace PhanQuyen.WindowView
         private PrintImageWindow()
         {
             InitializeComponent();
-            PageSettings ps = new System.Drawing.Printing.PageSettings();
+            PageSettings ps = new PageSettings();
             ps.Landscape = false;
-            Margins margins = new Margins(70, 50, 50, 50);
+            Margins margins = new Margins(70, 50, 50, 20);
             ps.Margins = margins;
             _reportViewer.SetPageSettings(ps);
         }

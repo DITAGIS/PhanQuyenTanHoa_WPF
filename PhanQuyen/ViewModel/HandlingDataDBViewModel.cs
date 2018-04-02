@@ -657,98 +657,15 @@ namespace ViewModel
         public DataTable GetDHNTrenMang(int nam, int ky)
         {
             List<DHNTrenMang> query = new List<DHNTrenMang>();
-
-
-            query = serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(1); (1)=(2) + (3)' AS TITLE1, N'Hiện có trên mạng' AS TITLE, HIEU, CO" +
-                ", 0 AS LOAI, COUNT(DANHBA) AS DANHBA FROM KHACHHANG WHERE HIEULUC =1 GROUP BY HIEU, CO order by abs(co) asc").ToList();
-            query.AddRange(serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(2)' AS TITLE1,N'Sử dụng < 5 năm' AS TITLE, HIEU, CO, 1 AS LOAI, COUNT(DANHBA) AS DANHBA" +
-                " FROM KHACHHANG WHERE HIEULUC =1 AND YEAR(getDate()) - Convert(varchar(4),NgayGan) < 5 GROUP BY HIEU, CO order by abs(co) asc").ToList());
-            query.AddRange(serverContext.ExecuteQuery<DHNTrenMang>("SELECT '(3)' AS TITLE1,N'Sử dụng > 5 năm' AS TITLE, HIEU, CO, 2 AS LOAI, COUNT(DANHBA) AS DANHBA" +
-                " FROM KHACHHANG WHERE HIEULUC =1 AND YEAR(getDate()) - Convert(varchar(4),NgayGan) >= 5 GROUP BY HIEU, CO order by abs(co) asc").ToList());
-
-            List<int> coList = serverContext.ExecuteQuery<int>("select distinct cast(co as int) as comoi from khachhang where co is not null order by  comoi").ToList();
-            List<string> hieuList = serverContext.ExecuteQuery<string>("select distinct hieu from khachhang WHERE HIEULUC =1 and hieu <> '' GROUP BY HIEU").ToList();
-
-
-            DataTable table = new DataTable();
-            table.Columns.Add(DHNTRENMANG_COLUMN_KY, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_NAM, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_TITLE, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_TITLE1, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_HIEU, typeof(string));
-            table.Columns.Add(DHNTRENMANG_COLUMN_CO, typeof(int));
-            table.Columns.Add(DHNTRENMANG_COLUMN_DANHBA, typeof(string));
-            //DataRow row = table.NewRow();
-            //row[DHNTRENMANG_COLUMN_TITLE] = "abc";
-            //table.Rows.Add(row);
-            //DataRow row1 = table.NewRow();
-            //row[DHNTRENMANG_COLUMN_TITLE] = "abc2";
-            //row[DHNTRENMANG_COLUMN_TITLE1] = "abc1";
-            //table.Rows.Add(row1);
-            foreach (var item in query)
+            serverContext.ExecuteQuery<object>(String.Format(@"execute thongkedhn_trenmang {0},{1}", ky, nam));
+            ConnectionViewModel.Instance.Connect();
+            DataTable table = ConnectionViewModel.Instance.GetDataTable("select * from tb_thongkedhn");
+            ConnectionViewModel.Instance.DisConnect();
+            int count = 0;
+            foreach (DataRow row in table.Rows)
             {
-                if (item.Hieu.Trim().Length == 0)
-                    continue;
-                DataRow row = table.NewRow();
-                row[DHNTRENMANG_COLUMN_KY] = ky + "." + nam;
-                row[DHNTRENMANG_COLUMN_NAM] = item.Nam;
-                row[DHNTRENMANG_COLUMN_TITLE] = item.Title;
-                row[DHNTRENMANG_COLUMN_TITLE1] = item.Title1;
-                row[DHNTRENMANG_COLUMN_HIEU] = item.Hieu;
-                row[DHNTRENMANG_COLUMN_CO] = int.Parse(item.Co);
-                row[DHNTRENMANG_COLUMN_DANHBA] = item.DanhBa;
-                table.Rows.Add(row);
+                row["STT"] = ++count;
             }
-            bool isFound = false;
-            foreach (string hieu in hieuList)
-            {
-                foreach (int co in coList)
-                {
-                    foreach (DataRow row in table.Rows)
-                    {
-                        if (row[DHNTRENMANG_COLUMN_HIEU].ToString().Equals(hieu)
-                             && row[DHNTRENMANG_COLUMN_CO].ToString().Equals(co))
-                        {
-                            isFound = true;
-                            break;
-                        }
-                    }
-                    if (!isFound)
-                    {
-                        DataRow row1 = table.NewRow();
-                        row1[DHNTRENMANG_COLUMN_KY] = ky + "." + nam;
-                        row1[DHNTRENMANG_COLUMN_NAM] = nam;
-                        row1[DHNTRENMANG_COLUMN_TITLE] = "Hiện có trên mạng";
-                        row1[DHNTRENMANG_COLUMN_TITLE1] = "(1); (1)=(2) + (3)";
-                        row1[DHNTRENMANG_COLUMN_HIEU] = hieu;
-                        row1[DHNTRENMANG_COLUMN_CO] = co;
-                        row1[DHNTRENMANG_COLUMN_DANHBA] = 0;
-                        table.Rows.Add(row1);
-
-                        DataRow row2 = table.NewRow();
-                        row2[DHNTRENMANG_COLUMN_KY] = ky + "." + nam;
-                        row2[DHNTRENMANG_COLUMN_NAM] = nam;
-                        row2[DHNTRENMANG_COLUMN_TITLE] = "Sử dụng < 5 năm";
-                        row2[DHNTRENMANG_COLUMN_TITLE1] = "(2)";
-                        row2[DHNTRENMANG_COLUMN_HIEU] = hieu;
-                        row2[DHNTRENMANG_COLUMN_CO] = co;
-                        row2[DHNTRENMANG_COLUMN_DANHBA] = 0;
-                        table.Rows.Add(row2);
-
-                        DataRow row3 = table.NewRow();
-                        row3[DHNTRENMANG_COLUMN_KY] = ky + "." + nam;
-                        row3[DHNTRENMANG_COLUMN_NAM] = nam;
-                        row3[DHNTRENMANG_COLUMN_TITLE] = "Sử dụng > 5 năm";
-                        row3[DHNTRENMANG_COLUMN_TITLE1] = "(3)";
-                        row3[DHNTRENMANG_COLUMN_HIEU] = hieu;
-                        row3[DHNTRENMANG_COLUMN_CO] = co;
-                        row3[DHNTRENMANG_COLUMN_DANHBA] = 0;
-                        table.Rows.Add(row3);
-                    }
-
-                }
-            }
-
             return table;
         }
         public DataTable GetTKSoLuongCoDungGieng(int year, string month, string date)

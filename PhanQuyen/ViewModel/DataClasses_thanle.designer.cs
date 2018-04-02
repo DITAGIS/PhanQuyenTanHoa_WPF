@@ -30,10 +30,13 @@ namespace ViewModel
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertTB_THONGKEDHN(TB_THONGKEDHN instance);
+    partial void UpdateTB_THONGKEDHN(TB_THONGKEDHN instance);
+    partial void DeleteTB_THONGKEDHN(TB_THONGKEDHN instance);
     #endregion
 		
 		public DataClasses_thanleDataContext() : 
-				base(global::ViewModel.Properties.Settings.Default.DocSoTHConnectionString1, mappingSource)
+				base(global::ViewModel.Properties.Settings.Default.DocSoTHConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -275,6 +278,14 @@ namespace ViewModel
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TB_THONGKEDHN> TB_THONGKEDHNs
+		{
+			get
+			{
+				return this.GetTable<TB_THONGKEDHN>();
 			}
 		}
 	}
@@ -7898,6 +7909,788 @@ namespace ViewModel
 				{
 					this._MayID = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TB_THONGKEDHN")]
+	public partial class TB_THONGKEDHN : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Nullable<int> _STT;
+		
+		private string _MADHN;
+		
+		private string _TENDHN;
+		
+		private System.Nullable<bool> _HIEUCU;
+		
+		private System.Nullable<double> _CO15;
+		
+		private System.Nullable<double> _CO20;
+		
+		private System.Nullable<double> _CO25;
+		
+		private System.Nullable<double> _CO40;
+		
+		private System.Nullable<double> _CO50;
+		
+		private System.Nullable<double> _CO80;
+		
+		private System.Nullable<double> _CO100;
+		
+		private System.Nullable<double> _CO150;
+		
+		private System.Nullable<double> _CO200;
+		
+		private System.Nullable<double> _NHOCO15;
+		
+		private System.Nullable<double> _NHOCO20;
+		
+		private System.Nullable<double> _NHOCO25;
+		
+		private System.Nullable<double> _NHOCO40;
+		
+		private System.Nullable<double> _NHOCO50;
+		
+		private System.Nullable<double> _NHOCO80;
+		
+		private System.Nullable<double> _NHOCO100;
+		
+		private System.Nullable<double> _NHOCO150;
+		
+		private System.Nullable<double> _NHOCO200;
+		
+		private System.Nullable<double> _LONCO15;
+		
+		private System.Nullable<double> _LONCO20;
+		
+		private System.Nullable<double> _LONCO25;
+		
+		private System.Nullable<double> _LONCO40;
+		
+		private System.Nullable<double> _LONCO50;
+		
+		private System.Nullable<double> _LONCO80;
+		
+		private System.Nullable<double> _LONCO100;
+		
+		private System.Nullable<double> _LONCO150;
+		
+		private System.Nullable<double> _LONCO200;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSTTChanging(System.Nullable<int> value);
+    partial void OnSTTChanged();
+    partial void OnMADHNChanging(string value);
+    partial void OnMADHNChanged();
+    partial void OnTENDHNChanging(string value);
+    partial void OnTENDHNChanged();
+    partial void OnHIEUCUChanging(System.Nullable<bool> value);
+    partial void OnHIEUCUChanged();
+    partial void OnCO15Changing(System.Nullable<double> value);
+    partial void OnCO15Changed();
+    partial void OnCO20Changing(System.Nullable<double> value);
+    partial void OnCO20Changed();
+    partial void OnCO25Changing(System.Nullable<double> value);
+    partial void OnCO25Changed();
+    partial void OnCO40Changing(System.Nullable<double> value);
+    partial void OnCO40Changed();
+    partial void OnCO50Changing(System.Nullable<double> value);
+    partial void OnCO50Changed();
+    partial void OnCO80Changing(System.Nullable<double> value);
+    partial void OnCO80Changed();
+    partial void OnCO100Changing(System.Nullable<double> value);
+    partial void OnCO100Changed();
+    partial void OnCO150Changing(System.Nullable<double> value);
+    partial void OnCO150Changed();
+    partial void OnCO200Changing(System.Nullable<double> value);
+    partial void OnCO200Changed();
+    partial void OnNHOCO15Changing(System.Nullable<double> value);
+    partial void OnNHOCO15Changed();
+    partial void OnNHOCO20Changing(System.Nullable<double> value);
+    partial void OnNHOCO20Changed();
+    partial void OnNHOCO25Changing(System.Nullable<double> value);
+    partial void OnNHOCO25Changed();
+    partial void OnNHOCO40Changing(System.Nullable<double> value);
+    partial void OnNHOCO40Changed();
+    partial void OnNHOCO50Changing(System.Nullable<double> value);
+    partial void OnNHOCO50Changed();
+    partial void OnNHOCO80Changing(System.Nullable<double> value);
+    partial void OnNHOCO80Changed();
+    partial void OnNHOCO100Changing(System.Nullable<double> value);
+    partial void OnNHOCO100Changed();
+    partial void OnNHOCO150Changing(System.Nullable<double> value);
+    partial void OnNHOCO150Changed();
+    partial void OnNHOCO200Changing(System.Nullable<double> value);
+    partial void OnNHOCO200Changed();
+    partial void OnLONCO15Changing(System.Nullable<double> value);
+    partial void OnLONCO15Changed();
+    partial void OnLONCO20Changing(System.Nullable<double> value);
+    partial void OnLONCO20Changed();
+    partial void OnLONCO25Changing(System.Nullable<double> value);
+    partial void OnLONCO25Changed();
+    partial void OnLONCO40Changing(System.Nullable<double> value);
+    partial void OnLONCO40Changed();
+    partial void OnLONCO50Changing(System.Nullable<double> value);
+    partial void OnLONCO50Changed();
+    partial void OnLONCO80Changing(System.Nullable<double> value);
+    partial void OnLONCO80Changed();
+    partial void OnLONCO100Changing(System.Nullable<double> value);
+    partial void OnLONCO100Changed();
+    partial void OnLONCO150Changing(System.Nullable<double> value);
+    partial void OnLONCO150Changed();
+    partial void OnLONCO200Changing(System.Nullable<double> value);
+    partial void OnLONCO200Changed();
+    #endregion
+		
+		public TB_THONGKEDHN()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STT", DbType="Int")]
+		public System.Nullable<int> STT
+		{
+			get
+			{
+				return this._STT;
+			}
+			set
+			{
+				if ((this._STT != value))
+				{
+					this.OnSTTChanging(value);
+					this.SendPropertyChanging();
+					this._STT = value;
+					this.SendPropertyChanged("STT");
+					this.OnSTTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MADHN", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MADHN
+		{
+			get
+			{
+				return this._MADHN;
+			}
+			set
+			{
+				if ((this._MADHN != value))
+				{
+					this.OnMADHNChanging(value);
+					this.SendPropertyChanging();
+					this._MADHN = value;
+					this.SendPropertyChanged("MADHN");
+					this.OnMADHNChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENDHN", DbType="NVarChar(255)")]
+		public string TENDHN
+		{
+			get
+			{
+				return this._TENDHN;
+			}
+			set
+			{
+				if ((this._TENDHN != value))
+				{
+					this.OnTENDHNChanging(value);
+					this.SendPropertyChanging();
+					this._TENDHN = value;
+					this.SendPropertyChanged("TENDHN");
+					this.OnTENDHNChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HIEUCU", DbType="Bit")]
+		public System.Nullable<bool> HIEUCU
+		{
+			get
+			{
+				return this._HIEUCU;
+			}
+			set
+			{
+				if ((this._HIEUCU != value))
+				{
+					this.OnHIEUCUChanging(value);
+					this.SendPropertyChanging();
+					this._HIEUCU = value;
+					this.SendPropertyChanged("HIEUCU");
+					this.OnHIEUCUChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CO15", DbType="Float")]
+		public System.Nullable<double> CO15
+		{
+			get
+			{
+				return this._CO15;
+			}
+			set
+			{
+				if ((this._CO15 != value))
+				{
+					this.OnCO15Changing(value);
+					this.SendPropertyChanging();
+					this._CO15 = value;
+					this.SendPropertyChanged("CO15");
+					this.OnCO15Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CO20", DbType="Float")]
+		public System.Nullable<double> CO20
+		{
+			get
+			{
+				return this._CO20;
+			}
+			set
+			{
+				if ((this._CO20 != value))
+				{
+					this.OnCO20Changing(value);
+					this.SendPropertyChanging();
+					this._CO20 = value;
+					this.SendPropertyChanged("CO20");
+					this.OnCO20Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CO25", DbType="Float")]
+		public System.Nullable<double> CO25
+		{
+			get
+			{
+				return this._CO25;
+			}
+			set
+			{
+				if ((this._CO25 != value))
+				{
+					this.OnCO25Changing(value);
+					this.SendPropertyChanging();
+					this._CO25 = value;
+					this.SendPropertyChanged("CO25");
+					this.OnCO25Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CO40", DbType="Float")]
+		public System.Nullable<double> CO40
+		{
+			get
+			{
+				return this._CO40;
+			}
+			set
+			{
+				if ((this._CO40 != value))
+				{
+					this.OnCO40Changing(value);
+					this.SendPropertyChanging();
+					this._CO40 = value;
+					this.SendPropertyChanged("CO40");
+					this.OnCO40Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CO50", DbType="Float")]
+		public System.Nullable<double> CO50
+		{
+			get
+			{
+				return this._CO50;
+			}
+			set
+			{
+				if ((this._CO50 != value))
+				{
+					this.OnCO50Changing(value);
+					this.SendPropertyChanging();
+					this._CO50 = value;
+					this.SendPropertyChanged("CO50");
+					this.OnCO50Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CO80", DbType="Float")]
+		public System.Nullable<double> CO80
+		{
+			get
+			{
+				return this._CO80;
+			}
+			set
+			{
+				if ((this._CO80 != value))
+				{
+					this.OnCO80Changing(value);
+					this.SendPropertyChanging();
+					this._CO80 = value;
+					this.SendPropertyChanged("CO80");
+					this.OnCO80Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CO100", DbType="Float")]
+		public System.Nullable<double> CO100
+		{
+			get
+			{
+				return this._CO100;
+			}
+			set
+			{
+				if ((this._CO100 != value))
+				{
+					this.OnCO100Changing(value);
+					this.SendPropertyChanging();
+					this._CO100 = value;
+					this.SendPropertyChanged("CO100");
+					this.OnCO100Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CO150", DbType="Float")]
+		public System.Nullable<double> CO150
+		{
+			get
+			{
+				return this._CO150;
+			}
+			set
+			{
+				if ((this._CO150 != value))
+				{
+					this.OnCO150Changing(value);
+					this.SendPropertyChanging();
+					this._CO150 = value;
+					this.SendPropertyChanged("CO150");
+					this.OnCO150Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CO200", DbType="Float")]
+		public System.Nullable<double> CO200
+		{
+			get
+			{
+				return this._CO200;
+			}
+			set
+			{
+				if ((this._CO200 != value))
+				{
+					this.OnCO200Changing(value);
+					this.SendPropertyChanging();
+					this._CO200 = value;
+					this.SendPropertyChanged("CO200");
+					this.OnCO200Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NHOCO15", DbType="Float")]
+		public System.Nullable<double> NHOCO15
+		{
+			get
+			{
+				return this._NHOCO15;
+			}
+			set
+			{
+				if ((this._NHOCO15 != value))
+				{
+					this.OnNHOCO15Changing(value);
+					this.SendPropertyChanging();
+					this._NHOCO15 = value;
+					this.SendPropertyChanged("NHOCO15");
+					this.OnNHOCO15Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NHOCO20", DbType="Float")]
+		public System.Nullable<double> NHOCO20
+		{
+			get
+			{
+				return this._NHOCO20;
+			}
+			set
+			{
+				if ((this._NHOCO20 != value))
+				{
+					this.OnNHOCO20Changing(value);
+					this.SendPropertyChanging();
+					this._NHOCO20 = value;
+					this.SendPropertyChanged("NHOCO20");
+					this.OnNHOCO20Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NHOCO25", DbType="Float")]
+		public System.Nullable<double> NHOCO25
+		{
+			get
+			{
+				return this._NHOCO25;
+			}
+			set
+			{
+				if ((this._NHOCO25 != value))
+				{
+					this.OnNHOCO25Changing(value);
+					this.SendPropertyChanging();
+					this._NHOCO25 = value;
+					this.SendPropertyChanged("NHOCO25");
+					this.OnNHOCO25Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NHOCO40", DbType="Float")]
+		public System.Nullable<double> NHOCO40
+		{
+			get
+			{
+				return this._NHOCO40;
+			}
+			set
+			{
+				if ((this._NHOCO40 != value))
+				{
+					this.OnNHOCO40Changing(value);
+					this.SendPropertyChanging();
+					this._NHOCO40 = value;
+					this.SendPropertyChanged("NHOCO40");
+					this.OnNHOCO40Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NHOCO50", DbType="Float")]
+		public System.Nullable<double> NHOCO50
+		{
+			get
+			{
+				return this._NHOCO50;
+			}
+			set
+			{
+				if ((this._NHOCO50 != value))
+				{
+					this.OnNHOCO50Changing(value);
+					this.SendPropertyChanging();
+					this._NHOCO50 = value;
+					this.SendPropertyChanged("NHOCO50");
+					this.OnNHOCO50Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NHOCO80", DbType="Float")]
+		public System.Nullable<double> NHOCO80
+		{
+			get
+			{
+				return this._NHOCO80;
+			}
+			set
+			{
+				if ((this._NHOCO80 != value))
+				{
+					this.OnNHOCO80Changing(value);
+					this.SendPropertyChanging();
+					this._NHOCO80 = value;
+					this.SendPropertyChanged("NHOCO80");
+					this.OnNHOCO80Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NHOCO100", DbType="Float")]
+		public System.Nullable<double> NHOCO100
+		{
+			get
+			{
+				return this._NHOCO100;
+			}
+			set
+			{
+				if ((this._NHOCO100 != value))
+				{
+					this.OnNHOCO100Changing(value);
+					this.SendPropertyChanging();
+					this._NHOCO100 = value;
+					this.SendPropertyChanged("NHOCO100");
+					this.OnNHOCO100Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NHOCO150", DbType="Float")]
+		public System.Nullable<double> NHOCO150
+		{
+			get
+			{
+				return this._NHOCO150;
+			}
+			set
+			{
+				if ((this._NHOCO150 != value))
+				{
+					this.OnNHOCO150Changing(value);
+					this.SendPropertyChanging();
+					this._NHOCO150 = value;
+					this.SendPropertyChanged("NHOCO150");
+					this.OnNHOCO150Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NHOCO200", DbType="Float")]
+		public System.Nullable<double> NHOCO200
+		{
+			get
+			{
+				return this._NHOCO200;
+			}
+			set
+			{
+				if ((this._NHOCO200 != value))
+				{
+					this.OnNHOCO200Changing(value);
+					this.SendPropertyChanging();
+					this._NHOCO200 = value;
+					this.SendPropertyChanged("NHOCO200");
+					this.OnNHOCO200Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LONCO15", DbType="Float")]
+		public System.Nullable<double> LONCO15
+		{
+			get
+			{
+				return this._LONCO15;
+			}
+			set
+			{
+				if ((this._LONCO15 != value))
+				{
+					this.OnLONCO15Changing(value);
+					this.SendPropertyChanging();
+					this._LONCO15 = value;
+					this.SendPropertyChanged("LONCO15");
+					this.OnLONCO15Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LONCO20", DbType="Float")]
+		public System.Nullable<double> LONCO20
+		{
+			get
+			{
+				return this._LONCO20;
+			}
+			set
+			{
+				if ((this._LONCO20 != value))
+				{
+					this.OnLONCO20Changing(value);
+					this.SendPropertyChanging();
+					this._LONCO20 = value;
+					this.SendPropertyChanged("LONCO20");
+					this.OnLONCO20Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LONCO25", DbType="Float")]
+		public System.Nullable<double> LONCO25
+		{
+			get
+			{
+				return this._LONCO25;
+			}
+			set
+			{
+				if ((this._LONCO25 != value))
+				{
+					this.OnLONCO25Changing(value);
+					this.SendPropertyChanging();
+					this._LONCO25 = value;
+					this.SendPropertyChanged("LONCO25");
+					this.OnLONCO25Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LONCO40", DbType="Float")]
+		public System.Nullable<double> LONCO40
+		{
+			get
+			{
+				return this._LONCO40;
+			}
+			set
+			{
+				if ((this._LONCO40 != value))
+				{
+					this.OnLONCO40Changing(value);
+					this.SendPropertyChanging();
+					this._LONCO40 = value;
+					this.SendPropertyChanged("LONCO40");
+					this.OnLONCO40Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LONCO50", DbType="Float")]
+		public System.Nullable<double> LONCO50
+		{
+			get
+			{
+				return this._LONCO50;
+			}
+			set
+			{
+				if ((this._LONCO50 != value))
+				{
+					this.OnLONCO50Changing(value);
+					this.SendPropertyChanging();
+					this._LONCO50 = value;
+					this.SendPropertyChanged("LONCO50");
+					this.OnLONCO50Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LONCO80", DbType="Float")]
+		public System.Nullable<double> LONCO80
+		{
+			get
+			{
+				return this._LONCO80;
+			}
+			set
+			{
+				if ((this._LONCO80 != value))
+				{
+					this.OnLONCO80Changing(value);
+					this.SendPropertyChanging();
+					this._LONCO80 = value;
+					this.SendPropertyChanged("LONCO80");
+					this.OnLONCO80Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LONCO100", DbType="Float")]
+		public System.Nullable<double> LONCO100
+		{
+			get
+			{
+				return this._LONCO100;
+			}
+			set
+			{
+				if ((this._LONCO100 != value))
+				{
+					this.OnLONCO100Changing(value);
+					this.SendPropertyChanging();
+					this._LONCO100 = value;
+					this.SendPropertyChanged("LONCO100");
+					this.OnLONCO100Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LONCO150", DbType="Float")]
+		public System.Nullable<double> LONCO150
+		{
+			get
+			{
+				return this._LONCO150;
+			}
+			set
+			{
+				if ((this._LONCO150 != value))
+				{
+					this.OnLONCO150Changing(value);
+					this.SendPropertyChanging();
+					this._LONCO150 = value;
+					this.SendPropertyChanged("LONCO150");
+					this.OnLONCO150Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LONCO200", DbType="Float")]
+		public System.Nullable<double> LONCO200
+		{
+			get
+			{
+				return this._LONCO200;
+			}
+			set
+			{
+				if ((this._LONCO200 != value))
+				{
+					this.OnLONCO200Changing(value);
+					this.SendPropertyChanging();
+					this._LONCO200 = value;
+					this.SendPropertyChanged("LONCO200");
+					this.OnLONCO200Changed();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

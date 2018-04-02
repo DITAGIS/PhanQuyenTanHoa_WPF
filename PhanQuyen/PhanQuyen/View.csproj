@@ -128,6 +128,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dtsInTieuThuBatThuong.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dts_thongkedhn.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dts_thongkedhn.xsd</DependentUpon>
+    </Compile>
     <Compile Include="UserControlView\BaoCao\UC_InTieuThuBatThuong.xaml.cs">
       <DependentUpon>UC_InTieuThuBatThuong.xaml</DependentUpon>
     </Compile>
@@ -388,6 +393,17 @@
     </None>
     <None Include="dtsInTieuThuBatThuong.xss">
       <DependentUpon>dtsInTieuThuBatThuong.xsd</DependentUpon>
+    </None>
+    <None Include="dts_thongkedhn.xsc">
+      <DependentUpon>dts_thongkedhn.xsd</DependentUpon>
+    </None>
+    <None Include="dts_thongkedhn.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dts_thongkedhn.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dts_thongkedhn.xss">
+      <DependentUpon>dts_thongkedhn.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

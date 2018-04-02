@@ -164,5 +164,11 @@
         <elementListCompartment Id="000a0617-8af2-452c-8eed-ce0f77501623" absoluteBounds="6.765, 20.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="a650ca20-b3a4-408b-a4b0-7edf10fa8238" absoluteBounds="6.875, 10.375, 2, 6.7707340494791657">
+      <DataClassMoniker Name="/DataClasses_thanleDataContext/TB_THONGKEDHN" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5db2ef16-66ea-4521-bf94-2323c303f053" absoluteBounds="6.89, 10.835, 1.9700000000000002, 6.2107340494791661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
