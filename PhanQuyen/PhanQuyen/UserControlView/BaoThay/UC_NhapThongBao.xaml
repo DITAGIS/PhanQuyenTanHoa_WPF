@@ -27,6 +27,7 @@
             <!--Mã lộ trình-->
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Mã lộ trình:"/></TextBlock>
             <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbMaLoTrinh" 
+                      KeyDown="txtbMaLoTrinh_KeyDown"
                             />
             <!--Hợp đồng-->
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Hợp đồng:"/></TextBlock>
@@ -59,15 +60,16 @@
                     Margin="10">
             <!--Số lệnh-->
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Số lệnh:"/></TextBlock>
-            <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbSoLenh" />
+            <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbSoLenh" 
+                      KeyDown="txtbSoLenh_KeyDown"/>
 
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Ngày kiểm:"/></TextBlock>
-            <DatePicker VerticalContentAlignment="Center" Name="dtpNgayKiem"></DatePicker>
+            <DatePicker FontSize="13" SelectedDateChanged="dtpNgayKiem_SelectedDateChanged" VerticalContentAlignment="Center" Name="dtpNgayKiem"></DatePicker>
 
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Tiêu đề:"/></TextBlock>
-            <ComboBox IsEditable="True" Name="cbbTieuDe" KeyDown="cbbTieuDe_KeyDown" Background="White" Width="250"></ComboBox>
+            <ComboBox IsEditable="True" SelectionChanged="cbbTieuDe_SelectionChanged" Name="cbbTieuDe" KeyDown="cbbTieuDe_KeyDown" Background="White" Width="250"></ComboBox>
 
-            <Button Margin="10,0,0,0" Background="White" Name="btnReloadTB">
+            <Button Margin="10,0,0,0" Background="White" Name="btnReloadTB" Click="btnReloadTB_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/PhanQuyen;component/Images/refresh.png" Width="20" Height="20"></Image>
 
@@ -84,12 +86,12 @@
                     Margin="10">
             <!--Ngày cập nhật-->
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Ngày cập nhật:"/></TextBlock>
-            <DatePicker Name="dtpNgayCapNhat"></DatePicker>
+            <DatePicker FontSize="13" Name="dtpNgayCapNhat"></DatePicker>
 
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Hiệu:"/></TextBlock>
-            <ComboBox IsEditable="True" KeyDown="cbbHieu_KeyDown" Background="White" Width="50" Name="cbbHieu"></ComboBox>
+            <ComboBox IsEditable="True" SelectionChanged="cbbHieu_SelectionChanged" KeyDown="cbbHieu_KeyDown" Background="White" Width="50" Name="cbbHieu"></ComboBox>
 
-            <Button Margin="10,0,0,0" Background="White" Name="btnReloadHieu">
+            <Button Margin="10,0,0,0" Background="White" Name="btnReloadHieu" Click="btnReloadHieu_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/PhanQuyen;component/Images/refresh.png" Width="20" Height="20"></Image>
 
@@ -102,7 +104,7 @@
                 </StackPanel>
             </Button>
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Cỡ:"/></TextBlock>
-            <ComboBox IsEditable="True" KeyDown="cbbCo_KeyDown" Background="White" Width="50" Name="cbbCo"></ComboBox>
+            <ComboBox IsEditable="True" SelectionChanged="cbbCo_SelectionChanged" KeyDown="cbbCo_KeyDown" Background="White" Width="50" Name="cbbCo"></ComboBox>
 
             <Button Margin="10,0,0,0" Background="White" Name="btnReloadCo" Click="btnReloadCo_Click">
                 <StackPanel Orientation="Horizontal">
@@ -118,7 +120,7 @@
             </Button>
 
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Chỉ số:"/></TextBlock>
-            <TextBox Background="White" Width="100" Name="txtChiSo" VerticalContentAlignment="Center"></TextBox>
+            <TextBox Background="White" Width="100" Name="txtChiSo" KeyDown="txtChiSo_KeyDown" VerticalContentAlignment="Center"></TextBox>
             <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Số thân:"/></TextBlock>
             <TextBox Background="White" Width="100" Name="txtSoThan" KeyDown="txtSoThan_KeyDown"></TextBox>
 
@@ -133,7 +135,7 @@
 
         </StackPanel>
 
-        <DataGrid Grid.Row="6" Name="dtgridMain"/>
+        <DataGrid CanUserAddRows="False" Grid.Row="6" Name="dtgridMain" SelectionChanged="dtgridMain_SelectionChanged"/>
     </Grid>
 
 

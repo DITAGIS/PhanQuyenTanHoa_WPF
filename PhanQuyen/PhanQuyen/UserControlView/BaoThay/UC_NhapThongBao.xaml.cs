@@ -27,6 +27,12 @@ namespace PhanQuyen.UserControlView.BaoThay
         public UC_NhapThongBao()
         {
             InitializeComponent();
+            dtpNgayKiem.SelectedDate = DateTime.Now;
+            dtpNgayCapNhat.SelectedDate = DateTime.Now;
+            LoadHieu();
+            LoadCoDHN();
+            LoadTieuDe();
+            LoadDanhSach();
         }
 
         private void txtbDanhBa_KeyDown(object sender, KeyEventArgs e)
@@ -34,6 +40,7 @@ namespace PhanQuyen.UserControlView.BaoThay
             if (e.Key == Key.Enter)
             {
                 TimKiem("k.DanhBa", txtbDanhBa.Text.ToString().Trim());
+                txtbSoLenh.Focus();
             }
         }
         private void TimKiem(string loaiTK, string doituongTK)
@@ -79,8 +86,8 @@ namespace PhanQuyen.UserControlView.BaoThay
                     int chiSo = int.Parse(this.txtChiSo.Text.Trim());
                     string noiDung = this.txtbNoiDung.Text.Trim();
                     string soThan = this.txtSoThan.Text.Trim();
-                    string ngayKiem = dtpNgayKiem.SelectedDate.Value.ToString("dd/MM/yyyy");
-                    string ngayCapNhat = dtpNgayCapNhat.SelectedDate.Value.ToString("dd/MM/yyyy");
+                    string ngayKiem = dtpNgayKiem.SelectedDate.Value.ToString("yyyy-MM-dd");
+                    string ngayCapNhat = dtpNgayCapNhat.SelectedDate.Value.ToString("yyyy-MM-dd");
 
                     if (HandlingDataDBViewModel.Instance.BaoThay_NhapThongBao_ThemThongBao(danhBa, soLenh, tieuDe, hieu, co, chiSo, noiDung, soThan, ngayKiem, ngayCapNhat))
                     {
@@ -114,7 +121,7 @@ namespace PhanQuyen.UserControlView.BaoThay
             try
             {
 
-                this.dtgridMain.ItemsSource = HandlingDataDBViewModel.Instance.BaoThay_NhapThongBao_LoadDanhSach(DateTime.Now.ToString("dd/MM/yyyy")).AsDataView();
+                this.dtgridMain.ItemsSource = HandlingDataDBViewModel.Instance.BaoThay_NhapThongBao_LoadDanhSach(DateTime.Now.ToString("yyyy-MM-dd")).AsDataView();
                 style_dgview();
             }
             catch (Exception ex)
@@ -186,6 +193,89 @@ namespace PhanQuyen.UserControlView.BaoThay
         {
             if (e.Key == Key.Enter)
                 Luu();
+        }
+
+        private void txtChiSo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                txtSoThan.Focus();
+        }
+
+        private void cbbCo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            txtChiSo.Focus();
+        }
+
+        private void cbbHieu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            cbbCo.Focus();
+        }
+
+        private void cbbTieuDe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            cbbHieu.Focus();
+        }
+
+        private void dtpNgayKiem_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            cbbTieuDe.Focus();
+        }
+
+        private void btnReloadTB_Click(object sender, RoutedEventArgs e)
+        {
+            LoadTieuDe();
+        }
+
+        private void LoadTieuDe()
+        {
+            this.cbbTieuDe.ItemsSource = HandlingDataDBViewModel.Instance.BaoThay_NhapThongBao_LoadTieuDe().AsDataView();
+            this.cbbTieuDe.DisplayMemberPath = "CodeDesc";
+            this.cbbTieuDe.SelectedValuePath = "Code";
+        }
+
+        private void btnReloadHieu_Click(object sender, RoutedEventArgs e)
+        {
+            LoadHieu();
+        }
+
+        private void LoadHieu()
+        {
+            this.cbbHieu.ItemsSource = HandlingDataDBViewModel.Instance.BaoThay_NhapThongBao_LoadTieuDe().AsDataView();
+            this.cbbHieu.DisplayMemberPath = "CodeDesc";
+            this.cbbHieu.SelectedValuePath = "Code";
+        }
+
+        private void txtbSoLenh_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                dtpNgayKiem.Focus();
+        }
+
+        private void txtbMaLoTrinh_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                TimKiem("k.MLT2", txtbMaLoTrinh.Text.Trim());
+        }
+
+        private void dtgridMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dtgridMain.SelectedIndex == -1 || dtgridMain.SelectedIndex >= dtgridMain.Items.Count)
+                return;
+            int rowIndex = dtgridMain.SelectedIndex;
+            this.txtbSoLenh.Text = (dtgridMain.Items[rowIndex] as DataRowView)[1].ToString();
+            this.txtbDanhBa.Text = (dtgridMain.Items[rowIndex] as DataRowView)[2].ToString();
+            txtbTenKH.Text = (dtgridMain.Items[rowIndex] as DataRowView)[3].ToString();
+            this.txtbDiaChi.Text = (dtgridMain.Items[rowIndex] as DataRowView)[4].ToString();
+            this.txtbNoiDung.Text = (dtgridMain.Items[rowIndex] as DataRowView)[5].ToString();
+            this.txtChiSo.Text = (dtgridMain.Items[rowIndex] as DataRowView)[6].ToString();
+            this.txtbMaLoTrinh.Text = (dtgridMain.Items[rowIndex] as DataRowView)[7].ToString();
+            this.txtbHopDong.Text = (dtgridMain.Items[rowIndex] as DataRowView)[8].ToString();
+            this.cbbHieu.Text = (dtgridMain.Items[rowIndex] as DataRowView)[9].ToString();
+            this.txtSoThan.Text = (dtgridMain.Items[rowIndex] as DataRowView)[10].ToString();
+            this.cbbCo.Text = (dtgridMain.Items[rowIndex] as DataRowView)[11].ToString();
+            cbbTieuDe.Text = (dtgridMain.Items[rowIndex] as DataRowView)[12].ToString();
+            this.dtpNgayKiem.SelectedDate = DateTime.ParseExact((dtgridMain.Items[rowIndex] as DataRowView)[13].ToString(), "dd/MM/yyyy", (IFormatProvider)null);
+            this.dtpNgayCapNhat.SelectedDate = DateTime.ParseExact((dtgridMain.Items[rowIndex] as DataRowView)[14].ToString(), "dd/MM/yyyy", (IFormatProvider)null);
         }
     }
 }
