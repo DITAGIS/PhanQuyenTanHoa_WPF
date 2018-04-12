@@ -90,6 +90,8 @@ namespace ViewModel
         private const String TKDHNTHEODOTSO_COLUMN_TOID = "TODS";
         private const String TKDHNTHEODOTSO_COLUMN_DOT = "Dot";
         private const String TKDHNTHEODOTSO_COLUMN_MAY = "May";
+
+
         private const String TKDHNTHEODOTSO_COLUMN_DANHBA = "CSCu";
 
         private const String BCTONGHOP_COLUMN_NAM = "Nam";
@@ -657,14 +659,22 @@ namespace ViewModel
         public DataTable GetDHNTrenMang(int nam, int ky)
         {
             List<DHNTrenMang> query = new List<DHNTrenMang>();
-            serverContext.ExecuteQuery<object>(String.Format(@"execute thongkedhn_trenmang {0},{1}", ky, nam));
-            ConnectionViewModel.Instance.Connect();
-            DataTable table = ConnectionViewModel.Instance.GetDataTable("select * from tb_thongkedhn");
-            ConnectionViewModel.Instance.DisConnect();
-            int count = 0;
-            foreach (DataRow row in table.Rows)
+            DataTable table = new DataTable();
+            try
             {
-                row["STT"] = ++count;
+                serverContext.ExecuteQuery<object>(String.Format(@"execute thongkedhn_trenmang {0},{1}", ky, nam));
+                ConnectionViewModel.Instance.Connect();
+                table = ConnectionViewModel.Instance.GetDataTable("select * from tb_thongkedhn");
+                ConnectionViewModel.Instance.DisConnect();
+                int count = 0;
+                foreach (DataRow row in table.Rows)
+                {
+                    row["STT"] = ++count;
+                }
+            }
+            catch
+            {
+
             }
             return table;
         }
@@ -1873,6 +1883,149 @@ namespace ViewModel
             }
             return listSoDaNhan;
         }
+
+        #region Bao Thay
+
+        #region Nhap Thong Bao
+        public DataTable BaoThay_NhapThongBao_TimKiemKhachHang(string loaiTK, string doituongTK)
+        {
+            string sqlStatment = "select k.DanhBa, k.TenKH, k.HopDong, k.MLT2, k.So, k.SoMoi, k.Duong, k.Hieu, k.Co, k.SoThan, k.ChiThan, k.ChiCo,m.ToID,k.ViTri from KhachHang k inner join MayDS m on k.May = m.May where " + loaiTK + " = '" + doituongTK + "'";
+            DataTable table = null;
+            try
+            {
+                ConnectionViewModel.Instance.Connect();
+                table = ConnectionViewModel.Instance.GetDataTable(sqlStatment);
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                ConnectionViewModel.Instance.DisConnect();
+            }
+
+            return table;
+        }
+        public int BaoThay_NhapThongBao_LayChiSo(string danhBa, string docSoID)
+        {
+            try
+            {
+                string sqlStatement = "select top 1 CSMoi from DocSo where DanhBa = '" + danhBa + "'  and DocSoID <> '" + docSoID + "' order by DocSoID desc";
+                ConnectionViewModel.Instance.Connect();
+                int num = Convert.ToInt32(ConnectionViewModel.Instance.GetExecuteScalar(sqlStatement));
+                return num;
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                ConnectionViewModel.Instance.DisConnect();
+            }
+
+
+            return 0;
+        }
+        public DataTable BaoThay_NhapThongBao_LoadCoDHN()
+        {
+            try
+            {
+                string sqlStatement = "select Code, CodeDesc from ThamSo where CodeType = 'Co' order by Stt";
+                ConnectionViewModel.Instance.Connect();
+                DataTable table = ConnectionViewModel.Instance.GetDataTable(sqlStatement);
+                return table;
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                ConnectionViewModel.Instance.DisConnect();
+            }
+
+
+            return null;
+        }
+        public bool BaoThay_NhapThongBao_ThemCoDHN(string maCo, string coDHN)
+        {
+            try
+            {
+                ConnectionViewModel.Instance.Connect();
+                string sqlStatement = "select convert(int,MAX(Stt)) from ThamSo where CodeType = 'Co'";
+                int stt = Convert.ToInt32(ConnectionViewModel.Instance.GetExecuteScalar(sqlStatement));
+                ConnectionViewModel.Instance.DisConnect();
+
+                sqlStatement = "Insert into ThamSo values('" + maCo + "', '" + coDHN + "', '" + "Co" + "', " + (object)(stt + 1) + ")";
+                ConnectionViewModel.Instance.Connect();
+                int result = ConnectionViewModel.Instance.GetExecuteNonQuerry(sqlStatement);
+
+                ConnectionViewModel.Instance.DisConnect();
+                return result > 0;
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                ConnectionViewModel.Instance.DisConnect();
+            }
+
+
+            return false;
+        }
+        public bool BaoThay_NhapThongBao_ThemThongBao(string danhBa, string soLenh, string tieuDe, string hieu, string co, int chiSo, string noiDung, string soThan, string ngayKiem, string ngayCapNhat)
+        {
+            try
+            {
+
+
+                string sqlStatement = "Insert into ThongBao Values('" + tieuDe + "','" + danhBa + "','" + soLenh + "','" + hieu + "'," + co + "," +
+                    chiSo + ",N'" + noiDung + "','" + ngayKiem + "','" + ngayCapNhat + "','" + MyUser.Instance.UserID + "','" + soThan + "')";
+                ConnectionViewModel.Instance.Connect();
+                int result = ConnectionViewModel.Instance.GetExecuteNonQuerry(sqlStatement);
+
+                ConnectionViewModel.Instance.DisConnect();
+                return result > 0;
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                ConnectionViewModel.Instance.DisConnect();
+            }
+
+
+            return false;
+        }
+        public DataTable BaoThay_NhapThongBao_LoadDanhSach(string ngayCapNhat)
+        {
+            try
+            {
+                string sqlStatement = "select Code, CodeDesc from ThamSo where CodeType = 'Co' order by Stt";
+                ConnectionViewModel.Instance.Connect();
+                DataTable table = ConnectionViewModel.Instance.GetDataTable(sqlStatement);
+                return table;
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                ConnectionViewModel.Instance.DisConnect();
+            }
+
+
+            return null;
+        }
+        #endregion
+        #endregion
 
     }
 }

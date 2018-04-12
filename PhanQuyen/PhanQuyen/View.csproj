@@ -139,6 +139,15 @@
     <Compile Include="UserControlView\BaoCao\UC_ThongKeDHNTrenMang.xaml.cs">
       <DependentUpon>UC_ThongKeDHNTrenMang.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlView\BaoThay\UC_BaoThayDinhKy.xaml.cs">
+      <DependentUpon>UC_BaoThayDinhKy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\BaoThay\UC_NhapHoanCong.xaml.cs">
+      <DependentUpon>UC_NhapHoanCong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\BaoThay\UC_NhapThongBao.xaml.cs">
+      <DependentUpon>UC_NhapThongBao.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlView\HeThong\UC_QuanLyNhanVienDocSo.xaml.cs">
       <DependentUpon>UC_QuanLyNhanVienDocSo.xaml</DependentUpon>
     </Compile>
@@ -206,6 +215,9 @@
     <Compile Include="WindowView\ViewImageWindow.xaml.cs">
       <DependentUpon>ViewImageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowView\Window_BaoThay_NhapThongBao_ThemCoDHN.xaml.cs">
+      <DependentUpon>Window_BaoThay_NhapThongBao_ThemCoDHN.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowView\XemGhiChuWindow.xaml.cs">
       <DependentUpon>XemGhiChuWindow.xaml</DependentUpon>
     </Compile>
@@ -214,6 +226,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlView\BaoCao\UC_ThongKeDHNTrenMang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\BaoThay\UC_BaoThayDinhKy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\BaoThay\UC_NhapHoanCong.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\BaoThay\UC_NhapThongBao.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -318,6 +342,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowView\ViewImageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowView\Window_BaoThay_NhapThongBao_ThemCoDHN.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -567,6 +595,9 @@
   <ItemGroup>
     <Resource Include="Images\rotateLeft.png" />
     <Resource Include="Images\rotateRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

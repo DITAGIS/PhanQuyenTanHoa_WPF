@@ -102,8 +102,10 @@
                     <RibbonButton Label="Báo thay định kỳ"  LargeImageSource="/PhanQuyen;component/Images/baothaydinhky.png"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Nhập">
-                    <RibbonButton Label="Nhập hoàn công"  LargeImageSource="/PhanQuyen;component/Images/nhaphoancong.png"></RibbonButton>
-                    <RibbonButton Label="Nhập thông báo"  LargeImageSource="/PhanQuyen;component/Images/nhapthongbao.png"></RibbonButton>
+                    <RibbonButton Label="Nhập hoàn công"  LargeImageSource="/PhanQuyen;component/Images/nhaphoancong.png"
+                                  Click="ribBtnNhapHoanCong_Click"></RibbonButton>
+                    <RibbonButton Label="Nhập thông báo"  LargeImageSource="/PhanQuyen;component/Images/nhapthongbao.png"
+                                  Click="ribBtnNhapThongBao_Click"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Cập nhật">
                     <RibbonButton Label="Cập nhật hoàn công"  LargeImageSource="/PhanQuyen;component/Images/capnhathoancong.png"></RibbonButton>

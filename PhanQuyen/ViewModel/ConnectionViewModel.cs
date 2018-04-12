@@ -45,7 +45,7 @@ namespace ViewModel
                 return connectionString;
             }
         }
-     
+
         private ConnectionViewModel()
         {
             conn = new SqlConnection(ConnectionString);
@@ -87,7 +87,7 @@ namespace ViewModel
             {
             }
         }
-
+ 
         public SqlDataReader GetExecuteReader(string sqlStatment)
         {
             if (cmd != null)

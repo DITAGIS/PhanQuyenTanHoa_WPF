@@ -1,0 +1,140 @@
+﻿<UserControl x:Class="PhanQuyen.UserControlView.BaoThay.UC_NhapThongBao"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PhanQuyen.UserControlView.BaoThay"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1000">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal"  Name="stpCondition" 
+                    Margin="10">
+
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Danh bạ:"/></TextBlock>
+
+            <!--Danh bạ-->
+            <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbDanhBa" 
+                              KeyDown="txtbDanhBa_KeyDown"/>
+            <!--Mã lộ trình-->
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Mã lộ trình:"/></TextBlock>
+            <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbMaLoTrinh" 
+                            />
+            <!--Hợp đồng-->
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Hợp đồng:"/></TextBlock>
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0" Name="txtbHopDong"></TextBlock>
+
+            <Button Margin="10,0,0,0" Background="White" Name="btnViewNoteOld">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/note_old.png" Width="20" Height="20"></Image>
+                    <TextBlock VerticalAlignment="Center" Margin="2,0,0,0">Xem ghi chú cũ</TextBlock>
+                </StackPanel>
+            </Button>
+
+
+        </StackPanel>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" 
+                    Margin="10">
+            <!--Tên khách hàng-->
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Tên khách hàng:"/></TextBlock>
+            <TextBlock  FontSize="13" FontWeight="Bold" VerticalAlignment="Center"  x:Name="txtbTenKH" />
+
+        </StackPanel>
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" Orientation="Horizontal" 
+                    Margin="10">
+            <!--Địa chỉ-->
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Địa chỉ:"/></TextBlock>
+            <TextBlock  FontSize="13" FontWeight="Bold" VerticalAlignment="Center"  x:Name="txtbDiaChi" />
+
+        </StackPanel>
+        <StackPanel Grid.Row="3" VerticalAlignment="Center" Orientation="Horizontal" 
+                    Margin="10">
+            <!--Số lệnh-->
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Số lệnh:"/></TextBlock>
+            <TextBox  FontSize="15" Height="30" Width="100" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbSoLenh" />
+
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Ngày kiểm:"/></TextBlock>
+            <DatePicker VerticalContentAlignment="Center" Name="dtpNgayKiem"></DatePicker>
+
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Tiêu đề:"/></TextBlock>
+            <ComboBox IsEditable="True" Name="cbbTieuDe" KeyDown="cbbTieuDe_KeyDown" Background="White" Width="250"></ComboBox>
+
+            <Button Margin="10,0,0,0" Background="White" Name="btnReloadTB">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/refresh.png" Width="20" Height="20"></Image>
+
+                </StackPanel>
+            </Button>
+            <Button Margin="10,0,0,0" Background="White" Name="btnAddTB">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/add.png" Width="20" Height="20"></Image>
+
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="4" VerticalAlignment="Center" Orientation="Horizontal" 
+                    Margin="10">
+            <!--Ngày cập nhật-->
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Ngày cập nhật:"/></TextBlock>
+            <DatePicker Name="dtpNgayCapNhat"></DatePicker>
+
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Hiệu:"/></TextBlock>
+            <ComboBox IsEditable="True" KeyDown="cbbHieu_KeyDown" Background="White" Width="50" Name="cbbHieu"></ComboBox>
+
+            <Button Margin="10,0,0,0" Background="White" Name="btnReloadHieu">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/refresh.png" Width="20" Height="20"></Image>
+
+                </StackPanel>
+            </Button>
+            <Button Margin="10,0,0,0" Background="White" Name="btnAddHieu">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/add.png" Width="20" Height="20"></Image>
+
+                </StackPanel>
+            </Button>
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Cỡ:"/></TextBlock>
+            <ComboBox IsEditable="True" KeyDown="cbbCo_KeyDown" Background="White" Width="50" Name="cbbCo"></ComboBox>
+
+            <Button Margin="10,0,0,0" Background="White" Name="btnReloadCo" Click="btnReloadCo_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/refresh.png" Width="20" Height="20"></Image>
+
+                </StackPanel>
+            </Button>
+            <Button Margin="10,0,0,0" Background="White" Name="btnAddCo" Click="btnAddCo_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/add.png" Width="20" Height="20"></Image>
+
+                </StackPanel>
+            </Button>
+
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Chỉ số:"/></TextBlock>
+            <TextBox Background="White" Width="100" Name="txtChiSo" VerticalContentAlignment="Center"></TextBox>
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="30,0,10,0"><Run Text="Số thân:"/></TextBlock>
+            <TextBox Background="White" Width="100" Name="txtSoThan" KeyDown="txtSoThan_KeyDown"></TextBox>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" VerticalAlignment="Center" Orientation="Horizontal" 
+                    Margin="10">
+
+            <TextBlock VerticalAlignment="Center" FontSize="13" Margin="10,0,10,0"><Run Text="Nội dung:"/></TextBlock>
+
+            <TextBox KeyDown="txtbNoiDung_KeyDown" FontSize="15" Height="30" Width="500" VerticalAlignment="Center" VerticalContentAlignment="Center" x:Name="txtbNoiDung" />
+
+        </StackPanel>
+
+        <DataGrid Grid.Row="6" Name="dtgridMain"/>
+    </Grid>
+
+
+</UserControl>

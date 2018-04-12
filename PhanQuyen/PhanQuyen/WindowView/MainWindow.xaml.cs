@@ -17,6 +17,7 @@ using Model;
 using PhanQuyen.UserControl.BaoCao;
 using PhanQuyen.UserControlView;
 using PhanQuyen.UserControlView.BaoCao;
+using PhanQuyen.UserControlView.BaoThay;
 using PhanQuyen.UserControlView.HeThong;
 using ViewModel;
 
@@ -43,6 +44,8 @@ namespace PhanQuyen
         UC_DoiMatkhau uc_DoiMatKhau;
         UC_Config uc_Config;
         UC_QuanLyNhanVienDocSo uc_QuanLyNhanVienDocSo;
+        UC_NhapHoanCong uc_NhapHoanCong;
+        UC_NhapThongBao uc_NhapThongBao;
         private MyUser user;
         private String title = "Phần mềm kết nối ứng dụng đọc số trên Smartphone            Nhân viên: ";
         public MainWindow()
@@ -98,6 +101,16 @@ namespace PhanQuyen
         }
         private void resizeUC()
         {
+            if (uc_NhapThongBao != null)
+            {
+                uc_NhapThongBao.Height = stkMain.ActualHeight;
+                uc_NhapThongBao.Width = stkMain.ActualWidth;
+            }
+            if (uc_NhapHoanCong != null)
+            {
+                uc_NhapHoanCong.Height = stkMain.ActualHeight;
+                uc_NhapHoanCong.Width = stkMain.ActualWidth;
+            }
             if (uc_DieuChinhThonTinDocSo != null)
             {
                 uc_DieuChinhThonTinDocSo.Height = stkMain.ActualHeight;
@@ -371,6 +384,27 @@ namespace PhanQuyen
             stkMain.Children.Add(uc_QuanLyNhanVienDocSo);
             this.Title = this.title + "             Quản lý nhân viên đọc số";
         }
+        private void ribBtnNhapHoanCong_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_NhapHoanCong == null)
+                uc_NhapHoanCong = new UC_NhapHoanCong();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_NhapHoanCong);
+            this.Title = this.title + "             Báo thay, nhập hoàn công";
+        }
+
+        private void ribBtnNhapThongBao_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_NhapThongBao == null)
+                uc_NhapThongBao = new UC_NhapThongBao();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_NhapThongBao);
+            this.Title = this.title + "             Báo thay, nhập hoàn công";
+        }
         private void ribBtnHoanTatDocSo_Click(object sender, RoutedEventArgs e)
         {
             if (System.Windows.Forms.MessageBox.Show("Bạn có chắc chắn hoàn tất dữ liệu đọc số không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != System.Windows.Forms.DialogResult.Yes)
@@ -404,7 +438,6 @@ namespace PhanQuyen
                 System.Windows.Forms.MessageBox.Show("Lỗi khi hoàn tất đọc số: " + ex.Message);
             }
         }
-
 
     }
 
