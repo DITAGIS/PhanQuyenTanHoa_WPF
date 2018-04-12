@@ -48,6 +48,7 @@ namespace PhanQuyen
         UC_NhapThongBao uc_NhapThongBao;
         UC_CapNhatThongBao uc_CapNhatThongBao;
         UC_CapNhatHoanCong uc_CapNhatHoanCong;
+        UC_LichSuDHN uc_LichSuDHN;
         private MyUser user;
         private String title = "Phần mềm kết nối ứng dụng đọc số trên Smartphone            Nhân viên: ";
         public MainWindow()
@@ -103,6 +104,11 @@ namespace PhanQuyen
         }
         private void resizeUC()
         {
+            if (uc_LichSuDHN != null)
+            {
+                uc_LichSuDHN.Height = stkMain.ActualHeight;
+                uc_LichSuDHN.Width = stkMain.ActualWidth;
+            }
             if (uc_CapNhatHoanCong != null)
             {
                 uc_CapNhatHoanCong.Height = stkMain.ActualHeight;
@@ -205,7 +211,18 @@ namespace PhanQuyen
             }
         }
 
+        #region Add stackpanel Main
 
+        private void ribBtnLichSuDHN_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_LichSuDHN == null)
+                uc_LichSuDHN = new UC_LichSuDHN();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_LichSuDHN);
+            this.Title = this.title + "            Lịch sử ĐHN";
+        }
         private void ribBtnDieuChinhThongTinDocSo_Click(object sender, RoutedEventArgs e)
         {
             if (uc_DieuChinhThonTinDocSo == null)
@@ -437,6 +454,9 @@ namespace PhanQuyen
             stkMain.Children.Add(uc_CapNhatHoanCong);
             this.Title = this.title + "             Cập nhật hoàn công";
         }
+
+        #endregion
+
         private void ribBtnHoanTatDocSo_Click(object sender, RoutedEventArgs e)
         {
             if (System.Windows.Forms.MessageBox.Show("Bạn có chắc chắn hoàn tất dữ liệu đọc số không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != System.Windows.Forms.DialogResult.Yes)
@@ -471,7 +491,7 @@ namespace PhanQuyen
             }
         }
 
-      
+
     }
 
     public static class CustomCommands

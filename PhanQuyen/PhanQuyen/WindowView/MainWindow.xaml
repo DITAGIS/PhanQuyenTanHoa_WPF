@@ -118,7 +118,8 @@
                     <RibbonButton Label="Hoàn công không báo thay"  LargeImageSource="/PhanQuyen;component/Images/hoancongkhongbaothay.png"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Lịch sử">
-                    <RibbonButton Label="Lịch sử ĐHN"  LargeImageSource="/PhanQuyen;component/Images/lichsu.png"></RibbonButton>
+                    <RibbonButton Label="Lịch sử ĐHN"  LargeImageSource="/PhanQuyen;component/Images/lichsu.png"
+                                  Click="ribBtnLichSuDHN_Click"></RibbonButton>
                 </RibbonGroup>
             </RibbonTab>
             <RibbonTab FontSize="13" Header="Điều chỉnh thông tin">

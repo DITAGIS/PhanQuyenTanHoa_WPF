@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="PhanQuyen.UserControlView.BaoThay.UC_LichSuDHN"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+     
+        xmlns:local="clr-namespace:PhanQuyen"
+        mc:Ignorable="d">
+    <StackPanel Orientation="Vertical" Margin="20">
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+            <TextBlock FontSize="15" Text="Nhập danh bạ: " VerticalAlignment="Center"/>
+            <TextBox Name="txtDanhBa"  FontSize="15" VerticalContentAlignment="Center" Width="150" Height="30" Margin="30,0,0,0" KeyDown="TextBox_KeyDown"/>
+        </StackPanel>
+        <DataGrid            
+                        SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                          AutoGenerateColumns="False" Name="dtgridMain" 
+                          HorizontalAlignment="Left" VerticalAlignment="Top" 
+                          Width="Auto" Height="Auto" 
+                         
+                      
+                          RowHeight="20"
+                          AlternatingRowBackground="Beige"
+                          RowBackground="White"
+                          GridLinesVisibility="All"
+            VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto"
+                          BorderThickness="1"
+                              ColumnWidth="100"
+                          BorderBrush="Black"
+                              CanUserAddRows="False"
+                          Background="White" SelectionMode="Single"
+                          FontSize="12">
+            <!--Font Color / Style of Column Heading-->
+            <DataGrid.Resources>
+                <Style  TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="SkyBlue"></Setter>
+                    <Setter Property="FontSize" Value="14"></Setter>
+                    <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                    <Setter Property="BorderThickness" Value="2,2,2,2"></Setter>
+                    <Setter Property="BorderBrush" Value="Black"></Setter>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                </Style>
+
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Setter Property="FontSize"  Value="13" />
+                    
+                </Style>
+            </DataGrid.RowStyle>
+            <!--Header column-->
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Bảng kê thay"  Binding="{Binding BaoThayID, Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Danh bạ"  Binding="{Binding DanhBa,Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ngày thay" Binding="{Binding NgayThay,Mode=OneWay, StringFormat=d}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Hiệu mới" Binding="{Binding HieuMoi,Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Cỡ mới"  Binding="{Binding CoMoi,Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Số thân mới" Binding="{Binding SoThanMoi,Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Vị trí mới" Binding="{Binding ViTriMoi,Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Chì than mới" Binding="{Binding ChiThanMoi,Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Chi co moi" Binding="{Binding ChiCoMoi,Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Chỉ số gỡ" Binding="{Binding CSGo,Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Chỉ số gắn" Binding="{Binding CSGan,Mode=OneWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Ngày cập nhật" Binding="{Binding NgayCapNhat,Mode=OneWay,StringFormat=d}"></DataGridTextColumn>
+            </DataGrid.Columns>
+
+            <!--handle item click event-->
+
+        </DataGrid>
+    </StackPanel>
+</UserControl>

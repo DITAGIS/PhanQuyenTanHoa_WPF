@@ -2092,6 +2092,30 @@ namespace ViewModel
             return null;
         }
         #endregion
+
+        #region Lich su DHN
+        public DataTable BaoThay_LichSuDHN_TimKiemKhachHang(string danhBa)
+        {
+            string sqlStatment = "select* from baothay where DanhBa = '" + danhBa + "'";
+            DataTable table = null;
+            try
+            {
+                ConnectionViewModel.Instance.Connect();
+                table = ConnectionViewModel.Instance.GetDataTable(sqlStatment);
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                ConnectionViewModel.Instance.DisConnect();
+            }
+
+            return table;
+        }
+        #endregion
+
         #endregion
 
     }
