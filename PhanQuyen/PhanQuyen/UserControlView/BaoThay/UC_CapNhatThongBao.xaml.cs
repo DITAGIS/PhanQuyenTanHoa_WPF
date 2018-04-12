@@ -22,9 +22,9 @@ namespace PhanQuyen.UserControlView.BaoThay
     /// <summary>
     /// Interaction logic for UC_NhapThongBao.xaml
     /// </summary>
-    public partial class UC_NhapThongBao : System.Windows.Controls.UserControl
+    public partial class UC_CapNhatThongBao : System.Windows.Controls.UserControl
     {
-        public UC_NhapThongBao()
+        public UC_CapNhatThongBao()
         {
             InitializeComponent();
             dtpNgayKiem.SelectedDate = DateTime.Now;
@@ -67,7 +67,7 @@ namespace PhanQuyen.UserControlView.BaoThay
                 this.txtbDanhBa.Select(this.txtbDanhBa.Text.Length, 0);
             }
         }
-        private void Luu()
+        private void Update()
         {
             if (this.txtbSoLenh.Text == "" || this.txtbDanhBa.Text == "")
             {
@@ -78,6 +78,7 @@ namespace PhanQuyen.UserControlView.BaoThay
             {
                 try
                 {
+                    string id = "";
                     string danhBa = this.txtbDanhBa.Text.Trim();
                     string soLenh = this.txtbSoLenh.Text.Trim();
                     string tieuDe = this.cbbTieuDe.SelectedValue.ToString();
@@ -89,7 +90,7 @@ namespace PhanQuyen.UserControlView.BaoThay
                     string ngayKiem = dtpNgayKiem.SelectedDate.Value.ToString("yyyy-MM-dd");
                     string ngayCapNhat = dtpNgayCapNhat.SelectedDate.Value.ToString("yyyy-MM-dd");
 
-                    if (HandlingDataDBViewModel.Instance.BaoThay_NhapThongBao_ThemThongBao(danhBa, soLenh, tieuDe, hieu, co, chiSo, noiDung, soThan, ngayKiem, ngayCapNhat))
+                    if (HandlingDataDBViewModel.Instance.BaoThay_NhapThongBao_CapNhatThongBao(id, danhBa, soLenh, tieuDe, hieu, co, chiSo, noiDung, soThan, ngayKiem, ngayCapNhat))
                     {
                         System.Windows.Forms.MessageBox.Show("Lập phiếu thành công.", "Thông báo", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Asterisk);
                         this.LoadDanhSach();
@@ -192,7 +193,7 @@ namespace PhanQuyen.UserControlView.BaoThay
         private void txtbNoiDung_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-                Luu();
+                Update();
         }
 
         private void txtChiSo_KeyDown(object sender, KeyEventArgs e)
@@ -278,9 +279,10 @@ namespace PhanQuyen.UserControlView.BaoThay
             this.dtpNgayCapNhat.SelectedDate = DateTime.ParseExact((dtgridMain.Items[rowIndex] as DataRowView)[14].ToString(), "dd/MM/yyyy", (IFormatProvider)null);
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            Luu();
+            Update();
         }
     }
 }

@@ -46,6 +46,8 @@ namespace PhanQuyen
         UC_QuanLyNhanVienDocSo uc_QuanLyNhanVienDocSo;
         UC_NhapHoanCong uc_NhapHoanCong;
         UC_NhapThongBao uc_NhapThongBao;
+        UC_CapNhatThongBao uc_CapNhatThongBao;
+        UC_CapNhatHoanCong uc_CapNhatHoanCong;
         private MyUser user;
         private String title = "Phần mềm kết nối ứng dụng đọc số trên Smartphone            Nhân viên: ";
         public MainWindow()
@@ -101,6 +103,16 @@ namespace PhanQuyen
         }
         private void resizeUC()
         {
+            if (uc_CapNhatHoanCong != null)
+            {
+                uc_CapNhatHoanCong.Height = stkMain.ActualHeight;
+                uc_CapNhatHoanCong.Width = stkMain.ActualWidth;
+            }
+            if (uc_CapNhatThongBao != null)
+            {
+                uc_CapNhatThongBao.Height = stkMain.ActualHeight;
+                uc_CapNhatThongBao.Width = stkMain.ActualWidth;
+            }
             if (uc_NhapThongBao != null)
             {
                 uc_NhapThongBao.Height = stkMain.ActualHeight;
@@ -403,7 +415,27 @@ namespace PhanQuyen
             if (stkMain.Children.Count == 1)
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_NhapThongBao);
-            this.Title = this.title + "             Báo thay, nhập hoàn công";
+            this.Title = this.title + "             Nhập thông báo";
+        }
+        private void ribBtnCapNhatThongBao_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_CapNhatThongBao == null)
+                uc_CapNhatThongBao = new UC_CapNhatThongBao();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_CapNhatThongBao);
+            this.Title = this.title + "             Cập nhật thông báo";
+        }
+        private void ribBtnCapNhatHoanCong_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_CapNhatHoanCong == null)
+                uc_CapNhatHoanCong = new UC_CapNhatHoanCong();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_CapNhatHoanCong);
+            this.Title = this.title + "             Cập nhật hoàn công";
         }
         private void ribBtnHoanTatDocSo_Click(object sender, RoutedEventArgs e)
         {
@@ -439,6 +471,7 @@ namespace PhanQuyen
             }
         }
 
+      
     }
 
     public static class CustomCommands

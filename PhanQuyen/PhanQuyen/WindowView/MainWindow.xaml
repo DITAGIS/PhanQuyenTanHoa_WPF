@@ -108,8 +108,10 @@
                                   Click="ribBtnNhapThongBao_Click"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Cập nhật">
-                    <RibbonButton Label="Cập nhật hoàn công"  LargeImageSource="/PhanQuyen;component/Images/capnhathoancong.png"></RibbonButton>
-                    <RibbonButton Label="Cập nhật thông báo"  LargeImageSource="/PhanQuyen;component/Images/capnhatthongbao.png"></RibbonButton>
+                    <RibbonButton Label="Cập nhật hoàn công"  LargeImageSource="/PhanQuyen;component/Images/capnhathoancong.png" 
+                                  Click="ribBtnCapNhatHoanCong_Click"></RibbonButton>
+                    <RibbonButton Label="Cập nhật thông báo"  LargeImageSource="/PhanQuyen;component/Images/capnhatthongbao.png"
+                                  Click="ribBtnCapNhatThongBao_Click"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Hoàn công">
                     <RibbonButton Label="Hoàn công bồi thường"  LargeImageSource="/PhanQuyen;component/Images/hoancongboithuong.png"></RibbonButton>

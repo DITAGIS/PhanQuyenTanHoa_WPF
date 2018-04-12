@@ -2004,6 +2004,33 @@ namespace ViewModel
 
             return false;
         }
+        public bool BaoThay_NhapThongBao_CapNhatThongBao(string id, string danhBa, string soLenh, string tieuDe, string hieu, string co, int chiSo, string noiDung, string soThan, string ngayKiem, string ngayCapNhat)
+        {
+            try
+            {
+
+
+                string sqlStatement = "Update ThongBao Set LoaiLenh ='" + tieuDe + "',DanhBa ='" + danhBa + "',SoLenh ='" + soLenh + "',Hieu ='" + hieu +
+                    "',Co = " + co + ",ChiSo = " + chiSo + ",NoiDung = N'" + noiDung + "',NgayKiem = '" + ngayKiem + "', NgayCapNhat = '" + ngayCapNhat +
+                    "',NVCapNhat = '" + MyUser.Instance.UserID + "',SoThan = '" + soThan + "' where ID = '" + id + "'";
+                ConnectionViewModel.Instance.Connect();
+                int result = ConnectionViewModel.Instance.GetExecuteNonQuerry(sqlStatement);
+
+                ConnectionViewModel.Instance.DisConnect();
+                return result > 0;
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                ConnectionViewModel.Instance.DisConnect();
+            }
+
+
+            return false;
+        }
         public DataTable BaoThay_NhapThongBao_LoadDanhSach(string ngayCapNhat)
         {
             try
