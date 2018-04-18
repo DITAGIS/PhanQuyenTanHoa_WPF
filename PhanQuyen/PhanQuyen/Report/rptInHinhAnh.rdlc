@@ -7,9 +7,9 @@
         <Value>=First(Fields!DocSoID.Value, "dtsInHinhAnh")</Value>
         <MIMEType>image/png</MIMEType>
         <Sizing>FitProportional</Sizing>
-        <Top>2.39247cm</Top>
-        <Left>1.30387cm</Left>
-        <Height>7.18333in</Height>
+        <Top>2.68175cm</Top>
+        <Left>0.98637cm</Left>
+        <Height>6.975in</Height>
         <Width>6.46667in</Width>
         <Style>
           <Border>
@@ -54,7 +54,19 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>, Số thân: </Value>
+                <Value>, </Value>
+                <Style>
+                  <FontFamily>times New Roman</FontFamily>
+                  <FontSize>13pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Số thân: </Value>
                 <Style>
                   <FontFamily>times New Roman</FontFamily>
                   <FontSize>13pt</FontSize>
@@ -184,8 +196,13 @@
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
               <TextRun>
-                <Value>, Địa chỉ: </Value>
+                <Value>Địa chỉ: </Value>
                 <Style>
                   <FontFamily>times New Roman</FontFamily>
                   <FontSize>13pt</FontSize>
@@ -219,10 +236,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>0.38841cm</Top>
-        <Left>0.28787cm</Left>
-        <Height>1.82767cm</Height>
-        <Width>22.01333cm</Width>
+        <Top>0.07091cm</Top>
+        <Left>0cm</Left>
+        <Height>2.29334cm</Height>
+        <Width>17.44134cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -235,21 +252,11 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>20.79307cm</Height>
+    <Height>20.55346cm</Height>
     <Style />
   </Body>
-  <Width>22.64305cm</Width>
+  <Width>17.58422cm</Width>
   <Page>
-    <PageHeader>
-      <Height>0.02646cm</Height>
-      <PrintOnFirstPage>true</PrintOnFirstPage>
-      <PrintOnLastPage>true</PrintOnLastPage>
-      <Style>
-        <Border>
-          <Style>None</Style>
-        </Border>
-      </Style>
-    </PageHeader>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
     <LeftMargin>1cm</LeftMargin>
