@@ -49,6 +49,7 @@ namespace PhanQuyen
         UC_CapNhatThongBao uc_CapNhatThongBao;
         UC_CapNhatHoanCong uc_CapNhatHoanCong;
         UC_LichSuDHN uc_LichSuDHN;
+        UC_BaoThayDinhKy uc_BaoThayDinhKy;
         private MyUser user;
         private String title = "Phần mềm kết nối ứng dụng đọc số trên Smartphone            Nhân viên: ";
         public MainWindow()
@@ -104,6 +105,11 @@ namespace PhanQuyen
         }
         private void resizeUC()
         {
+            if (uc_BaoThayDinhKy != null)
+            {
+                uc_BaoThayDinhKy.Height = stkMain.ActualHeight;
+                uc_BaoThayDinhKy.Width = stkMain.ActualWidth;
+            }
             if (uc_LichSuDHN != null)
             {
                 uc_LichSuDHN.Height = stkMain.ActualHeight;
@@ -233,7 +239,6 @@ namespace PhanQuyen
             stkMain.Children.Add(uc_DieuChinhThonTinDocSo);
             this.Title = this.title + "            Điều chỉnh thông tin đọc số";
         }
-
         private void ribBtnInPhieuTieuThuKH_Click(object sender, RoutedEventArgs e)
         {
             String danhBa = null;
@@ -255,8 +260,6 @@ namespace PhanQuyen
             this.Title = this.title + "             In phiếu tiêu thụ khách hàng";
             uc_InPhieuTieuThuKH.Print();
         }
-
-
         private void ribBtnCapNhatHoaDon(object sender, RoutedEventArgs e)
         {
             if (uc_CapNhatHoaDon == null)
@@ -267,8 +270,6 @@ namespace PhanQuyen
             this.Title = this.title + "             Cập nhật hóa đơn";
             stkMain.Children.Add(uc_CapNhatHoaDon);
         }
-
-
         private void ribBtnNhanDuLieu(object sender, RoutedEventArgs e)
         {
             if (uc_NhanDuLieu == null)
@@ -300,24 +301,7 @@ namespace PhanQuyen
             stkMain.Children.Add(uc_BaoCaoTongHop);
             this.Title = this.title + "             Báo cáo tổng hợp";
         }
-        private void ExitCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-        private void ExitCommand_Execute(object sender, ExecutedRoutedEventArgs e)
-        {
-            System.Windows.Application.Current.Shutdown();
-        }
-        private void LogoutCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-        private void LogoutCommand_Execute(object sender, ExecutedRoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start(System.Windows.Application.ResourceAssembly.Location);
-            System.Windows.Application.Current.Shutdown();
-        }
-
+    
         private void ribBtnChuyenBilling_Click(object sender, RoutedEventArgs e)
         {
             this.Title = this.title + "             Chuyển billing";
@@ -454,7 +438,16 @@ namespace PhanQuyen
             stkMain.Children.Add(uc_CapNhatHoanCong);
             this.Title = this.title + "             Cập nhật hoàn công";
         }
-
+        private void ribBtnBaoThayDinhKy_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_BaoThayDinhKy == null)
+                uc_BaoThayDinhKy = new UC_BaoThayDinhKy();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_BaoThayDinhKy);
+            this.Title = this.title + "             Báo thay định kỳ";
+        }
         #endregion
 
         private void ribBtnHoanTatDocSo_Click(object sender, RoutedEventArgs e)
@@ -489,6 +482,23 @@ namespace PhanQuyen
             {
                 System.Windows.Forms.MessageBox.Show("Lỗi khi hoàn tất đọc số: " + ex.Message);
             }
+        }
+        private void ExitCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+        private void ExitCommand_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
+        private void LogoutCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+        private void LogoutCommand_Execute(object sender, ExecutedRoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(System.Windows.Application.ResourceAssembly.Location);
+            System.Windows.Application.Current.Shutdown();
         }
 
 

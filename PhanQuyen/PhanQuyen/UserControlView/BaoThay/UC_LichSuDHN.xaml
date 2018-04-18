@@ -15,14 +15,13 @@
                         SelectedItem="{Binding SelectedHoaDon, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                           AutoGenerateColumns="False" Name="dtgridMain" 
                           HorizontalAlignment="Left" VerticalAlignment="Top" 
-                          Width="Auto" Height="Auto" 
+                          Width="Auto" Height="500" 
                          
                       
                           RowHeight="20"
                           AlternatingRowBackground="Beige"
                           RowBackground="White"
                           GridLinesVisibility="All"
-            VerticalScrollBarVisibility="Auto"
                           HorizontalScrollBarVisibility="Auto"
                           BorderThickness="1"
                               ColumnWidth="100"

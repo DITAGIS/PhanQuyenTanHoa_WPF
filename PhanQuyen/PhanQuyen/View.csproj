@@ -87,6 +87,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -171,6 +174,12 @@
     </Compile>
     <Compile Include="UserControlView\UC_XuatDuLieuRaSmartPhone.xaml.cs">
       <DependentUpon>UC_XuatDuLieuRaSmartPhone.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowView\BaoThay\Window_BaoThay_NhapThongBao_ThemHieu.xaml.cs">
+      <DependentUpon>Window_BaoThay_NhapThongBao_ThemHieu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowView\BaoThay\Window_BaoThay_NhapThongBao_ThemTB.xaml.cs">
+      <DependentUpon>Window_BaoThay_NhapThongBao_ThemTB.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowView\ConfigWindow.xaml.cs">
       <DependentUpon>ConfigWindow.xaml</DependentUpon>
@@ -279,6 +288,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlView\UC_XuatDuLieuRaSmartPhone.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowView\BaoThay\Window_BaoThay_NhapThongBao_ThemHieu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowView\BaoThay\Window_BaoThay_NhapThongBao_ThemTB.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -454,6 +471,7 @@
     <None Include="dts_thongkedhn.xss">
       <DependentUpon>dts_thongkedhn.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -619,6 +637,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\filter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\change.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

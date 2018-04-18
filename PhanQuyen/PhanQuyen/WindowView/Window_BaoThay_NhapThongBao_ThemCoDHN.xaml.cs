@@ -31,7 +31,7 @@ namespace PhanQuyen.WindowView
             {
                 if (HandlingDataDBViewModel.Instance.BaoThay_NhapThongBao_ThemCoDHN(txtbMaCo.Text.Trim(), txtbCo.Text.Trim()))
                 {
-                    System.Windows.Forms.MessageBox.Show("Thêm cỡ thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    System.Windows.Forms.MessageBox.Show("Thêm CỠ thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     this.txtbMaCo.Clear();
                     this.txtbCo.Clear();
                 }

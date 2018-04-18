@@ -99,7 +99,8 @@
             </RibbonTab>
             <RibbonTab FontSize="13" Header="Báo thay"  >
                 <RibbonGroup Header="Báo thay">
-                    <RibbonButton Label="Báo thay định kỳ"  LargeImageSource="/PhanQuyen;component/Images/baothaydinhky.png"></RibbonButton>
+                    <RibbonButton Label="Báo thay định kỳ"  LargeImageSource="/PhanQuyen;component/Images/baothaydinhky.png"
+                                  Click="ribBtnBaoThayDinhKy_Click"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Nhập">
                     <RibbonButton Label="Nhập hoàn công"  LargeImageSource="/PhanQuyen;component/Images/nhaphoancong.png"

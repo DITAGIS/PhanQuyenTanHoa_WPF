@@ -1,5 +1,6 @@
 ﻿using Model;
 using PhanQuyen.WindowView;
+using PhanQuyen.WindowView.BaoThay;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -78,7 +79,7 @@ namespace PhanQuyen.UserControlView.BaoThay
             {
                 try
                 {
-                    string id = "";
+                    string id = txtbID.Text.Trim();
                     string danhBa = this.txtbDanhBa.Text.Trim();
                     string soLenh = this.txtbSoLenh.Text.Trim();
                     string tieuDe = this.cbbTieuDe.SelectedValue.ToString();
@@ -241,7 +242,7 @@ namespace PhanQuyen.UserControlView.BaoThay
 
         private void LoadHieu()
         {
-            this.cbbHieu.ItemsSource = HandlingDataDBViewModel.Instance.BaoThay_NhapThongBao_LoadTieuDe().AsDataView();
+            this.cbbHieu.ItemsSource = HandlingDataDBViewModel.Instance.BaoThay_NhapThongBao_LoadHieu().AsDataView();
             this.cbbHieu.DisplayMemberPath = "CodeDesc";
             this.cbbHieu.SelectedValuePath = "Code";
         }
@@ -263,6 +264,7 @@ namespace PhanQuyen.UserControlView.BaoThay
             if (dtgridMain.SelectedIndex == -1 || dtgridMain.SelectedIndex >= dtgridMain.Items.Count)
                 return;
             int rowIndex = dtgridMain.SelectedIndex;
+            txtbID.Text = (dtgridMain.Items[rowIndex] as DataRowView)[0].ToString();
             this.txtbSoLenh.Text = (dtgridMain.Items[rowIndex] as DataRowView)[1].ToString();
             this.txtbDanhBa.Text = (dtgridMain.Items[rowIndex] as DataRowView)[2].ToString();
             txtbTenKH.Text = (dtgridMain.Items[rowIndex] as DataRowView)[3].ToString();
@@ -283,6 +285,18 @@ namespace PhanQuyen.UserControlView.BaoThay
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             Update();
+        }
+
+        private void btnAddTB_Click(object sender, RoutedEventArgs e)
+        {
+            Window_BaoThay_NhapThongBao_ThemTB window_BaoThay_NhapThongBao_ThemTB = new Window_BaoThay_NhapThongBao_ThemTB();
+            window_BaoThay_NhapThongBao_ThemTB.ShowDialog();
+        }
+
+        private void btnAddHieu_Click(object sender, RoutedEventArgs e)
+        {
+            Window_BaoThay_NhapThongBao_ThemHieu window_BaoThay_NhapThongBao_ThemHieu = new Window_BaoThay_NhapThongBao_ThemHieu();
+            window_BaoThay_NhapThongBao_ThemHieu.ShowDialog();
         }
     }
 }

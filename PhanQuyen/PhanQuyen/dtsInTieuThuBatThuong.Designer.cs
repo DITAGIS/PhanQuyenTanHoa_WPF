@@ -5135,635 +5135,635 @@ namespace PhanQuyen.dtsInTieuThuBatThuongTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_DocSoID));
             }
             if ((Original_DanhBa == null)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_DanhBa));
             }
             if ((Original_MLT1 == null)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_MLT1));
             }
             if ((Original_MLT2 == null)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_MLT2));
             }
             if ((Original_SoNhaCu == null)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_SoNhaCu));
             }
             if ((Original_SoNhaMoi == null)) {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_SoNhaMoi));
             }
             if ((Original_Duong == null)) {
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_Duong));
             }
             if ((Original_SDT == null)) {
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[14].Value = ((string)(Original_SDT));
             }
             if ((Original_GB == null)) {
-                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[16].Value = ((string)(Original_GB));
             }
             if ((Original_DM == null)) {
-                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[18].Value = ((string)(Original_DM));
             }
             if ((Original_Nam.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[20].Value = ((int)(Original_Nam.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[19].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             if ((Original_Ky == null)) {
-                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[21].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[21].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[22].Value = ((string)(Original_Ky));
             }
             if ((Original_Dot == null)) {
-                this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[23].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[24].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[23].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[24].Value = ((string)(Original_Dot));
             }
             if ((Original_May == null)) {
-                this.Adapter.DeleteCommand.Parameters[25].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[25].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[26].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[25].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[25].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[26].Value = ((string)(Original_May));
             }
             if ((Original_TBTT.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[27].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[27].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[28].Value = ((int)(Original_TBTT.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[27].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[27].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[28].Value = global::System.DBNull.Value;
             }
             if ((Original_TamTinh.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[29].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[29].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[30].Value = ((int)(Original_TamTinh.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[29].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[29].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[30].Value = global::System.DBNull.Value;
             }
             if ((Original_CSCu.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[31].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[31].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[32].Value = ((int)(Original_CSCu.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[31].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[31].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[32].Value = global::System.DBNull.Value;
             }
             if ((Original_CSMoi.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[33].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[33].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[34].Value = ((int)(Original_CSMoi.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[33].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[33].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[34].Value = global::System.DBNull.Value;
             }
             if ((Original_CodeCu == null)) {
-                this.Adapter.DeleteCommand.Parameters[35].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[35].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[36].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[35].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[35].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[36].Value = ((string)(Original_CodeCu));
             }
             if ((Original_CodeMoi == null)) {
-                this.Adapter.DeleteCommand.Parameters[37].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[37].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[38].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[37].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[37].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[38].Value = ((string)(Original_CodeMoi));
             }
             if ((Original_TTDHNCu == null)) {
-                this.Adapter.DeleteCommand.Parameters[39].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[39].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[40].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[39].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[39].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[40].Value = ((string)(Original_TTDHNCu));
             }
             if ((Original_TTDHNMoi == null)) {
-                this.Adapter.DeleteCommand.Parameters[41].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[41].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[42].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[41].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[41].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[42].Value = ((string)(Original_TTDHNMoi));
             }
             if ((Original_TieuThuCu.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[43].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[43].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[44].Value = ((int)(Original_TieuThuCu.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[43].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[43].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[44].Value = global::System.DBNull.Value;
             }
             if ((Original_TieuThuMoi.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[45].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[45].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[46].Value = ((int)(Original_TieuThuMoi.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[45].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[45].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[46].Value = global::System.DBNull.Value;
             }
             if ((Original_TuNgay.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[47].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[47].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[48].Value = ((System.DateTime)(Original_TuNgay.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[47].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[47].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[48].Value = global::System.DBNull.Value;
             }
             if ((Original_DenNgay.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[49].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[49].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[50].Value = ((System.DateTime)(Original_DenNgay.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[49].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[49].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[50].Value = global::System.DBNull.Value;
             }
             if ((Original_TienNuoc.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[51].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[51].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[52].Value = ((long)(Original_TienNuoc.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[51].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[51].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[52].Value = global::System.DBNull.Value;
             }
             if ((Original_BVMT.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[53].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[53].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[54].Value = ((int)(Original_BVMT.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[53].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[53].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[54].Value = global::System.DBNull.Value;
             }
             if ((Original_Thue.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[55].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[55].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[56].Value = ((int)(Original_Thue.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[55].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[55].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[56].Value = global::System.DBNull.Value;
             }
             if ((Original_TongTien.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[57].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[57].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[58].Value = ((long)(Original_TongTien.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[57].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[57].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[58].Value = global::System.DBNull.Value;
             }
             if ((Original_SoThanCu == null)) {
-                this.Adapter.DeleteCommand.Parameters[59].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[59].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[60].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[59].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[59].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[60].Value = ((string)(Original_SoThanCu));
             }
             if ((Original_SoThanMoi == null)) {
-                this.Adapter.DeleteCommand.Parameters[61].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[61].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[62].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[61].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[61].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[62].Value = ((string)(Original_SoThanMoi));
             }
             if ((Original_HieuCu == null)) {
-                this.Adapter.DeleteCommand.Parameters[63].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[63].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[64].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[63].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[63].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[64].Value = ((string)(Original_HieuCu));
             }
             if ((Original_HieuMoi == null)) {
-                this.Adapter.DeleteCommand.Parameters[65].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[65].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[66].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[65].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[65].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[66].Value = ((string)(Original_HieuMoi));
             }
             if ((Original_CoCu == null)) {
-                this.Adapter.DeleteCommand.Parameters[67].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[67].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[68].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[67].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[67].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[68].Value = ((string)(Original_CoCu));
             }
             if ((Original_CoMoi == null)) {
-                this.Adapter.DeleteCommand.Parameters[69].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[69].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[70].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[69].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[69].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[70].Value = ((string)(Original_CoMoi));
             }
             if ((Original_GiengCu == null)) {
-                this.Adapter.DeleteCommand.Parameters[71].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[71].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[72].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[71].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[71].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[72].Value = ((string)(Original_GiengCu));
             }
             if ((Original_GiengMoi == null)) {
-                this.Adapter.DeleteCommand.Parameters[73].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[73].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[74].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[73].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[73].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[74].Value = ((string)(Original_GiengMoi));
             }
             if ((Original_Van1Cu == null)) {
-                this.Adapter.DeleteCommand.Parameters[75].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[75].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[76].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[75].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[75].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[76].Value = ((string)(Original_Van1Cu));
             }
             if ((Original_Van1Moi == null)) {
-                this.Adapter.DeleteCommand.Parameters[77].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[77].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[78].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[77].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[77].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[78].Value = ((string)(Original_Van1Moi));
             }
             if ((Original_MVCu == null)) {
-                this.Adapter.DeleteCommand.Parameters[79].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[79].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[80].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[79].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[79].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[80].Value = ((string)(Original_MVCu));
             }
             if ((Original_MVMoi == null)) {
-                this.Adapter.DeleteCommand.Parameters[81].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[81].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[82].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[81].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[81].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[82].Value = ((string)(Original_MVMoi));
             }
             if ((Original_ChiCoCu == null)) {
-                this.Adapter.DeleteCommand.Parameters[83].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[83].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[84].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[83].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[83].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[84].Value = ((string)(Original_ChiCoCu));
             }
             if ((Original_ChiCoMoi == null)) {
-                this.Adapter.DeleteCommand.Parameters[85].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[85].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[86].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[85].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[85].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[86].Value = ((string)(Original_ChiCoMoi));
             }
             if ((Original_ChiThanCu == null)) {
-                this.Adapter.DeleteCommand.Parameters[87].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[87].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[88].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[87].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[87].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[88].Value = ((string)(Original_ChiThanCu));
             }
             if ((Original_ChiThanMoi == null)) {
-                this.Adapter.DeleteCommand.Parameters[89].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[89].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[90].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[89].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[89].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[90].Value = ((string)(Original_ChiThanMoi));
             }
             if ((Original_ViTriCu == null)) {
-                this.Adapter.DeleteCommand.Parameters[91].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[91].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[92].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[91].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[91].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[92].Value = ((string)(Original_ViTriCu));
             }
             if ((Original_ViTriMoi == null)) {
-                this.Adapter.DeleteCommand.Parameters[93].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[93].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[94].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[93].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[93].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[94].Value = ((string)(Original_ViTriMoi));
             }
             if ((Original_CapDoCu == null)) {
-                this.Adapter.DeleteCommand.Parameters[95].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[95].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[96].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[95].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[95].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[96].Value = ((string)(Original_CapDoCu));
             }
             if ((Original_CapDoMoi == null)) {
-                this.Adapter.DeleteCommand.Parameters[97].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[97].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[98].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[97].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[97].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[98].Value = ((string)(Original_CapDoMoi));
             }
             if ((Original_CongDungCu == null)) {
-                this.Adapter.DeleteCommand.Parameters[99].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[99].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[100].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[99].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[99].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[100].Value = ((string)(Original_CongDungCu));
             }
             if ((Original_CongDungMoi == null)) {
-                this.Adapter.DeleteCommand.Parameters[101].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[101].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[102].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[101].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[101].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[102].Value = ((string)(Original_CongDungMoi));
             }
             if ((Original_DMACu == null)) {
-                this.Adapter.DeleteCommand.Parameters[103].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[103].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[104].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[103].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[103].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[104].Value = ((string)(Original_DMACu));
             }
             if ((Original_DMAMoi == null)) {
-                this.Adapter.DeleteCommand.Parameters[105].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[105].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[106].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[105].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[105].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[106].Value = ((string)(Original_DMAMoi));
             }
             if ((Original_GhiChuKH == null)) {
-                this.Adapter.DeleteCommand.Parameters[107].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[107].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[108].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[107].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[107].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[108].Value = ((string)(Original_GhiChuKH));
             }
             if ((Original_GhiChuDS == null)) {
-                this.Adapter.DeleteCommand.Parameters[109].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[109].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[110].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[109].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[109].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[110].Value = ((string)(Original_GhiChuDS));
             }
             if ((Original_GhiChuTV == null)) {
-                this.Adapter.DeleteCommand.Parameters[111].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[111].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[112].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[111].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[111].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[112].Value = ((string)(Original_GhiChuTV));
             }
             if ((Original_NVGHI == null)) {
-                this.Adapter.DeleteCommand.Parameters[113].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[113].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[114].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[113].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[113].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[114].Value = ((string)(Original_NVGHI));
             }
             if ((Original_GIOGHI.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[115].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[115].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[116].Value = ((System.DateTime)(Original_GIOGHI.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[115].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[115].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[116].Value = global::System.DBNull.Value;
             }
             if ((Original_BARCODE == null)) {
-                this.Adapter.DeleteCommand.Parameters[117].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[117].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[118].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[117].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[117].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[118].Value = ((string)(Original_BARCODE));
             }
             if ((Original_SOLANGHI.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[119].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[119].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[120].Value = ((int)(Original_SOLANGHI.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[119].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[119].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[120].Value = global::System.DBNull.Value;
             }
             if ((Original_GPSDATA == null)) {
-                this.Adapter.DeleteCommand.Parameters[121].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[121].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[122].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[121].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[121].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[122].Value = ((string)(Original_GPSDATA));
             }
             if ((Original_StaCapNhat == null)) {
-                this.Adapter.DeleteCommand.Parameters[123].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[123].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[124].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[123].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[123].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[124].Value = ((string)(Original_StaCapNhat));
             }
             if ((Original_NgayCapNhat.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[125].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[125].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[126].Value = ((System.DateTime)(Original_NgayCapNhat.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[125].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[125].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[126].Value = global::System.DBNull.Value;
             }
             if ((Original_NVCapNhat == null)) {
-                this.Adapter.DeleteCommand.Parameters[127].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[127].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[128].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[127].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[127].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[128].Value = ((string)(Original_NVCapNhat));
             }
             if ((Original_TODS.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[129].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[129].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[130].Value = ((int)(Original_TODS.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[129].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[129].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[130].Value = global::System.DBNull.Value;
             }
             if ((Original_NgayDS.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[131].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[131].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[132].Value = ((System.DateTime)(Original_NgayDS.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[131].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[131].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[132].Value = global::System.DBNull.Value;
             }
             if ((Original_ChiTiet == null)) {
-                this.Adapter.DeleteCommand.Parameters[133].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[133].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[134].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[133].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[133].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[134].Value = ((string)(Original_ChiTiet));
             }
             if ((Original_Latitude == null)) {
-                this.Adapter.DeleteCommand.Parameters[135].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[135].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[136].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[135].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[135].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[136].Value = ((string)(Original_Latitude));
             }
             if ((Original_Longitude == null)) {
-                this.Adapter.DeleteCommand.Parameters[137].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[137].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[138].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[137].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[137].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[138].Value = ((string)(Original_Longitude));
             }
             if ((Original_TenKH == null)) {
-                this.Adapter.DeleteCommand.Parameters[139].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[139].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[140].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[139].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[139].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[140].Value = ((string)(Original_TenKH));
             }
             if ((Original_NVTaoDS == null)) {
-                this.Adapter.DeleteCommand.Parameters[141].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[141].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[142].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[141].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[141].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[142].Value = ((string)(Original_NVTaoDS));
             }
             if ((Original_NgayTaoDS == null)) {
-                this.Adapter.DeleteCommand.Parameters[143].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[143].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[144].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[143].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[143].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[144].Value = ((string)(Original_NgayTaoDS));
             }
             if ((Original_DutChiThan == null)) {
-                this.Adapter.DeleteCommand.Parameters[145].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[145].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[146].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[145].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[145].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[146].Value = ((string)(Original_DutChiThan));
             }
             if ((Original_DutChiGoc == null)) {
-                this.Adapter.DeleteCommand.Parameters[147].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[147].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[148].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[147].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[147].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[148].Value = ((string)(Original_DutChiGoc));
             }
             if ((Original_DHNSaiTT == null)) {
-                this.Adapter.DeleteCommand.Parameters[149].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[149].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[150].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[149].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[149].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[150].Value = ((string)(Original_DHNSaiTT));
             }
             if ((Original_BaoKinhDoanh == null)) {
-                this.Adapter.DeleteCommand.Parameters[151].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[151].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[152].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[151].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[151].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[152].Value = ((string)(Original_BaoKinhDoanh));
             }
             if ((Original_Col08 == null)) {
-                this.Adapter.DeleteCommand.Parameters[153].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[153].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[154].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[153].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[153].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[154].Value = ((string)(Original_Col08));
             }
             if ((Original_Col09 == null)) {
-                this.Adapter.DeleteCommand.Parameters[155].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[155].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[156].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[155].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[155].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[156].Value = ((string)(Original_Col09));
             }
             if ((Original_Col10 == null)) {
-                this.Adapter.DeleteCommand.Parameters[157].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[157].Value = ((1));
                 this.Adapter.DeleteCommand.Parameters[158].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[157].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[157].Value = ((0));
                 this.Adapter.DeleteCommand.Parameters[158].Value = ((string)(Original_Col10));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
@@ -7015,635 +7015,635 @@ namespace PhanQuyen.dtsInTieuThuBatThuongTableAdapters {
                 this.Adapter.UpdateCommand.Parameters[80].Value = ((string)(Original_DocSoID));
             }
             if ((Original_DanhBa == null)) {
-                this.Adapter.UpdateCommand.Parameters[81].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[81].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[82].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[81].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[81].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[82].Value = ((string)(Original_DanhBa));
             }
             if ((Original_MLT1 == null)) {
-                this.Adapter.UpdateCommand.Parameters[83].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[83].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[84].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[83].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[83].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[84].Value = ((string)(Original_MLT1));
             }
             if ((Original_MLT2 == null)) {
-                this.Adapter.UpdateCommand.Parameters[85].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[85].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[86].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[85].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[85].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[86].Value = ((string)(Original_MLT2));
             }
             if ((Original_SoNhaCu == null)) {
-                this.Adapter.UpdateCommand.Parameters[87].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[87].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[88].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[87].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[87].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[88].Value = ((string)(Original_SoNhaCu));
             }
             if ((Original_SoNhaMoi == null)) {
-                this.Adapter.UpdateCommand.Parameters[89].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[89].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[90].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[89].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[89].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[90].Value = ((string)(Original_SoNhaMoi));
             }
             if ((Original_Duong == null)) {
-                this.Adapter.UpdateCommand.Parameters[91].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[91].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[92].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[91].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[91].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[92].Value = ((string)(Original_Duong));
             }
             if ((Original_SDT == null)) {
-                this.Adapter.UpdateCommand.Parameters[93].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[93].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[94].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[93].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[93].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[94].Value = ((string)(Original_SDT));
             }
             if ((Original_GB == null)) {
-                this.Adapter.UpdateCommand.Parameters[95].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[95].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[96].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[95].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[95].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[96].Value = ((string)(Original_GB));
             }
             if ((Original_DM == null)) {
-                this.Adapter.UpdateCommand.Parameters[97].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[97].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[98].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[97].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[97].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[98].Value = ((string)(Original_DM));
             }
             if ((Original_Nam.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[99].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[99].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[100].Value = ((int)(Original_Nam.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[99].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[99].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[100].Value = global::System.DBNull.Value;
             }
             if ((Original_Ky == null)) {
-                this.Adapter.UpdateCommand.Parameters[101].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[101].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[102].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[101].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[101].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[102].Value = ((string)(Original_Ky));
             }
             if ((Original_Dot == null)) {
-                this.Adapter.UpdateCommand.Parameters[103].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[103].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[104].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[103].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[103].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[104].Value = ((string)(Original_Dot));
             }
             if ((Original_May == null)) {
-                this.Adapter.UpdateCommand.Parameters[105].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[105].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[106].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[105].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[105].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[106].Value = ((string)(Original_May));
             }
             if ((Original_TBTT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[107].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[107].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[108].Value = ((int)(Original_TBTT.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[107].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[107].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[108].Value = global::System.DBNull.Value;
             }
             if ((Original_TamTinh.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[109].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[109].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[110].Value = ((int)(Original_TamTinh.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[109].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[109].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[110].Value = global::System.DBNull.Value;
             }
             if ((Original_CSCu.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[111].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[111].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[112].Value = ((int)(Original_CSCu.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[111].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[111].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[112].Value = global::System.DBNull.Value;
             }
             if ((Original_CSMoi.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[113].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[113].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[114].Value = ((int)(Original_CSMoi.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[113].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[113].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[114].Value = global::System.DBNull.Value;
             }
             if ((Original_CodeCu == null)) {
-                this.Adapter.UpdateCommand.Parameters[115].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[115].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[116].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[115].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[115].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[116].Value = ((string)(Original_CodeCu));
             }
             if ((Original_CodeMoi == null)) {
-                this.Adapter.UpdateCommand.Parameters[117].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[117].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[118].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[117].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[117].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[118].Value = ((string)(Original_CodeMoi));
             }
             if ((Original_TTDHNCu == null)) {
-                this.Adapter.UpdateCommand.Parameters[119].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[119].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[120].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[119].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[119].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[120].Value = ((string)(Original_TTDHNCu));
             }
             if ((Original_TTDHNMoi == null)) {
-                this.Adapter.UpdateCommand.Parameters[121].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[121].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[122].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[121].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[121].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[122].Value = ((string)(Original_TTDHNMoi));
             }
             if ((Original_TieuThuCu.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[123].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[123].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[124].Value = ((int)(Original_TieuThuCu.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[123].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[123].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[124].Value = global::System.DBNull.Value;
             }
             if ((Original_TieuThuMoi.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[125].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[125].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[126].Value = ((int)(Original_TieuThuMoi.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[125].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[125].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[126].Value = global::System.DBNull.Value;
             }
             if ((Original_TuNgay.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[127].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[127].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[128].Value = ((System.DateTime)(Original_TuNgay.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[127].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[127].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[128].Value = global::System.DBNull.Value;
             }
             if ((Original_DenNgay.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[129].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[129].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[130].Value = ((System.DateTime)(Original_DenNgay.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[129].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[129].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[130].Value = global::System.DBNull.Value;
             }
             if ((Original_TienNuoc.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[131].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[131].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[132].Value = ((long)(Original_TienNuoc.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[131].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[131].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[132].Value = global::System.DBNull.Value;
             }
             if ((Original_BVMT.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[133].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[133].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[134].Value = ((int)(Original_BVMT.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[133].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[133].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[134].Value = global::System.DBNull.Value;
             }
             if ((Original_Thue.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[135].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[135].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[136].Value = ((int)(Original_Thue.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[135].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[135].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[136].Value = global::System.DBNull.Value;
             }
             if ((Original_TongTien.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[137].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[137].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[138].Value = ((long)(Original_TongTien.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[137].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[137].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[138].Value = global::System.DBNull.Value;
             }
             if ((Original_SoThanCu == null)) {
-                this.Adapter.UpdateCommand.Parameters[139].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[139].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[140].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[139].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[139].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[140].Value = ((string)(Original_SoThanCu));
             }
             if ((Original_SoThanMoi == null)) {
-                this.Adapter.UpdateCommand.Parameters[141].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[141].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[142].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[141].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[141].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[142].Value = ((string)(Original_SoThanMoi));
             }
             if ((Original_HieuCu == null)) {
-                this.Adapter.UpdateCommand.Parameters[143].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[143].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[144].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[143].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[143].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[144].Value = ((string)(Original_HieuCu));
             }
             if ((Original_HieuMoi == null)) {
-                this.Adapter.UpdateCommand.Parameters[145].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[145].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[146].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[145].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[145].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[146].Value = ((string)(Original_HieuMoi));
             }
             if ((Original_CoCu == null)) {
-                this.Adapter.UpdateCommand.Parameters[147].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[147].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[148].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[147].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[147].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[148].Value = ((string)(Original_CoCu));
             }
             if ((Original_CoMoi == null)) {
-                this.Adapter.UpdateCommand.Parameters[149].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[149].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[150].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[149].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[149].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[150].Value = ((string)(Original_CoMoi));
             }
             if ((Original_GiengCu == null)) {
-                this.Adapter.UpdateCommand.Parameters[151].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[151].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[152].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[151].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[151].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[152].Value = ((string)(Original_GiengCu));
             }
             if ((Original_GiengMoi == null)) {
-                this.Adapter.UpdateCommand.Parameters[153].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[153].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[154].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[153].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[153].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[154].Value = ((string)(Original_GiengMoi));
             }
             if ((Original_Van1Cu == null)) {
-                this.Adapter.UpdateCommand.Parameters[155].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[155].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[156].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[155].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[155].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[156].Value = ((string)(Original_Van1Cu));
             }
             if ((Original_Van1Moi == null)) {
-                this.Adapter.UpdateCommand.Parameters[157].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[157].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[158].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[157].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[157].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[158].Value = ((string)(Original_Van1Moi));
             }
             if ((Original_MVCu == null)) {
-                this.Adapter.UpdateCommand.Parameters[159].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[159].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[160].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[159].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[159].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[160].Value = ((string)(Original_MVCu));
             }
             if ((Original_MVMoi == null)) {
-                this.Adapter.UpdateCommand.Parameters[161].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[161].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[162].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[161].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[161].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[162].Value = ((string)(Original_MVMoi));
             }
             if ((Original_ChiCoCu == null)) {
-                this.Adapter.UpdateCommand.Parameters[163].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[163].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[164].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[163].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[163].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[164].Value = ((string)(Original_ChiCoCu));
             }
             if ((Original_ChiCoMoi == null)) {
-                this.Adapter.UpdateCommand.Parameters[165].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[165].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[166].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[165].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[165].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[166].Value = ((string)(Original_ChiCoMoi));
             }
             if ((Original_ChiThanCu == null)) {
-                this.Adapter.UpdateCommand.Parameters[167].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[167].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[168].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[167].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[167].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[168].Value = ((string)(Original_ChiThanCu));
             }
             if ((Original_ChiThanMoi == null)) {
-                this.Adapter.UpdateCommand.Parameters[169].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[169].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[170].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[169].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[169].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[170].Value = ((string)(Original_ChiThanMoi));
             }
             if ((Original_ViTriCu == null)) {
-                this.Adapter.UpdateCommand.Parameters[171].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[171].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[172].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[171].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[171].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[172].Value = ((string)(Original_ViTriCu));
             }
             if ((Original_ViTriMoi == null)) {
-                this.Adapter.UpdateCommand.Parameters[173].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[173].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[174].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[173].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[173].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[174].Value = ((string)(Original_ViTriMoi));
             }
             if ((Original_CapDoCu == null)) {
-                this.Adapter.UpdateCommand.Parameters[175].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[175].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[176].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[175].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[175].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[176].Value = ((string)(Original_CapDoCu));
             }
             if ((Original_CapDoMoi == null)) {
-                this.Adapter.UpdateCommand.Parameters[177].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[177].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[178].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[177].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[177].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[178].Value = ((string)(Original_CapDoMoi));
             }
             if ((Original_CongDungCu == null)) {
-                this.Adapter.UpdateCommand.Parameters[179].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[179].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[180].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[179].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[179].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[180].Value = ((string)(Original_CongDungCu));
             }
             if ((Original_CongDungMoi == null)) {
-                this.Adapter.UpdateCommand.Parameters[181].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[181].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[182].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[181].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[181].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[182].Value = ((string)(Original_CongDungMoi));
             }
             if ((Original_DMACu == null)) {
-                this.Adapter.UpdateCommand.Parameters[183].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[183].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[184].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[183].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[183].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[184].Value = ((string)(Original_DMACu));
             }
             if ((Original_DMAMoi == null)) {
-                this.Adapter.UpdateCommand.Parameters[185].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[185].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[186].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[185].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[185].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[186].Value = ((string)(Original_DMAMoi));
             }
             if ((Original_GhiChuKH == null)) {
-                this.Adapter.UpdateCommand.Parameters[187].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[187].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[188].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[187].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[187].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[188].Value = ((string)(Original_GhiChuKH));
             }
             if ((Original_GhiChuDS == null)) {
-                this.Adapter.UpdateCommand.Parameters[189].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[189].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[190].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[189].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[189].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[190].Value = ((string)(Original_GhiChuDS));
             }
             if ((Original_GhiChuTV == null)) {
-                this.Adapter.UpdateCommand.Parameters[191].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[191].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[192].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[191].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[191].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[192].Value = ((string)(Original_GhiChuTV));
             }
             if ((Original_NVGHI == null)) {
-                this.Adapter.UpdateCommand.Parameters[193].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[193].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[194].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[193].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[193].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[194].Value = ((string)(Original_NVGHI));
             }
             if ((Original_GIOGHI.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[195].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[195].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[196].Value = ((System.DateTime)(Original_GIOGHI.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[195].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[195].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[196].Value = global::System.DBNull.Value;
             }
             if ((Original_BARCODE == null)) {
-                this.Adapter.UpdateCommand.Parameters[197].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[197].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[198].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[197].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[197].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[198].Value = ((string)(Original_BARCODE));
             }
             if ((Original_SOLANGHI.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[199].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[199].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[200].Value = ((int)(Original_SOLANGHI.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[199].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[199].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[200].Value = global::System.DBNull.Value;
             }
             if ((Original_GPSDATA == null)) {
-                this.Adapter.UpdateCommand.Parameters[201].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[201].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[202].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[201].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[201].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[202].Value = ((string)(Original_GPSDATA));
             }
             if ((Original_StaCapNhat == null)) {
-                this.Adapter.UpdateCommand.Parameters[203].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[203].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[204].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[203].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[203].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[204].Value = ((string)(Original_StaCapNhat));
             }
             if ((Original_NgayCapNhat.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[205].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[205].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[206].Value = ((System.DateTime)(Original_NgayCapNhat.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[205].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[205].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[206].Value = global::System.DBNull.Value;
             }
             if ((Original_NVCapNhat == null)) {
-                this.Adapter.UpdateCommand.Parameters[207].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[207].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[208].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[207].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[207].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[208].Value = ((string)(Original_NVCapNhat));
             }
             if ((Original_TODS.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[209].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[209].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[210].Value = ((int)(Original_TODS.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[209].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[209].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[210].Value = global::System.DBNull.Value;
             }
             if ((Original_NgayDS.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[211].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[211].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[212].Value = ((System.DateTime)(Original_NgayDS.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[211].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[211].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[212].Value = global::System.DBNull.Value;
             }
             if ((Original_ChiTiet == null)) {
-                this.Adapter.UpdateCommand.Parameters[213].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[213].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[214].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[213].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[213].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[214].Value = ((string)(Original_ChiTiet));
             }
             if ((Original_Latitude == null)) {
-                this.Adapter.UpdateCommand.Parameters[215].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[215].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[216].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[215].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[215].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[216].Value = ((string)(Original_Latitude));
             }
             if ((Original_Longitude == null)) {
-                this.Adapter.UpdateCommand.Parameters[217].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[217].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[218].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[217].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[217].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[218].Value = ((string)(Original_Longitude));
             }
             if ((Original_TenKH == null)) {
-                this.Adapter.UpdateCommand.Parameters[219].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[219].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[220].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[219].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[219].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[220].Value = ((string)(Original_TenKH));
             }
             if ((Original_NVTaoDS == null)) {
-                this.Adapter.UpdateCommand.Parameters[221].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[221].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[222].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[221].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[221].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[222].Value = ((string)(Original_NVTaoDS));
             }
             if ((Original_NgayTaoDS == null)) {
-                this.Adapter.UpdateCommand.Parameters[223].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[223].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[224].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[223].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[223].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[224].Value = ((string)(Original_NgayTaoDS));
             }
             if ((Original_DutChiThan == null)) {
-                this.Adapter.UpdateCommand.Parameters[225].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[225].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[226].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[225].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[225].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[226].Value = ((string)(Original_DutChiThan));
             }
             if ((Original_DutChiGoc == null)) {
-                this.Adapter.UpdateCommand.Parameters[227].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[227].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[228].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[227].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[227].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[228].Value = ((string)(Original_DutChiGoc));
             }
             if ((Original_DHNSaiTT == null)) {
-                this.Adapter.UpdateCommand.Parameters[229].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[229].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[230].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[229].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[229].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[230].Value = ((string)(Original_DHNSaiTT));
             }
             if ((Original_BaoKinhDoanh == null)) {
-                this.Adapter.UpdateCommand.Parameters[231].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[231].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[232].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[231].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[231].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[232].Value = ((string)(Original_BaoKinhDoanh));
             }
             if ((Original_Col08 == null)) {
-                this.Adapter.UpdateCommand.Parameters[233].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[233].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[234].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[233].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[233].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[234].Value = ((string)(Original_Col08));
             }
             if ((Original_Col09 == null)) {
-                this.Adapter.UpdateCommand.Parameters[235].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[235].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[236].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[235].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[235].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[236].Value = ((string)(Original_Col09));
             }
             if ((Original_Col10 == null)) {
-                this.Adapter.UpdateCommand.Parameters[237].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[237].Value = ((1));
                 this.Adapter.UpdateCommand.Parameters[238].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[237].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[237].Value = ((0));
                 this.Adapter.UpdateCommand.Parameters[238].Value = ((string)(Original_Col10));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;

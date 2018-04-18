@@ -1,5 +1,6 @@
 ﻿using Model;
 using PhanQuyen.WindowView;
+using PhanQuyen.WindowView.BaoThay;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -240,7 +241,7 @@ namespace PhanQuyen.UserControlView.BaoThay
 
         private void LoadHieu()
         {
-            this.cbbHieu.ItemsSource = HandlingDataDBViewModel.Instance.BaoThay_NhapThongBao_LoadTieuDe().AsDataView();
+            this.cbbHieu.ItemsSource = HandlingDataDBViewModel.Instance.BaoThay_NhapThongBao_LoadHieu().AsDataView();
             this.cbbHieu.DisplayMemberPath = "CodeDesc";
             this.cbbHieu.SelectedValuePath = "Code";
         }
@@ -281,6 +282,23 @@ namespace PhanQuyen.UserControlView.BaoThay
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             Luu();
+        }
+
+        private void btnAddTB_Click(object sender, RoutedEventArgs e)
+        {
+            Window_BaoThay_NhapThongBao_ThemTB window_BaoThay_NhapThongBao_ThemTB = new Window_BaoThay_NhapThongBao_ThemTB();
+            window_BaoThay_NhapThongBao_ThemTB.ShowDialog();
+        }
+
+        private void btnAddHieu_Click(object sender, RoutedEventArgs e)
+        {
+            Window_BaoThay_NhapThongBao_ThemHieu window_BaoThay_NhapThongBao_ThemHieu = new Window_BaoThay_NhapThongBao_ThemHieu();
+            window_BaoThay_NhapThongBao_ThemHieu.ShowDialog();
+        }
+
+        private void btnLoadDS_Click(object sender, RoutedEventArgs e)
+        {
+            LoadDanhSach();
         }
     }
 }
