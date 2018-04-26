@@ -405,7 +405,7 @@ namespace PhanQuyen
             if (stkMain.Children.Count == 1)
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_NhapHoanCong);
-            this.Title = this.title + "             Báo thay, nhập hoàn công";
+            this.Title = this.title + "             Báo thay, hoàn công thay đồng hồ nước";
         }
 
         private void ribBtnNhapThongBao_Click(object sender, RoutedEventArgs e)

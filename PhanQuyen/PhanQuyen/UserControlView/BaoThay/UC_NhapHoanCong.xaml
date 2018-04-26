@@ -5,12 +5,241 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhanQuyen.UserControlView.BaoThay"
              mc:Ignorable="d" 
-             d:DesignHeight="1000" d:DesignWidth="700">
-    <Grid>
+             d:DesignHeight="1000" d:DesignWidth="1500">
+    <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions> 
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="2" Background="Beige">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!--row 0-->
+            <Label Grid.Row="0" Grid.Column="0" Margin="10" FontSize="13" Content="Tổ đọc số" VerticalAlignment="Center"></Label>
+            <ComboBox Grid.Row="0" Grid.Column="1" FontSize="13" Width="100" Height="30"  IsEditable="True" VerticalContentAlignment="Center"></ComboBox>
+            <Label Grid.Row="0" Grid.Column="2" FontSize="13" Margin="30,10,10,10" Content="Hợp đồng" VerticalAlignment="Center"></Label>
+            <TextBox Grid.Row="0" Grid.Column="3" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></TextBox>
+            <Label Grid.Row="0" Grid.Column="4" FontSize="13" Margin="30,10,10,10" Content="Khách hàng" VerticalAlignment="Center"></Label>
+            <TextBox Grid.Row="0" Grid.Column="5" FontSize="13" Width="400" Height="30" VerticalContentAlignment="Center"></TextBox>
+            <!--end row 0-->
+
+            <!--row 1-->
+            <Label Grid.Row="1" Grid.Column="0" Margin="10" FontSize="13" Content="Mã lộ trình" VerticalAlignment="Center"></Label>
+            <TextBox Grid.Row="1" Grid.Column="1" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></TextBox>
+            <Label Grid.Row="1" Grid.Column="2" FontSize="13" Margin="30,10,10,10" Content="Danh bạ" VerticalAlignment="Center"></Label>
+            <TextBox Grid.Row="1" Grid.Column="3" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></TextBox>
+            <Label Grid.Row="1" Grid.Column="4" FontSize="13" Margin="30,10,10,10" Content="Địa chỉ" VerticalAlignment="Center"></Label>
+            <TextBox Grid.Row="1" Grid.Column="5" FontSize="13" Width="400" Height="30" VerticalContentAlignment="Center"></TextBox>
+            <!--end row 1-->
+        </Grid>
+
+        <GroupBox Grid.Row="1" Grid.Column="0" Header="Báo thay đồng hồ nước">
+            <ContentControl>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <!--row 0-->
+                    <Label Grid.Row="0" Grid.Column="0" Margin="10" FontSize="13" 
+                           Content="Số BK báo thay" VerticalAlignment="Center"></Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></TextBox>
+                    <Label Grid.Row="0" Grid.Column="2" FontSize="13" Margin="30,10,10,10" 
+                           Content="Hiệu" VerticalAlignment="Center"></Label>
+                    <ComboBox Grid.Row="0" Grid.Column="3" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center" IsEditable="True"></ComboBox>
+                    <Label Grid.Row="0" Grid.Column="4" FontSize="13" Margin="30,10,10,10" 
+                           Content="Cỡ" VerticalAlignment="Center"></Label>
+                    <ComboBox Grid.Row="0" Grid.Column="5" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center" IsEditable="True"></ComboBox>
+                    <!--end row 0-->
+
+                    <!--row 1-->
+                    <Label Grid.Row="1" Grid.Column="0" Margin="10" FontSize="13" 
+                           Content="Chỉ số báo" VerticalAlignment="Center"></Label>
+                    <TextBox Grid.Row="1" Grid.Column="1" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></TextBox>
+                    <Label Grid.Row="1" Grid.Column="2" FontSize="13" Margin="30,10,10,10" 
+                           Content="Chì thân" VerticalAlignment="Center"></Label>
+                    <TextBox Grid.Row="1" Grid.Column="3" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></TextBox>
+                    <Label Grid.Row="1" Grid.Column="4" FontSize="13" Margin="30,10,10,10" 
+                           Content="Chì góc" VerticalAlignment="Center"></Label>
+                    <TextBox Grid.Row="1" Grid.Column="5" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></TextBox>
+                    <!--end row 1-->
+
+                    <!--row 2-->
+                    <Label Grid.Row="2" Grid.Column="0" Margin="10" FontSize="13" 
+                           Content="Số thân" VerticalAlignment="Center"></Label>
+                    <TextBox Grid.Row="2" Grid.Column="1" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></TextBox>
+                    <Label Grid.Row="2" Grid.Column="2" FontSize="13" Margin="30,10,10,10" 
+                           Content="Vị trí" VerticalAlignment="Center"></Label>
+                    <TextBox Grid.Row="2" Grid.Column="3" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></TextBox>
+                    <!--end row 2-->
+
+                    <!--row 3-->
+                    <Label Grid.Row="3" Grid.Column="0" Margin="10" FontSize="13" 
+                           Content="Ngày báo" VerticalAlignment="Center"></Label>
+                    <DatePicker Grid.Row="3" Grid.Column="1" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></DatePicker>
+                    <Label Grid.Row="3" Grid.Column="2" FontSize="13" Margin="30,10,10,10" 
+                           Content="Loại báo thay" VerticalAlignment="Center"></Label>
+                    <ComboBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3" FontSize="13"  Height="30" VerticalContentAlignment="Center"></ComboBox>
+                    <!--end row 3-->
+
+                    <!--row 4-->
+                    <Button Grid.Row="4" Grid.Column="0" Margin="10,0,10,0" Height="30" Background="White" Name="btnBaoThay" 
+                            Click="btnBaoThay_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PhanQuyen;component/Images/change.png" Width="20" Height="20"></Image>
+                            <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Báo thay</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Row="4" Grid.Column="1" Margin="10,0,10,0" Height="30" Background="White" Name="btnUpdate" 
+                            Click="btnUpdate_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PhanQuyen;component/Images/up-arrow.png" Width="20" Height="20"></Image>
+                            <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Cập nhật</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Row="4" Grid.Column="2" Margin="10,0,10,0" Height="30" Background="White" Name="btnHuyBaoThay" 
+                            Click="btnHuyBaoThay_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PhanQuyen;component/Images/alert.png" Width="20" Height="20"></Image>
+                            <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Hủy báo thay</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Row="4" Grid.Column="3" Margin="10,0,10,0" Height="30" Background="White" Name="btnInBangKe" 
+                            Click="btnInBangKe_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PhanQuyen;component/Images/printer.png" Width="20" Height="20"></Image>
+                            <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >In bảng kê</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Row="4" Grid.Column="4" Margin="10,0,10,0" Height="30" Background="White" Name="btnLichSuThay" 
+                            Click="btnLichSuThay_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PhanQuyen;component/Images/lichsu.png" Width="20" Height="20"></Image>
+                            <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Lịch sử thay</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <!--end row 4-->
+                </Grid>
+            </ContentControl>
+        </GroupBox>
+
+        <GroupBox Grid.Row="1" Grid.Column="1" Header="Nội dung hoàn công">
+            <ContentControl>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <!--row 0-->
+                    <Label Grid.Row="0" Grid.Column="0" Margin="10" FontSize="13" 
+                           Content="Số BK hoàn công" VerticalAlignment="Center"></Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></TextBox>
+                    <Label Grid.Row="0" Grid.Column="2" FontSize="13" Margin="30,10,10,10" 
+                           Content="Số tem kiểm định" VerticalAlignment="Center"></Label>
+                    <ComboBox Grid.Row="0" Grid.Column="3" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center" IsEditable="True"></ComboBox>
+                    <Label Grid.Row="0" Grid.Column="4" FontSize="13" Margin="30,10,10,10" 
+                           Content="Ngày thay" VerticalAlignment="Center"></Label>
+                    <DatePicker Grid.Row="0" Grid.Column="5" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center" ></DatePicker>
+                    <!--end row 0-->
+
+                    <!--row 1-->
+                    <Label Grid.Row="1" Grid.Column="0" Margin="10" FontSize="13" 
+                           Content="Số thân" VerticalAlignment="Center"></Label>
+                    <TextBox Grid.Row="1" Grid.Column="1" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></TextBox>
+                    <Label Grid.Row="1" Grid.Column="2" FontSize="13" Margin="30,10,10,10" 
+                           Content="Hiệu" VerticalAlignment="Center"></Label>
+                    <ComboBox Grid.Row="1" Grid.Column="3" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center" IsEditable="True"></ComboBox>
+                    <Label Grid.Row="1" Grid.Column="4" FontSize="13" Margin="30,10,10,10" 
+                           Content="Cỡ" VerticalAlignment="Center"></Label>
+                    <ComboBox Grid.Row="1" Grid.Column="5" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center" IsEditable="True"></ComboBox>
+                    <!--end row 1-->
+
+                    <!--row 2-->
+                    <Label Grid.Row="2" Grid.Column="0" Margin="10" FontSize="13" 
+                           Content="Chì thân" VerticalAlignment="Center"></Label>
+                    <TextBox Grid.Row="2" Grid.Column="1" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></TextBox>
+                    <Label Grid.Row="2" Grid.Column="2" FontSize="13" Margin="30,10,10,10" 
+                           Content="Chỉ số gỡ" VerticalAlignment="Center"></Label>
+                    <TextBox Grid.Row="2" Grid.Column="3" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></TextBox>
+                    <Label Grid.Row="2" Grid.Column="4" FontSize="13" Margin="30,10,10,10" 
+                           Content="Chỉ số gắn" VerticalAlignment="Center"></Label>
+                    <TextBox Grid.Row="2" Grid.Column="5" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></TextBox>
+                    <!--end row 2-->
+
+                    <!--row 3-->
+                    <Label Grid.Row="3" Grid.Column="0" Margin="10" FontSize="13" 
+                           Content="Loại đồng hồ" VerticalAlignment="Center"></Label>
+                    <ComboBox Grid.Row="3" Grid.Column="1" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></ComboBox>
+                    <Label Grid.Row="3" Grid.Column="2" FontSize="13" Margin="30,10,10,10" 
+                           Content="Ngày kiểm định" VerticalAlignment="Center"></Label>
+                    <DatePicker Grid.Row="3" Grid.Column="3" FontSize="13"  Height="30" VerticalContentAlignment="Center"></DatePicker>
+                    <Label Grid.Row="3" Grid.Column="4" FontSize="13" Margin="30,10,10,10" 
+                           Content="Vị trí mới" VerticalAlignment="Center"></Label>
+                    <TextBox Grid.Row="3" Grid.Column="5" FontSize="13"  Height="30" VerticalContentAlignment="Center"></TextBox>
+                    <Label Grid.Row="3" Grid.Column="6" FontSize="13" Margin="30,10,10,10" 
+                           Content="Chì góc" VerticalAlignment="Center"></Label>
+                    <TextBox Grid.Row="3" Grid.Column="7" FontSize="13"  Height="30" VerticalContentAlignment="Center"></TextBox>
+                    <!--end row 3-->
+
+                    <!--row 4-->
+                    <Button Grid.Row="4" Grid.Column="0" Margin="10,0,10,0" Height="30" Background="White" Name="btnHoanCong" 
+                            Click="btnHoanCong_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PhanQuyen;component/Images/change.png" Width="20" Height="20"></Image>
+                            <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Báo thay</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Row="4" Grid.Column="1" Margin="10,0,10,0" Height="30" Background="White" Name="btnTroNgai" 
+                            Click="btnTroNgai_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/PhanQuyen;component/Images/up-arrow.png" Width="20" Height="20"></Image>
+                            <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Cập nhật</TextBlock>
+                        </StackPanel>
+                    </Button>
+                  
+                    <!--end row 4-->
+                </Grid>
+            </ContentControl>
+        </GroupBox>
     </Grid>
 </UserControl>

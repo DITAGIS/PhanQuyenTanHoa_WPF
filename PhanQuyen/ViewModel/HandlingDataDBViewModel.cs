@@ -456,7 +456,7 @@ namespace ViewModel
 
         public List<String> getListBaoCaoTongHop()
         {
-            var query = serverContext.ExecuteQuery<String>("select codedesc from ThamSo where CodeType='BC' order by code").ToList();
+            var query = serverContext.ExecuteQuery<String>("select codedesc from ThamSo where CodeType='BC' and Code <>4 order by code ").ToList();
             return query;
         }
         public int CapNhatKH(int year, string month, string date)
@@ -1198,40 +1198,43 @@ namespace ViewModel
 
         }
 
-        public bool Update(string code, string csm, string tieuThu, string ghiChuDS, string ghiChuMH, string ghiChuKH, string KHDS, DateTime ngayCapNhat, int nam, string ky, string dot, string danhBa)
+        public bool ChuyenMaHoa(string code, string csm, string tieuThu, string ghiChuDS, string ghiChuMH, string ghiChuKH, string KHDS, DateTime ngayCapNhat, int nam, string ky, string dot, string danhBa)
         {
-            var docSo = serverContext.DocSos.SingleOrDefault(row => row.DanhBa == danhBa && row.Nam == nam && row.Ky == ky && row.Dot == dot);
-            if (docSo != null)
-            {
-                docSo.CodeMoi = code;
-                docSo.CSMoi = Int16.Parse(csm);
-                docSo.TieuThuMoi = Int16.Parse(tieuThu);
-                docSo.GhiChuDS = ghiChuDS;
-                docSo.GhiChuTV = ghiChuMH;
-                docSo.GhiChuKH = ghiChuKH;
-                docSo.TTDHNMoi = KHDS;
-                docSo.StaCapNhat = "1";
-                docSo.NgayCapNhat = ngayCapNhat;
-                docSo.NVCapNhat = "";//todo         
-                serverContext.SubmitChanges();
-
-                return true;
-            }
-            return false;
+            serverContext = new DataClasses_thanleDataContext(ConnectionViewModel.Instance.ConnectionString);
+            ConnectionViewModel.Instance.Connect();
+            string query = "Update DocSo set GhiChuDS = '" + ghiChuDS + "', GhiChuTV = '" + ghiChuMH + "', GhiChuKH = '" + ghiChuKH + "', NgayCapNhat = '" + ngayCapNhat + "'," +
+                " NVCapNhat = '" + MyUser.Instance.UserID + "' where docsoid = '" + nam + ky + danhBa + "' and Dot = '" + dot + "'";
+            var value = ConnectionViewModel.Instance.GetExecuteNonQuerry(query);
+            ConnectionViewModel.Instance.DisConnect();
+            return value > 0;
+        }
+        public bool UpdateDocSo(string ttdhn, string code, string csm, string tieuThu, string ghiChuDS, string ghiChuMH, string ghiChuKH, string KHDS, DateTime ngayCapNhat, int nam, string ky, string dot, string danhBa)
+        {
+            serverContext = new DataClasses_thanleDataContext(ConnectionViewModel.Instance.ConnectionString);
+            ConnectionViewModel.Instance.Connect();
+            string query = "Update DocSo set CodeMoi = '" + code + "',CSMoi = " + csm + ",TieuThuMoi = " + tieuThu + ", GhiChuDS ='" + ghiChuDS + "', GhiChuTV ='" + ghiChuMH
+                + "', GhiChuKH = '" + ghiChuKH + "', TTDHNMoi = '" + ttdhn + "' where docsoid = '" + nam + ky + danhBa + "' and Dot = '" + dot + "'";
+            var value = ConnectionViewModel.Instance.GetExecuteNonQuerry(query);
+            ConnectionViewModel.Instance.DisConnect();
+            return value > 0;
         }
 
         public bool HoanTatDocSo()
         {
-            var data = serverContext.BillStates.SingleOrDefault(row => row.BillID == MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date);
-            if (data != null)
-            {
-                data.izDS = "1";
-                serverContext.SubmitChanges();
-                return true;
-            }
-            return false;
+            ConnectionViewModel.Instance.Connect();
+            string query = "update BillState set izds = '1' where billid = '" + MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date + "'";
+            int value = Convert.ToInt16(ConnectionViewModel.Instance.GetExecuteNonQuerry(query));
+            ConnectionViewModel.Instance.DisConnect();
+            return value > 0;
         }
-
+        public bool HoanTatThuongVu()
+        {
+            ConnectionViewModel.Instance.Connect();
+            string query = "update BillState set iztv = '1' where billid = '" + MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date + "'";
+            int value = Convert.ToInt16(ConnectionViewModel.Instance.GetExecuteNonQuerry(query));
+            ConnectionViewModel.Instance.DisConnect();
+            return value > 0;
+        }
         public List<String> getDocsosByConditionCount(int year, String month, String date, int xGroup, String machine)
         {
             var getData = (from x in serverContext.DocSos
@@ -1240,17 +1243,7 @@ namespace ViewModel
             return getData;
         }
 
-        public bool HoanTatThuongVu()
-        {
-            var data = serverContext.BillStates.SingleOrDefault(row => row.BillID == MyUser.Instance.Year + MyUser.Instance.Month + MyUser.Instance.Date);
-            if (data != null)
-            {
-                data.izTV = "1";
-                serverContext.SubmitChanges();
-                return true;
-            }
-            return false;
-        }
+
 
         public bool getDocSosByDanhBa(String danhBa, int year, String month, String date, int xGroup, String machine)
         {
@@ -1403,19 +1396,46 @@ namespace ViewModel
         }
         public List<DocSo> getAllDocSos(int year, string month, string date, int xGroup, string machine)
         {
-            if (machine.Equals(ALL))
+            try
             {
-                var data = (from x in serverContext.DocSos
-                            where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup
-                            select x).OrderBy(x => x.MLT1).ToList();
-                return data;
+                if (xGroup == 0)
+                {
+                    if (machine.Equals(ALL))
+                    {
+                        var data = (from x in serverContext.DocSos
+                                    where x.DocSoID.StartsWith(year + month) && x.Dot == date
+                                    select x).OrderBy(x => x.MLT1).ToList();
+                        return data;
+                    }
+                    else
+                    {
+                        var data = (from x in serverContext.DocSos
+                                    where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.May == machine
+                                    select x).OrderBy(x => x.MLT1).ToList();
+                        return data;
+                    }
+                }
+                else
+                {
+                    if (machine.Equals(ALL))
+                    {
+                        var data = (from x in serverContext.DocSos
+                                    where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.TODS == xGroup
+                                    select x).OrderBy(x => x.MLT1).ToList();
+                        return data;
+                    }
+                    else
+                    {
+                        var data = (from x in serverContext.DocSos
+                                    where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.May == machine
+                                    select x).OrderBy(x => x.MLT1).ToList();
+                        return data;
+                    }
+                }
             }
-            else
+            catch
             {
-                var data = (from x in serverContext.DocSos
-                            where x.DocSoID.StartsWith(year + month) && x.Dot == date && x.May == machine
-                            select x).OrderBy(x => x.MLT1).ToList();
-                return data;
+                return new List<DocSo>();
             }
         }
 
@@ -1946,7 +1966,7 @@ namespace ViewModel
             }
             return null;
         }
-        public DataTable BaoThay_BaoThayDinhKy_LoadDanhSachLoc( string sobk, string dkloc, string nam, string thang, bool isLocTheoNgayGan, string coDHN)
+        public DataTable BaoThay_BaoThayDinhKy_LoadDanhSachLoc(string sobk, string dkloc, string nam, string thang, bool isLocTheoNgayGan, string coDHN)
         {
             try
             {
@@ -2008,7 +2028,7 @@ namespace ViewModel
 
                     ConnectionViewModel.Instance.Connect();
                     query = "insert into BaoThay " +
-                        "values((select top 1 baothayid+1 from baothay order by BaoThayID desc),'" + danhBa + "'," + loaiBT + ",'"+ ngayThay + "','" + hieu + "','" + co + "','" + soThan + "','" + viTri + "','"
+                        "values((select top 1 baothayid+1 from baothay order by BaoThayID desc),'" + danhBa + "'," + loaiBT + ",'" + ngayThay + "','" + hieu + "','" + co + "','" + soThan + "','" + viTri + "','"
                         + maChiThan + "','" + maChiGoc + "','" + csGo + "','" + csGan + "',GetDate(),'" + MyUser.Instance.UserID + "')";
                     ConnectionViewModel.Instance.GetExecuteReader(query);
                     ConnectionViewModel.Instance.DisConnect();

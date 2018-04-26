@@ -168,19 +168,56 @@ namespace PhanQuyen
             }
             else
             {
-                try
+                if (this.txtbCode.Text.Trim().Equals("40") || this.txtbCode.Text.Trim().Equals("41") || (this.txtbCode.Text.Trim().Equals("42") || this.txtbCode.Text.Trim().Equals("43")) || this.txtbCode.Text.Trim().Equals("44"))
                 {
-                    bool isUpdate = HandlingDataDBViewModel.Instance.Update(txtbCode.Text.Trim(), txtbCSM.Text.Trim(), txtbTieuThu.Text.Trim(), txtbGCDS.Text.Trim(),
-                         txtbGCMH.Text.Trim(), txtbGCKH.Text.Trim(), cbbKHDS.SelectedValue.ToString(), DateTime.Now, year, month, date, txtbDanhBa.Text.Trim());
-                    if (isUpdate)
-                        MessageBox.Show("Cập nhật thành công !", "Thông báo");
-                    else
-                        MessageBox.Show("Lỗi khi cập nhật !", "Thông báo");
-
+                    int num1 = int.Parse(this.txtbCSM.Text.Trim());
+                    int num2 = int.Parse(this.txtbCSC.Text.Trim());
+                    int num3 = int.Parse(this.txtbTieuThu.Text.Trim());
+                    if (num1 - num3 != num2)
+                    {
+                        int num4 = (int)MessageBox.Show("CODE 4: Số liệu CS mới - CS cũ không khớp với tiêu thụ. Kiểm tra lại");
+                        this.txtbCSM.SelectAll();
+                        this.txtbCSM.Focus();
+                        return;
+                    }
                 }
-                catch (SqlException ex)
+                if (chuyenMaHoa)
                 {
-                    int num = (int)MessageBox.Show("Lỗi khi lưu đọc số: " + ex.Message);
+                    try
+                    {
+                        bool isUpdate = HandlingDataDBViewModel.Instance.ChuyenMaHoa(txtbCode.Text.Trim(), txtbCSM.Text.Trim(), txtbTieuThu.Text.Trim(), txtbGCDS.Text.Trim(),
+                             txtbGCMH.Text.Trim(), txtbGCKH.Text.Trim(), cbbKHDS.SelectedValue.ToString(), DateTime.Now, year, month, date, txtbDanhBa.Text.Trim());
+                        if (isUpdate)
+                            MessageBox.Show("Cập nhật thành công !", "Thông báo");
+                        else
+                            MessageBox.Show("Lỗi khi cập nhật !", "Thông báo");
+
+                    }
+                    catch (SqlException ex)
+                    {
+                        int num = (int)MessageBox.Show("Lỗi khi lưu đọc số: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        string danhba = this.txtbDanhBa.Text.Trim();
+                        bool isUpdate = HandlingDataDBViewModel.Instance.UpdateDocSo(cbbKHDS.Text.Trim(), txtbCode.Text.Trim(), txtbCSM.Text.Trim(), txtbTieuThu.Text.Trim(), txtbGCDS.Text.Trim(),
+                                 txtbGCMH.Text.Trim(), txtbGCKH.Text.Trim(), cbbKHDS.SelectedValue.ToString(), DateTime.Now, year, month, date, txtbDanhBa.Text.Trim());
+                        if (isUpdate)
+                        {
+                            //this.CapNhatIndex(danhba, this._index.ToString(), this.cbbKyHieuDS.Text, this.txtCodeMoi.Text, this.txtCSMoi.Text, this.txtTieuThuMoi.Text, this.txtGhiChuDS.Text, this.txtCSCu.Text, this.txtGhiChuTV.Text);
+                            //if (GV.UserGroup != "Admin" && GV.UserGroup != "TV" && GV.UserGroup != "VP")
+                            //    this.CellClick(danhba, this.cbbToDS.Text);
+                            //else
+                            //    this.CellClick(danhba);
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        int num = (int)MessageBox.Show("Lỗi hàm lưu đọc số: " + ex.Message);
+                    }
                 }
             }
         }
@@ -340,6 +377,8 @@ namespace PhanQuyen
                 {
                     (dtgridMain.SelectedValue as DocSo).CSMoi = csm;
                     (dtgridMain.SelectedValue as DocSo).TieuThuMoi = tieuThuMoi;
+                    txtbTieuThu.Text = tieuThuMoi.ToString();
+                    dtgridMain.Items.Refresh();
                 }
             }
 
@@ -809,7 +848,7 @@ namespace PhanQuyen
             namList.Sort();
             cbbYear.ItemsSource = namList;
             cbbYear.SelectedValue = MyUser.Instance.Year;
-
+            year = Int16.Parse(MyUser.Instance.Year);
             cbbMonth.SelectedValue = MyUser.Instance.Month;
             if (MyUser.Instance.ToID == null || MyUser.Instance.ToID.Equals("") || MyUser.Instance.ToID.Trim().Equals(""))
                 cbbGroup.ItemsSource = ToID.GetToID();

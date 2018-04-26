@@ -23,5 +23,40 @@ namespace PhanQuyen.UserControlView.BaoThay
         {
             InitializeComponent();
         }
+
+        private void btnBaoThay_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnHuyBaoThay_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnInBangKe_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnLichSuThay_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnHoanCong_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnTroNgai_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
