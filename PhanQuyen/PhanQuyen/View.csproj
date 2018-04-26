@@ -151,6 +151,12 @@
     <Compile Include="UserControlView\BaoThay\UC_CapNhatThongBao.xaml.cs">
       <DependentUpon>UC_CapNhatThongBao.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControlView\BaoThay\UC_HoanCongBoiThuong.xaml.cs">
+      <DependentUpon>UC_HoanCongBoiThuong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlView\BaoThay\UC_HoanCongKhongBaoThay.xaml.cs">
+      <DependentUpon>UC_HoanCongKhongBaoThay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlView\BaoThay\UC_LichSuDHN.xaml.cs">
       <DependentUpon>UC_LichSuDHN.xaml</DependentUpon>
     </Compile>
@@ -256,6 +262,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControlView\BaoThay\UC_CapNhatThongBao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\BaoThay\UC_HoanCongBoiThuong.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControlView\BaoThay\UC_HoanCongKhongBaoThay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -115,8 +115,10 @@
                                   Click="ribBtnCapNhatThongBao_Click"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Hoàn công">
-                    <RibbonButton Label="Hoàn công bồi thường"  LargeImageSource="/PhanQuyen;component/Images/hoancongboithuong.png"></RibbonButton>
-                    <RibbonButton Label="Hoàn công không báo thay"  LargeImageSource="/PhanQuyen;component/Images/hoancongkhongbaothay.png"></RibbonButton>
+                    <RibbonButton Label="Hoàn công bồi thường"  LargeImageSource="/PhanQuyen;component/Images/hoancongboithuong.png"
+                                  Click="ribBtnHoanCongBoiThuong_Click"></RibbonButton>
+                    <RibbonButton Label="Hoàn công không báo thay"  LargeImageSource="/PhanQuyen;component/Images/hoancongkhongbaothay.png"
+                                  Click="ribBtnHoanCongKhongBaoThay_Click"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Lịch sử">
                     <RibbonButton Label="Lịch sử ĐHN"  LargeImageSource="/PhanQuyen;component/Images/lichsu.png"

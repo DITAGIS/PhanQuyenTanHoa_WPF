@@ -50,6 +50,8 @@ namespace PhanQuyen
         UC_CapNhatHoanCong uc_CapNhatHoanCong;
         UC_LichSuDHN uc_LichSuDHN;
         UC_BaoThayDinhKy uc_BaoThayDinhKy;
+        UC_HoanCongBoiThuong uc_HoanCongBoiThuong;
+        UC_HoanCongKhongBaoThay uc_HoanCongKhongBaoThay;
         private MyUser user;
         private String title = "Phần mềm kết nối ứng dụng đọc số trên Smartphone            Nhân viên: ";
         public MainWindow()
@@ -105,6 +107,16 @@ namespace PhanQuyen
         }
         private void resizeUC()
         {
+            if (uc_HoanCongBoiThuong != null)
+            {
+                uc_HoanCongBoiThuong.Height = stkMain.ActualHeight;
+                uc_HoanCongBoiThuong.Width = stkMain.ActualWidth;
+            }
+            if (uc_HoanCongKhongBaoThay != null)
+            {
+                uc_HoanCongKhongBaoThay.Height = stkMain.ActualHeight;
+                uc_HoanCongKhongBaoThay.Width = stkMain.ActualWidth;
+            }
             if (uc_BaoThayDinhKy != null)
             {
                 uc_BaoThayDinhKy.Height = stkMain.ActualHeight;
@@ -301,7 +313,7 @@ namespace PhanQuyen
             stkMain.Children.Add(uc_BaoCaoTongHop);
             this.Title = this.title + "             Báo cáo tổng hợp";
         }
-    
+
         private void ribBtnChuyenBilling_Click(object sender, RoutedEventArgs e)
         {
             this.Title = this.title + "             Chuyển billing";
@@ -447,6 +459,27 @@ namespace PhanQuyen
                 stkMain.Children.RemoveAt(0);
             stkMain.Children.Add(uc_BaoThayDinhKy);
             this.Title = this.title + "             Báo thay định kỳ";
+        }
+        private void ribBtnHoanCongBoiThuong_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_HoanCongBoiThuong == null)
+                uc_HoanCongBoiThuong = new UC_HoanCongBoiThuong();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_HoanCongBoiThuong);
+            this.Title = this.title + "             Hoàn công bồi thường";
+        }
+
+        private void ribBtnHoanCongKhongBaoThay_Click(object sender, RoutedEventArgs e)
+        {
+            if (uc_HoanCongKhongBaoThay == null)
+                uc_HoanCongKhongBaoThay = new UC_HoanCongKhongBaoThay();
+            resizeUC();
+            if (stkMain.Children.Count == 1)
+                stkMain.Children.RemoveAt(0);
+            stkMain.Children.Add(uc_HoanCongKhongBaoThay);
+            this.Title = this.title + "             Nhập hoàn công không báo thay";
         }
         #endregion
 

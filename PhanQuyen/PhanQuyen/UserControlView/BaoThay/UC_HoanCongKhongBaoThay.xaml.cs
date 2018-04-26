@@ -15,31 +15,36 @@ using System.Windows.Shapes;
 namespace PhanQuyen.UserControlView.BaoThay
 {
     /// <summary>
-    /// Interaction logic for UC_HoanCongBoiThuong.xaml
+    /// Interaction logic for UC_HoanCongKhongBaoThay.xaml
     /// </summary>
-    public partial class UC_HoanCongBoiThuong : System.Windows.Controls.UserControl
+    public partial class UC_HoanCongKhongBaoThay : System.Windows.Controls.UserControl
     {
-        public UC_HoanCongBoiThuong()
+        public UC_HoanCongKhongBaoThay()
         {
             InitializeComponent();
         }
 
-        private void btnInBangKe_Click(object sender, RoutedEventArgs e)
+        private void btnLuuHoanCong_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnLichSuThay_Click(object sender, RoutedEventArgs e)
+        private void btnReloadCo_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnHoanCong_Click(object sender, RoutedEventArgs e)
+        private void btnAddCo_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void btnTroNgai_Click(object sender, RoutedEventArgs e)
+        private void btnReloadCoMoi_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAddCoMoi_Click(object sender, RoutedEventArgs e)
         {
 
         }
