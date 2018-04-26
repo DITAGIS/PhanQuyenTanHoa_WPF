@@ -6,14 +6,14 @@
              xmlns:local="clr-namespace:PhanQuyen.UserControlView.BaoThay"
              mc:Ignorable="d" 
              d:DesignHeight="1000" d:DesignWidth="1500">
-    <Grid Background="AliceBlue">
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto" ></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
@@ -49,7 +49,8 @@
             <!--end row 1-->
         </Grid>
 
-        <GroupBox Grid.Row="1" Grid.Column="0" Header="Báo thay đồng hồ nước">
+
+        <GroupBox Grid.Row="1" Grid.Column="0" Background="AliceBlue" Header="Báo thay đồng hồ nước">
             <ContentControl>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -150,7 +151,7 @@
             </ContentControl>
         </GroupBox>
 
-        <GroupBox Grid.Row="1" Grid.Column="1" Header="Nội dung hoàn công">
+        <GroupBox Grid.Row="1" Grid.Column="1" Background="AliceBlue" Margin="10,0,0,0" Header="Nội dung hoàn công">
             <ContentControl>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -204,6 +205,8 @@
                     <Label Grid.Row="2" Grid.Column="4" FontSize="13" Margin="30,10,10,10" 
                            Content="Chỉ số gắn" VerticalAlignment="Center"></Label>
                     <TextBox Grid.Row="2" Grid.Column="5" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></TextBox>
+                    <Label Grid.Row="2" Grid.Column="6" FontSize="13" Margin="30,10,10,10" 
+                           Content="Chì góc" VerticalAlignment="Center"></Label>
                     <!--end row 2-->
 
                     <!--row 3-->
@@ -216,9 +219,7 @@
                     <Label Grid.Row="3" Grid.Column="4" FontSize="13" Margin="30,10,10,10" 
                            Content="Vị trí mới" VerticalAlignment="Center"></Label>
                     <TextBox Grid.Row="3" Grid.Column="5" FontSize="13"  Height="30" VerticalContentAlignment="Center"></TextBox>
-                    <Label Grid.Row="3" Grid.Column="6" FontSize="13" Margin="30,10,10,10" 
-                           Content="Chì góc" VerticalAlignment="Center"></Label>
-                    <TextBox Grid.Row="3" Grid.Column="7" FontSize="13"  Height="30" VerticalContentAlignment="Center"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="6" FontSize="13" Margin="30,0,0,0"  Height="30" VerticalContentAlignment="Center"></TextBox>
                     <!--end row 3-->
 
                     <!--row 4-->
@@ -236,10 +237,13 @@
                             <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Cập nhật</TextBlock>
                         </StackPanel>
                     </Button>
-                  
+
                     <!--end row 4-->
                 </Grid>
             </ContentControl>
         </GroupBox>
+
+        <DataGrid Grid.Row="2" Grid.Column="0"></DataGrid>
+        <DataGrid Grid.Row="2" Grid.Column="1"></DataGrid>
     </Grid>
 </UserControl>

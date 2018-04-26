@@ -5,8 +5,175 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PhanQuyen.UserControlView.BaoThay"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="1000" d:DesignWidth="1500">
     <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <Button Grid.Row="4" Grid.Column="2" Margin="10,10,10,10" HorizontalAlignment="Right" Height="30" Background="White" 
+                    Name="btnCapNhatHoanCong" Click="btnCapNhatHoanCong_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/PhanQuyen;component/Images/save.png" Width="20" Height="20"></Image>
+                    <TextBlock  VerticalAlignment="Center" Margin="2,0,0,0" >Cập nhật hoàn công</TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <!--row 0-->
+            <Label Grid.Row="0" Grid.Column="0" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Danh bạ"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" FontSize="12" VerticalAlignment="Center" 
+                   />
+            <Label Grid.Row="0" Grid.Column="3" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Mã lộ trình"/>
+            <TextBox Grid.Row="0" Grid.Column="4 " Grid.ColumnSpan="2" FontSize="12" VerticalAlignment="Center" ></TextBox>
+
+            <Label Grid.Row="0" Grid.Column="3" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Mã lộ trình" />
+            <TextBox Grid.Row="0" Grid.Column="4 " Grid.ColumnSpan="2" FontSize="12" VerticalAlignment="Center" ></TextBox>
+
+            <Label Grid.Row="0" Grid.Column="6" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Số BK"/>
+            <TextBox Grid.Row="0" Grid.Column="7" FontSize="12" VerticalAlignment="Center" ></TextBox>
+
+            <Label Grid.Row="0" Grid.Column="8" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Số tem KĐ"/>
+            <TextBox Grid.Row="0" Grid.Column="9" FontSize="12" VerticalAlignment="Center" ></TextBox>
+            <Label Grid.Row="0" Grid.Column="10" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Thời hạn KĐ"/>
+            <DatePicker Grid.Row="0" Grid.Column="11" Grid.ColumnSpan="2" FontSize="12" VerticalAlignment="Center" ></DatePicker>
+
+
+            <!--end row 0-->
+            <!--row 1-->
+            <Label Grid.Row="1" Grid.Column="0" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Tên KH"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" FontSize="12" VerticalAlignment="Center" 
+                   />
+            <Label Grid.Row="1" Grid.Column="7" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Địa chỉ"/>
+            <TextBox Grid.Row="1" Grid.Column="8" Grid.ColumnSpan="6" FontSize="12" VerticalAlignment="Center" 
+                   />
+
+            <!--end row 1-->
+
+            <!--row 2-->
+            <Label Grid.Row="2" Grid.Column="0" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Hiệu cũ"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" FontSize="12" VerticalAlignment="Center" 
+                   Width="80" IsEditable="True"/>
+            <Label Grid.Row="2" Grid.Column="2" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Cỡ cũ"/>
+            <StackPanel Grid.Row="2" Grid.Column="3" Orientation="Horizontal">
+                <ComboBox  FontSize="12" VerticalAlignment="Center" 
+                   Width="50" IsEditable="True"/>
+                <Button Margin="10,0,0,0" HorizontalAlignment="Right" Height="30" Background="White" 
+                        Name="btnReloadCo" 
+                            Click="btnReloadCo_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/PhanQuyen;component/Images/refresh.png" Width="20" Height="20"></Image>
+                    </StackPanel>
+                </Button>
+                <Button Margin="10,0,0,0" HorizontalAlignment="Right" Height="30" Background="White" 
+                        Name="btnAddCo" 
+                            Click="btnAddCo_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/PhanQuyen;component/Images/add.png" Width="20" Height="20"></Image>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <Label Grid.Row="2" Grid.Column="4" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Số thân cũ"/>
+            <TextBox Grid.Row="2" Grid.Column="5" FontSize="12" VerticalAlignment="Center" 
+                   Width="80" />
+            <Label Grid.Row="2" Grid.Column="6" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Code cũ"/>
+            <TextBox Grid.Row="2" Grid.Column="7" FontSize="12" VerticalAlignment="Center" 
+                   Width="80" />
+            <Label Grid.Row="2" Grid.Column="8" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Chỉ số báo"/>
+            <TextBox Grid.Row="2" Grid.Column="9" FontSize="12" VerticalAlignment="Center" 
+                   Width="80" />
+            <Label Grid.Row="2" Grid.Column="10" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Lý do"/>
+            <ComboBox Grid.Row="2" Grid.Column="11" Grid.ColumnSpan="3" FontSize="12" VerticalAlignment="Center" 
+                   Width="200" HorizontalAlignment="Left" IsEditable="True"/>
+            <!--end row 2-->
+            <!--row 3-->
+            <Label Grid.Row="3" Grid.Column="0" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Hiệu mới"/>
+            <ComboBox Grid.Row="3" Grid.Column="1" FontSize="12" VerticalAlignment="Center" 
+                   Width="80" IsEditable="True"/>
+            <Label Grid.Row="3" Grid.Column="2" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Cỡ mới"/>
+            <StackPanel Grid.Row="3" Grid.Column="3" Orientation="Horizontal">
+                <ComboBox   FontSize="12" VerticalAlignment="Center" 
+                   Width="50" IsEditable="True"/>
+                <Button Margin="10,0,0,0" HorizontalAlignment="Right" Height="30" Background="White" 
+                        Name="btnReloadCoMoi" 
+                            Click="btnReloadCoMoi_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/PhanQuyen;component/Images/refresh.png" Width="20" Height="20"></Image>
+                    </StackPanel>
+                </Button>
+                <Button Margin="10,0,0,0" HorizontalAlignment="Right" Height="30" Background="White" 
+                        Name="btnAddCoMoi" 
+                            Click="btnAddCoMoi_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/PhanQuyen;component/Images/add.png" Width="20" Height="20"></Image>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <Label Grid.Row="3" Grid.Column="4" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Số thân mới"/>
+            <TextBox Grid.Row="3" Grid.Column="5" FontSize="12" VerticalAlignment="Center" 
+                   Width="80" />
+            <Label Grid.Row="3" Grid.Column="6" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Code mới"/>
+            <TextBox Grid.Row="3" Grid.Column="7" FontSize="12" VerticalAlignment="Center" 
+                   Width="80" />
+            <Label Grid.Row="3" Grid.Column="8" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Chỉ số gỡ"/>
+            <TextBox Grid.Row="3" Grid.Column="9" FontSize="12" VerticalAlignment="Center" 
+                   Width="80" />
+            <Label Grid.Row="3" Grid.Column="10" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Chỉ số gắn"/>
+            <TextBox Grid.Row="3" Grid.Column="11" FontSize="12" VerticalAlignment="Center" 
+                   Width="80" />
+            <Label Grid.Row="3" Grid.Column="12" Margin="10" FontSize="12" VerticalAlignment="Center" 
+                   Content="Ngày thay"/>
+            <DatePicker Grid.Row="3" Grid.Column="13" FontSize="12" VerticalAlignment="Center" 
+                    />
+            <!--end row 3-->
+        </Grid>
+        <DataGrid Grid.Row="2">
             
+        </DataGrid>
     </Grid>
 </UserControl>
