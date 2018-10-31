@@ -52,7 +52,7 @@ namespace ViewModel
                     MyUser.Instance.MayID = user.MayID;
                 }
             }
-            catch (Exception e)
+            catch 
             {
 
             }

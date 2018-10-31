@@ -76,8 +76,6 @@ namespace PhanQuyen.UserControl.BaoCao
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
         {
-            String danhBa = "";
-            String str = "";
             DataTable dt = HandlingDataDBViewModel.Instance.GetListTieuThuBatThuong(year, month, date, machine);
             _reportViewer.LocalReport.ReportPath = "../Report/rptInTieuThuBatThuong.rdlc";
             this._reportViewer.LocalReport.DataSources.Clear();

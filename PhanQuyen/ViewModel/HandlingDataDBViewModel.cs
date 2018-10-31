@@ -131,7 +131,7 @@ namespace ViewModel
                 ConnectionViewModel.Instance.DisConnect();
                 return table;
             }
-            catch (Exception e)
+            catch
             {
                 return new DataTable();
             }
@@ -349,7 +349,7 @@ namespace ViewModel
                     return value;
                 }
             }
-            catch (Exception e)
+            catch
             {
 
                 return UpdateHoaDon(hoaDon);
@@ -370,7 +370,7 @@ namespace ViewModel
                 return value;
 
             }
-            catch (Exception e)
+            catch
             {
                 ConnectionViewModel.Instance.DisConnect();
 
@@ -396,7 +396,7 @@ namespace ViewModel
                 var data = serverContext.ExecuteQuery<QuanLyNVDocSo>(query).ToList();
                 return data;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -412,7 +412,7 @@ namespace ViewModel
                 var data = serverContext.ExecuteQuery<DateTime>(query).ToList();
                 return data.ElementAt(0);
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -433,7 +433,6 @@ namespace ViewModel
                     query = "select (b.May) as May,Count(distinct b.DanhBa) as SoKH from khachhang b inner join MayDS1 m on b.May = m.May" +
                         " where  b.Dot = " + date + " and m.ToID = " + xGroup + " and HieuLuc = '1' group by b.May  order by b.May";
                 var data = serverContext.ExecuteQuery<TruyenDuLieu>(query).ToList();
-                int stt = 0;
                 foreach (var item in data)
                 {
                     items.Add(new TruyenDuLieu()
@@ -447,7 +446,7 @@ namespace ViewModel
                     });
                 }
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -1320,7 +1319,7 @@ namespace ViewModel
                         localContext.SubmitChanges();
                     }
                 }
-                catch (Exception e)
+                catch
                 {
                 }
             }
@@ -1468,7 +1467,7 @@ namespace ViewModel
                 return data;
 
             }
-            catch (Exception e)
+            catch
             {
                 ConnectionViewModel.Instance.DisConnect();
             }
@@ -1601,7 +1600,7 @@ namespace ViewModel
                         localContext.SubmitChanges();
                     }
                 }
-                catch (Exception e)
+                catch
                 {
                 }
             }
@@ -1696,7 +1695,6 @@ namespace ViewModel
             int count = 0;
             int month = Int16.Parse(Month);
             List<Item> r = new List<Item>();
-            String kyString;
             month++;
             DateTime dateTime = new DateTime(year, month, 1);
             while (count < 13)
@@ -1863,7 +1861,6 @@ namespace ViewModel
         {
             try
             {
-                List<String> items;
                 string query = "";
                 if (xGroup == 0)
                     query = "select distinct may from docso where docsoid like '" + year + month + "%' and dot = '" + date + "'";
@@ -1915,7 +1912,7 @@ namespace ViewModel
                 DataTable table = ConnectionViewModel.Instance.GetDataTable(sqlStatement);
                 return table;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -1934,7 +1931,7 @@ namespace ViewModel
                 DataTable table = ConnectionViewModel.Instance.GetDataTable(sqlStatement);
                 return table;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -1944,19 +1941,19 @@ namespace ViewModel
             }
             return null;
         }
-        public DataTable BaoThay_BaoThayDinhKy_LoadDanhMucBaoThay()
+        public DataTable BaoThay_BaoThayDinhKy_LoadDanhMucBaoThay(DateTime dateTime)
         {
             try
             {
                 string sqlStatement = "select distinct b.DanhBa ,k.MLT2 ,k.TenKH ,k.So + ' ' + k.Duong as DiaChi,Convert(varchar(10), tb.NgayKiem, 103) as NgayBao, " +
                     "k.Hieu as HieuCu ,  k.Co as CoCu ,k.ChiThan as ChiThanCu ,k.ChiCo as ChiCoCu , k.SoThan as SoThanCu ,tb.ChiSo as ChiSoBao ,tb.LoaiLenh as SoBKThay, " +
                     "b.HieuMoi, b.CoMoi, b.ChiThanMoi, b.ChiCoMoi, b.SoThanMoi from BaoThay b inner join  KhachHang k on b.DanhBa = k.DanhBa" +
-                    " inner join Thongbao tb on tb.DanhBa = k.DanhBa where tb.NgayCapNhat = '" + DateTime.Now + "'";
+                    " inner join Thongbao tb on tb.DanhBa = k.DanhBa where b.NgayCapNhat > '" + dateTime + "'";
                 ConnectionViewModel.Instance.Connect();
                 DataTable table = ConnectionViewModel.Instance.GetDataTable(sqlStatement);
                 return table;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -1992,7 +1989,7 @@ namespace ViewModel
                 DataTable table = ConnectionViewModel.Instance.GetDataTable(sqlStatement);
                 return table;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -2002,10 +1999,13 @@ namespace ViewModel
             }
             return null;
         }
-        public void BaoThay_BaoThayDinhKy_BaoThay(DataTable table, string csGo, string csGan, string ngayThay)
+        public bool BaoThay_BaoThayDinhKy_BaoThay(DataTable table, string csGo, string csGan, string ngayThay)
         {
+            bool result = true;
             try
             {
+                if (table.Rows.Count == 0)
+                    return false;
                 foreach (DataRow row in table.Rows)
                 {
                     string danhBa = row["DanhBa"].ToString();
@@ -2027,9 +2027,12 @@ namespace ViewModel
 
 
                     ConnectionViewModel.Instance.Connect();
+                    //query = "insert into BaoThay " +
+                    //    "values((select top 1 baothayid+1 from baothay order by BaoThayID desc),'" + danhBa + "'," + loaiBT + ",'" + ngayThay + "','" + hieu + "','" + co + "','" + soThan + "','" + viTri + "','"
+                    //    + maChiThan + "','" + maChiGoc + "','" + csGo + "','" + csGan + "',GetDate(),'" + MyUser.Instance.UserID + "')";
                     query = "insert into BaoThay " +
-                        "values((select top 1 baothayid+1 from baothay order by BaoThayID desc),'" + danhBa + "'," + loaiBT + ",'" + ngayThay + "','" + hieu + "','" + co + "','" + soThan + "','" + viTri + "','"
-                        + maChiThan + "','" + maChiGoc + "','" + csGo + "','" + csGan + "',GetDate(),'" + MyUser.Instance.UserID + "')";
+                     "values('" + danhBa + "'," + loaiBT + ",'" + ngayThay + "','" + hieu + "','" + co + "','" + soThan + "','" + viTri + "','"
+                     + maChiThan + "','" + maChiGoc + "','" + csGo + "','" + csGan + "',GetDate(),'" + MyUser.Instance.UserID + "')";
                     ConnectionViewModel.Instance.GetExecuteReader(query);
                     ConnectionViewModel.Instance.DisConnect();
 
@@ -2042,13 +2045,43 @@ namespace ViewModel
             }
             catch (Exception e)
             {
+                result = false;
+                MessageBox.Show(e.ToString());
+            }
+            finally
+            {
+                ConnectionViewModel.Instance.DisConnect();
+            }
+            return result;
+        }
+        #endregion
+        #region Hoàn công
+
+        public DataTable BaoThay_HoanCong_LoadDanhSachBao(DateTime dateTime)
+        {
+            try
+            {
+                string sqlStatement = "select BaoThayID, ROW_NUMBER() OVER(ORDER BY SoBKThay) as 'STT', k.DanhBa 'Danh bạ', k.MLT2 'Mã LT'," +
+                    "k.TenKH 'Tên KH', k.So +' '+ k.Duong 'Địa chỉ',  Convert(varchar(10),NgayBao,103) 'Ngày báo', HieuCu 'Hiệu cũ', CoCu 'Cỡ cũ'," +
+                    "s.CodeDesc 'Loại BT', ChiThanCu 'CT cũ', ChiCoCu 'CC cũ',ViTriCu 'VT cũ',SoThanCu 'Số thân cũ',  CSBao 'CS báo'," +
+                    " SoBKThay 'Số BK',ToID 'Tổ đọc số' from BaoThay b inner join KhachHang k on b.DanhBa = k.DanhBa " +
+                    "inner join ThamSo s on b.LoaiBT = s.Code where (SoBKHoanCong is Null or SoBKHoanCong = '') and (TroNgai = 0 or TroNgai is Null) " +
+                    "and (HuyBaoThay = 0 or HuyBaoThay is Null)  and s.CodeType = 'BT'  and convert(date,NgayBao) = convert(date,'" + dateTime + "')";
+                ConnectionViewModel.Instance.Connect();
+                DataTable table = ConnectionViewModel.Instance.GetDataTable(sqlStatement);
+                return table;
+            }
+            catch
+            {
 
             }
             finally
             {
                 ConnectionViewModel.Instance.DisConnect();
             }
+            return null;
         }
+
         #endregion
         #region Nhap Thong Bao
         public DataTable BaoThay_NhapThongBao_TimKiemKhachHang(string loaiTK, string doituongTK)
@@ -2060,7 +2093,7 @@ namespace ViewModel
                 ConnectionViewModel.Instance.Connect();
                 table = ConnectionViewModel.Instance.GetDataTable(sqlStatment);
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -2080,7 +2113,7 @@ namespace ViewModel
                 int num = Convert.ToInt32(ConnectionViewModel.Instance.GetExecuteScalar(sqlStatement));
                 return num;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -2101,7 +2134,7 @@ namespace ViewModel
                 int num = Convert.ToInt32(ConnectionViewModel.Instance.GetExecuteScalar(sqlStatement));
                 return num;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -2122,7 +2155,7 @@ namespace ViewModel
                 DataTable table = ConnectionViewModel.Instance.GetDataTable(sqlStatement);
                 return table;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -2150,7 +2183,7 @@ namespace ViewModel
                 ConnectionViewModel.Instance.DisConnect();
                 return result > 0;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -2178,7 +2211,7 @@ namespace ViewModel
                 ConnectionViewModel.Instance.DisConnect();
                 return result > 0;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -2201,7 +2234,7 @@ namespace ViewModel
                 ConnectionViewModel.Instance.DisConnect();
                 return result > 0;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -2228,7 +2261,7 @@ namespace ViewModel
                 ConnectionViewModel.Instance.DisConnect();
                 return result > 0;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -2256,7 +2289,7 @@ namespace ViewModel
                 ConnectionViewModel.Instance.DisConnect();
                 return result > 0;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -2280,7 +2313,7 @@ namespace ViewModel
                 DataTable table = ConnectionViewModel.Instance.GetDataTable(sqlStatement);
                 return table;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -2299,7 +2332,7 @@ namespace ViewModel
                 DataTable table = ConnectionViewModel.Instance.GetDataTable(sqlStatement);
                 return table;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -2318,7 +2351,7 @@ namespace ViewModel
                 DataTable table = ConnectionViewModel.Instance.GetDataTable(sqlStatement);
                 return table;
             }
-            catch (Exception e)
+            catch
             {
 
             }
@@ -2340,7 +2373,7 @@ namespace ViewModel
                 ConnectionViewModel.Instance.Connect();
                 table = ConnectionViewModel.Instance.GetDataTable(sqlStatment);
             }
-            catch (Exception e)
+            catch
             {
 
             }

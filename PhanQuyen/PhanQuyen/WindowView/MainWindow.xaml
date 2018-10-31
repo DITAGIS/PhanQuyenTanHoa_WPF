@@ -54,7 +54,7 @@
                 <RibbonGroup Header="Quản lý">
                     <RibbonButton Label="Quản lý nhân viên đọc số" LargeImageSource="/PhanQuyen;component/Images/nhanviendocso.png"
                                   Name="ribBtnQuanLyNhanVienDocSo" Click="ribBtnQuanLyNhanVienDocSo_Click"></RibbonButton>
-                    <RibbonButton Label="Quản lý user"  LargeImageSource="/PhanQuyen;component/Images/quanlynhanvien.png"></RibbonButton>
+                    <RibbonButton Label="Quản lý user" Visibility="Collapsed" LargeImageSource="/PhanQuyen;component/Images/quanlynhanvien.png"></RibbonButton>
                     <RibbonButton Label="Chuyển máy đọc số"  LargeImageSource="/PhanQuyen;component/Images/file.png"
                                   Visibility="Collapsed"></RibbonButton>
                 </RibbonGroup>
@@ -66,7 +66,7 @@
                 </RibbonGroup>
 
             </RibbonTab>
-            <RibbonTab FontSize="13" Header="Chuẩn bị đọc số" >
+            <RibbonTab FontSize="13" Header="Chuẩn bị đọc số"  Visibility="Collapsed">
                 <RibbonGroup Header="Chuẩn bị">
                     <RibbonButton Label="Cập nhật hóa đơn" LargeImageSource="/PhanQuyen;component/Images/bill.png"
                                   Click="ribBtnCapNhatHoaDon"></RibbonButton>
@@ -79,7 +79,7 @@
                 </RibbonGroup>-->
 
             </RibbonTab>
-            <RibbonTab FontSize="13" Header="Giao tiếp" >
+            <RibbonTab FontSize="13" Header="Giao tiếp" Visibility="Collapsed">
                 <RibbonGroup >
                     <RibbonButton Label="Xuất dữ liệu ra Smartphone"  LargeImageSource="/PhanQuyen;component/Images/smartphone.png" 
                                Name="ribBtnXuatDuLieu"   Click="ribBtnXuatDuLieu_Click"></RibbonButton>
@@ -104,17 +104,17 @@
                 </RibbonGroup>
                 <RibbonGroup Header="Nhập">
                     <RibbonButton Label="Nhập hoàn công"  LargeImageSource="/PhanQuyen;component/Images/nhaphoancong.png"
-                                  Click="ribBtnNhapHoanCong_Click"></RibbonButton>
+                                Visibility="Collapsed"  Click="ribBtnNhapHoanCong_Click"></RibbonButton>
                     <RibbonButton Label="Nhập thông báo"  LargeImageSource="/PhanQuyen;component/Images/nhapthongbao.png"
                                   Click="ribBtnNhapThongBao_Click"></RibbonButton>
                 </RibbonGroup>
                 <RibbonGroup Header="Cập nhật">
                     <RibbonButton Label="Cập nhật hoàn công"  LargeImageSource="/PhanQuyen;component/Images/capnhathoancong.png" 
-                                  Click="ribBtnCapNhatHoanCong_Click"></RibbonButton>
+                                Visibility="Collapsed"  Click="ribBtnCapNhatHoanCong_Click"></RibbonButton>
                     <RibbonButton Label="Cập nhật thông báo"  LargeImageSource="/PhanQuyen;component/Images/capnhatthongbao.png"
                                   Click="ribBtnCapNhatThongBao_Click"></RibbonButton>
                 </RibbonGroup>
-                <RibbonGroup Header="Hoàn công">
+                <RibbonGroup Header="Hoàn công" Visibility="Collapsed">
                     <RibbonButton Label="Hoàn công bồi thường"  LargeImageSource="/PhanQuyen;component/Images/hoancongboithuong.png"
                                   Click="ribBtnHoanCongBoiThuong_Click"></RibbonButton>
                     <RibbonButton Label="Hoàn công không báo thay"  LargeImageSource="/PhanQuyen;component/Images/hoancongkhongbaothay.png"
@@ -125,7 +125,7 @@
                                   Click="ribBtnLichSuDHN_Click"></RibbonButton>
                 </RibbonGroup>
             </RibbonTab>
-            <RibbonTab FontSize="13" Header="Điều chỉnh thông tin">
+            <RibbonTab FontSize="13" Header="Điều chỉnh thông tin" Visibility="Collapsed">
                 <RibbonGroup Header="Khách hàng">
                     <RibbonButton Label="Tra cứu thông tin khách hàng"  LargeImageSource="/PhanQuyen;component/Images/customer.png"></RibbonButton>
                 </RibbonGroup>

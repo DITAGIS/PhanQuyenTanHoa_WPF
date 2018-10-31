@@ -104,7 +104,8 @@
                     <!--row 3-->
                     <Label Grid.Row="3" Grid.Column="0" Margin="10" FontSize="13" 
                            Content="Ngày báo" VerticalAlignment="Center"></Label>
-                    <DatePicker Grid.Row="3" Grid.Column="1" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"></DatePicker>
+                    <DatePicker Grid.Row="3" Grid.Column="1" FontSize="13" Width="100" Height="30" VerticalContentAlignment="Center"
+                               Name="dtpNgayBao" SelectedDateChanged="dtpNgayBao_SelectedDateChanged"></DatePicker>
                     <Label Grid.Row="3" Grid.Column="2" FontSize="13" Margin="30,10,10,10" 
                            Content="Loại báo thay" VerticalAlignment="Center"></Label>
                     <ComboBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="3" FontSize="13"  Height="30" VerticalContentAlignment="Center"></ComboBox>
@@ -243,7 +244,7 @@
             </ContentControl>
         </GroupBox>
 
-        <DataGrid Grid.Row="2" Grid.Column="0"></DataGrid>
+        <DataGrid Grid.Row="2" Grid.Column="0" Name="dtgDanhSachBao"></DataGrid>
         <DataGrid Grid.Row="2" Grid.Column="1"></DataGrid>
     </Grid>
 </UserControl>

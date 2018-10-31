@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ViewModel;
 
 namespace PhanQuyen.UserControlView.BaoThay
 {
@@ -22,6 +23,22 @@ namespace PhanQuyen.UserControlView.BaoThay
         public UC_NhapHoanCong()
         {
             InitializeComponent();
+        }
+
+        private void LoadDanhMucBaoThay(DateTime ngayBao)
+        {
+            try
+            {
+                dtgDanhSachBao.ItemsSource = HandlingDataDBViewModel.Instance.BaoThay_HoanCong_LoadDanhSachBao(ngayBao).DefaultView;
+                this.dtgDanhSachBao.Columns[0].Visibility = Visibility.Collapsed;
+            }
+            catch (Exception ex)
+            {
+                int num = (int)MessageBox.Show("Lỗi LoadDanhMucBaoThay: " + ex.Message, "Thông báo");
+            }
+            finally
+            {
+            }
         }
 
         private void btnBaoThay_Click(object sender, RoutedEventArgs e)
@@ -57,6 +74,10 @@ namespace PhanQuyen.UserControlView.BaoThay
         private void btnTroNgai_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void dtpNgayBao_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadDanhMucBaoThay(dtpNgayBao.SelectedDate.Value);
         }
     }
 }

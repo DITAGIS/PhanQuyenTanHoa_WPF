@@ -552,7 +552,6 @@ namespace PhanQuyen
             SolidColorBrush blue = new SolidColorBrush(Colors.Blue);
             SolidColorBrush black = new SolidColorBrush(Colors.Black);
             Setter bold = new Setter(TextBlock.FontWeightProperty, FontWeights.Bold, null);
-            Style newStyle;
             for (int index = 0; index < this.dtgridMain.Items.Count; ++index)
             {
                 row = getRow(index);
@@ -578,7 +577,7 @@ namespace PhanQuyen
                     str1 = getValueCell(cellCodeMoi, row);
                     str2 = getValueCell(cellStaCapNhat, row);
                 }
-                catch (Exception ex)
+                catch 
                 {
                 }
                 try

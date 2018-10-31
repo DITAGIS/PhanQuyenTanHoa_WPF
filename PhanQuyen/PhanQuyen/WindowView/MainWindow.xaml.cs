@@ -34,7 +34,6 @@ namespace PhanQuyen
         UC_InTieuThuBatThuong uc_InTieuThuBatThuong;
         UC_NhanDuLieu uc_NhanDuLieu;
         UC_CapNhatHoaDon uc_CapNhatHoaDon;
-        UC_ChuyenMayDocSo uc_ChuyenMayDocSo;
         UC_ThongKeDHNSauDocSo uc_ThongKeDHNSauDocSo;
         UC_ThongKeDHNTrenMang uc_ThongKeDHNTrenMang;
         UC_BaoCaoTongHop uc_BaoCaoTongHop;
@@ -53,7 +52,8 @@ namespace PhanQuyen
         UC_HoanCongBoiThuong uc_HoanCongBoiThuong;
         UC_HoanCongKhongBaoThay uc_HoanCongKhongBaoThay;
         private MyUser user;
-        private String title = "Phần mềm kết nối ứng dụng đọc số trên Smartphone            Nhân viên: ";
+        //private String title = "Phần mềm kết nối ứng dụng đọc số trên Smartphone            Nhân viên: ";
+        private String title = "Phần mềm kết nối ứng dụng đọc số trên Smartphone       ";
         public MainWindow()
         {
 
@@ -64,7 +64,7 @@ namespace PhanQuyen
         public MainWindow(MyUser user)
         {
             this.user = user; InitializeComponent();
-            this.title += user.UserName;
+            //this.title += user.UserName;
             this.Title = title;
         }
 
@@ -151,11 +151,6 @@ namespace PhanQuyen
             {
                 uc_DieuChinhThonTinDocSo.Height = stkMain.ActualHeight;
                 uc_DieuChinhThonTinDocSo.Width = stkMain.ActualWidth;
-            }
-            if (uc_ChuyenMayDocSo != null)
-            {
-                uc_ChuyenMayDocSo.Height = stkMain.ActualHeight;
-                uc_ChuyenMayDocSo.Width = stkMain.ActualWidth;
             }
             if (uc_InPhieuTieuThuKH != null)
             {

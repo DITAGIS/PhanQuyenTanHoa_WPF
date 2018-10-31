@@ -37,9 +37,5 @@ namespace Model
             }
         }
         private MyUser() { }
-        public string ToString()
-        {
-            return UserID + "/" + UserName + "/" + Password + "/" + UserGroup + "/" + ToID + "/" + MayID + "/" + Year + "/" + Month + "/" + Date;
-        }
     }
 }

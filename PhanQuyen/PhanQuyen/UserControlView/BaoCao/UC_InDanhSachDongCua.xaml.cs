@@ -77,8 +77,6 @@ using System.Linq;
  
          private void btnPrint_Click(object sender, RoutedEventArgs e)
          {
-             String danhBa = "";
-             String str = "";
              DataTable dt = HandlingDataDBViewModel.Instance.GetListCloseDoor(year, month, date, machine);
              _reportViewer.LocalReport.ReportPath = "../Report/rptInDongCua.rdlc";
              this._reportViewer.LocalReport.DataSources.Clear();

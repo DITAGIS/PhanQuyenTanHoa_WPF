@@ -26,7 +26,7 @@ namespace PhanQuyen.UserControlView
     public partial class UC_XuatDuLieuRaSmartPhone : System.Windows.Controls.UserControl
     {
         private int year, group;
-        private String month, date, machine;
+        private String month, date;
         private ItemCollection DanhMucFile
         {
             get { return dtgridMain.Items; }

@@ -24,8 +24,8 @@ namespace PhanQuyen
     /// </summary>
     public partial class UC_BaoCaoTongHop : System.Windows.Controls.UserControl
     {
-        private int year, group;
-        private String month, date, machine;
+        private int year;
+        private String month, date;
         public UC_BaoCaoTongHop()
         {
             InitializeComponent();

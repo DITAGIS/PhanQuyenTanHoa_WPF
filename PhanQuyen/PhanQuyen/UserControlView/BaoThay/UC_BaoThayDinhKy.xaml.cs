@@ -21,12 +21,14 @@ namespace PhanQuyen.UserControlView.BaoThay
     /// </summary>
     public partial class UC_BaoThayDinhKy : System.Windows.Controls.UserControl
     {
+        private DateTime _dateTime;
         public UC_BaoThayDinhKy()
         {
             InitializeComponent();
             cbbDKLoc.ItemsSource = new List<string> { "=", ">", ">=", "<", "<=" };
             cbbThang.ItemsSource = new List<string> { "", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" };
 
+            this._dateTime = DateTime.Now;
 
             LoadCoDHN();
             AddItemCbbNam();
@@ -46,7 +48,7 @@ namespace PhanQuyen.UserControlView.BaoThay
             try
             {
                 this.tabControl.TabIndex = 1;
-                this.dtgDSBaoThay.ItemsSource = HandlingDataDBViewModel.Instance.BaoThay_BaoThayDinhKy_LoadDanhMucBaoThay().DefaultView;
+                this.dtgDSBaoThay.ItemsSource = HandlingDataDBViewModel.Instance.BaoThay_BaoThayDinhKy_LoadDanhMucBaoThay(_dateTime).DefaultView;
             }
             catch (Exception ex)
             {
@@ -107,12 +109,15 @@ namespace PhanQuyen.UserControlView.BaoThay
                 }
                 else
                 {
-                    HandlingDataDBViewModel.Instance.BaoThay_BaoThayDinhKy_BaoThay(((DataView)dtgDSLoc.ItemsSource).ToTable(), txtCSGo.Text.Trim(), txtCSGan.Text.Trim(), dtpNgayThay.SelectedDate.Value.ToShortDateString());
-                    this.LoadDanhMucBaoThay();
-                    GC.Collect();
-                    GC.WaitForPendingFinalizers();
-                    int num2 = (int)System.Windows.Forms.MessageBox.Show("Báo thay thành công.", "Thông báo", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Asterisk);
-                    this.tabControl.SelectedIndex = 1;
+                    if (HandlingDataDBViewModel.Instance.BaoThay_BaoThayDinhKy_BaoThay(((DataView)dtgDSLoc.ItemsSource).ToTable(), txtCSGo.Text.Trim(), txtCSGan.Text.Trim(), dtpNgayThay.SelectedDate.Value.ToShortDateString()))
+                    {
+                        this.LoadDanhMucBaoThay();
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
+                        int num2 = (int)System.Windows.Forms.MessageBox.Show("Báo thay thành công.", "Thông báo", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Asterisk);
+                        this.tabControl.SelectedIndex = 1;
+                    }
+                    else System.Windows.Forms.MessageBox.Show("Báo thay thất bại.", "Thông báo", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Asterisk);
                 }
             }
             catch (Exception ex)

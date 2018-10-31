@@ -45,7 +45,7 @@ namespace PhanQuyen
             {
                 d = DateTime.ParseExact(s, "yyyyMMdd", CultureInfo.InvariantCulture);
             }
-            catch (Exception e)
+            catch 
             {
                 System.Windows.MessageBox.Show(s);
             }

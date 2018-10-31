@@ -34,20 +34,27 @@ namespace PhanQuyen
             //cbbYear.Items.Add(time.Year);
             //cbbYear.Items.Add(time.AddYears(-1).Year);
             //cbbYear.Items.Add(time.AddYears(-2).Year);
+            //try
+            //{
+            //    cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
+            //    for (int i = 1; i <= 20; i++)
+            //        cbbDate.Items.Add(i.ToString("00"));
+            //    for (int i = 1; i <= 12; i++)
+            //        cbbMonth.Items.Add(i.ToString("00"));
 
-            cbbYear.ItemsSource = HandlingDataDBViewModel.Instance.getDistinctYearServer();
-            for (int i = 1; i <= 20; i++)
-                cbbDate.Items.Add(i.ToString("00"));
-            for (int i = 1; i <= 12; i++)
-                cbbMonth.Items.Add(i.ToString("00"));
+            //}
+            //catch (Exception e)
+            //{
+            //    MessageBox.Show(e.ToString());
+            //}
 
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (cbbMonth.SelectedIndex < 0 || cbbDate.SelectedIndex < 0)
-                MessageBox.Show("Chưa chọn kỳ hoặc đợt!!!");
-            else
+            //if (cbbMonth.SelectedIndex < 0 || cbbDate.SelectedIndex < 0)
+            //    MessageBox.Show("Chưa chọn kỳ hoặc đợt!!!");
+            //else
                 login();
         }
         private void login()
@@ -60,9 +67,9 @@ namespace PhanQuyen
         }
         private void HandleLoginSuccess()
         {
-            user.Year = cbbYear.Text.ToString();
-            user.Month = cbbMonth.SelectedValue.ToString();
-            user.Date = cbbDate.SelectedValue.ToString();
+            user.Year = cbbYear.Text.Trim();
+            user.Month = cbbMonth.Text.Trim();
+            user.Date = cbbDate.Text.Trim();
             string querySelect = "select * from BillState where billid = '" + user.Year + user.Month + user.Date + "'";
             string sqlstatement = "Insert into BillState(BillID) values('" + user.Year + user.Month + user.Date + "')";
             try
@@ -79,7 +86,7 @@ namespace PhanQuyen
                 }
                 ConnectionViewModel.Instance.DisConnect();
             }
-            catch (Exception e)
+            catch 
             {
                 ConnectionViewModel.Instance.DisConnect();
             }
@@ -121,7 +128,7 @@ namespace PhanQuyen
             configWindow.ShowDialog();
         }
 
-       
+
 
         private void cbbMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

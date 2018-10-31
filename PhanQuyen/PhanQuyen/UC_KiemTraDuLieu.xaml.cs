@@ -192,7 +192,6 @@ namespace PhanQuyen
                 return;
             string fileName = openFileDialog.FileName;
             String danhBa = "";
-            int num2 = 0;
 
             try
             {

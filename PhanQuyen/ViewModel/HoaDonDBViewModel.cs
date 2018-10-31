@@ -219,7 +219,7 @@ namespace ViewModel
                 //    danhBas.Add(dataReader["danhba"].ToString());
                 //}
             }
-            catch (Exception e)
+            catch 
             {
 
             }
@@ -238,7 +238,7 @@ namespace ViewModel
                     listYear.Add(dataReader["nam"].ToString());
                 dataReader.Close();
             }
-            catch (Exception e)
+            catch 
             {
 
             }
@@ -256,7 +256,7 @@ namespace ViewModel
                     listMonth.Add(dataReader["ky"].ToString());
                 dataReader.Close();
             }
-            catch (Exception e)
+            catch 
             {
 
             }
@@ -275,7 +275,7 @@ namespace ViewModel
                     listDate.Add(dataReader["dot"].ToString());
                 dataReader.Close();
             }
-            catch (Exception e)
+            catch 
             {
 
             }
@@ -293,7 +293,7 @@ namespace ViewModel
                     listGroup.Add(dataReader["mato"].ToString());
                 dataReader.Close();
             }
-            catch (Exception e)
+            catch 
             {
 
             }
@@ -321,7 +321,7 @@ namespace ViewModel
                     else
                         listMachine.Add(i.ToString());
             }
-            catch (Exception e)
+            catch 
             {
 
             }
