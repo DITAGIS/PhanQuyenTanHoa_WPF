@@ -246,8 +246,8 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*" MinWidth="1000"/>
-                        <!--<ColumnDefinition Width="1*"/>-->
-                      
+                        <ColumnDefinition Width="1*"/>
+
                     </Grid.ColumnDefinitions>
                     <!--<GridSplitter Background="White" Grid.Column="0" Grid.RowSpan="5" Width="10"  HorizontalAlignment="Right" VerticalAlignment="Stretch" ></GridSplitter>-->
 
@@ -330,12 +330,16 @@
                         <!--handle item click event-->
 
                     </DataGrid>
-                    <Grid Grid.Column="1" Visibility="Collapsed" Name="stkImage" Margin="10,0,10,0">
+                    <Grid Grid.Column="1" Visibility="Visible" Name="stkImage" Margin="10,0,10,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1147*"/>
+                            <ColumnDefinition Width="206*"/>
+                        </Grid.ColumnDefinitions>
 
-                        <Border BorderThickness="1" Grid.Column="1" Background="White" Name="border"
+                        <Border BorderThickness="1" Background="White" Name="border"
                                  ClipToBounds="True"
                                   Height="Auto"
-                                   Width="Auto" MouseUp="border_MouseUp"
+                                   Width="Auto" MouseUp="border_MouseUp" Grid.ColumnSpan="2" Margin="0,0,-0.2,-0.4"
                                 >
                             <Image Name="image" 
                                    Height="Auto"
@@ -347,7 +351,7 @@
                             </Image>
                         </Border>
 
-           
+
 
                     </Grid>
                     <TextBlock Grid.Column="1" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Text="Chưa có hình ảnh">
@@ -362,7 +366,7 @@
                             </Style>
                         </TextBlock.Style>
                     </TextBlock>
-                
+
                 </Grid>
 
                 <!--Grid số lệnh-->

@@ -62,9 +62,9 @@ namespace PhanQuyen.UserControlView
                 ConfigurationManager.RefreshSection("connectionStrings");
                 int num = (int)System.Windows.Forms.MessageBox.Show("Lưu kết nối thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            catch
+            catch(Exception ex)
             {
-                int num = (int)System.Windows.Forms.MessageBox.Show("Kết nối thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                int num = (int)System.Windows.Forms.MessageBox.Show("Lưu kết nối thất bại: " +ex.ToString(), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             finally
             {
